@@ -1,0 +1,290 @@
+import 'package:flutter/material.dart';
+import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
+import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
+
+/// Round result dialog
+///
+/// Shows results after a round ends:
+/// - Team name and points earned
+/// - Found vs missed answers
+/// - Optional source attribution
+/// - "Show Answers" expandable section
+/// - "Continue" button to next round
+class RoundResultDialog extends StatefulWidget {
+  const RoundResultDialog({
+    super.key,
+    required this.team,
+    required this.pointsEarned,
+    required this.foundAnswers,
+    required this.missedAnswers,
+    required this.prompt,
+    this.source,
+    required this.onContinue,
+  });
+
+  final Team team;
+  final int pointsEarned;
+  final List<String> foundAnswers;
+  final List<String> missedAnswers;
+  final String prompt;
+  final String? source;
+  final VoidCallback onContinue;
+
+  @override
+  State<RoundResultDialog> createState() => _RoundResultDialogState();
+}
+
+class _RoundResultDialogState extends State<RoundResultDialog> {
+  bool _showAnswers = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Header
+                Text(
+                  'Round Complete!',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+
+                // Team Indicator
+                TeamIndicator(
+                  team: widget.team,
+                  size: TeamIndicatorSize.large,
+                ),
+                const SizedBox(height: 24),
+
+                // Points Earned
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.success.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.success,
+                      width: 2,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.emoji_events,
+                        color: AppColors.success,
+                        size: 48,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '${widget.pointsEarned} ${widget.pointsEarned == 1 ? 'Point' : 'Points'}',
+                        style: const TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.success,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Found ${widget.foundAnswers.length} of ${widget.foundAnswers.length + widget.missedAnswers.length}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Show Answers Toggle
+                TextButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      _showAnswers = !_showAnswers;
+                    });
+                  },
+                  icon: Icon(
+                    _showAnswers
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_down,
+                  ),
+                  label: Text(_showAnswers ? 'Hide Answers' : 'Show Answers'),
+                ),
+
+                // Answers Section (expandable)
+                if (_showAnswers) ...[
+                  const SizedBox(height: 16),
+                  _AnswersSection(
+                    prompt: widget.prompt,
+                    foundAnswers: widget.foundAnswers,
+                    missedAnswers: widget.missedAnswers,
+                    source: widget.source,
+                  ),
+                  const SizedBox(height: 16),
+                ],
+
+                // Continue Button
+                const SizedBox(height: 8),
+                PrimaryButton(
+                  onPressed: widget.onContinue,
+                  isFullWidth: true,
+                  child: const Text('Continue'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AnswersSection extends StatelessWidget {
+  const _AnswersSection({
+    required this.prompt,
+    required this.foundAnswers,
+    required this.missedAnswers,
+    this.source,
+  });
+
+  final String prompt;
+  final List<String> foundAnswers;
+  final List<String> missedAnswers;
+  final String? source;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.surfaceVariant.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: AppColors.surfaceVariant,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Prompt
+          Text(
+            prompt,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Found Answers
+          if (foundAnswers.isNotEmpty) ...[
+            Row(
+              children: [
+                const Icon(
+                  Icons.check_circle,
+                  color: AppColors.success,
+                  size: 16,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'Found (${foundAnswers.length})',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.success,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: foundAnswers.map((answer) {
+                return Chip(
+                  label: Text(
+                    answer,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  backgroundColor: AppColors.success.withValues(alpha: 0.1),
+                  side: const BorderSide(color: AppColors.success),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 16),
+          ],
+
+          // Missed Answers
+          if (missedAnswers.isNotEmpty) ...[
+            Row(
+              children: [
+                Icon(
+                  Icons.cancel,
+                  color: AppColors.textSecondary,
+                  size: 16,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'Missed (${missedAnswers.length})',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: missedAnswers.map((answer) {
+                return Chip(
+                  label: Text(
+                    answer,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  backgroundColor:
+                      AppColors.textSecondary.withValues(alpha: 0.1),
+                  side: BorderSide(color: AppColors.textSecondary),
+                );
+              }).toList(),
+            ),
+          ],
+
+          // Source (if provided)
+          if (source != null && source!.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 8),
+            Text(
+              source!,
+              style: TextStyle(
+                fontSize: 11,
+                fontStyle: FontStyle.italic,
+                color: AppColors.textSecondary,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
