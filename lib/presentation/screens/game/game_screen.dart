@@ -1,159 +1,76 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
-import 'package:pes_vres/data/models/mock_cards.dart';
-import 'package:pes_vres/domain/entities/card_item.dart';
-import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/answer_grid.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/game_header.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/prompt_card.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/round_result_dialog.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/timer_display.dart';
+import 'package:pes_vres/presentation/state/game_setup_provider.dart';
+import 'package:pes_vres/presentation/state/game_state_provider.dart';
+import 'package:pes_vres/presentation/state/timer_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 
 /// Game screen - Core gameplay
 ///
-/// Three game states:
+/// Three game phases:
 /// 1. Pre-Round (ready) - "Pass device to [Team Name]" screen
 /// 2. Active Round (playing) - Timer, prompt, answer discovery
 /// 3. Round End (results) - Results dialog
 ///
-/// For Phase 1, uses local state and mock data.
-/// Phase 2 will integrate Riverpod for state management.
-enum GamePhase {
-  ready,
-  playing,
-  roundEnd,
-}
-
-class GameScreen extends StatefulWidget {
+/// Phase 2: Now uses Riverpod providers for state management.
+/// Connects setup configuration to actual gameplay.
+class GameScreen extends ConsumerStatefulWidget {
   const GameScreen({super.key});
 
   @override
-  State<GameScreen> createState() => _GameScreenState();
+  ConsumerState<GameScreen> createState() => _GameScreenState();
 }
 
-class _GameScreenState extends State<GameScreen> {
-  final Random _random = Random();
-
-  // TODO: In Phase 2, get these from Riverpod providers
-  // For now, using mock data for UI development
-  late List<Team> _teams;
-  late int _numberOfRounds;
-  late int _roundDuration;
-
-  // Game state
-  int _currentRound = 1;
-  int _currentTeamIndex = 0;
-  GamePhase _gamePhase = GamePhase.ready;
-
-  // Round state
-  CardItem? _currentCard;
-  List<String> _selectedAnswers = [];
-  Set<String> _foundAnswers = {};
-  int _secondsRemaining = 0;
-  Timer? _timer;
-
+class _GameScreenState extends ConsumerState<GameScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeMockGame();
-  }
 
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
+    // Listen for timer expiration
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.listenManual(timerProvider, (previous, current) {
+        if (current.isExpired && previous?.isRunning == true) {
+          // Timer just expired, end round
+          _endRound();
+        }
+      });
+    });
   }
-
-  /// Initialize game with mock data
-  /// TODO: In Phase 2, replace with data from Riverpod providers
-  void _initializeMockGame() {
-    _teams = [
-      Team(
-        id: '1',
-        name: 'Team Alpha',
-        color: AppColors.teamColors[0],
-        score: 0,
-      ),
-      Team(
-        id: '2',
-        name: 'Team Beta',
-        color: AppColors.teamColors[1],
-        score: 0,
-      ),
-    ];
-    _numberOfRounds = 5;
-    _roundDuration = 60;
-  }
-
-  Team get _currentTeam => _teams[_currentTeamIndex];
 
   /// Start a new round
   void _startRound() {
-    // Select random card
-    final card = mockCards[_random.nextInt(mockCards.length)];
+    final setupState = ref.read(gameSetupProvider);
 
-    // Select 10 random answers from card
-    final shuffledAnswers = List<String>.from(card.answersEn)..shuffle(_random);
-    final selectedAnswers = shuffledAnswers.take(10).toList()..shuffle(_random);
+    // Start round in game state provider (selects card and answers)
+    ref.read(gameStateProvider.notifier).startRound();
 
-    setState(() {
-      _currentCard = card;
-      _selectedAnswers = selectedAnswers;
-      _foundAnswers = {};
-      _secondsRemaining = _roundDuration;
-      _gamePhase = GamePhase.playing;
-    });
-
-    _startTimer();
-  }
-
-  /// Start countdown timer
-  void _startTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        _secondsRemaining--;
-      });
-
-      if (_secondsRemaining <= 0) {
-        _endRound();
-      }
-    });
+    // Start timer with configured duration
+    ref.read(timerProvider.notifier).start(
+          setupState.config.roundDurationSeconds,
+        );
   }
 
   /// Handle answer tap
   void _onAnswerTap(String answer) {
-    if (_gamePhase != GamePhase.playing) return;
-    if (_foundAnswers.contains(answer)) return;
-
-    setState(() {
-      _foundAnswers.add(answer);
-    });
-
-    // Check if all answers found
-    if (_foundAnswers.length == _selectedAnswers.length) {
-      _endRound();
-    }
+    // Reveal answer in game state
+    ref.read(gameStateProvider.notifier).revealAnswer(answer);
   }
 
   /// End the current round
   void _endRound() {
-    _timer?.cancel();
+    // Stop timer
+    ref.read(timerProvider.notifier).pause();
 
-    // Update team score
-    final pointsEarned = _foundAnswers.length;
-    setState(() {
-      _teams[_currentTeamIndex] = _teams[_currentTeamIndex].copyWith(
-        score: _teams[_currentTeamIndex].score + pointsEarned,
-      );
-      _gamePhase = GamePhase.roundEnd;
-    });
+    // End round in game state (updates scores, creates result)
+    ref.read(gameStateProvider.notifier).endRound();
 
     // Show results dialog
     _showResultsDialog();
@@ -161,22 +78,21 @@ class _GameScreenState extends State<GameScreen> {
 
   /// Show round results dialog
   void _showResultsDialog() {
-    final foundList = _foundAnswers.toList()..sort();
-    final missedList = _selectedAnswers
-        .where((answer) => !_foundAnswers.contains(answer))
-        .toList()
-      ..sort();
+    final gameState = ref.read(gameStateProvider);
+    final result = gameState.lastRoundResult!;
+    final setupState = ref.read(gameSetupProvider);
+    final currentTeam = setupState.teams[result.teamIndex];
 
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => RoundResultDialog(
-        team: _currentTeam,
-        pointsEarned: _foundAnswers.length,
-        foundAnswers: foundList,
-        missedAnswers: missedList,
-        prompt: _currentCard!.promptEn,
-        source: _currentCard!.source,
+        team: currentTeam,
+        pointsEarned: result.pointsEarned,
+        foundAnswers: result.foundAnswers,
+        missedAnswers: result.missedAnswers,
+        prompt: gameState.currentCard!.promptEn,
+        source: gameState.currentCard!.source,
         onContinue: () {
           Navigator.of(context).pop();
           _continueToNextRound();
@@ -187,48 +103,40 @@ class _GameScreenState extends State<GameScreen> {
 
   /// Continue to next round or end game
   void _continueToNextRound() {
-    // Move to next team
-    _currentTeamIndex = (_currentTeamIndex + 1) % _teams.length;
+    final continues = ref.read(gameStateProvider.notifier).continueToNextRound();
 
-    // Check if all rounds completed
-    if (_currentTeamIndex == 0) {
-      _currentRound++;
-      if (_currentRound > _numberOfRounds) {
-        _endGame();
-        return;
-      }
+    if (!continues) {
+      // Game ended, navigate to results
+      _endGame();
     }
-
-    // Start next round
-    setState(() {
-      _gamePhase = GamePhase.ready;
-    });
   }
 
   /// End the game and navigate to results
   void _endGame() {
-    // TODO: In Phase 2, save results to Riverpod provider
-    // For now, pass teams data via route extras
+    // Pass teams data to results screen
+    final teams = ref.read(gameSetupProvider).teams;
     context.pushReplacementNamed(
       AppRoutes.results,
-      extra: _teams,
+      extra: teams,
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final gameState = ref.watch(gameStateProvider);
+
     return PopScope(
       canPop: false,
       child: Scaffold(
         body: SafeArea(
-          child: _buildGamePhaseContent(),
+          child: _buildGamePhaseContent(gameState.gamePhase),
         ),
       ),
     );
   }
 
-  Widget _buildGamePhaseContent() {
-    switch (_gamePhase) {
+  Widget _buildGamePhaseContent(GamePhase phase) {
+    switch (phase) {
       case GamePhase.ready:
         return _buildReadyPhase();
       case GamePhase.playing:
@@ -241,6 +149,12 @@ class _GameScreenState extends State<GameScreen> {
 
   /// Build pre-round "ready" screen
   Widget _buildReadyPhase() {
+    final gameState = ref.watch(gameStateProvider);
+    final setupState = ref.watch(gameSetupProvider);
+    final currentTeam = setupState.teams[gameState.currentTeamIndex];
+    final totalRounds = setupState.config.numberOfRounds;
+    final roundDuration = setupState.config.roundDurationSeconds;
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -251,7 +165,7 @@ class _GameScreenState extends State<GameScreen> {
             Icon(
               Icons.sync_alt,
               size: 80,
-              color: _currentTeam.color,
+              color: currentTeam.color,
             ),
             const SizedBox(height: 24),
             Text(
@@ -269,19 +183,19 @@ class _GameScreenState extends State<GameScreen> {
                 vertical: 16,
               ),
               decoration: BoxDecoration(
-                color: _currentTeam.color.withValues(alpha: 0.1),
+                color: currentTeam.color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: _currentTeam.color,
+                  color: currentTeam.color,
                   width: 3,
                 ),
               ),
               child: Text(
-                _currentTeam.name,
+                currentTeam.name,
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w800,
-                  color: _currentTeam.color,
+                  color: currentTeam.color,
                 ),
               ),
             ),
@@ -297,7 +211,7 @@ class _GameScreenState extends State<GameScreen> {
               child: Column(
                 children: [
                   Text(
-                    'Round $_currentRound of $_numberOfRounds',
+                    'Round ${gameState.currentRound} of $totalRounds',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -306,7 +220,7 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Find 10 answers in $_roundDuration seconds',
+                    'Find 10 answers in $roundDuration seconds',
                     style: TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondary,
@@ -331,17 +245,23 @@ class _GameScreenState extends State<GameScreen> {
 
   /// Build active round "playing" screen
   Widget _buildPlayingPhase() {
-    if (_currentCard == null) return const SizedBox.shrink();
+    final gameState = ref.watch(gameStateProvider);
+    final setupState = ref.watch(gameSetupProvider);
+    final timerState = ref.watch(timerProvider);
+
+    if (gameState.currentCard == null) return const SizedBox.shrink();
+
+    final currentTeam = setupState.teams[gameState.currentTeamIndex];
 
     return Column(
       children: [
         // Header
         GameHeader(
-          currentRound: _currentRound,
-          totalRounds: _numberOfRounds,
-          currentTeam: _currentTeam,
-          foundCount: _foundAnswers.length,
-          totalAnswers: _selectedAnswers.length,
+          currentRound: gameState.currentRound,
+          totalRounds: setupState.config.numberOfRounds,
+          currentTeam: currentTeam,
+          foundCount: gameState.foundAnswers.length,
+          totalAnswers: gameState.selectedAnswers.length,
         ),
 
         // Main Content
@@ -353,22 +273,22 @@ class _GameScreenState extends State<GameScreen> {
                 // Timer
                 Center(
                   child: TimerDisplay(
-                    secondsRemaining: _secondsRemaining,
+                    secondsRemaining: timerState.secondsRemaining,
                   ),
                 ),
                 const SizedBox(height: 24),
 
                 // Prompt
                 PromptCard(
-                  prompt: _currentCard!.promptEn,
-                  difficulty: _currentCard!.difficulty,
+                  prompt: gameState.currentCard!.promptEn,
+                  difficulty: gameState.currentCard!.difficulty,
                 ),
                 const SizedBox(height: 32),
 
                 // Answer Grid
                 AnswerGrid(
-                  answers: _selectedAnswers,
-                  foundAnswers: _foundAnswers,
+                  answers: gameState.selectedAnswers,
+                  foundAnswers: gameState.foundAnswers.toSet(),
                   onAnswerTap: _onAnswerTap,
                 ),
               ],

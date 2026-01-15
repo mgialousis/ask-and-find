@@ -15,7 +15,7 @@ Say & Find is an English version inspired by the Greek game "Πες Βρες!" w
 ## 🚀 Current Status
 
 **Phase 1: COMPLETE!** 🎉
-**Phase 2: Day 8 COMPLETE!** ✅
+**Phase 2: Days 8-9 COMPLETE!** ✅
 
 - ✅ Full UI implementation with Material Design 3
 - ✅ Complete game loop from setup to results
@@ -23,8 +23,10 @@ Say & Find is an English version inspired by the Greek game "Πες Βρες!" w
 - ✅ Team rotation and score tracking
 - ✅ Winner announcement and results screen
 - ✅ **Settings persistence with SharedPreferences** (Day 8)
-- ✅ **Riverpod state management infrastructure** (Day 8)
-- ✅ 37 files, 6,500+ lines of code
+- ✅ **Riverpod state management infrastructure** (Days 8-9)
+- ✅ **Setup → Game connection WORKING!** (Day 9) 🎯
+- ✅ **Configuration respected: teams, rounds, timer** (Day 9)
+- ✅ 39 files, 7,000+ lines of code
 - ✅ Zero analyzer warnings, all tests passing
 
 **Try it now:** `flutter run`
@@ -43,9 +45,9 @@ Say & Find is an English version inspired by the Greek game "Πες Βρες!" w
 
 ### Phase 2 Progress (State Management)
 - ✅ Settings persistence (Day 8)
-- ✅ Riverpod provider infrastructure (Day 8)
-- ⏳ Game state providers (Day 9)
-- ⏳ Setup → Game connection (Day 9)
+- ✅ Riverpod provider infrastructure (Days 8-9)
+- ✅ Timer & Game state providers (Day 9)
+- ✅ Setup → Game connection (Day 9) 🎯
 - ⏳ Play Again functionality (Day 10)
 
 ### Coming Soon (Phase 3+)
@@ -61,16 +63,18 @@ lib/
 ├── domain/entities/   # Team, CardItem, RoundResult, GameConfig, etc.
 ├── data/models/       # Mock data (10 sample cards)
 └── presentation/
-    ├── state/         # Riverpod providers (NEW in Phase 2!)
+    ├── state/         # Riverpod providers (Phase 2 Days 8-9)
     │   ├── settings_provider.dart      # User preferences
-    │   └── game_setup_provider.dart    # Team & config
+    │   ├── game_setup_provider.dart    # Team & config
+    │   ├── timer_provider.dart         # Countdown timer
+    │   └── game_state_provider.dart    # Active gameplay
     ├── screens/       # 14 screen files
     │   ├── home/
     │   ├── how_to_play/
-    │   ├── settings/  # Now uses Riverpod ✅
-    │   ├── setup/     # Now syncs to provider ✅
-    │   ├── game/      # 6 files (Day 9 refactor)
-    │   └── results/   # 2 files
+    │   ├── settings/  # Uses Riverpod ✅
+    │   ├── setup/     # Uses Riverpod ✅
+    │   ├── game/      # Uses Riverpod ✅ (Day 9!)
+    │   └── results/   # 2 files (Day 10 refactor)
     └── widgets/       # 7 reusable components
 ```
 
@@ -181,10 +185,10 @@ Currently using 10 sample cards in `lib/data/models/mock_cards.dart`. Phase 4 wi
 ## 🗓️ Roadmap
 
 - ✅ **Phase 1 (Days 1-7):** UI-First Development - COMPLETE
-- 🚧 **Phase 2 (Days 8-10):** State Management - Day 8 COMPLETE
+- 🚧 **Phase 2 (Days 8-10):** State Management - Days 8-9 COMPLETE
   - Day 8: Settings & Setup providers ✅
-  - Day 9: Timer & Game State providers ⏳
-  - Day 10: Results integration & testing ⏳
+  - Day 9: Timer & Game State providers, Game Screen refactor ✅
+  - Day 10: Results integration & "Play Again" ⏳
 - ⏳ **Phase 3 (Days 11-13):** Domain & Data Layers
 - ⏳ **Phase 4 (Days 14-20):** Polish & Features
 - ⏳ **Phase 5 (Days 21-25):** Testing & Refinement
@@ -209,8 +213,8 @@ This is a personal project. Feedback and suggestions are welcome!
 
 ---
 
-**Status:** Phase 1 Complete, Phase 2 Day 8 Complete! 🎉
+**Status:** Phase 1 Complete, Phase 2 Days 8-9 Complete! 🎉
 
-**Latest:** Settings persistence & provider infrastructure ready ✅
+**Latest:** Setup→Game connection working! Configuration controls gameplay ✅
 
-**Next:** Day 9 - Connect setup to gameplay with state providers
+**Next:** Day 10 - Results screen refactor & "Play Again" functionality

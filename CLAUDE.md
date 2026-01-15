@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Quick Status:** 🎉 Phase 1 COMPLETE! Phase 2 Day 8 COMPLETE! ✅ Settings persistence & provider infrastructure ready. See `PROJECT_STATUS.md` for detailed status.
+> **Quick Status:** 🎉 Phase 1 COMPLETE! Phase 2 Days 8-9 COMPLETE! ✅ Setup→Game connection WORKING! Configuration controls gameplay. See `PROJECT_STATUS.md` for detailed status.
 
 ## Project Overview
 
@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Implementation Status
 
-**Current Phase:** 🚧 Phase 2 - State Management (Day 8 of 10 COMPLETE!)
+**Current Phase:** 🚧 Phase 2 - State Management (Days 8-9 of 10 COMPLETE!)
 
 **Phase 1 Complete (Days 1-7):**
 - ✅ **Foundation** - Theme system, routing, entities, mock data
@@ -41,34 +41,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - ✅ **Settings Provider** - Persistent user preferences with SharedPreferences
 - ✅ **Game Setup Provider** - Team and configuration state management
 - ✅ **Settings Screen Refactored** - ConsumerWidget with automatic persistence
-- ✅ **Setup Screen Partially Refactored** - ConsumerStatefulWidget with hybrid approach
-- 37 files (6,500+ lines of code)
+- ✅ **Setup Screen Refactored** - ConsumerStatefulWidget with hybrid approach
+
+**Phase 2 - Day 9 Complete:**
+- ✅ **Timer Provider** - Countdown timer with auto-expiration detection
+- ✅ **Game State Provider** - Active game orchestration (rounds, cards, scoring)
+- ✅ **Game Screen FULLY Refactored** - Connected to all providers
+- ✅ **Setup → Game Connection WORKING!** - Configuration controls gameplay
+- 39 files (7,000+ lines of code)
 - Zero flutter analyze warnings
 - All tests passing
 
 **What's Next:**
-- ⏳ **Timer Provider** - Countdown timer state (Day 9)
-- ⏳ **Game State Provider** - Active game state management (Day 9)
-- ⏳ **Game Screen Refactor** - Connect to providers, remove hardcoded values (Day 9)
-- ⏳ **Results Integration** - Play Again functionality (Day 10)
+- ⏳ **Results Screen Refactor** - Connect to providers (Day 10)
+- ⏳ **Play Again Functionality** - Use resetScores() (Day 10)
+- ⏳ **Phase 2 Completion** - Final testing and documentation (Day 10)
 - ⏳ **Domain Logic** - Use cases and repositories (Phase 3)
 - ⏳ **Polish** - Animations, sounds, haptics (Phase 4)
 - ⏳ **Testing** - Comprehensive test suite (Phase 5)
 
 **Important Notes for Claude:**
-- **Phase 2 in progress!** Settings and setup now use Riverpod providers
+- **Phase 2 Days 8-9 complete!** Full Riverpod state management working
 - Settings screen: Full migration to ConsumerWidget with SharedPreferences persistence ✅
 - Setup screen: Hybrid migration - syncs to provider but keeps local validation ✅
-- Game screen: Still uses local state - Day 9 will refactor to use providers
+- Game screen: FULLY refactored to use all providers ✅ (Day 9 complete!)
+- **Setup → Game connection WORKING!** Teams, rounds, timer all from setup config ✅
 - **Complete playable game** from home to results screen
-- All 37 files pass `flutter analyze` with no issues
+- All 39 files pass `flutter analyze` with no issues
 - Mock data available in `lib/data/models/mock_cards.dart` (10 sample cards)
 - See `IMPLEMENTATION_PLAN.md` for detailed roadmap and specifications
 
-**Current Limitations (Being Fixed in Phase 2):**
+**Current Limitations (Almost Done!):**
 - ✅ Settings NOW persist between sessions! (Day 8 complete)
 - ✅ Setup screen NOW populates provider with config! (Day 8 complete)
-- ⏳ Game screen still uses hardcoded values (Day 9 will connect to provider)
+- ✅ Game screen NOW uses setup configuration! (Day 9 complete) 🎉
 - ⏳ "Play Again" shows placeholder message (Day 10 will implement)
 
 ### What Can Be Tested Right Now
