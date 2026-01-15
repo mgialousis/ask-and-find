@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
+import 'package:pes_vres/domain/entities/game_config.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/screens/setup/game_config_section.dart';
 import 'package:pes_vres/presentation/screens/setup/team_setup_section.dart';
+import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 import 'package:uuid/uuid.dart';
 
@@ -17,15 +20,16 @@ import 'package:uuid/uuid.dart';
 /// - Configure game settings (rounds, duration, difficulty)
 /// - Validates inputs before starting game
 ///
-/// For Phase 1, uses local state only. Phase 2 will add Riverpod.
-class SetupScreen extends StatefulWidget {
+/// Phase 2: Now uses Riverpod for state management (hybrid approach).
+/// Validation logic remains local, but data is synced to provider.
+class SetupScreen extends ConsumerStatefulWidget {
   const SetupScreen({super.key});
 
   @override
-  State<SetupScreen> createState() => _SetupScreenState();
+  ConsumerState<SetupScreen> createState() => _SetupScreenState();
 }
 
-class _SetupScreenState extends State<SetupScreen> {
+class _SetupScreenState extends ConsumerState<SetupScreen> {
   final _uuid = const Uuid();
 
   // Team configuration
@@ -42,6 +46,18 @@ class _SetupScreenState extends State<SetupScreen> {
   void initState() {
     super.initState();
     _initializeTeams();
+
+    // Initialize provider after first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(gameSetupProvider.notifier).initializeTeams(_numberOfTeams);
+      ref.read(gameSetupProvider.notifier).updateConfig(
+        GameConfig(
+          numberOfRounds: _numberOfRounds,
+          roundDurationSeconds: _roundDuration,
+          difficulty: _difficulty,
+        ),
+      );
+    });
   }
 
   /// Initialize teams with default names and colors
@@ -82,6 +98,13 @@ class _SetupScreenState extends State<SetupScreen> {
         // Clear errors for removed teams
         _nameErrors.removeWhere((key, value) => key >= newNumber);
       }
+
+      // Sync to provider
+      ref.read(gameSetupProvider.notifier).initializeTeams(newNumber);
+      // Update provider teams to match local state (with current names/colors)
+      for (int i = 0; i < _teams.length; i++) {
+        ref.read(gameSetupProvider.notifier).updateTeam(i, _teams[i]);
+      }
     });
   }
 
@@ -90,6 +113,9 @@ class _SetupScreenState extends State<SetupScreen> {
     setState(() {
       _teams[index] = _teams[index].copyWith(name: name);
       _validateTeamName(index, name);
+
+      // Sync to provider
+      ref.read(gameSetupProvider.notifier).updateTeamName(index, name);
     });
   }
 
@@ -97,6 +123,9 @@ class _SetupScreenState extends State<SetupScreen> {
   void _onTeamColorChanged(int index, Color color) {
     setState(() {
       _teams[index] = _teams[index].copyWith(color: color);
+
+      // Sync to provider
+      ref.read(gameSetupProvider.notifier).updateTeamColor(index, color);
     });
   }
 
@@ -168,8 +197,8 @@ class _SetupScreenState extends State<SetupScreen> {
       return;
     }
 
-    // TODO: Pass game configuration to game screen via Riverpod in Phase 2
-    // For now, just navigate to placeholder game screen
+    // Provider is already synced with all team and config data
+    // Game screen will read from gameSetupProvider
     context.pushNamed(AppRoutes.game);
   }
 
@@ -222,16 +251,22 @@ class _SetupScreenState extends State<SetupScreen> {
                         setState(() {
                           _numberOfRounds = rounds;
                         });
+                        // Sync to provider
+                        ref.read(gameSetupProvider.notifier).updateNumberOfRounds(rounds);
                       },
                       onDurationChanged: (duration) {
                         setState(() {
                           _roundDuration = duration;
                         });
+                        // Sync to provider
+                        ref.read(gameSetupProvider.notifier).updateRoundDuration(duration);
                       },
                       onDifficultyChanged: (difficulty) {
                         setState(() {
                           _difficulty = difficulty;
                         });
+                        // Sync to provider
+                        ref.read(gameSetupProvider.notifier).updateDifficulty(difficulty);
                       },
                     ),
                     const SizedBox(height: 24),

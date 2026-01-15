@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/presentation/state/settings_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 
 /// Settings screen - App preferences and configuration
@@ -9,25 +11,12 @@ import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 /// - Haptic feedback
 /// - Dark mode (placeholder for future)
 ///
-/// For Phase 1, uses local state only. Phase 2 will add persistence.
-class SettingsScreen extends StatefulWidget {
+/// Phase 2: Now uses Riverpod state management with SharedPreferences persistence.
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _soundEffectsEnabled = true;
-  bool _hapticFeedbackEnabled = true;
-  bool _darkModeEnabled = false;
-
-  void _restoreDefaults() {
-    setState(() {
-      _soundEffectsEnabled = true;
-      _hapticFeedbackEnabled = true;
-      _darkModeEnabled = false;
-    });
+  void _restoreDefaults(BuildContext context, WidgetRef ref) {
+    ref.read(settingsProvider.notifier).restoreDefaults();
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -38,7 +27,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -48,41 +39,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(height: 8),
 
           // Audio Section
-          _SectionHeader(title: 'Audio'),
+          const _SectionHeader(title: 'Audio'),
           SwitchListTile(
             title: const Text('Sound Effects'),
             subtitle: const Text('Play sounds during gameplay'),
-            value: _soundEffectsEnabled,
+            value: settings.soundEffectsEnabled,
             onChanged: (value) {
-              setState(() {
-                _soundEffectsEnabled = value;
-              });
+              ref.read(settingsProvider.notifier).setSoundEffects(value);
             },
             secondary: const Icon(Icons.volume_up),
           ),
           const Divider(),
 
           // Haptics Section
-          _SectionHeader(title: 'Haptics'),
+          const _SectionHeader(title: 'Haptics'),
           SwitchListTile(
             title: const Text('Haptic Feedback'),
             subtitle: const Text('Vibrate on interactions'),
-            value: _hapticFeedbackEnabled,
+            value: settings.hapticFeedbackEnabled,
             onChanged: (value) {
-              setState(() {
-                _hapticFeedbackEnabled = value;
-              });
+              ref.read(settingsProvider.notifier).setHapticFeedback(value);
             },
             secondary: const Icon(Icons.vibration),
           ),
           const Divider(),
 
           // Appearance Section
-          _SectionHeader(title: 'Appearance'),
+          const _SectionHeader(title: 'Appearance'),
           SwitchListTile(
             title: const Text('Dark Mode'),
             subtitle: const Text('Coming soon in a future update'),
-            value: _darkModeEnabled,
+            value: settings.darkModeEnabled,
             onChanged: null, // Disabled for now
             secondary: const Icon(Icons.dark_mode),
           ),
@@ -93,7 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: PrimaryButton(
-              onPressed: _restoreDefaults,
+              onPressed: () => _restoreDefaults(context, ref),
               isFullWidth: true,
               child: const Text('Restore Defaults'),
             ),
