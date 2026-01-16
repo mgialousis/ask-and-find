@@ -113,12 +113,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   /// End the game and navigate to results
   void _endGame() {
-    // Pass teams data to results screen
-    final teams = ref.read(gameSetupProvider).teams;
-    context.pushReplacementNamed(
-      AppRoutes.results,
-      extra: teams,
-    );
+    // Navigate to results screen (will read teams from provider)
+    context.pushReplacementNamed(AppRoutes.results);
   }
 
   @override

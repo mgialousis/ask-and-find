@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/screens/home/home_screen.dart';
 import 'package:pes_vres/presentation/screens/how_to_play/how_to_play_screen.dart';
 import 'package:pes_vres/presentation/screens/settings/settings_screen.dart';
@@ -42,10 +41,7 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.results,
           name: 'results',
-          builder: (context, state) {
-            final teams = state.extra as List<Team>?;
-            return ResultsScreen(teams: teams);
-          },
+          builder: (context, state) => const ResultsScreen(),
         ),
         GoRoute(
           path: AppRoutes.settings,

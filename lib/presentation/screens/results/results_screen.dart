@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/screens/results/scoreboard_widget.dart';
+import 'package:pes_vres/presentation/state/game_setup_provider.dart';
+import 'package:pes_vres/presentation/state/game_state_provider.dart';
+import 'package:pes_vres/presentation/state/timer_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 
@@ -14,76 +18,51 @@ import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 /// - Sorted scoreboard
 /// - Action buttons (Play Again, New Setup, Share, Home)
 ///
-/// For Phase 1, uses teams passed via route extras.
-/// Phase 2 will integrate Riverpod for state management.
-class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({
-    super.key,
-    this.teams,
-  });
+/// Phase 2: Now uses Riverpod providers for state management.
+class ResultsScreen extends ConsumerWidget {
+  const ResultsScreen({super.key});
 
-  final List<Team>? teams;
-
-  List<Team> get _sortedTeams {
-    if (teams == null || teams!.isEmpty) return _getMockTeams();
-    final sorted = List<Team>.from(teams!);
+  List<Team> _sortedTeams(WidgetRef ref) {
+    final setupState = ref.watch(gameSetupProvider);
+    final sorted = List<Team>.from(setupState.teams);
     sorted.sort((a, b) => b.score.compareTo(a.score));
     return sorted;
   }
 
-  List<Team> _getMockTeams() {
-    // Mock data for Phase 1 if no teams passed
-    return [
-      Team(
-        id: '1',
-        name: 'Team Alpha',
-        color: AppColors.teamColors[0],
-        score: 42,
-      ),
-      Team(
-        id: '2',
-        name: 'Team Beta',
-        color: AppColors.teamColors[1],
-        score: 38,
-      ),
-    ];
-  }
-
-  List<Team> get _winners {
-    final sorted = _sortedTeams;
+  List<Team> _winners(WidgetRef ref) {
+    final sorted = _sortedTeams(ref);
     if (sorted.isEmpty) return [];
     final highestScore = sorted.first.score;
     return sorted.where((team) => team.score == highestScore).toList();
   }
 
-  bool get _isTie => _winners.length > 1;
+  bool _isTie(WidgetRef ref) => _winners(ref).length > 1;
 
-  String get _winnerText {
-    if (_winners.isEmpty) return 'No winner';
-    if (_isTie) {
+  String _winnerText(WidgetRef ref) {
+    final winners = _winners(ref);
+    if (winners.isEmpty) return 'No winner';
+    if (_isTie(ref)) {
       return 'It\'s a Tie!';
     }
-    return '${_winners.first.name} Wins!';
+    return '${winners.first.name} Wins!';
   }
 
-  IconData get _winnerIcon {
-    if (_isTie) return Icons.people;
+  IconData _winnerIcon(WidgetRef ref) {
+    if (_isTie(ref)) return Icons.people;
     return Icons.emoji_events;
   }
 
-  Color get _winnerColor {
-    if (_isTie) return AppColors.warning;
+  Color _winnerColor(WidgetRef ref) {
+    if (_isTie(ref)) return AppColors.warning;
     return AppColors.success;
   }
 
-  void _shareResults(BuildContext context) {
-    // TODO: Phase 2 - Implement actual sharing
-    // For now, show a placeholder dialog
+  void _shareResults(BuildContext context, WidgetRef ref) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Share Results'),
-        content: Text(_buildShareText()),
+        content: Text(_buildShareText(ref)),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -94,44 +73,58 @@ class ResultsScreen extends StatelessWidget {
     );
   }
 
-  String _buildShareText() {
+  String _buildShareText(WidgetRef ref) {
     final buffer = StringBuffer();
+    final sortedTeams = _sortedTeams(ref);
+    final winners = _winners(ref);
+    final isTie = _isTie(ref);
+
     buffer.writeln('Say & Find - Game Results');
     buffer.writeln();
 
-    if (_isTie) {
+    if (isTie) {
       buffer.writeln('Tie between:');
-      for (final winner in _winners) {
+      for (final winner in winners) {
         buffer.writeln('- ${winner.name}: ${winner.score} points');
       }
-    } else if (_winners.isNotEmpty) {
-      buffer.writeln('Winner: ${_winners.first.name}');
-      buffer.writeln('Score: ${_winners.first.score} points');
+    } else if (winners.isNotEmpty) {
+      buffer.writeln('Winner: ${winners.first.name}');
+      buffer.writeln('Score: ${winners.first.score} points');
     }
 
     buffer.writeln();
     buffer.writeln('Final Standings:');
-    for (int i = 0; i < _sortedTeams.length; i++) {
-      final team = _sortedTeams[i];
+    for (int i = 0; i < sortedTeams.length; i++) {
+      final team = sortedTeams[i];
       buffer.writeln('${i + 1}. ${team.name}: ${team.score} points');
     }
 
     return buffer.toString();
   }
 
-  void _playAgain(BuildContext context) {
-    // TODO: Phase 2 - Reset game state and navigate to game
-    // For now, show info that this requires state management
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Play Again will be implemented in Phase 2 with state management'),
-        duration: Duration(seconds: 2),
-      ),
-    );
+  void _playAgain(BuildContext context, WidgetRef ref) {
+    // Reset team scores in setup provider
+    ref.read(gameSetupProvider.notifier).resetScores();
+
+    // Reset game state provider
+    ref.read(gameStateProvider.notifier).reset();
+
+    // Reset timer provider
+    ref.read(timerProvider.notifier).reset();
+
+    // Navigate to game screen
+    context.pushReplacementNamed(AppRoutes.game);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sortedTeams = _sortedTeams(ref);
+    final winners = _winners(ref);
+    final isTie = _isTie(ref);
+    final winnerColor = _winnerColor(ref);
+    final winnerIcon = _winnerIcon(ref);
+    final winnerText = _winnerText(ref);
+
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -156,34 +149,34 @@ class ResultsScreen extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: _winnerColor.withValues(alpha: 0.1),
+                    color: winnerColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: _winnerColor,
+                      color: winnerColor,
                       width: 2,
                     ),
                   ),
                   child: Column(
                     children: [
                       Icon(
-                        _winnerIcon,
+                        winnerIcon,
                         size: 64,
-                        color: _winnerColor,
+                        color: winnerColor,
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        _winnerText,
+                        winnerText,
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w800,
-                          color: _winnerColor,
+                          color: winnerColor,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      if (_isTie) ...[
+                      if (isTie) ...[
                         const SizedBox(height: 12),
                         Text(
-                          _winners.map((t) => t.name).join(' & '),
+                          winners.map((t) => t.name).join(' & '),
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -194,9 +187,9 @@ class ResultsScreen extends StatelessWidget {
                       ],
                       const SizedBox(height: 8),
                       Text(
-                        _winners.isEmpty
+                        winners.isEmpty
                             ? 'No scores recorded'
-                            : '${_winners.first.score} ${_winners.first.score == 1 ? 'point' : 'points'}',
+                            : '${winners.first.score} ${winners.first.score == 1 ? 'point' : 'points'}',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
@@ -209,15 +202,15 @@ class ResultsScreen extends StatelessWidget {
                 const SizedBox(height: 32),
 
                 // Scoreboard
-                ScoreboardWidget(teams: _sortedTeams),
+                ScoreboardWidget(teams: sortedTeams),
                 const SizedBox(height: 32),
 
                 // Action Buttons
                 Column(
                   children: [
-                    // Play Again Button (disabled for Phase 1)
+                    // Play Again Button
                     PrimaryButton(
-                      onPressed: () => _playAgain(context),
+                      onPressed: () => _playAgain(context, ref),
                       isFullWidth: true,
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -249,7 +242,7 @@ class ResultsScreen extends StatelessWidget {
 
                     // Share Results Button
                     SecondaryButton(
-                      onPressed: () => _shareResults(context),
+                      onPressed: () => _shareResults(context, ref),
                       isFullWidth: true,
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
