@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
+import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
 
 /// Round result dialog
@@ -12,6 +13,7 @@ import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
 /// - Optional source attribution
 /// - "Show Answers" expandable section
 /// - "Continue" button to next round
+/// - "End Game" button to skip to final results
 class RoundResultDialog extends StatefulWidget {
   const RoundResultDialog({
     super.key,
@@ -22,6 +24,7 @@ class RoundResultDialog extends StatefulWidget {
     required this.prompt,
     this.source,
     required this.onContinue,
+    required this.onEndGame,
   });
 
   final Team team;
@@ -31,6 +34,7 @@ class RoundResultDialog extends StatefulWidget {
   final String prompt;
   final String? source;
   final VoidCallback onContinue;
+  final VoidCallback onEndGame;
 
   @override
   State<RoundResultDialog> createState() => _RoundResultDialogState();
@@ -145,6 +149,14 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                   onPressed: widget.onContinue,
                   isFullWidth: true,
                   child: const Text('Continue'),
+                ),
+                const SizedBox(height: 12),
+
+                // End Game Button
+                SecondaryButton(
+                  onPressed: widget.onEndGame,
+                  isFullWidth: true,
+                  child: const Text('End Game'),
                 ),
               ],
             ),

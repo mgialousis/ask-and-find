@@ -11,6 +11,7 @@ import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/game_state_provider.dart';
 import 'package:pes_vres/presentation/state/timer_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
+import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 
 /// Game screen - Core gameplay
 ///
@@ -95,6 +96,10 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         onContinue: () {
           Navigator.of(context).pop();
           _continueToNextRound();
+        },
+        onEndGame: () {
+          Navigator.of(context).pop();
+          _endGame();
         },
       ),
     );
@@ -287,6 +292,15 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   onAnswerTap: _onAnswerTap,
                   pointValue: gameState.currentCard!.difficulty.pointsPerAnswer,
                 ),
+                const SizedBox(height: 24),
+
+                // End Round Button
+                SecondaryButton(
+                  onPressed: _endRound,
+                  isFullWidth: true,
+                  child: const Text('End Round'),
+                ),
+                const SizedBox(height: 24),
               ],
             ),
           ),
