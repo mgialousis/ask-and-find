@@ -209,37 +209,25 @@ class GameStateNotifier extends StateNotifier<GameState> {
     final numberOfTeams = setupState.teams.length;
     final totalRounds = setupState.config.numberOfRounds;
 
-    // Move to next team
+    // Move to next round (each round is one team's turn)
+    final nextRound = state.currentRound + 1;
+
+    if (nextRound > totalRounds) {
+      // Game complete
+      return false;
+    }
+
+    // Rotate to next team
     final nextTeamIndex = (state.currentTeamIndex + 1) % numberOfTeams;
 
-    // Check if round is complete (all teams played)
-    if (nextTeamIndex == 0) {
-      // All teams played this round, move to next round
-      final nextRound = state.currentRound + 1;
-
-      if (nextRound > totalRounds) {
-        // Game complete
-        return false;
-      }
-
-      state = state.copyWith(
-        currentRound: nextRound,
-        currentTeamIndex: 0,
-        gamePhase: GamePhase.ready,
-        currentCard: null,
-        selectedAnswers: [],
-        foundAnswers: [],
-      );
-    } else {
-      // Same round, next team
-      state = state.copyWith(
-        currentTeamIndex: nextTeamIndex,
-        gamePhase: GamePhase.ready,
-        currentCard: null,
-        selectedAnswers: [],
-        foundAnswers: [],
-      );
-    }
+    state = state.copyWith(
+      currentRound: nextRound,
+      currentTeamIndex: nextTeamIndex,
+      gamePhase: GamePhase.ready,
+      currentCard: null,
+      selectedAnswers: [],
+      foundAnswers: [],
+    );
 
     return true;
   }
