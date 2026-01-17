@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
@@ -75,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                 // New Game Button
                 PrimaryButton(
                   onPressed: () {
-                    context.pushNamed(AppRoutes.setup);
+                    context.pushNamed('setup');
                   },
                   isFullWidth: true,
                   child: const Text('New Game'),
@@ -85,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                 // How to Play Button
                 SecondaryButton(
                   onPressed: () {
-                    context.pushNamed(AppRoutes.howToPlay);
+                    context.pushNamed('howToPlay');
                   },
                   isFullWidth: true,
                   child: const Text('How to Play'),
@@ -95,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                 // Settings Button
                 SecondaryButton(
                   onPressed: () {
-                    context.pushNamed(AppRoutes.settings);
+                    context.pushNamed('settings');
                   },
                   isFullWidth: true,
                   child: const Text('Settings'),

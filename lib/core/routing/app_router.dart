@@ -17,6 +17,16 @@ class AppRoutes {
   static const String howToPlay = '/how-to-play';
 }
 
+/// Route names (for use with pushNamed)
+class AppRouteNames {
+  static const String home = 'home';
+  static const String setup = 'setup';
+  static const String game = 'game';
+  static const String results = 'results';
+  static const String settings = 'settings';
+  static const String howToPlay = 'howToPlay';
+}
+
 /// Router configuration for the app
 class AppRouter {
   static GoRouter createRouter() {

@@ -32,4 +32,18 @@ enum Difficulty {
         return 'Random mix of all difficulties';
     }
   }
+
+  /// Get points per answer based on difficulty
+  int get pointsPerAnswer {
+    switch (this) {
+      case Difficulty.easy:
+        return 1;
+      case Difficulty.medium:
+        return 2;
+      case Difficulty.hard:
+        return 3;
+      case Difficulty.mixed:
+        return 1; // Mixed uses default 1 point (varies by card)
+    }
+  }
 }

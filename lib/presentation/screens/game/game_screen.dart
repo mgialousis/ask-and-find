@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/answer_grid.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/game_header.dart';
@@ -58,10 +57,10 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         );
   }
 
-  /// Handle answer tap
+  /// Handle answer tap (toggle selection)
   void _onAnswerTap(String answer) {
-    // Reveal answer in game state
-    ref.read(gameStateProvider.notifier).revealAnswer(answer);
+    // Toggle answer selection (select/deselect)
+    ref.read(gameStateProvider.notifier).toggleAnswer(answer);
   }
 
   /// End the current round
@@ -114,7 +113,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   /// End the game and navigate to results
   void _endGame() {
     // Navigate to results screen (will read teams from provider)
-    context.pushReplacementNamed(AppRoutes.results);
+    context.pushReplacementNamed('results');
   }
 
   @override
@@ -286,6 +285,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   answers: gameState.selectedAnswers,
                   foundAnswers: gameState.foundAnswers.toSet(),
                   onAnswerTap: _onAnswerTap,
+                  pointValue: gameState.currentCard!.difficulty.pointsPerAnswer,
                 ),
               ],
             ),

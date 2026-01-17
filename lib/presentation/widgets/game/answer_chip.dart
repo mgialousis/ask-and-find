@@ -3,42 +3,42 @@ import 'package:pes_vres/core/theme/app_colors.dart';
 
 /// State of an answer chip in the game
 enum AnswerChipState {
-  /// Answer is hidden, not yet revealed
-  hidden,
+  /// Answer is not selected (default state, always visible)
+  unselected,
 
-  /// Answer is revealed but not found yet
-  revealed,
-
-  /// Answer has been successfully found
-  found,
+  /// Answer has been selected by the player
+  selected,
 }
 
 /// Tappable chip that displays an answer in the game
 ///
 /// This is a critical game component that handles the main interaction.
-/// Shows different visual states for hidden, revealed, and found answers.
+/// Always shows the answer text with point value in parentheses.
+/// Players tap to select/deselect answers.
 class AnswerChip extends StatelessWidget {
   const AnswerChip({
     super.key,
     required this.answer,
     required this.state,
     required this.onTap,
-    this.index,
+    this.pointValue = 1,
   });
 
   final String answer;
   final AnswerChipState state;
   final VoidCallback onTap;
-  final int? index;
+  final int pointValue;
 
   @override
   Widget build(BuildContext context) {
+    final isSelected = state == AnswerChipState.selected;
+
     return Material(
       color: _getBackgroundColor(),
       borderRadius: BorderRadius.circular(12),
-      elevation: state == AnswerChipState.found ? 0 : 2,
+      elevation: isSelected ? 0 : 2,
       child: InkWell(
-        onTap: state == AnswerChipState.found ? null : onTap,
+        onTap: onTap, // Always tappable for toggle behavior
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.symmetric(
@@ -48,7 +48,7 @@ class AnswerChip extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (state == AnswerChipState.found) ...[
+              if (isSelected) ...[
                 const Icon(
                   Icons.check_circle,
                   color: Colors.white,
@@ -57,18 +57,30 @@ class AnswerChip extends StatelessWidget {
                 const SizedBox(width: 8),
               ],
               Flexible(
-                child: Text(
-                  _getDisplayText(),
-                  style: TextStyle(
-                    color: _getTextColor(),
-                    fontSize: 16,
-                    fontWeight: state == AnswerChipState.found
-                        ? FontWeight.w600
-                        : FontWeight.w500,
-                  ),
+                child: RichText(
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: answer,
+                        style: TextStyle(
+                          color: _getTextColor(),
+                          fontSize: 16,
+                          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' ($pointValue ${pointValue == 1 ? 'pt' : 'pts'})',
+                        style: TextStyle(
+                          color: _getTextColor().withValues(alpha: 0.7),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -80,30 +92,19 @@ class AnswerChip extends StatelessWidget {
 
   Color _getBackgroundColor() {
     switch (state) {
-      case AnswerChipState.hidden:
-        return AppColors.surfaceVariant;
-      case AnswerChipState.revealed:
+      case AnswerChipState.unselected:
         return AppColors.surface;
-      case AnswerChipState.found:
+      case AnswerChipState.selected:
         return AppColors.success;
     }
   }
 
   Color _getTextColor() {
     switch (state) {
-      case AnswerChipState.hidden:
-        return AppColors.textSecondary;
-      case AnswerChipState.revealed:
+      case AnswerChipState.unselected:
         return AppColors.textPrimary;
-      case AnswerChipState.found:
+      case AnswerChipState.selected:
         return Colors.white;
     }
-  }
-
-  String _getDisplayText() {
-    if (state == AnswerChipState.hidden) {
-      return index != null ? '${index! + 1}' : '?';
-    }
-    return answer;
   }
 }

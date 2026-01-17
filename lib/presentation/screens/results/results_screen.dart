@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/screens/results/scoreboard_widget.dart';
@@ -113,7 +112,7 @@ class ResultsScreen extends ConsumerWidget {
     ref.read(timerProvider.notifier).reset();
 
     // Navigate to game screen
-    context.pushReplacementNamed(AppRoutes.game);
+    context.pushReplacementNamed('game');
   }
 
   @override
@@ -226,7 +225,7 @@ class ResultsScreen extends ConsumerWidget {
                     // New Setup Button
                     SecondaryButton(
                       onPressed: () {
-                        context.goNamed(AppRoutes.setup);
+                        context.goNamed('setup');
                       },
                       isFullWidth: true,
                       child: const Row(
@@ -258,7 +257,7 @@ class ResultsScreen extends ConsumerWidget {
                     // Home Button
                     SecondaryButton(
                       onPressed: () {
-                        context.goNamed(AppRoutes.home);
+                        context.goNamed('home');
                       },
                       isFullWidth: true,
                       child: const Row(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/domain/entities/game_config.dart';
@@ -199,7 +198,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
     // Provider is already synced with all team and config data
     // Game screen will read from gameSetupProvider
-    context.pushNamed(AppRoutes.game);
+    context.pushNamed('game');
   }
 
   @override

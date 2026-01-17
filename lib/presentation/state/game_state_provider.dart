@@ -146,25 +146,36 @@ class GameStateNotifier extends StateNotifier<GameState> {
     );
   }
 
-  /// Handle answer tap (reveal and mark as found)
-  void revealAnswer(String answer) {
-    if (state.gamePhase != GamePhase.playing) return;
-    if (state.foundAnswers.contains(answer)) return;
+  /// Toggle answer selection (add if not selected, remove if already selected)
+  void toggleAnswer(String answer) {
+    if (state.gamePhase != GamePhase.playing && state.gamePhase != GamePhase.roundEnd) {
+      return;
+    }
 
-    final updatedFoundAnswers = [...state.foundAnswers, answer];
+    final updatedFoundAnswers = List<String>.from(state.foundAnswers);
+
+    if (updatedFoundAnswers.contains(answer)) {
+      // Deselect: remove from found answers
+      updatedFoundAnswers.remove(answer);
+    } else {
+      // Select: add to found answers
+      updatedFoundAnswers.add(answer);
+    }
+
     state = state.copyWith(foundAnswers: updatedFoundAnswers);
 
-    // Check if all answers found
-    if (updatedFoundAnswers.length == state.selectedAnswers.length) {
-      endRound();
-    }
+    // Note: Don't auto-end round when all answers found
+    // Let players review their selections
   }
 
   /// End the current round (called when timer expires or all answers found)
   void endRound() {
     if (state.gamePhase != GamePhase.playing) return;
 
-    final pointsEarned = state.foundAnswers.length;
+    // Calculate points based on difficulty
+    final pointsPerAnswer = state.currentCard!.difficulty.pointsPerAnswer;
+    final pointsEarned = state.foundAnswers.length * pointsPerAnswer;
+
     final setupState = _ref.read(gameSetupProvider);
     final currentTeam = setupState.teams[state.currentTeamIndex];
 
