@@ -47,3 +47,13 @@ enum Difficulty {
     }
   }
 }
+
+Difficulty parseDifficulty(String value) {
+  final normalized = value.trim().toLowerCase();
+  for (final difficulty in Difficulty.values) {
+    if (difficulty.name == normalized) {
+      return difficulty;
+    }
+  }
+  throw ArgumentError('Unknown difficulty: $value');
+}

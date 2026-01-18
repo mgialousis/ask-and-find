@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/answer_grid.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/game_header.dart';
@@ -9,7 +10,9 @@ import 'package:pes_vres/presentation/screens/game/widgets/round_result_dialog.d
 import 'package:pes_vres/presentation/screens/game/widgets/timer_display.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/game_state_provider.dart';
+import 'package:pes_vres/presentation/state/settings_provider.dart';
 import 'package:pes_vres/presentation/state/timer_provider.dart';
+import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 
@@ -30,6 +33,8 @@ class GameScreen extends ConsumerStatefulWidget {
 }
 
 class _GameScreenState extends ConsumerState<GameScreen> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
   @override
   void initState() {
     super.initState();
@@ -37,22 +42,63 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     // Listen for timer expiration
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.listenManual(timerProvider, (previous, current) {
-        if (current.isExpired && previous?.isRunning == true) {
+        if (previous == null) return;
+
+        if (current.isRunning &&
+            previous.isRunning &&
+            current.secondsRemaining != previous.secondsRemaining &&
+            current.secondsRemaining > 0 &&
+            current.secondsRemaining <= 10) {
+          _playCountdownTick(current.secondsRemaining);
+        }
+
+        if (previous.secondsRemaining > 0 && current.secondsRemaining == 0) {
           // Timer just expired, end round
+          _playTimerEndSound();
           _endRound();
         }
       });
     });
   }
 
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  void _playCountdownTick(int secondsRemaining) {
+    final settings = ref.read(settingsProvider);
+    if (!settings.soundEffectsEnabled) return;
+    final intensity = (11 - secondsRemaining) / 10.0;
+    final volume = (0.2 + intensity * 0.8).clamp(0.2, 1.0);
+    _audioPlayer.play(
+      AssetSource('sounds/countdown_tick.wav'),
+      volume: volume,
+    );
+  }
+
+  void _playTimerEndSound() {
+    final settings = ref.read(settingsProvider);
+    if (!settings.soundEffectsEnabled) return;
+    _audioPlayer.play(
+      AssetSource('sounds/timer_end.wav'),
+      volume: 1.0,
+    );
+  }
+
   /// Start a new round
-  void _startRound() {
+  Future<void> _startRound() async {
     final setupState = ref.read(gameSetupProvider);
 
     // Start round in game state provider (selects card and answers)
-    ref.read(gameStateProvider.notifier).startRound();
+    await ref.read(gameStateProvider.notifier).startRound();
+  }
 
-    // Start timer with configured duration
+  /// Begin the active turn (start timer and reveal answers)
+  void _beginTurn() {
+    final setupState = ref.read(gameSetupProvider);
+    ref.read(gameStateProvider.notifier).beginTurn();
     ref.read(timerProvider.notifier).start(
           setupState.config.roundDurationSeconds,
         );
@@ -66,6 +112,11 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   /// End the current round
   void _endRound() {
+    final gameState = ref.read(gameStateProvider);
+    if (gameState.gamePhase != GamePhase.playing) {
+      return;
+    }
+
     // Stop timer
     ref.read(timerProvider.notifier).pause();
 
@@ -82,17 +133,24 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final result = gameState.lastRoundResult!;
     final setupState = ref.read(gameSetupProvider);
     final currentTeam = setupState.teams[result.teamIndex];
+    final currentCard = gameState.currentCard!;
 
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => RoundResultDialog(
         team: currentTeam,
-        pointsEarned: result.pointsEarned,
         foundAnswers: result.foundAnswers,
         missedAnswers: result.missedAnswers,
-        prompt: gameState.currentCard!.promptEn,
-        source: gameState.currentCard!.source,
+        prompt: currentCard.promptEn,
+        source: currentCard.source,
+        pointsForAnswer: currentCard.pointsForAnswer,
+        onScoreAdjust: (delta) {
+          ref.read(gameSetupProvider.notifier).updateTeamScore(
+                result.teamIndex,
+                delta,
+              );
+        },
         onContinue: () {
           Navigator.of(context).pop();
           _continueToNextRound();
@@ -139,6 +197,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     switch (phase) {
       case GamePhase.ready:
         return _buildReadyPhase();
+      case GamePhase.preview:
+        return _buildPreviewPhase();
       case GamePhase.playing:
         return _buildPlayingPhase();
       case GamePhase.roundEnd:
@@ -152,6 +212,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final gameState = ref.watch(gameStateProvider);
     final setupState = ref.watch(gameSetupProvider);
     final currentTeam = setupState.teams[gameState.currentTeamIndex];
+    final nextTeam =
+        setupState.teams[(gameState.currentTeamIndex + 1) % setupState.teams.length];
     final totalRounds = setupState.config.numberOfRounds;
     final roundDuration = setupState.config.roundDurationSeconds;
 
@@ -169,7 +231,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Pass device to',
+              'It\'s ${currentTeam.name} turn, pass device to ${nextTeam.name}',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
@@ -235,7 +298,49 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             PrimaryButton(
               onPressed: _startRound,
               isFullWidth: true,
-              child: const Text('Ready? Start Round'),
+              child: const Text('Show Question'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Build pre-turn question preview screen
+  Widget _buildPreviewPhase() {
+    final gameState = ref.watch(gameStateProvider);
+    final setupState = ref.watch(gameSetupProvider);
+    final currentTeam = setupState.teams[gameState.currentTeamIndex];
+
+    if (gameState.currentCard == null) return const SizedBox.shrink();
+
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TeamIndicator(
+              team: currentTeam,
+              size: TeamIndicatorSize.large,
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Tap the card to start the timer',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textSecondary,
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: _beginTurn,
+              child: PromptCard(
+                prompt: gameState.currentCard!.promptEn,
+                difficulty: gameState.currentCard!.difficulty,
+              ),
             ),
           ],
         ),
@@ -290,15 +395,16 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   answers: gameState.selectedAnswers,
                   foundAnswers: gameState.foundAnswers.toSet(),
                   onAnswerTap: _onAnswerTap,
-                  pointValue: gameState.currentCard!.difficulty.pointsPerAnswer,
+                  pointsForAnswer:
+                      (answer) => gameState.currentCard!.pointsForAnswer(answer),
                 ),
                 const SizedBox(height: 24),
 
-                // End Round Button
+                // End Turn Button
                 SecondaryButton(
                   onPressed: _endRound,
                   isFullWidth: true,
-                  child: const Text('End Round'),
+                  child: const Text('End Turn'),
                 ),
                 const SizedBox(height: 24),
               ],

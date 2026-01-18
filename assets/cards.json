@@ -1,0 +1,752 @@
+[
+  {
+    "id": "1",
+    "promptEn": "Name 10 countries in Europe",
+    "answersEn": [
+      "France",
+      "Germany",
+      "Italy",
+      "Spain",
+      "Poland",
+      "Netherlands",
+      "Belgium",
+      "Greece",
+      "Portugal",
+      "Sweden"
+    ],
+    "difficulty": "easy",
+    "source": "Source: General geographic knowledge",
+    "answerPoints": {
+      "France": 1,
+      "Germany": 1,
+      "Italy": 1,
+      "Spain": 1,
+      "Poland": 1,
+      "Netherlands": 1,
+      "Belgium": 1,
+      "Greece": 1,
+      "Portugal": 1,
+      "Sweden": 1
+    }
+  },
+  {
+    "id": "2",
+    "promptEn": "Name 10 popular fruit varieties",
+    "answersEn": [
+      "Apple",
+      "Banana",
+      "Orange",
+      "Grape",
+      "Strawberry",
+      "Pineapple",
+      "Watermelon",
+      "Mango",
+      "Peach",
+      "Pear"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Common fruits",
+    "answerPoints": {
+      "Apple": 1,
+      "Banana": 1,
+      "Orange": 1,
+      "Grape": 1,
+      "Strawberry": 1,
+      "Pineapple": 1,
+      "Watermelon": 1,
+      "Mango": 1,
+      "Peach": 1,
+      "Pear": 1
+    }
+  },
+  {
+    "id": "3",
+    "promptEn": "Name 10 colors of the rainbow",
+    "answersEn": [
+      "Red",
+      "Orange",
+      "Yellow",
+      "Green",
+      "Blue",
+      "Indigo",
+      "Violet",
+      "Purple",
+      "Pink",
+      "Cyan"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Light spectrum",
+    "answerPoints": {
+      "Red": 1,
+      "Orange": 1,
+      "Yellow": 1,
+      "Green": 1,
+      "Blue": 1,
+      "Indigo": 1,
+      "Violet": 1,
+      "Purple": 1,
+      "Pink": 1,
+      "Cyan": 1
+    }
+  },
+  {
+    "id": "4",
+    "promptEn": "Name 10 planets in the solar system",
+    "answersEn": [
+      "Mercury",
+      "Venus",
+      "Earth",
+      "Mars",
+      "Jupiter",
+      "Saturn",
+      "Uranus",
+      "Neptune",
+      "Pluto",
+      "Ceres"
+    ],
+    "difficulty": "medium",
+    "source": "Source: NASA Solar System",
+    "answerPoints": {
+      "Mercury": 2,
+      "Venus": 2,
+      "Earth": 2,
+      "Mars": 2,
+      "Jupiter": 2,
+      "Saturn": 2,
+      "Uranus": 2,
+      "Neptune": 2,
+      "Pluto": 2,
+      "Ceres": 2
+    }
+  },
+  {
+    "id": "5",
+    "promptEn": "Name 10 capital cities in Asia",
+    "answersEn": [
+      "Tokyo",
+      "Beijing",
+      "Seoul",
+      "Bangkok",
+      "Singapore",
+      "New Delhi",
+      "Manila",
+      "Jakarta",
+      "Kuala Lumpur",
+      "Hanoi"
+    ],
+    "difficulty": "medium",
+    "source": "Source: World capitals",
+    "answerPoints": {
+      "Tokyo": 2,
+      "Beijing": 2,
+      "Seoul": 2,
+      "Bangkok": 2,
+      "Singapore": 2,
+      "New Delhi": 2,
+      "Manila": 2,
+      "Jakarta": 2,
+      "Kuala Lumpur": 2,
+      "Hanoi": 2
+    }
+  },
+  {
+    "id": "6",
+    "promptEn": "Name 10 popular programming languages",
+    "answersEn": [
+      "Python",
+      "JavaScript",
+      "Java",
+      "C++",
+      "TypeScript",
+      "Go",
+      "Rust",
+      "Swift",
+      "Kotlin",
+      "Ruby"
+    ],
+    "difficulty": "medium",
+    "source": "Source: TIOBE Index",
+    "answerPoints": {
+      "Python": 2,
+      "JavaScript": 2,
+      "Java": 2,
+      "C++": 2,
+      "TypeScript": 2,
+      "Go": 2,
+      "Rust": 2,
+      "Swift": 2,
+      "Kotlin": 2,
+      "Ruby": 2
+    }
+  },
+  {
+    "id": "7",
+    "promptEn": "Name 10 Shakespeare plays",
+    "answersEn": [
+      "Hamlet",
+      "Macbeth",
+      "Romeo and Juliet",
+      "Othello",
+      "King Lear",
+      "The Tempest",
+      "A Midsummer Night\\",
+      "Julius Caesar",
+      "Twelfth Night",
+      "Much Ado About Nothing"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Complete Works of William Shakespeare",
+    "answerPoints": {
+      "Hamlet": 3,
+      "Macbeth": 3,
+      "Romeo and Juliet": 3,
+      "Othello": 3,
+      "King Lear": 3,
+      "The Tempest": 3,
+      "A Midsummer Night\\": 3,
+      "Julius Caesar": 3,
+      "Twelfth Night": 3,
+      "Much Ado About Nothing": 3
+    }
+  },
+  {
+    "id": "8",
+    "promptEn": "Name 10 chemical elements with atomic numbers 1-15",
+    "answersEn": [
+      "Hydrogen",
+      "Helium",
+      "Lithium",
+      "Beryllium",
+      "Boron",
+      "Carbon",
+      "Nitrogen",
+      "Oxygen",
+      "Fluorine",
+      "Neon"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Periodic Table",
+    "answerPoints": {
+      "Hydrogen": 3,
+      "Helium": 3,
+      "Lithium": 3,
+      "Beryllium": 3,
+      "Boron": 3,
+      "Carbon": 3,
+      "Nitrogen": 3,
+      "Oxygen": 3,
+      "Fluorine": 3,
+      "Neon": 3
+    }
+  },
+  {
+    "id": "9",
+    "promptEn": "Name 10 US state capitals",
+    "answersEn": [
+      "Montgomery",
+      "Juneau",
+      "Phoenix",
+      "Little Rock",
+      "Sacramento",
+      "Denver",
+      "Hartford",
+      "Dover",
+      "Tallahassee",
+      "Atlanta"
+    ],
+    "difficulty": "hard",
+    "source": "Source: US Geography",
+    "answerPoints": {
+      "Montgomery": 3,
+      "Juneau": 3,
+      "Phoenix": 3,
+      "Little Rock": 3,
+      "Sacramento": 3,
+      "Denver": 3,
+      "Hartford": 3,
+      "Dover": 3,
+      "Tallahassee": 3,
+      "Atlanta": 3
+    }
+  },
+  {
+    "id": "10",
+    "promptEn": "Name 10 Olympic sports",
+    "answersEn": [
+      "Athletics",
+      "Swimming",
+      "Gymnastics",
+      "Basketball",
+      "Football",
+      "Tennis",
+      "Boxing",
+      "Cycling",
+      "Volleyball",
+      "Wrestling"
+    ],
+    "difficulty": "medium",
+    "source": "Source: International Olympic Committee",
+    "answerPoints": {
+      "Athletics": 2,
+      "Swimming": 2,
+      "Gymnastics": 2,
+      "Basketball": 2,
+      "Football": 2,
+      "Tennis": 2,
+      "Boxing": 2,
+      "Cycling": 2,
+      "Volleyball": 2,
+      "Wrestling": 2
+    }
+  },
+  {
+    "id": "11",
+    "promptEn": "Name 10 days of the week",
+    "answersEn": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+      "Weekday",
+      "Weekend",
+      "Midweek"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Calendar",
+    "answerPoints": {
+      "Monday": 1,
+      "Tuesday": 1,
+      "Wednesday": 1,
+      "Thursday": 1,
+      "Friday": 1,
+      "Saturday": 1,
+      "Sunday": 1,
+      "Weekday": 1,
+      "Weekend": 1,
+      "Midweek": 1
+    }
+  },
+  {
+    "id": "12",
+    "promptEn": "Name 10 common pets",
+    "answersEn": [
+      "Dog",
+      "Cat",
+      "Fish",
+      "Bird",
+      "Hamster",
+      "Rabbit",
+      "Guinea Pig",
+      "Turtle",
+      "Lizard",
+      "Snake"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Common household pets",
+    "answerPoints": {
+      "Dog": 1,
+      "Cat": 1,
+      "Fish": 1,
+      "Bird": 1,
+      "Hamster": 1,
+      "Rabbit": 1,
+      "Guinea Pig": 1,
+      "Turtle": 1,
+      "Lizard": 1,
+      "Snake": 1
+    }
+  },
+  {
+    "id": "13",
+    "promptEn": "Name 10 months of the year",
+    "answersEn": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Gregorian calendar",
+    "answerPoints": {
+      "January": 1,
+      "February": 1,
+      "March": 1,
+      "April": 1,
+      "May": 1,
+      "June": 1,
+      "July": 1,
+      "August": 1,
+      "September": 1,
+      "October": 1
+    }
+  },
+  {
+    "id": "14",
+    "promptEn": "Name 10 US states",
+    "answersEn": [
+      "California",
+      "Texas",
+      "Florida",
+      "New York",
+      "Pennsylvania",
+      "Illinois",
+      "Ohio",
+      "Georgia",
+      "Michigan",
+      "North Carolina"
+    ],
+    "difficulty": "easy",
+    "source": "Source: United States geography",
+    "answerPoints": {
+      "California": 1,
+      "Texas": 1,
+      "Florida": 1,
+      "New York": 1,
+      "Pennsylvania": 1,
+      "Illinois": 1,
+      "Ohio": 1,
+      "Georgia": 1,
+      "Michigan": 1,
+      "North Carolina": 1
+    }
+  },
+  {
+    "id": "15",
+    "promptEn": "Name 10 parts of the human body",
+    "answersEn": [
+      "Head",
+      "Arm",
+      "Leg",
+      "Hand",
+      "Foot",
+      "Eye",
+      "Ear",
+      "Nose",
+      "Mouth",
+      "Heart"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Human anatomy",
+    "answerPoints": {
+      "Head": 1,
+      "Arm": 1,
+      "Leg": 1,
+      "Hand": 1,
+      "Foot": 1,
+      "Eye": 1,
+      "Ear": 1,
+      "Nose": 1,
+      "Mouth": 1,
+      "Heart": 1
+    }
+  },
+  {
+    "id": "16",
+    "promptEn": "Name 10 popular movie franchises",
+    "answersEn": [
+      "Star Wars",
+      "Marvel Cinematic Universe",
+      "Harry Potter",
+      "James Bond",
+      "Fast and Furious",
+      "Mission Impossible",
+      "Jurassic Park",
+      "Lord of the Rings",
+      "Pirates of the Caribbean",
+      "Toy Story"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Box office records",
+    "answerPoints": {
+      "Star Wars": 2,
+      "Marvel Cinematic Universe": 2,
+      "Harry Potter": 2,
+      "James Bond": 2,
+      "Fast and Furious": 2,
+      "Mission Impossible": 2,
+      "Jurassic Park": 2,
+      "Lord of the Rings": 2,
+      "Pirates of the Caribbean": 2,
+      "Toy Story": 2
+    }
+  },
+  {
+    "id": "17",
+    "promptEn": "Name 10 countries in South America",
+    "answersEn": [
+      "Brazil",
+      "Argentina",
+      "Colombia",
+      "Peru",
+      "Venezuela",
+      "Chile",
+      "Ecuador",
+      "Bolivia",
+      "Paraguay",
+      "Uruguay"
+    ],
+    "difficulty": "medium",
+    "source": "Source: South American geography",
+    "answerPoints": {
+      "Brazil": 2,
+      "Argentina": 2,
+      "Colombia": 2,
+      "Peru": 2,
+      "Venezuela": 2,
+      "Chile": 2,
+      "Ecuador": 2,
+      "Bolivia": 2,
+      "Paraguay": 2,
+      "Uruguay": 2
+    }
+  },
+  {
+    "id": "18",
+    "promptEn": "Name 10 musical instruments",
+    "answersEn": [
+      "Piano",
+      "Guitar",
+      "Violin",
+      "Drums",
+      "Trumpet",
+      "Saxophone",
+      "Flute",
+      "Clarinet",
+      "Cello",
+      "Bass"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Musical instrument families",
+    "answerPoints": {
+      "Piano": 2,
+      "Guitar": 2,
+      "Violin": 2,
+      "Drums": 2,
+      "Trumpet": 2,
+      "Saxophone": 2,
+      "Flute": 2,
+      "Clarinet": 2,
+      "Cello": 2,
+      "Bass": 2
+    }
+  },
+  {
+    "id": "19",
+    "promptEn": "Name 10 brands of cars",
+    "answersEn": [
+      "Toyota",
+      "Ford",
+      "Honda",
+      "Chevrolet",
+      "BMW",
+      "Mercedes",
+      "Volkswagen",
+      "Nissan",
+      "Tesla",
+      "Audi"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Automotive industry",
+    "answerPoints": {
+      "Toyota": 2,
+      "Ford": 2,
+      "Honda": 2,
+      "Chevrolet": 2,
+      "BMW": 2,
+      "Mercedes": 2,
+      "Volkswagen": 2,
+      "Nissan": 2,
+      "Tesla": 2,
+      "Audi": 2
+    }
+  },
+  {
+    "id": "20",
+    "promptEn": "Name 10 famous artists",
+    "answersEn": [
+      "Leonardo da Vinci",
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Michelangelo",
+      "Claude Monet",
+      "Rembrandt",
+      "Salvador Dali",
+      "Frida Kahlo",
+      "Andy Warhol",
+      "Banksy"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Art history",
+    "answerPoints": {
+      "Leonardo da Vinci": 2,
+      "Pablo Picasso": 2,
+      "Vincent van Gogh": 2,
+      "Michelangelo": 2,
+      "Claude Monet": 2,
+      "Rembrandt": 2,
+      "Salvador Dali": 2,
+      "Frida Kahlo": 2,
+      "Andy Warhol": 2,
+      "Banksy": 2
+    }
+  },
+  {
+    "id": "21",
+    "promptEn": "Name 10 Nobel Prize categories",
+    "answersEn": [
+      "Physics",
+      "Chemistry",
+      "Medicine",
+      "Literature",
+      "Peace",
+      "Economics",
+      "Physiology",
+      "Science",
+      "Humanitarian",
+      "Achievement"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Nobel Foundation",
+    "answerPoints": {
+      "Physics": 3,
+      "Chemistry": 3,
+      "Medicine": 3,
+      "Literature": 3,
+      "Peace": 3,
+      "Economics": 3,
+      "Physiology": 3,
+      "Science": 3,
+      "Humanitarian": 3,
+      "Achievement": 3
+    }
+  },
+  {
+    "id": "22",
+    "promptEn": "Name 10 countries that start with the letter S",
+    "answersEn": [
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Singapore",
+      "South Africa",
+      "Saudi Arabia",
+      "South Korea",
+      "Syria",
+      "Serbia",
+      "Slovakia"
+    ],
+    "difficulty": "hard",
+    "source": "Source: United Nations member states",
+    "answerPoints": {
+      "Spain": 3,
+      "Sweden": 3,
+      "Switzerland": 3,
+      "Singapore": 3,
+      "South Africa": 3,
+      "Saudi Arabia": 3,
+      "South Korea": 3,
+      "Syria": 3,
+      "Serbia": 3,
+      "Slovakia": 3
+    }
+  },
+  {
+    "id": "23",
+    "promptEn": "Name 10 Greek gods and goddesses",
+    "answersEn": [
+      "Zeus",
+      "Hera",
+      "Poseidon",
+      "Athena",
+      "Apollo",
+      "Artemis",
+      "Ares",
+      "Aphrodite",
+      "Hephaestus",
+      "Hermes"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Greek mythology",
+    "answerPoints": {
+      "Zeus": 3,
+      "Hera": 3,
+      "Poseidon": 3,
+      "Athena": 3,
+      "Apollo": 3,
+      "Artemis": 3,
+      "Ares": 3,
+      "Aphrodite": 3,
+      "Hephaestus": 3,
+      "Hermes": 3
+    }
+  },
+  {
+    "id": "24",
+    "promptEn": "Name 10 computer science algorithms",
+    "answersEn": [
+      "Binary Search",
+      "Quick Sort",
+      "Merge Sort",
+      "Dijkstra",
+      "Breadth First Search",
+      "Depth First Search",
+      "Bubble Sort",
+      "Insertion Sort",
+      "Heap Sort",
+      "A Star"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Computer science textbooks",
+    "answerPoints": {
+      "Binary Search": 3,
+      "Quick Sort": 3,
+      "Merge Sort": 3,
+      "Dijkstra": 3,
+      "Breadth First Search": 3,
+      "Depth First Search": 3,
+      "Bubble Sort": 3,
+      "Insertion Sort": 3,
+      "Heap Sort": 3,
+      "A Star": 3
+    }
+  },
+  {
+    "id": "25",
+    "promptEn": "Name 10 constellations",
+    "answersEn": [
+      "Orion",
+      "Ursa Major",
+      "Ursa Minor",
+      "Cassiopeia",
+      "Andromeda",
+      "Pegasus",
+      "Leo",
+      "Scorpius",
+      "Gemini",
+      "Taurus"
+    ],
+    "difficulty": "hard",
+    "source": "Source: International Astronomical Union",
+    "answerPoints": {
+      "Orion": 3,
+      "Ursa Major": 3,
+      "Ursa Minor": 3,
+      "Cassiopeia": 3,
+      "Andromeda": 3,
+      "Pegasus": 3,
+      "Leo": 3,
+      "Scorpius": 3,
+      "Gemini": 3,
+      "Taurus": 3
+    }
+  }
+]

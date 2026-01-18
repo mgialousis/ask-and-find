@@ -2,14 +2,18 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pes_vres/data/models/mock_cards.dart';
+import 'package:pes_vres/data/repositories/cards_repository.dart';
 import 'package:pes_vres/domain/entities/card_item.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
+import 'package:pes_vres/presentation/state/cards_provider.dart';
 
 /// Game phases during gameplay
 enum GamePhase {
   /// Pre-round: "Pass device to team" screen
   ready,
+
+  /// Pre-turn: show question before timer starts
+  preview,
 
   /// Active round: Timer running, answers being discovered
   playing,
@@ -64,6 +68,8 @@ class GameState extends Equatable {
     this.currentCard,
     this.selectedAnswers = const [],
     this.foundAnswers = const [],
+    this.usedCardIdsInRound = const {},
+    this.usedCardIdsInGame = const {},
     this.lastRoundResult,
   });
 
@@ -73,6 +79,8 @@ class GameState extends Equatable {
   final CardItem? currentCard;
   final List<String> selectedAnswers;
   final List<String> foundAnswers;
+  final Set<String> usedCardIdsInRound;
+  final Set<String> usedCardIdsInGame;
   final RoundResult? lastRoundResult;
 
   /// Initial game state (not started)
@@ -90,6 +98,8 @@ class GameState extends Equatable {
     CardItem? currentCard,
     List<String>? selectedAnswers,
     List<String>? foundAnswers,
+    Set<String>? usedCardIdsInRound,
+    Set<String>? usedCardIdsInGame,
     RoundResult? lastRoundResult,
   }) {
     return GameState(
@@ -99,6 +109,8 @@ class GameState extends Equatable {
       currentCard: currentCard ?? this.currentCard,
       selectedAnswers: selectedAnswers ?? this.selectedAnswers,
       foundAnswers: foundAnswers ?? this.foundAnswers,
+      usedCardIdsInRound: usedCardIdsInRound ?? this.usedCardIdsInRound,
+      usedCardIdsInGame: usedCardIdsInGame ?? this.usedCardIdsInGame,
       lastRoundResult: lastRoundResult ?? this.lastRoundResult,
     );
   }
@@ -111,6 +123,8 @@ class GameState extends Equatable {
         currentCard,
         selectedAnswers,
         foundAnswers,
+        usedCardIdsInRound,
+        usedCardIdsInGame,
         lastRoundResult,
       ];
 }
@@ -129,21 +143,35 @@ class GameStateNotifier extends StateNotifier<GameState> {
   final Ref _ref;
   final Random _random = Random();
 
-  /// Start a new round (transition from ready to playing)
-  void startRound() {
-    // Select random card
-    final card = mockCards[_random.nextInt(mockCards.length)];
+  /// Start a new round (transition from ready to preview)
+  Future<void> startRound() async {
+    final setupState = _ref.read(gameSetupProvider);
+    final cards = await _ref.read(cardsProvider.future);
+    final card = getRandomCardExcluding(
+      cards,
+      {...state.usedCardIdsInRound, ...state.usedCardIdsInGame},
+      setupState.config.difficulty,
+    );
 
     // Select 10 random answers from card
-    final shuffledAnswers = List<String>.from(card.answersEn)..shuffle(_random);
+    final shuffledAnswers = List<String>.from(card.answersEn)
+      ..shuffle(_random);
     final selectedAnswers = shuffledAnswers.take(10).toList()..shuffle(_random);
 
     state = state.copyWith(
       currentCard: card,
       selectedAnswers: selectedAnswers,
       foundAnswers: [],
-      gamePhase: GamePhase.playing,
+      usedCardIdsInRound: {...state.usedCardIdsInRound, card.id},
+      usedCardIdsInGame: {...state.usedCardIdsInGame, card.id},
+      gamePhase: GamePhase.preview,
     );
+  }
+
+  /// Begin the active turn (start timer and allow answering)
+  void beginTurn() {
+    if (state.gamePhase != GamePhase.preview) return;
+    state = state.copyWith(gamePhase: GamePhase.playing);
   }
 
   /// Toggle answer selection (add if not selected, remove if already selected)
@@ -172,9 +200,9 @@ class GameStateNotifier extends StateNotifier<GameState> {
   void endRound() {
     if (state.gamePhase != GamePhase.playing) return;
 
-    // Calculate points based on difficulty
-    final pointsPerAnswer = state.currentCard!.difficulty.pointsPerAnswer;
-    final pointsEarned = state.foundAnswers.length * pointsPerAnswer;
+    // Calculate points based on per-answer difficulty
+    final card = state.currentCard!;
+    final pointsEarned = card.pointsForAnswers(state.foundAnswers);
 
     final setupState = _ref.read(gameSetupProvider);
     final currentTeam = setupState.teams[state.currentTeamIndex];
@@ -209,16 +237,20 @@ class GameStateNotifier extends StateNotifier<GameState> {
     final numberOfTeams = setupState.teams.length;
     final totalRounds = setupState.config.numberOfRounds;
 
-    // Move to next round (each round is one team's turn)
-    final nextRound = state.currentRound + 1;
-
-    if (nextRound > totalRounds) {
-      // Game complete
+    if (numberOfTeams == 0) {
       return false;
     }
 
-    // Rotate to next team
-    final nextTeamIndex = (state.currentTeamIndex + 1) % numberOfTeams;
+    final isLastTeamInRound = state.currentTeamIndex >= numberOfTeams - 1;
+    final nextTeamIndex =
+        isLastTeamInRound ? 0 : state.currentTeamIndex + 1;
+    final nextRound =
+        isLastTeamInRound ? state.currentRound + 1 : state.currentRound;
+
+    if (isLastTeamInRound && nextRound > totalRounds) {
+      // Game complete
+      return false;
+    }
 
     state = state.copyWith(
       currentRound: nextRound,
@@ -227,6 +259,8 @@ class GameStateNotifier extends StateNotifier<GameState> {
       currentCard: null,
       selectedAnswers: [],
       foundAnswers: [],
+      usedCardIdsInRound: isLastTeamInRound ? {} : state.usedCardIdsInRound,
+      usedCardIdsInGame: state.usedCardIdsInGame,
     );
 
     return true;

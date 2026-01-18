@@ -18,21 +18,23 @@ class RoundResultDialog extends StatefulWidget {
   const RoundResultDialog({
     super.key,
     required this.team,
-    required this.pointsEarned,
     required this.foundAnswers,
     required this.missedAnswers,
     required this.prompt,
     this.source,
+    required this.pointsForAnswer,
+    required this.onScoreAdjust,
     required this.onContinue,
     required this.onEndGame,
   });
 
   final Team team;
-  final int pointsEarned;
   final List<String> foundAnswers;
   final List<String> missedAnswers;
   final String prompt;
   final String? source;
+  final int Function(String answer) pointsForAnswer;
+  final ValueChanged<int> onScoreAdjust;
   final VoidCallback onContinue;
   final VoidCallback onEndGame;
 
@@ -42,6 +44,44 @@ class RoundResultDialog extends StatefulWidget {
 
 class _RoundResultDialogState extends State<RoundResultDialog> {
   bool _showAnswers = false;
+  late List<String> _foundAnswers;
+  late List<String> _missedAnswers;
+  late int _pointsEarned;
+
+  @override
+  void initState() {
+    super.initState();
+    _foundAnswers = List<String>.from(widget.foundAnswers)..sort();
+    _missedAnswers = List<String>.from(widget.missedAnswers)..sort();
+    _pointsEarned = _sumPoints(_foundAnswers);
+  }
+
+  int _sumPoints(Iterable<String> answers) {
+    return answers.fold(0, (total, answer) => total + widget.pointsForAnswer(answer));
+  }
+
+  void _toggleAnswerSelection(String answer, bool currentlyFound) {
+    if (currentlyFound) {
+      _foundAnswers.remove(answer);
+      _missedAnswers.add(answer);
+    } else {
+      _missedAnswers.remove(answer);
+      _foundAnswers.add(answer);
+    }
+
+    _foundAnswers.sort();
+    _missedAnswers.sort();
+
+    final newPoints = _sumPoints(_foundAnswers);
+    final delta = newPoints - _pointsEarned;
+    if (delta != 0) {
+      widget.onScoreAdjust(delta);
+    }
+
+    setState(() {
+      _pointsEarned = newPoints;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +135,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        '${widget.pointsEarned} ${widget.pointsEarned == 1 ? 'Point' : 'Points'}',
+                        '$_pointsEarned ${_pointsEarned == 1 ? 'Point' : 'Points'}',
                         style: const TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.w800,
@@ -104,7 +144,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Found ${widget.foundAnswers.length} of ${widget.foundAnswers.length + widget.missedAnswers.length}',
+                        'Found ${_foundAnswers.length} of ${_foundAnswers.length + _missedAnswers.length}',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -136,9 +176,11 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                   const SizedBox(height: 16),
                   _AnswersSection(
                     prompt: widget.prompt,
-                    foundAnswers: widget.foundAnswers,
-                    missedAnswers: widget.missedAnswers,
+                    foundAnswers: _foundAnswers,
+                    missedAnswers: _missedAnswers,
                     source: widget.source,
+                    pointsForAnswer: widget.pointsForAnswer,
+                    onToggleAnswer: _toggleAnswerSelection,
                   ),
                   const SizedBox(height: 16),
                 ],
@@ -173,12 +215,20 @@ class _AnswersSection extends StatelessWidget {
     required this.foundAnswers,
     required this.missedAnswers,
     this.source,
+    required this.pointsForAnswer,
+    required this.onToggleAnswer,
   });
 
   final String prompt;
   final List<String> foundAnswers;
   final List<String> missedAnswers;
   final String? source;
+  final int Function(String answer) pointsForAnswer;
+  final void Function(String answer, bool currentlyFound) onToggleAnswer;
+
+  int _sumPoints(Iterable<String> answers) {
+    return answers.fold(0, (total, answer) => total + pointsForAnswer(answer));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -216,7 +266,7 @@ class _AnswersSection extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  'Found (${foundAnswers.length})',
+                  'Found (${foundAnswers.length}) (${_sumPoints(foundAnswers)} pts)',
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -230,12 +280,16 @@ class _AnswersSection extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: foundAnswers.map((answer) {
-                return Chip(
+                return FilterChip(
+                  selected: true,
+                  onSelected: (_) => onToggleAnswer(answer, true),
                   label: Text(
-                    answer,
+                    '$answer (${pointsForAnswer(answer)})',
                     style: const TextStyle(fontSize: 12),
                   ),
-                  backgroundColor: AppColors.success.withValues(alpha: 0.1),
+                  selectedColor: AppColors.success.withValues(alpha: 0.15),
+                  backgroundColor: AppColors.surfaceVariant.withValues(alpha: 0.3),
+                  checkmarkColor: AppColors.success,
                   side: const BorderSide(color: AppColors.success),
                 );
               }).toList(),
@@ -268,13 +322,17 @@ class _AnswersSection extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: missedAnswers.map((answer) {
-                return Chip(
+                return FilterChip(
+                  selected: false,
+                  onSelected: (_) => onToggleAnswer(answer, false),
                   label: Text(
-                    answer,
+                    '$answer (${pointsForAnswer(answer)})',
                     style: const TextStyle(fontSize: 12),
                   ),
+                  selectedColor: AppColors.success.withValues(alpha: 0.15),
                   backgroundColor:
-                      AppColors.textSecondary.withValues(alpha: 0.1),
+                      AppColors.surfaceVariant.withValues(alpha: 0.3),
+                  checkmarkColor: AppColors.success,
                   side: BorderSide(color: AppColors.textSecondary),
                 );
               }).toList(),

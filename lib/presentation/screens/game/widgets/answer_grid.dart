@@ -14,13 +14,13 @@ class AnswerGrid extends StatelessWidget {
     required this.answers,
     required this.foundAnswers,
     required this.onAnswerTap,
-    this.pointValue = 1,
+    required this.pointsForAnswer,
   });
 
   final List<String> answers;
   final Set<String> foundAnswers;
   final ValueChanged<String> onAnswerTap;
-  final int pointValue;
+  final int Function(String answer) pointsForAnswer;
 
   AnswerChipState _getChipState(String answer) {
     return foundAnswers.contains(answer)
@@ -53,7 +53,7 @@ class AnswerGrid extends StatelessWidget {
           answer: answer,
           state: state,
           onTap: () => onAnswerTap(answer),
-          pointValue: pointValue,
+          pointValue: pointsForAnswer(answer),
         );
       },
     );
