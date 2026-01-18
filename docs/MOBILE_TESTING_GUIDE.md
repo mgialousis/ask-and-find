@@ -233,7 +233,7 @@ Use this checklist to systematically test all features on your physical device.
 - [ ] **Duplicate colors prevented** - Previously selected colors are grayed out
 - [ ] **Rounds selector** - Can choose 5, 7, or 10 rounds
 - [ ] **Timer selector** - Can choose 30s, 45s, 60s, or 90s
-- [ ] **Difficulty selector** - Can choose Easy, Medium, Hard, or Mixed
+- [ ] **Difficulty selector** - Can choose Easy, Medium, or Hard
 - [ ] **Validation** - Cannot start game with empty team names or duplicate names
 - [ ] **Start Game button** - Navigates to game screen
 
@@ -331,7 +331,7 @@ After completing all 5 rounds:
   - Expected questions: "Name planets", "Name programming languages", etc.
 - [ ] Play game on Hard difficulty
   - Expected questions: "Name Shakespeare plays", "Name Greek gods", etc.
-- [ ] Play game on Mixed difficulty
+- [ ] Play game on Hard difficulty
   - Questions should vary across all difficulty levels
 
 **Test Edge Cases:**

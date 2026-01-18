@@ -279,7 +279,7 @@ lib/
 3. ✅ Create `core/theme/app_colors.dart` - Define 12 team colors, UI colors
 4. ✅ Create `core/theme/app_text_styles.dart` - Define text styles
 5. ✅ Create `core/theme/app_theme.dart` - Light theme configuration
-6. ✅ Create `domain/entities/difficulty.dart` - Enum for Easy/Medium/Hard/Mixed
+6. ✅ Create `domain/entities/difficulty.dart` - Enum for Easy/Medium/Hard
 7. ✅ Create `domain/entities/team.dart` - Team model with Equatable
 8. ✅ Create `domain/entities/card_item.dart` - Card model
 9. ✅ Create `domain/entities/round_result.dart` - Round result model
@@ -332,7 +332,7 @@ lib/
 2. ✅ `presentation/screens/setup/game_config_section.dart`
    - Rounds: 5/7/10 (custom choice buttons)
    - Timer: 30/45/60/90 seconds
-   - Difficulty: Easy/Medium/Hard/Mixed
+   - Difficulty: Easy/Medium/Hard
 
 **Layout:** ✅
 - Scrollable form with SafeArea

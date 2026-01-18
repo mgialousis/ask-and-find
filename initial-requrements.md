@@ -50,7 +50,7 @@ All UI copy and game content for this new app should be **in English**.
     - Select team colors (optional).
     - Choose number of rounds (e.g. 5, 7, 10; configurable).
     - Choose **difficulty**:
-        - Easy / Medium / Hard / Mixed.
+        - Easy / Medium / Hard.
     - Choose **round duration** (e.g. 30 / 45 / 60 / 90 seconds).
 4. Start game:
     - For each round:
@@ -166,8 +166,7 @@ Could be one screen or multiple steps. Required inputs:
     - Round duration:
         - 30 / 45 / 60 / 90 seconds (radio buttons or dropdown).
 4. **Difficulty**:
-    - Easy / Medium / Hard / Mixed.
-    - If Mixed is selected, cards across difficulties should be chosen uniformly or by a simple distribution.
+    - Easy / Medium / Hard.
 5. **Confirm & Start**:
     - Summary of choices.
     - “Start Game” button.

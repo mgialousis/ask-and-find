@@ -2,19 +2,23 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Quick Status:** 🎉 Phase 1 COMPLETE! Phase 2 COMPLETE! ✅ Setup → Game → Results → Play Again flow WORKING! See `PROJECT_STATUS.md` for detailed status.
+> **Quick Status:** 🎉 FULLY FUNCTIONAL GAME! All core features working. See `PROJECT_STATUS.md` for detailed status.
 
 ## Project Overview
 
-"Say & Find" (Pes Vres) is a **local multiplayer party trivia game** built with Flutter. It's an English version of the Greek game "Πες Βρες!" where 2-4 teams compete to guess items from hidden lists before a timer expires.
+"Say & Find" (Pes Vres) is a **local multiplayer party trivia game** built with Flutter. It's an English version of the Greek game "Πες Βρες!" where 2-4 teams compete to identify items from visible lists before a timer expires.
 
 **Core Gameplay:**
 - Single-device, pass-and-play format
 - 2-4 teams competing in rounds
-- Each round: a team tries to guess 10 answers from a prompt/question within a time limit
-- Teams score 1 point per correct answer found
-- Configurable difficulty levels (Easy/Medium/Hard/Mixed) and round duration (30/45/60/90 seconds)
-- Tie-breaker/overtime mechanism when teams tie for first place
+- Each round: a team sees 10 answers and taps to select the ones they identify
+- **All answers visible from start** (tap to select/deselect)
+- **Difficulty-based scoring:**
+  - Easy: 1 point per answer
+  - Medium: 2 points per answer
+  - Hard: 3 points per answer
+- Configurable difficulty levels (Easy/Medium/Hard) and round duration (30/45/60/90 seconds)
+- Team rotation: all teams play within each round before advancing
 
 **Tech Stack:**
 - Flutter (SDK: ^3.10.4)
@@ -25,68 +29,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Implementation Status
 
-**Current Phase:** ✅ Phase 2 - State Management **COMPLETE!** (Ready for Phase 3!)
+**Current Status:** 🎉 FULLY FUNCTIONAL GAME with enhanced features!
 
-**Phase 1 Complete (Days 1-7):**
-- ✅ **Foundation** - Theme system, routing, entities, mock data
-- ✅ **Reusable Widgets** - Buttons, color picker, responsive layouts, answer chips, team indicators, score cards
-- ✅ **Home Screen** - Main menu with navigation
-- ✅ **How to Play Screen** - Game instructions
-- ✅ **Settings Screen** - App preferences (NOW with Riverpod + persistence!)
-- ✅ **Setup Screen** - Team configuration and game settings (NOW syncs to provider!)
-- ✅ **Game Screen** - Full gameplay loop with timer, answer discovery, scoring, and round management
-- ✅ **Results Screen** - Final scoreboard, winner announcement, and action buttons
+### Core Features Complete:
+- ✅ **All Answers Visible** - No hidden numbers, all 10 answers shown from start
+- ✅ **Toggle Selection** - Tap to select (green), tap again to deselect
+- ✅ **Difficulty Scoring** - Easy (1pt), Medium (2pts), Hard (3pts) per answer
+- ✅ **Per-Answer Points** - Point value shown on each chip
+- ✅ **Team Rotation** - All teams play within each round before advancing
+- ✅ **Early Exit** - End Round and End Game buttons available
+- ✅ **Score Adjustment** - Can toggle answers on results to fix mistakes
+- ✅ **Scores So Far** - Round results show current team standings
+- ✅ **25 Question Cards** - Varied topics across all difficulties
 
-**Phase 2 - Day 8 Complete:**
-- ✅ **Settings Provider** - Persistent user preferences with SharedPreferences
-- ✅ **Game Setup Provider** - Team and configuration state management
-- ✅ **Settings Screen Refactored** - ConsumerWidget with automatic persistence
-- ✅ **Setup Screen Refactored** - ConsumerStatefulWidget with hybrid approach
+### What's Working:
+1. **Home Screen** - Navigation to all sections
+2. **Settings** - Sound, haptics, dark mode (persisted)
+3. **Setup Screen** - Teams (2-4), rounds (5/7/10), timer (30/45/60/90s), difficulty (Easy/Medium/Hard)
+4. **Game Loop** - Complete with visible answers, toggle selection, point display
+5. **Round Results** - Points, scores so far, answer toggle, End Game option
+6. **Final Results** - Winner announcement, scoreboard, Play Again
 
-**Phase 2 - Day 9 Complete:**
-- ✅ **Timer Provider** - Countdown timer with auto-expiration detection
-- ✅ **Game State Provider** - Active game orchestration (rounds, cards, scoring)
-- ✅ **Game Screen FULLY Refactored** - Connected to all providers
-- ✅ **Setup → Game Connection WORKING!** - Configuration controls gameplay
+### Important Notes for Claude:
+- **"Mixed" difficulty removed** - Only Easy/Medium/Hard options
+- **Cards database** - `assets/cards.json` with per-answer point values
+- **Team rotation** - All teams play each round before incrementing round number
+- **Toggle behavior** - Answers can be selected/deselected during play AND on results
+- All files pass `flutter analyze` with no issues
 
-**Phase 2 - Day 10 Complete:**
-- ✅ **Results Screen Refactored** - ConsumerWidget using providers
-- ✅ **"Play Again" Functionality** - Reset state and restart game
-- ✅ **Complete Flow Tested** - Setup → Game → Results → Play Again
-- ✅ **No Route Extras** - All data flows through providers
-- 39 files (7,000+ lines of code)
-- Zero flutter analyze warnings
-- All tests passing
-
-**Phase 2 COMPLETE!** 🎉
-
-**What's Next (Phase 3):**
-- ⏳ **Domain Logic** - Use cases and repositories
-- ⏳ **Card Repository** - Data abstraction layer
-- ⏳ **Settings Repository** - Proper data layer
-- ⏳ **Difficulty-based Filtering** - Smart card selection
-
-**After Phase 3:**
-- ⏳ **Phase 4** - Polish (animations, sounds, haptics)
-- ⏳ **Phase 5** - Testing (comprehensive test suite)
-
-**Important Notes for Claude:**
-- **Phase 2 COMPLETE!** Full Riverpod state management working ✅
-- Settings screen: Full migration to ConsumerWidget with SharedPreferences persistence ✅
-- Setup screen: Hybrid migration - syncs to provider but keeps local validation ✅
-- Game screen: FULLY refactored to use all providers ✅
-- Results screen: FULLY refactored to use providers ✅ (Day 10 complete!)
-- **Setup → Game → Results → Play Again flow WORKING!** Complete state management ✅
-- **Complete playable game** with full replay functionality
-- All 39 files pass `flutter analyze` with no issues
-- Mock data available in `lib/data/models/mock_cards.dart` (10 sample cards)
-- See `IMPLEMENTATION_PLAN.md` for detailed roadmap and specifications
-
-**Phase 2 Achievements:**
-- ✅ Settings persist between sessions
-- ✅ Setup configuration controls gameplay
-- ✅ Results screen uses providers (no route extras)
-- ✅ "Play Again" functionality working perfectly!
+**What's Next (Phase 3+):**
+- ⏳ Animations and polish
+- ⏳ Sound effects
+- ⏳ Haptic feedback
+- ⏳ More question cards
+- ⏳ Comprehensive testing
 
 ### What Can Be Tested Right Now
 
@@ -95,56 +71,46 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 1. **Run the app**: `flutter run`
 2. **Navigate**: Home → Tap "New Game"
 3. **Setup Game**:
-   - Select number of teams (try 2, 3, or 4)
-   - Customize team names
-   - Pick team colors (unavailable colors grayed out)
-   - Choose rounds: 5, 7, or 10
-   - Choose timer: 30s, 45s, 60s, or 90s
-   - Choose difficulty: Easy, Medium, Hard, Mixed
+   - Select number of teams (2, 3, or 4)
+   - Customize team names and colors
+   - Choose rounds (5/7/10), timer (30/45/60/90s), difficulty (Easy/Medium/Hard)
    - Tap "Start Game"
 4. **Play Game**:
    - See "Pass device to Team X" screen
-   - Tap "Ready? Start Round"
+   - Tap "Ready? Start Turn"
    - Timer starts counting down
-   - See random question (e.g., "Name countries in Europe")
-   - Tap numbered chips (1-10) to reveal answers
-   - Found answers turn green with checkmark
+   - **All 10 answers visible** with point values (e.g., "France (1 pt)")
+   - **Tap to select** (turns green with checkmark)
+   - **Tap again to deselect** (back to gray)
    - Timer turns orange at 10s, red at 5s
-   - Round ends when timer expires or all found
+   - **"End Turn" button** to finish early
 5. **View Round Results**:
-   - See points earned (X of 10)
+   - See points earned based on difficulty
+   - **"Scores So Far"** showing all team standings
    - Tap "Show Answers" to see found/missed
-   - See source attribution
-   - Tap "Continue"
-6. **Next Round**:
-   - Device passes to next team
-   - Repeat for all rounds
-7. **Game Complete**:
-   - Navigates to results screen with final scores
-8. **View Results**:
-   - See "Game Over!" header
+   - **Tap answers to toggle** selection (adjusts score!)
+   - **"End Game"** to skip remaining rounds
+   - Tap "Continue" for next team
+6. **Team Rotation**:
+   - All teams play within each round
+   - Round number advances after all teams play
+7. **Final Results**:
    - Winner announcement (or "It's a Tie!")
-   - Sorted scoreboard with rank badges (1st, 2nd, 3rd)
-   - Trophy icon for winner
-   - Tap "Share Results" to see formatted text
-   - Tap "New Setup" to configure new game
-   - Tap "Home" to return to main menu
+   - Sorted scoreboard with rank badges
+   - Play Again / New Setup / Home buttons
 
-**Current Mock Data Configuration:**
-- Teams: 2 (hardcoded in game_screen.dart)
-- Rounds: 5 (hardcoded)
-- Duration: 60s (hardcoded)
-- Cards: 10 different cards with various topics
-- **Note:** Setup screen configuration not yet connected (Phase 2 with Riverpod)
-  - Setup screen works and validates inputs
-  - But game uses hardcoded values
-  - Phase 2 will connect them via state management
+**Configuration Options:**
+- Teams: 2-4 (fully configurable)
+- Rounds: 5, 7, or 10
+- Timer: 30s, 45s, 60s, or 90s
+- Difficulty: Easy (1pt), Medium (2pts), Hard (3pts)
+- Cards: 25 question cards with varied topics
 
 **Files to Reference:**
 - Main game logic: `lib/presentation/screens/game/game_screen.dart`
+- Game state: `lib/presentation/state/game_state_provider.dart`
+- Cards database: `assets/cards.json`
 - Results screen: `lib/presentation/screens/results/results_screen.dart`
-- Mock cards: `lib/data/models/mock_cards.dart`
-- All widgets: `lib/presentation/widgets/` and `lib/presentation/screens/*/widgets/`
 
 ## Common Commands
 
@@ -266,7 +232,7 @@ Based on `initial-requrements.md`, the following models are central to the app:
    - Number of teams (2-4) with dynamic team cards
    - Team names and colors with validation (unique, non-empty)
    - Number of rounds (5/7/10)
-   - Difficulty selection (Easy/Medium/Hard/Mixed)
+   - Difficulty selection (Easy/Medium/Hard)
    - Round duration (30/45/60/90 seconds)
 3. ✅ **Game Loop (per round):**
    - **Ready Phase**: "Pass device to [Team]" handoff screen
