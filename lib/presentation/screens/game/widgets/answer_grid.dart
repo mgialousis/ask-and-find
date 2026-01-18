@@ -35,25 +35,28 @@ class AnswerGrid extends StatelessWidget {
       tablet: 3,
     ).getValue(context);
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: 2.5,
-      ),
-      itemCount: answers.length,
-      itemBuilder: (context, index) {
-        final answer = answers[index];
-        final state = _getChipState(answer);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const spacing = 12.0;
+        final availableWidth = constraints.maxWidth;
+        final itemWidth =
+            (availableWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
 
-        return AnswerChip(
-          answer: answer,
-          state: state,
-          onTap: () => onAnswerTap(answer),
-          pointValue: pointsForAnswer(answer),
+        return Wrap(
+          spacing: spacing,
+          runSpacing: spacing,
+          children: [
+            for (final answer in answers)
+              SizedBox(
+                width: itemWidth,
+                child: AnswerChip(
+                  answer: answer,
+                  state: _getChipState(answer),
+                  onTap: () => onAnswerTap(answer),
+                  pointValue: pointsForAnswer(answer),
+                ),
+              ),
+          ],
         );
       },
     );

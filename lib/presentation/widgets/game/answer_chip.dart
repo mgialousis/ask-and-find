@@ -57,11 +57,8 @@ class AnswerChip extends StatelessWidget {
                 const SizedBox(width: 8),
               ],
               Flexible(
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  text: TextSpan(
+                child: Text.rich(
+                  TextSpan(
                     children: [
                       TextSpan(
                         text: answer,
@@ -81,6 +78,8 @@ class AnswerChip extends StatelessWidget {
                       ),
                     ],
                   ),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
                 ),
               ),
             ],

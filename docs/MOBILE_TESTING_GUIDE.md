@@ -199,6 +199,18 @@ flutter run --release
 - Takes 3-5 minutes (building iOS framework, installing CocoaPods)
 - Subsequent builds are much faster (~30 seconds)
 
+### Optional: Use the iOS helper script
+
+```bash
+# Release (default)
+scripts/ios_deploy.sh --release <device-id>
+
+# Debug
+scripts/ios_deploy.sh --debug <device-id>
+```
+
+This script runs `flutter clean`, `flutter pub get`, `pod install`, and launches the app.
+
 **If you get signing errors:**
 ```bash
 # Clean and rebuild

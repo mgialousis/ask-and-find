@@ -260,6 +260,9 @@ class ResultsScreen extends ConsumerWidget {
                     // Home Button
                     SecondaryButton(
                       onPressed: () {
+                        ref.read(gameSetupProvider.notifier).reset();
+                        ref.read(gameStateProvider.notifier).reset();
+                        ref.read(timerProvider.notifier).reset();
                         context.goNamed('home');
                       },
                       isFullWidth: true,

@@ -106,12 +106,18 @@ class GameSetupNotifier extends StateNotifier<GameSetupState> {
 
   /// Update team name at the specified index
   void updateTeamName(int index, String name) {
+    if (index < 0 || index >= state.teams.length) {
+      return;
+    }
     final team = state.teams[index];
     updateTeam(index, team.copyWith(name: name));
   }
 
   /// Update team color at the specified index
   void updateTeamColor(int index, Color color) {
+    if (index < 0 || index >= state.teams.length) {
+      return;
+    }
     final team = state.teams[index];
     updateTeam(index, team.copyWith(color: color));
   }

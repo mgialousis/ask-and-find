@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -87,6 +88,27 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     );
   }
 
+  /// Play selection sound (short tick)
+  void _playSelectionSound() {
+    final settings = ref.read(settingsProvider);
+    if (!settings.soundEffectsEnabled) return;
+    _audioPlayer.play(
+      AssetSource('sounds/countdown_tick.wav'),
+      volume: 0.5,
+    );
+  }
+
+  /// Trigger haptic feedback
+  void _triggerHaptic({bool heavy = false}) {
+    final settings = ref.read(settingsProvider);
+    if (!settings.hapticFeedbackEnabled) return;
+    if (heavy) {
+      HapticFeedback.heavyImpact();
+    } else {
+      HapticFeedback.lightImpact();
+    }
+  }
+
   /// Start a new round
   Future<void> _startRound() async {
     // Start round in game state provider (selects card and answers)
@@ -104,6 +126,10 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   /// Handle answer tap (toggle selection)
   void _onAnswerTap(String answer) {
+    // Play sound and haptic feedback
+    _playSelectionSound();
+    _triggerHaptic();
+
     // Toggle answer selection (select/deselect)
     ref.read(gameStateProvider.notifier).toggleAnswer(answer);
   }
@@ -210,15 +236,18 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   Widget _buildReadyPhase() {
     final gameState = ref.watch(gameStateProvider);
     final setupState = ref.watch(gameSetupProvider);
+    if (setupState.teams.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
     final currentTeam = setupState.teams[gameState.currentTeamIndex];
     final nextTeam =
         setupState.teams[(gameState.currentTeamIndex + 1) % setupState.teams.length];
     final totalRounds = setupState.config.numberOfRounds;
     final roundDuration = setupState.config.roundDurationSeconds;
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -309,13 +338,16 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   Widget _buildPreviewPhase() {
     final gameState = ref.watch(gameStateProvider);
     final setupState = ref.watch(gameSetupProvider);
+    if (setupState.teams.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
     final currentTeam = setupState.teams[gameState.currentTeamIndex];
 
     if (gameState.currentCard == null) return const SizedBox.shrink();
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -353,6 +385,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final setupState = ref.watch(gameSetupProvider);
     final timerState = ref.watch(timerProvider);
 
+    if (setupState.teams.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
     if (gameState.currentCard == null) return const SizedBox.shrink();
 
     final currentTeam = setupState.teams[gameState.currentTeamIndex];

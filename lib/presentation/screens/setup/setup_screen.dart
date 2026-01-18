@@ -32,6 +32,7 @@ class SetupScreen extends ConsumerStatefulWidget {
 
 class _SetupScreenState extends ConsumerState<SetupScreen> {
   final _uuid = const Uuid();
+  bool _didScheduleProviderInit = false;
 
   // Team configuration
   int _numberOfTeams = 2;
@@ -48,8 +49,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     super.initState();
     _initializeTeams();
 
-    // Initialize provider after first frame
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    Future(() {
       ref.read(gameStateProvider.notifier).reset();
       ref.read(timerProvider.notifier).reset();
       ref.read(gameSetupProvider.notifier).initializeTeams(_numberOfTeams);
@@ -210,6 +210,24 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final setupState = ref.watch(gameSetupProvider);
+    if (setupState.teams.isEmpty && !_didScheduleProviderInit) {
+      _didScheduleProviderInit = true;
+      Future(() {
+        if (!mounted) return;
+        ref.read(gameSetupProvider.notifier).initializeTeams(_numberOfTeams);
+        ref.read(gameSetupProvider.notifier).updateConfig(
+          GameConfig(
+            numberOfRounds: _numberOfRounds,
+            roundDurationSeconds: _roundDuration,
+            difficulties: _difficulties,
+          ),
+        );
+      });
+    } else if (setupState.teams.isNotEmpty) {
+      _didScheduleProviderInit = false;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Game Setup'),

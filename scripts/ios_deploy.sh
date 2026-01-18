@@ -35,3 +35,6 @@ pod install
 popd >/dev/null
 
 flutter run -d "${DEVICE_ID}" "${MODE}"
+
+
+# RELEASE APK -  flutter build apk --release
