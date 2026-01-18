@@ -2,8 +2,7 @@
 enum Difficulty {
   easy,
   medium,
-  hard,
-  mixed;
+  hard;
 
   /// Get display name for the difficulty level
   String get displayName {
@@ -14,8 +13,6 @@ enum Difficulty {
         return 'Medium';
       case Difficulty.hard:
         return 'Hard';
-      case Difficulty.mixed:
-        return 'Mixed';
     }
   }
 
@@ -28,8 +25,6 @@ enum Difficulty {
         return 'Moderate challenge';
       case Difficulty.hard:
         return 'Challenging and obscure items';
-      case Difficulty.mixed:
-        return 'Random mix of all difficulties';
     }
   }
 
@@ -42,8 +37,6 @@ enum Difficulty {
         return 2;
       case Difficulty.hard:
         return 3;
-      case Difficulty.mixed:
-        return 1; // Mixed uses default 1 point (varies by card)
     }
   }
 }

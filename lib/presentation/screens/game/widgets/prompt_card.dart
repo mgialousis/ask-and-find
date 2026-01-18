@@ -73,8 +73,6 @@ class _DifficultyBadge extends StatelessWidget {
         return AppColors.warning;
       case Difficulty.hard:
         return AppColors.error;
-      case Difficulty.mixed:
-        return AppColors.primary;
     }
   }
 
@@ -86,8 +84,6 @@ class _DifficultyBadge extends StatelessWidget {
         return 'Medium';
       case Difficulty.hard:
         return 'Hard';
-      case Difficulty.mixed:
-        return 'Mixed';
     }
   }
 
@@ -99,8 +95,6 @@ class _DifficultyBadge extends StatelessWidget {
         return Icons.sentiment_neutral;
       case Difficulty.hard:
         return Icons.sentiment_very_dissatisfied;
-      case Difficulty.mixed:
-        return Icons.shuffle;
     }
   }
 

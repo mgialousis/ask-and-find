@@ -15,24 +15,21 @@ Future<List<CardItem>> loadCardsFromAssets() async {
       .toList();
 }
 
-List<CardItem> getCardsByDifficulty(
+List<CardItem> getCardsByDifficulties(
   List<CardItem> cards,
-  Difficulty difficulty,
+  Set<Difficulty> difficulties,
 ) {
-  if (difficulty == Difficulty.mixed) {
-    return cards;
-  }
-  return cards.where((card) => card.difficulty == difficulty).toList();
+  return cards.where((card) => difficulties.contains(card.difficulty)).toList();
 }
 
 CardItem getRandomCard(
   List<CardItem> cards, [
-  Difficulty? difficulty,
+  Set<Difficulty>? difficulties,
 ]) {
   final pool =
-      difficulty != null ? getCardsByDifficulty(cards, difficulty) : cards;
+      difficulties != null ? getCardsByDifficulties(cards, difficulties) : cards;
   if (pool.isEmpty) {
-    throw StateError('No cards available for difficulty: $difficulty');
+    throw StateError('No cards available for difficulties: $difficulties');
   }
   final random = Random();
   return pool[random.nextInt(pool.length)];
@@ -41,15 +38,15 @@ CardItem getRandomCard(
 CardItem getRandomCardExcluding(
   List<CardItem> cards,
   Set<String> excludedIds, [
-  Difficulty? difficulty,
+  Set<Difficulty>? difficulties,
 ]) {
   final pool =
-      difficulty != null ? getCardsByDifficulty(cards, difficulty) : cards;
+      difficulties != null ? getCardsByDifficulties(cards, difficulties) : cards;
   final available =
       pool.where((card) => !excludedIds.contains(card.id)).toList();
 
   if (available.isEmpty) {
-    return getRandomCard(cards, difficulty);
+    return getRandomCard(cards, difficulties);
   }
 
   final random = Random();

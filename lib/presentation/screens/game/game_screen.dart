@@ -89,8 +89,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   /// Start a new round
   Future<void> _startRound() async {
-    final setupState = ref.read(gameSetupProvider);
-
     // Start round in game state provider (selects card and answers)
     await ref.read(gameStateProvider.notifier).startRound();
   }
@@ -140,6 +138,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       barrierDismissible: false,
       builder: (context) => RoundResultDialog(
         team: currentTeam,
+        teams: setupState.teams,
         foundAnswers: result.foundAnswers,
         missedAnswers: result.missedAnswers,
         prompt: currentCard.promptEn,

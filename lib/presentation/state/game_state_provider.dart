@@ -150,7 +150,7 @@ class GameStateNotifier extends StateNotifier<GameState> {
     final card = getRandomCardExcluding(
       cards,
       {...state.usedCardIdsInRound, ...state.usedCardIdsInGame},
-      setupState.config.difficulty,
+      setupState.config.difficulties,
     );
 
     // Select 10 random answers from card

@@ -136,9 +136,9 @@ class GameSetupNotifier extends StateNotifier<GameSetupState> {
   }
 
   /// Update difficulty level
-  void updateDifficulty(Difficulty difficulty) {
+  void updateDifficulties(Set<Difficulty> difficulties) {
     state = state.copyWith(
-      config: state.config.copyWith(difficulty: difficulty),
+      config: state.config.copyWith(difficulties: difficulties),
     );
   }
 

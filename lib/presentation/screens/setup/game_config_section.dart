@@ -7,27 +7,42 @@ import 'package:pes_vres/domain/entities/difficulty.dart';
 /// Allows users to configure:
 /// - Number of rounds (5/7/10)
 /// - Round duration (30/45/60/90 seconds)
-/// - Difficulty level (Easy/Medium/Hard/Mixed)
+/// - Difficulty level (Easy/Medium/Hard)
 class GameConfigSection extends StatelessWidget {
   const GameConfigSection({
     super.key,
     required this.numberOfRounds,
     required this.roundDuration,
-    required this.difficulty,
+    required this.difficulties,
     required this.onRoundsChanged,
     required this.onDurationChanged,
-    required this.onDifficultyChanged,
+    required this.onDifficultiesChanged,
   });
 
   final int numberOfRounds;
   final int roundDuration;
-  final Difficulty difficulty;
+  final Set<Difficulty> difficulties;
   final ValueChanged<int> onRoundsChanged;
   final ValueChanged<int> onDurationChanged;
-  final ValueChanged<Difficulty> onDifficultyChanged;
+  final ValueChanged<Set<Difficulty>> onDifficultiesChanged;
 
   @override
   Widget build(BuildContext context) {
+    void toggleDifficulty(Difficulty difficulty) {
+      final updated = Set<Difficulty>.from(difficulties);
+
+      if (updated.contains(difficulty)) {
+        updated.remove(difficulty);
+        if (updated.isEmpty) {
+          updated.add(difficulty);
+        }
+      } else {
+        updated.add(difficulty);
+      }
+
+      onDifficultiesChanged(updated);
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -101,16 +116,16 @@ class GameConfigSection extends StatelessWidget {
                   Expanded(
                     child: _ChoiceButton(
                       label: 'Easy',
-                      isSelected: difficulty == Difficulty.easy,
-                      onTap: () => onDifficultyChanged(Difficulty.easy),
+                      isSelected: difficulties.contains(Difficulty.easy),
+                      onTap: () => toggleDifficulty(Difficulty.easy),
                     ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: _ChoiceButton(
                       label: 'Medium',
-                      isSelected: difficulty == Difficulty.medium,
-                      onTap: () => onDifficultyChanged(Difficulty.medium),
+                      isSelected: difficulties.contains(Difficulty.medium),
+                      onTap: () => toggleDifficulty(Difficulty.medium),
                     ),
                   ),
                 ],
@@ -121,18 +136,12 @@ class GameConfigSection extends StatelessWidget {
                   Expanded(
                     child: _ChoiceButton(
                       label: 'Hard',
-                      isSelected: difficulty == Difficulty.hard,
-                      onTap: () => onDifficultyChanged(Difficulty.hard),
+                      isSelected: difficulties.contains(Difficulty.hard),
+                      onTap: () => toggleDifficulty(Difficulty.hard),
                     ),
                   ),
                   const SizedBox(width: 12),
-                  Expanded(
-                    child: _ChoiceButton(
-                      label: 'Mixed',
-                      isSelected: difficulty == Difficulty.mixed,
-                      onTap: () => onDifficultyChanged(Difficulty.mixed),
-                    ),
-                  ),
+                  const Expanded(child: SizedBox.shrink()),
                 ],
               ),
             ],

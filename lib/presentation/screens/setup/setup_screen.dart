@@ -8,6 +8,8 @@ import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/screens/setup/game_config_section.dart';
 import 'package:pes_vres/presentation/screens/setup/team_setup_section.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
+import 'package:pes_vres/presentation/state/game_state_provider.dart';
+import 'package:pes_vres/presentation/state/timer_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 import 'package:uuid/uuid.dart';
 
@@ -39,7 +41,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
   // Game configuration
   int _numberOfRounds = 5;
   int _roundDuration = 60;
-  Difficulty _difficulty = Difficulty.medium;
+  Set<Difficulty> _difficulties = {Difficulty.medium};
 
   @override
   void initState() {
@@ -48,12 +50,14 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
     // Initialize provider after first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(gameStateProvider.notifier).reset();
+      ref.read(timerProvider.notifier).reset();
       ref.read(gameSetupProvider.notifier).initializeTeams(_numberOfTeams);
       ref.read(gameSetupProvider.notifier).updateConfig(
         GameConfig(
           numberOfRounds: _numberOfRounds,
           roundDurationSeconds: _roundDuration,
-          difficulty: _difficulty,
+          difficulties: _difficulties,
         ),
       );
     });
@@ -196,6 +200,9 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
       return;
     }
 
+    ref.read(gameStateProvider.notifier).reset();
+    ref.read(timerProvider.notifier).reset();
+
     // Provider is already synced with all team and config data
     // Game screen will read from gameSetupProvider
     context.pushNamed('game');
@@ -245,7 +252,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                     GameConfigSection(
                       numberOfRounds: _numberOfRounds,
                       roundDuration: _roundDuration,
-                      difficulty: _difficulty,
+                      difficulties: _difficulties,
                       onRoundsChanged: (rounds) {
                         setState(() {
                           _numberOfRounds = rounds;
@@ -260,12 +267,14 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                         // Sync to provider
                         ref.read(gameSetupProvider.notifier).updateRoundDuration(duration);
                       },
-                      onDifficultyChanged: (difficulty) {
+                      onDifficultiesChanged: (difficulties) {
                         setState(() {
-                          _difficulty = difficulty;
+                          _difficulties = difficulties;
                         });
                         // Sync to provider
-                        ref.read(gameSetupProvider.notifier).updateDifficulty(difficulty);
+                        ref
+                            .read(gameSetupProvider.notifier)
+                            .updateDifficulties(difficulties);
                       },
                     ),
                     const SizedBox(height: 24),

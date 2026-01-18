@@ -225,6 +225,9 @@ class ResultsScreen extends ConsumerWidget {
                     // New Setup Button
                     SecondaryButton(
                       onPressed: () {
+                        ref.read(gameSetupProvider.notifier).reset();
+                        ref.read(gameStateProvider.notifier).reset();
+                        ref.read(timerProvider.notifier).reset();
                         context.goNamed('setup');
                       },
                       isFullWidth: true,

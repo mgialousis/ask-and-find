@@ -18,6 +18,7 @@ class RoundResultDialog extends StatefulWidget {
   const RoundResultDialog({
     super.key,
     required this.team,
+    required this.teams,
     required this.foundAnswers,
     required this.missedAnswers,
     required this.prompt,
@@ -29,6 +30,7 @@ class RoundResultDialog extends StatefulWidget {
   });
 
   final Team team;
+  final List<Team> teams;
   final List<String> foundAnswers;
   final List<String> missedAnswers;
   final String prompt;
@@ -47,6 +49,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
   late List<String> _foundAnswers;
   late List<String> _missedAnswers;
   late int _pointsEarned;
+  late List<Team> _sortedTeams;
 
   @override
   void initState() {
@@ -54,6 +57,8 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
     _foundAnswers = List<String>.from(widget.foundAnswers)..sort();
     _missedAnswers = List<String>.from(widget.missedAnswers)..sort();
     _pointsEarned = _sumPoints(_foundAnswers);
+    _sortedTeams = List<Team>.from(widget.teams)
+      ..sort((a, b) => b.score.compareTo(a.score));
   }
 
   int _sumPoints(Iterable<String> answers) {
@@ -150,6 +155,76 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                           fontWeight: FontWeight.w500,
                           color: AppColors.textSecondary,
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Scores So Far
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.surface,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.surfaceVariant,
+                      width: 1,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Scores So Far',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _sortedTeams.length,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 8),
+                        itemBuilder: (context, index) {
+                          final team = _sortedTeams[index];
+                          return Row(
+                            children: [
+                              Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: team.color,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  team.name,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '${team.score} pts',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
