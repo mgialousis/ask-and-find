@@ -1,3 +1,4 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +19,84 @@ import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 /// - Action buttons (Play Again, New Setup, Share, Home)
 ///
 /// Phase 2: Now uses Riverpod providers for state management.
-class ResultsScreen extends ConsumerWidget {
+class ResultsScreen extends ConsumerStatefulWidget {
   const ResultsScreen({super.key});
+
+  @override
+  ConsumerState<ResultsScreen> createState() => _ResultsScreenState();
+}
+
+class _ResultsScreenState extends ConsumerState<ResultsScreen> {
+  late final ConfettiController _confettiController;
+  bool _didPlayConfetti = false;
+  OverlayEntry? _confettiOverlay;
+
+  @override
+  void initState() {
+    super.initState();
+    _confettiController = ConfettiController(
+      duration: const Duration(seconds: 3),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _playConfettiIfNeeded();
+    });
+  }
+
+  void _showConfettiOverlay() {
+    _confettiOverlay?.remove();
+    _confettiOverlay = OverlayEntry(
+      builder: (context) => Positioned.fill(
+        child: IgnorePointer(
+          child: ConfettiWidget(
+            confettiController: _confettiController,
+            blastDirectionality: BlastDirectionality.explosive,
+            emissionFrequency: 0.12,
+            numberOfParticles: 16,
+            gravity: 0.2,
+            minBlastForce: 10,
+            maxBlastForce: 25,
+            particleDrag: 0.05,
+            shouldLoop: false,
+            colors: const [
+              Color(0xFFF94144),
+              Color(0xFFF3722C),
+              Color(0xFFF9C74F),
+              Color(0xFF90BE6D),
+              Color(0xFF43AA8B),
+              Color(0xFF577590),
+            ],
+            child: const SizedBox.expand(),
+          ),
+        ),
+      ),
+    );
+
+    final overlay = Overlay.of(context, rootOverlay: true);
+    if (overlay == null) {
+      return;
+    }
+    overlay.insert(_confettiOverlay!);
+
+    Future.delayed(const Duration(seconds: 6), () {
+      _confettiOverlay?.remove();
+      _confettiOverlay = null;
+    });
+  }
+
+  void _playConfettiIfNeeded() {
+    if (_didPlayConfetti) return;
+    _didPlayConfetti = true;
+    _showConfettiOverlay();
+    _confettiController.play();
+  }
+
+  @override
+  void dispose() {
+    _confettiOverlay?.remove();
+    _confettiOverlay = null;
+    _confettiController.dispose();
+    super.dispose();
+  }
 
   List<Team> _sortedTeams(WidgetRef ref) {
     final setupState = ref.watch(gameSetupProvider);
@@ -116,7 +193,12 @@ class ResultsScreen extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _playConfettiIfNeeded();
+    });
+
     final sortedTeams = _sortedTeams(ref);
     final winners = _winners(ref);
     final isTie = _isTie(ref);
@@ -185,23 +267,38 @@ class ResultsScreen extends ConsumerWidget {
                         ),
                       ],
                       const SizedBox(height: 8),
-                      Text(
-                        winners.isEmpty
-                            ? 'No scores recorded'
-                            : '${winners.first.score} ${winners.first.score == 1 ? 'point' : 'points'}',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.textSecondary,
+                      if (winners.isEmpty)
+                        const Text(
+                          'No scores recorded',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.textSecondary,
+                          ),
+                        )
+                      else
+                        TweenAnimationBuilder<int>(
+                          tween: IntTween(begin: 0, end: winners.first.score),
+                          duration: const Duration(milliseconds: 2400),
+                          curve: Curves.easeOutCubic,
+                          builder: (context, value, child) {
+                            return Text(
+                              '$value ${value == 1 ? 'point' : 'points'}',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.textSecondary,
+                              ),
+                            );
+                          },
                         ),
-                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 32),
 
                 // Scoreboard
-                ScoreboardWidget(teams: sortedTeams),
+                ScoreboardWidget(teams: sortedTeams, animate: true),
                 const SizedBox(height: 32),
 
                 // Action Buttons

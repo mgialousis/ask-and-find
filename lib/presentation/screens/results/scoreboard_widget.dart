@@ -8,23 +8,63 @@ import 'package:pes_vres/presentation/widgets/game/score_card.dart';
 /// Displays sorted list of teams by score (descending)
 /// Shows rank indicators with medals/trophies for top 3
 /// Highlights winner with special styling
-class ScoreboardWidget extends StatelessWidget {
+class ScoreboardWidget extends StatefulWidget {
   const ScoreboardWidget({
     super.key,
     required this.teams,
+    this.animate = true,
   });
 
   final List<Team> teams;
+  final bool animate;
+
+  @override
+  State<ScoreboardWidget> createState() => _ScoreboardWidgetState();
+}
+
+class _ScoreboardWidgetState extends State<ScoreboardWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
 
   List<Team> get _sortedTeams {
-    final sorted = List<Team>.from(teams);
+    final sorted = List<Team>.from(widget.teams);
     sorted.sort((a, b) => b.score.compareTo(a.score));
     return sorted;
   }
 
   int _getHighestScore() {
-    if (teams.isEmpty) return 0;
-    return teams.map((t) => t.score).reduce((a, b) => a > b ? a : b);
+    if (widget.teams.isEmpty) return 0;
+    return widget.teams.map((t) => t.score).reduce((a, b) => a > b ? a : b);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 900),
+      vsync: this,
+    );
+    if (widget.animate) {
+      _controller.forward();
+    } else {
+      _controller.value = 1;
+    }
+  }
+
+  @override
+  void didUpdateWidget(ScoreboardWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.animate && !_controller.isAnimating && _controller.value == 0) {
+      _controller.forward();
+    } else if (!widget.animate && _controller.value != 1) {
+      _controller.value = 1;
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -90,11 +130,31 @@ class ScoreboardWidget extends StatelessWidget {
               final team = sortedTeams[index];
               final rank = index + 1;
               final isWinner = team.score == highestScore;
+              final start = (index * 0.12).clamp(0.0, 1.0);
+              final end = (start + 0.5).clamp(0.0, 1.0);
+              final animation = CurvedAnimation(
+                parent: _controller,
+                curve: Interval(
+                  start,
+                  end,
+                  curve: Curves.easeOutCubic,
+                ),
+              );
 
-              return ScoreCard(
-                team: team,
-                rank: rank,
-                isWinner: isWinner,
+              return FadeTransition(
+                opacity: animation,
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.12),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: ScoreCard(
+                    team: team,
+                    rank: rank,
+                    isWinner: isWinner,
+                    animateScore: widget.animate,
+                  ),
+                ),
               );
             },
           ),

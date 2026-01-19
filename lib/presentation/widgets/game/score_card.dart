@@ -11,11 +11,13 @@ class ScoreCard extends StatelessWidget {
     required this.team,
     this.rank,
     this.isWinner = false,
+    this.animateScore = false,
   });
 
   final Team team;
   final int? rank;
   final bool isWinner;
+  final bool animateScore;
 
   @override
   Widget build(BuildContext context) {
@@ -68,18 +70,22 @@ class ScoreCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    '${team.score} ${team.score == 1 ? 'point' : 'points'}',
+                  _ScoreText(
+                    score: team.score,
+                    animate: animateScore,
                     style: TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondary,
                     ),
+                    formatter: (score) =>
+                        '$score ${score == 1 ? 'point' : 'points'}',
                   ),
                 ],
               ),
             ),
-            Text(
-              '${team.score}',
+            _ScoreText(
+              score: team.score,
+              animate: animateScore,
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
@@ -89,6 +95,42 @@ class ScoreCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ScoreText extends StatelessWidget {
+  const _ScoreText({
+    required this.score,
+    required this.style,
+    this.animate = false,
+    this.formatter,
+  });
+
+  final int score;
+  final TextStyle style;
+  final bool animate;
+  final String Function(int score)? formatter;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!animate) {
+      return Text(
+        formatter?.call(score) ?? '$score',
+        style: style,
+      );
+    }
+
+    return TweenAnimationBuilder<int>(
+      tween: IntTween(begin: 0, end: score),
+      duration: const Duration(milliseconds: 1800),
+      curve: Curves.easeOutCubic,
+      builder: (context, value, child) {
+        return Text(
+          formatter?.call(value) ?? '$value',
+          style: style,
+        );
+      },
     );
   }
 }
