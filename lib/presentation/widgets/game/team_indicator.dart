@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 
 /// Displays a team name with its color badge
 ///
@@ -19,6 +20,7 @@ class TeamIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dimensions = _getDimensions();
+    final l10n = AppLocalizations.of(context);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -53,7 +55,7 @@ class TeamIndicator extends StatelessWidget {
             if (showScore) ...[
               const SizedBox(height: 2),
               Text(
-                '${team.score} ${team.score == 1 ? 'point' : 'points'}',
+                l10n.nPoints(team.score),
                 style: TextStyle(
                   fontSize: dimensions.scoreSize,
                   color: Colors.grey[600],

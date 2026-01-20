@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 
 /// Game configuration section for setup screen
 ///
@@ -28,6 +29,8 @@ class GameConfigSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     void toggleDifficulty(Difficulty difficulty) {
       final updated = Set<Difficulty>.from(difficulties);
 
@@ -46,12 +49,12 @@ class GameConfigSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _SectionTitle(title: 'Game Settings'),
+        _SectionTitle(title: l10n.gameSettings),
         const SizedBox(height: 16),
 
         // Number of Rounds
         _SettingGroup(
-          label: 'Number of Rounds',
+          label: l10n.numberOfRounds,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -77,27 +80,27 @@ class GameConfigSection extends StatelessWidget {
 
         // Round Duration
         _SettingGroup(
-          label: 'Round Duration',
+          label: l10n.roundDuration,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _ChoiceButton(
-                label: '30s',
+                label: l10n.seconds30,
                 isSelected: roundDuration == 30,
                 onTap: () => onDurationChanged(30),
               ),
               _ChoiceButton(
-                label: '45s',
+                label: l10n.seconds45,
                 isSelected: roundDuration == 45,
                 onTap: () => onDurationChanged(45),
               ),
               _ChoiceButton(
-                label: '60s',
+                label: l10n.seconds60,
                 isSelected: roundDuration == 60,
                 onTap: () => onDurationChanged(60),
               ),
               _ChoiceButton(
-                label: '90s',
+                label: l10n.seconds90,
                 isSelected: roundDuration == 90,
                 onTap: () => onDurationChanged(90),
               ),
@@ -108,14 +111,14 @@ class GameConfigSection extends StatelessWidget {
 
         // Difficulty
         _SettingGroup(
-          label: 'Difficulty',
+          label: l10n.difficulty,
           child: Column(
             children: [
               Row(
                 children: [
                   Expanded(
                     child: _ChoiceButton(
-                      label: 'Easy',
+                      label: l10n.easy,
                       isSelected: difficulties.contains(Difficulty.easy),
                       onTap: () => toggleDifficulty(Difficulty.easy),
                     ),
@@ -123,7 +126,7 @@ class GameConfigSection extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: _ChoiceButton(
-                      label: 'Medium',
+                      label: l10n.medium,
                       isSelected: difficulties.contains(Difficulty.medium),
                       onTap: () => toggleDifficulty(Difficulty.medium),
                     ),
@@ -135,7 +138,7 @@ class GameConfigSection extends StatelessWidget {
                 children: [
                   Expanded(
                     child: _ChoiceButton(
-                      label: 'Hard',
+                      label: l10n.hard,
                       isSelected: difficulties.contains(Difficulty.hard),
                       onTap: () => toggleDifficulty(Difficulty.hard),
                     ),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/answer_grid.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/game_header.dart';
 import 'package:pes_vres/presentation/screens/game/widgets/prompt_card.dart';
@@ -11,6 +12,7 @@ import 'package:pes_vres/presentation/screens/game/widgets/round_result_dialog.d
 import 'package:pes_vres/presentation/screens/game/widgets/timer_display.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/game_state_provider.dart';
+import 'package:pes_vres/presentation/state/locale_provider.dart';
 import 'package:pes_vres/presentation/state/settings_provider.dart';
 import 'package:pes_vres/presentation/state/timer_provider.dart';
 import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
@@ -158,6 +160,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final setupState = ref.read(gameSetupProvider);
     final currentTeam = setupState.teams[result.teamIndex];
     final currentCard = gameState.currentCard!;
+    final locale = ref.read(localeProvider);
 
     showDialog(
       context: context,
@@ -167,7 +170,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         teams: setupState.teams,
         foundAnswers: result.foundAnswers,
         missedAnswers: result.missedAnswers,
-        prompt: currentCard.promptEn,
+        prompt: currentCard.getPrompt(locale),
         source: currentCard.source,
         pointsForAnswer: currentCard.pointsForAnswer,
         onScoreAdjust: (delta) {
@@ -236,6 +239,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   Widget _buildReadyPhase() {
     final gameState = ref.watch(gameStateProvider);
     final setupState = ref.watch(gameSetupProvider);
+    final l10n = AppLocalizations.of(context);
     if (setupState.teams.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -259,7 +263,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'It\'s ${currentTeam.name} turn, pass device to ${nextTeam.name}',
+              l10n.passDeviceMessage(currentTeam.name, nextTeam.name),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -302,7 +306,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
               child: Column(
                 children: [
                   Text(
-                    'Round ${gameState.currentRound} of $totalRounds',
+                    l10n.roundOf(gameState.currentRound, totalRounds),
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -311,7 +315,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Find 10 answers in $roundDuration seconds',
+                    l10n.findAnswersInTime(roundDuration),
                     style: TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondary,
@@ -326,7 +330,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             PrimaryButton(
               onPressed: _startRound,
               isFullWidth: true,
-              child: const Text('Show Question'),
+              child: Text(l10n.showQuestion),
             ),
           ],
         ),
@@ -338,6 +342,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   Widget _buildPreviewPhase() {
     final gameState = ref.watch(gameStateProvider);
     final setupState = ref.watch(gameSetupProvider);
+    final l10n = AppLocalizations.of(context);
+    final locale = ref.watch(localeProvider);
     if (setupState.teams.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -357,7 +363,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Tap the card to start the timer',
+              l10n.tapToStartTimer,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
@@ -365,11 +371,19 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 color: AppColors.textSecondary,
               ),
             ),
+            const SizedBox(height: 8),
+            TextButton.icon(
+              onPressed: () {
+                ref.read(gameStateProvider.notifier).refreshCard();
+              },
+              icon: const Icon(Icons.refresh),
+              label: Text(l10n.refreshQuestion),
+            ),
             const SizedBox(height: 20),
             GestureDetector(
               onTap: _beginTurn,
               child: PromptCard(
-                prompt: gameState.currentCard!.promptEn,
+                prompt: gameState.currentCard!.getPrompt(locale),
                 difficulty: gameState.currentCard!.difficulty,
               ),
             ),
@@ -384,6 +398,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final gameState = ref.watch(gameStateProvider);
     final setupState = ref.watch(gameSetupProvider);
     final timerState = ref.watch(timerProvider);
+    final l10n = AppLocalizations.of(context);
+    final locale = ref.watch(localeProvider);
 
     if (setupState.teams.isEmpty) {
       return const Center(child: CircularProgressIndicator());
@@ -419,7 +435,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
                 // Prompt
                 PromptCard(
-                  prompt: gameState.currentCard!.promptEn,
+                  prompt: gameState.currentCard!.getPrompt(locale),
                   difficulty: gameState.currentCard!.difficulty,
                 ),
                 const SizedBox(height: 32),
@@ -438,7 +454,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 SecondaryButton(
                   onPressed: _endRound,
                   isFullWidth: true,
-                  child: const Text('End Turn'),
+                  child: Text(l10n.endTurn),
                 ),
                 const SizedBox(height: 24),
               ],

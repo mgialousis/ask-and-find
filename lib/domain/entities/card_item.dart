@@ -1,28 +1,42 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 
 /// Represents a card/question in the game
 class CardItem extends Equatable {
   final String id;
   final String promptEn;
+  final String? promptEs;
   final List<String> answersEn;
+  final List<String>? answersEs;
   final Difficulty difficulty;
   final Map<String, int>? answerPoints;
   final String? source;
+  final List<String> languageScope;
 
   const CardItem({
     required this.id,
     required this.promptEn,
+    this.promptEs,
     required this.answersEn,
+    this.answersEs,
     required this.difficulty,
     this.answerPoints,
     this.source,
+    this.languageScope = const ['en', 'es'],
   });
 
   factory CardItem.fromJson(Map<String, dynamic> json) {
     final answers = (json['answersEn'] as List<dynamic>)
         .map((value) => value as String)
         .toList();
+    final answersEs = (json['answersEs'] as List<dynamic>?)
+        ?.map((value) => value as String)
+        .toList();
+    final languageScope = (json['languageScope'] as List<dynamic>?)
+            ?.map((value) => value as String)
+            .toList() ??
+        const ['en', 'es'];
     final rawPoints = json['answerPoints'] ?? json['answerDifficulties'];
     final answerPoints = rawPoints is Map<String, dynamic>
         ? rawPoints.map(
@@ -33,10 +47,13 @@ class CardItem extends Equatable {
     return CardItem(
       id: json['id'] as String,
       promptEn: json['promptEn'] as String,
+      promptEs: json['promptEs'] as String?,
       answersEn: answers,
+      answersEs: answersEs,
       difficulty: parseDifficulty(json['difficulty'] as String),
       answerPoints: answerPoints,
       source: json['source'] as String?,
+      languageScope: languageScope,
     );
   }
 
@@ -44,8 +61,11 @@ class CardItem extends Equatable {
     return {
       'id': id,
       'promptEn': promptEn,
+      if (promptEs != null) 'promptEs': promptEs,
       'answersEn': answersEn,
+      if (answersEs != null) 'answersEs': answersEs,
       'difficulty': difficulty.name,
+      'languageScope': languageScope,
       if (answerPoints != null) 'answerPoints': answerPoints,
       if (source != null) 'source': source,
     };
@@ -54,6 +74,26 @@ class CardItem extends Equatable {
   /// Validate that the card has the required number of answers (10-15)
   bool get isValid {
     return answersEn.length >= 10 && answersEn.length <= 15;
+  }
+
+  String getPrompt(Locale locale) {
+    if (locale.languageCode == 'es' && promptEs != null) {
+      return promptEs!;
+    }
+    return promptEn;
+  }
+
+  List<String> getAnswers(Locale locale) {
+    if (locale.languageCode == 'es' &&
+        answersEs != null &&
+        answersEs!.isNotEmpty) {
+      return answersEs!;
+    }
+    return answersEn;
+  }
+
+  bool supportsLocale(Locale locale) {
+    return languageScope.contains(locale.languageCode);
   }
 
   /// Get a random subset of answers for a round (exactly 10 answers)
@@ -92,10 +132,13 @@ class CardItem extends Equatable {
   List<Object?> get props => [
         id,
         promptEn,
+        promptEs,
         answersEn,
+        answersEs,
         difficulty,
         answerPoints,
         source,
+        languageScope,
       ];
 
   @override

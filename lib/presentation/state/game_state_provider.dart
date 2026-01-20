@@ -6,6 +6,7 @@ import 'package:pes_vres/data/repositories/cards_repository.dart';
 import 'package:pes_vres/domain/entities/card_item.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/cards_provider.dart';
+import 'package:pes_vres/presentation/state/locale_provider.dart';
 
 /// Game phases during gameplay
 enum GamePhase {
@@ -147,14 +148,16 @@ class GameStateNotifier extends StateNotifier<GameState> {
   Future<void> startRound() async {
     final setupState = _ref.read(gameSetupProvider);
     final cards = await _ref.read(cardsProvider.future);
+    final locale = _ref.read(localeProvider);
     final card = getRandomCardExcluding(
       cards,
       {...state.usedCardIdsInRound, ...state.usedCardIdsInGame},
       setupState.config.difficulties,
+      locale.languageCode,
     );
 
     // Select 10 random answers from card
-    final shuffledAnswers = List<String>.from(card.answersEn)
+    final shuffledAnswers = List<String>.from(card.getAnswers(locale))
       ..shuffle(_random);
     final selectedAnswers = shuffledAnswers.take(10).toList()..shuffle(_random);
 
@@ -172,6 +175,42 @@ class GameStateNotifier extends StateNotifier<GameState> {
   void beginTurn() {
     if (state.gamePhase != GamePhase.preview) return;
     state = state.copyWith(gamePhase: GamePhase.playing);
+  }
+
+  /// Refresh the current card with a new random card of the same difficulty.
+  Future<void> refreshCard() async {
+    if (state.gamePhase != GamePhase.preview || state.currentCard == null) {
+      return;
+    }
+
+    final setupState = _ref.read(gameSetupProvider);
+    final cards = await _ref.read(cardsProvider.future);
+    final locale = _ref.read(localeProvider);
+    final currentDifficulty = state.currentCard!.difficulty;
+    final excludedIds = {
+      ...state.usedCardIdsInRound,
+      ...state.usedCardIdsInGame,
+    };
+
+    final card = getRandomCardExcluding(
+      cards,
+      excludedIds,
+      {currentDifficulty},
+      locale.languageCode,
+    );
+
+    final shuffledAnswers = List<String>.from(card.getAnswers(locale))
+      ..shuffle(_random);
+    final selectedAnswers = shuffledAnswers.take(10).toList()..shuffle(_random);
+
+    state = state.copyWith(
+      currentCard: card,
+      selectedAnswers: selectedAnswers,
+      foundAnswers: [],
+      usedCardIdsInRound: {...state.usedCardIdsInRound, card.id},
+      usedCardIdsInGame: {...state.usedCardIdsInGame, card.id},
+      gamePhase: GamePhase.preview,
+    );
   }
 
   /// Toggle answer selection (add if not selected, remove if already selected)

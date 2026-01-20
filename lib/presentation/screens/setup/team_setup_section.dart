@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/widgets/common/team_color_picker.dart';
 
 /// Team setup section for setup screen
 ///
 /// Displays dynamic team input cards based on number of teams selected.
 /// Each team card allows:
-/// - Team name input (with default "Team 1", "Team 2", etc.)
+/// - Team name input (with localized default names)
 /// - Team color selection (must be unique across teams)
 /// - Validation for non-empty and unique names
 class TeamSetupSection extends StatelessWidget {
@@ -26,10 +27,12 @@ class TeamSetupSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _SectionTitle(title: 'Team Setup'),
+        _SectionTitle(title: l10n.teamSetup),
         const SizedBox(height: 16),
         ...List.generate(
           teams.length,
@@ -119,6 +122,8 @@ class _TeamCardState extends State<_TeamCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Card(
       elevation: 2,
       child: Padding(
@@ -146,7 +151,7 @@ class _TeamCardState extends State<_TeamCard> {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  'Team ${widget.index + 1}',
+                  l10n.teamWithNumber(widget.index + 1),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -161,8 +166,8 @@ class _TeamCardState extends State<_TeamCard> {
             TextField(
               controller: _controller,
               decoration: InputDecoration(
-                labelText: 'Team Name',
-                hintText: 'Enter team name',
+                labelText: l10n.teamName,
+                hintText: l10n.enterTeamName,
                 errorText: widget.errorText,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -176,7 +181,7 @@ class _TeamCardState extends State<_TeamCard> {
 
             // Color Picker Label
             Text(
-              'Team Color',
+              l10n.teamColor,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,

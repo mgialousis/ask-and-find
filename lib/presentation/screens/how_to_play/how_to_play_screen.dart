@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 
 /// How to Play screen - Game instructions and rules
 ///
@@ -9,63 +10,59 @@ class HowToPlayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('How to Play'),
+        title: Text(l10n.howToPlayTitle),
       ),
       body: ListView(
         padding: const EdgeInsets.all(24),
-        children: const [
+        children: [
           _InstructionStep(
             stepNumber: 1,
             icon: Icons.groups,
-            title: 'Set Up Teams',
-            description:
-                'Create 2-4 teams and choose unique names and colors for each team. Each team will take turns guessing answers.',
+            title: l10n.step1Title,
+            description: l10n.step1Desc,
           ),
           _InstructionStep(
             stepNumber: 2,
             icon: Icons.psychology,
-            title: 'Read the Prompt',
-            description:
-                'Each round, the active team sees a prompt (like "Name European capital cities"). Their goal is to guess 10 correct answers from a hidden list.',
+            title: l10n.step2Title,
+            description: l10n.step2Desc,
           ),
           _InstructionStep(
             stepNumber: 3,
             icon: Icons.timer,
-            title: 'Beat the Clock',
-            description:
-                'Teams have a time limit (30-90 seconds) to find as many answers as possible. Tap the hidden chips to reveal answers when you guess correctly.',
+            title: l10n.step3Title,
+            description: l10n.step3Desc,
           ),
           _InstructionStep(
             stepNumber: 4,
             icon: Icons.star,
-            title: 'Score Points',
-            description:
-                'Each correct answer found earns 1 point. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.',
+            title: l10n.step4Title,
+            description: l10n.step4Desc,
           ),
           _InstructionStep(
             stepNumber: 5,
             icon: Icons.loop,
-            title: 'Take Turns',
-            description:
-                'Teams take turns playing rounds until all configured rounds are complete. The game alternates between teams in order.',
+            title: l10n.step5Title,
+            description: l10n.step5Desc,
           ),
           _InstructionStep(
             stepNumber: 6,
             icon: Icons.emoji_events,
-            title: 'Win the Game',
-            description:
-                'After all rounds, the team with the most points wins! If there\'s a tie for first place, overtime rounds determine the winner.',
+            title: l10n.step6Title,
+            description: l10n.step6Desc,
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           _TipCard(
-            title: 'Pro Tips',
+            title: l10n.proTips,
             tips: [
-              'Communication is key! Discuss answers with your team.',
-              'Think of multiple variations of an answer (e.g., "USA" vs "United States").',
-              'Watch the timer! The last 10 seconds are critical.',
-              'Learn from revealed answers at the end of each round.',
+              l10n.tip1,
+              l10n.tip2,
+              l10n.tip3,
+              l10n.tip4,
             ],
           ),
         ],

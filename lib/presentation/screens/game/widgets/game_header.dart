@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
 
 /// Game header widget
@@ -27,6 +28,8 @@ class GameHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -46,7 +49,7 @@ class GameHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Round $currentRound of $totalRounds',
+                l10n.roundOf(currentRound, totalRounds),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

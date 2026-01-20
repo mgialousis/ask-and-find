@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 
@@ -15,6 +16,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -47,9 +50,9 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 32),
 
                 // App Title
-                const Text(
-                  'Say & Find',
-                  style: TextStyle(
+                Text(
+                  l10n.appTitle,
+                  style: const TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.w800,
                     color: AppColors.textPrimary,
@@ -61,7 +64,7 @@ class HomeScreen extends StatelessWidget {
 
                 // Tagline
                 Text(
-                  'The Ultimate Party Trivia Game',
+                  l10n.appTagline,
                   style: TextStyle(
                     fontSize: 16,
                     color: AppColors.textSecondary,
@@ -77,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                     context.pushNamed('setup');
                   },
                   isFullWidth: true,
-                  child: const Text('New Game'),
+                  child: Text(l10n.newGame),
                 ),
                 const SizedBox(height: 16),
 
@@ -87,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                     context.pushNamed('howToPlay');
                   },
                   isFullWidth: true,
-                  child: const Text('How to Play'),
+                  child: Text(l10n.howToPlay),
                 ),
                 const SizedBox(height: 16),
 
@@ -97,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                     context.pushNamed('settings');
                   },
                   isFullWidth: true,
-                  child: const Text('Settings'),
+                  child: Text(l10n.settings),
                 ),
               ],
             ),

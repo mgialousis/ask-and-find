@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 
 /// State of an answer chip in the game
 enum AnswerChipState {
@@ -92,6 +93,7 @@ class _AnswerChipState extends State<AnswerChip>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return AnimatedBuilder(
       animation: _scaleAnimation,
       builder: (context, child) {
@@ -138,7 +140,7 @@ class _AnswerChipState extends State<AnswerChip>
                         ),
                         TextSpan(
                           text:
-                              ' (${widget.pointValue} ${widget.pointValue == 1 ? 'pt' : 'pts'})',
+                              ' (${l10n.nPts(widget.pointValue)})',
                           style: TextStyle(
                             color: _textColor.withValues(alpha: 0.7),
                             fontSize: 13,

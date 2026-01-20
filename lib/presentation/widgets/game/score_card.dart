@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 
 /// Card widget displaying a team's score
 ///
@@ -21,6 +22,7 @@ class ScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Card(
       elevation: isWinner ? 8 : 2,
       color: isWinner
@@ -77,8 +79,7 @@ class ScoreCard extends StatelessWidget {
                       fontSize: 14,
                       color: AppColors.textSecondary,
                     ),
-                    formatter: (score) =>
-                        '$score ${score == 1 ? 'point' : 'points'}',
+                    formatter: (score) => l10n.nPoints(score),
                   ),
                 ],
               ),
@@ -142,6 +143,7 @@ class _RankBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       width: 36,
       height: 36,
@@ -151,7 +153,7 @@ class _RankBadge extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          _getRankText(),
+          _getRankText(l10n),
           style: const TextStyle(
             color: Colors.white,
             fontSize: 14,
@@ -162,16 +164,16 @@ class _RankBadge extends StatelessWidget {
     );
   }
 
-  String _getRankText() {
+  String _getRankText(AppLocalizations l10n) {
     switch (rank) {
       case 1:
-        return '1st';
+        return l10n.rank1st;
       case 2:
-        return '2nd';
+        return l10n.rank2nd;
       case 3:
-        return '3rd';
+        return l10n.rank3rd;
       default:
-        return '${rank}th';
+        return l10n.rankNth(rank);
     }
   }
 

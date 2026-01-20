@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 
 /// Prompt card widget
 ///
@@ -76,14 +77,15 @@ class _DifficultyBadge extends StatelessWidget {
     }
   }
 
-  String get _label {
+  String _label(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     switch (difficulty) {
       case Difficulty.easy:
-        return 'Easy';
+        return l10n.easy;
       case Difficulty.medium:
-        return 'Medium';
+        return l10n.medium;
       case Difficulty.hard:
-        return 'Hard';
+        return l10n.hard;
     }
   }
 
@@ -123,7 +125,7 @@ class _DifficultyBadge extends StatelessWidget {
           ),
           const SizedBox(width: 6),
           Text(
-            _label,
+            _label(context),
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,

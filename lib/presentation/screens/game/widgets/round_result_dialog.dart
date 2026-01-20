@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
@@ -90,6 +91,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -104,7 +106,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
               children: [
                 // Header
                 Text(
-                  'Round Complete!',
+                  l10n.roundComplete,
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w800,
@@ -140,7 +142,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        '$_pointsEarned ${_pointsEarned == 1 ? 'Point' : 'Points'}',
+                        l10n.nPoints(_pointsEarned),
                         style: const TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.w800,
@@ -149,7 +151,10 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Found ${_foundAnswers.length} of ${_foundAnswers.length + _missedAnswers.length}',
+                        l10n.foundOf(
+                          _foundAnswers.length,
+                          _foundAnswers.length + _missedAnswers.length,
+                        ),
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -176,9 +181,9 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Scores So Far',
-                        style: TextStyle(
+                      Text(
+                        l10n.scoresSoFar,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                           color: AppColors.textPrimary,
@@ -215,7 +220,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                                 ),
                               ),
                               Text(
-                                '${team.score} pts',
+                                l10n.nPts(team.score),
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
@@ -243,7 +248,9 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                         ? Icons.keyboard_arrow_up
                         : Icons.keyboard_arrow_down,
                   ),
-                  label: Text(_showAnswers ? 'Hide Answers' : 'Show Answers'),
+                  label: Text(
+                    _showAnswers ? l10n.hideAnswers : l10n.showAnswers,
+                  ),
                 ),
 
                 // Answers Section (expandable)
@@ -265,7 +272,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                 PrimaryButton(
                   onPressed: widget.onContinue,
                   isFullWidth: true,
-                  child: const Text('Continue'),
+                  child: Text(l10n.continueButton),
                 ),
                 const SizedBox(height: 12),
 
@@ -273,7 +280,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                 SecondaryButton(
                   onPressed: widget.onEndGame,
                   isFullWidth: true,
-                  child: const Text('End Game'),
+                  child: Text(l10n.endGame),
                 ),
               ],
             ),
@@ -307,6 +314,7 @@ class _AnswersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -341,7 +349,10 @@ class _AnswersSection extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  'Found (${foundAnswers.length}) (${_sumPoints(foundAnswers)} pts)',
+                  l10n.foundWithCount(
+                    foundAnswers.length,
+                    _sumPoints(foundAnswers),
+                  ),
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -359,7 +370,7 @@ class _AnswersSection extends StatelessWidget {
                   selected: true,
                   onSelected: (_) => onToggleAnswer(answer, true),
                   label: Text(
-                    '$answer (${pointsForAnswer(answer)})',
+                    '$answer (${l10n.nPts(pointsForAnswer(answer))})',
                     style: const TextStyle(fontSize: 12),
                   ),
                   selectedColor: AppColors.success.withValues(alpha: 0.15),
@@ -383,7 +394,7 @@ class _AnswersSection extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  'Missed (${missedAnswers.length})',
+                  l10n.missedWithCount(missedAnswers.length),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -401,7 +412,7 @@ class _AnswersSection extends StatelessWidget {
                   selected: false,
                   onSelected: (_) => onToggleAnswer(answer, false),
                   label: Text(
-                    '$answer (${pointsForAnswer(answer)})',
+                    '$answer (${l10n.nPts(pointsForAnswer(answer))})',
                     style: const TextStyle(fontSize: 12),
                   ),
                   selectedColor: AppColors.success.withValues(alpha: 0.15),

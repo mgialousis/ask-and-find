@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/screens/results/scoreboard_widget.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/game_state_provider.dart';
@@ -114,13 +115,13 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
 
   bool _isTie(WidgetRef ref) => _winners(ref).length > 1;
 
-  String _winnerText(WidgetRef ref) {
+  String _winnerText(AppLocalizations l10n, WidgetRef ref) {
     final winners = _winners(ref);
-    if (winners.isEmpty) return 'No winner';
+    if (winners.isEmpty) return l10n.noWinner;
     if (_isTie(ref)) {
-      return 'It\'s a Tie!';
+      return l10n.itsATie;
     }
-    return '${winners.first.name} Wins!';
+    return l10n.teamWins(winners.first.name);
   }
 
   IconData _winnerIcon(WidgetRef ref) {
@@ -133,46 +134,50 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     return AppColors.success;
   }
 
-  void _shareResults(BuildContext context, WidgetRef ref) {
+  void _shareResults(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations l10n,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Share Results'),
-        content: Text(_buildShareText(ref)),
+        title: Text(l10n.shareResults),
+        content: Text(_buildShareText(ref, l10n)),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Close'),
+            child: Text(l10n.close),
           ),
         ],
       ),
     );
   }
 
-  String _buildShareText(WidgetRef ref) {
+  String _buildShareText(WidgetRef ref, AppLocalizations l10n) {
     final buffer = StringBuffer();
     final sortedTeams = _sortedTeams(ref);
     final winners = _winners(ref);
     final isTie = _isTie(ref);
 
-    buffer.writeln('Say & Find - Game Results');
+    buffer.writeln(l10n.shareTitle);
     buffer.writeln();
 
     if (isTie) {
-      buffer.writeln('Tie between:');
+      buffer.writeln(l10n.shareTie);
       for (final winner in winners) {
-        buffer.writeln('- ${winner.name}: ${winner.score} points');
+        buffer.writeln('- ${winner.name}: ${l10n.nPoints(winner.score)}');
       }
     } else if (winners.isNotEmpty) {
-      buffer.writeln('Winner: ${winners.first.name}');
-      buffer.writeln('Score: ${winners.first.score} points');
+      buffer.writeln('${l10n.shareWinner} ${winners.first.name}');
+      buffer.writeln('${l10n.shareScore} ${l10n.nPoints(winners.first.score)}');
     }
 
     buffer.writeln();
-    buffer.writeln('Final Standings:');
+    buffer.writeln(l10n.shareFinalStandings);
     for (int i = 0; i < sortedTeams.length; i++) {
       final team = sortedTeams[i];
-      buffer.writeln('${i + 1}. ${team.name}: ${team.score} points');
+      buffer.writeln('${i + 1}. ${team.name}: ${l10n.nPoints(team.score)}');
     }
 
     return buffer.toString();
@@ -204,7 +209,8 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     final isTie = _isTie(ref);
     final winnerColor = _winnerColor(ref);
     final winnerIcon = _winnerIcon(ref);
-    final winnerText = _winnerText(ref);
+    final l10n = AppLocalizations.of(context);
+    final winnerText = _winnerText(l10n, ref);
 
     return PopScope(
       canPop: false,
@@ -216,9 +222,9 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
               children: [
                 // Game Over Header
                 const SizedBox(height: 24),
-                const Text(
-                  'Game Over!',
-                  style: TextStyle(
+                Text(
+                  l10n.gameOver,
+                  style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w800,
                     color: AppColors.textPrimary,
@@ -268,9 +274,9 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                       ],
                       const SizedBox(height: 8),
                       if (winners.isEmpty)
-                        const Text(
-                          'No scores recorded',
-                          style: TextStyle(
+                        Text(
+                          l10n.noScoresRecorded,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: AppColors.textSecondary,
@@ -283,7 +289,7 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                           curve: Curves.easeOutCubic,
                           builder: (context, value, child) {
                             return Text(
-                              '$value ${value == 1 ? 'point' : 'points'}',
+                              l10n.nPoints(value),
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -308,12 +314,12 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                     PrimaryButton(
                       onPressed: () => _playAgain(context, ref),
                       isFullWidth: true,
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.replay, size: 20),
-                          SizedBox(width: 8),
-                          Text('Play Again'),
+                          const Icon(Icons.replay, size: 20),
+                          const SizedBox(width: 8),
+                          Text(l10n.playAgain),
                         ],
                       ),
                     ),
@@ -328,12 +334,12 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                         context.goNamed('setup');
                       },
                       isFullWidth: true,
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.settings, size: 20),
-                          SizedBox(width: 8),
-                          Text('New Setup'),
+                          const Icon(Icons.settings, size: 20),
+                          const SizedBox(width: 8),
+                          Text(l10n.newSetup),
                         ],
                       ),
                     ),
@@ -341,14 +347,14 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
 
                     // Share Results Button
                     SecondaryButton(
-                      onPressed: () => _shareResults(context, ref),
+                      onPressed: () => _shareResults(context, ref, l10n),
                       isFullWidth: true,
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.share, size: 20),
-                          SizedBox(width: 8),
-                          Text('Share Results'),
+                          const Icon(Icons.share, size: 20),
+                          const SizedBox(width: 8),
+                          Text(l10n.shareResults),
                         ],
                       ),
                     ),
@@ -363,12 +369,12 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                         context.goNamed('home');
                       },
                       isFullWidth: true,
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.home, size: 20),
-                          SizedBox(width: 8),
-                          Text('Home'),
+                          const Icon(Icons.home, size: 20),
+                          const SizedBox(width: 8),
+                          Text(l10n.home),
                         ],
                       ),
                     ),

@@ -1,0 +1,223 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Say & Find",
+  "appTagline": "The Ultimate Party Trivia Game",
+
+  "newGame": "New Game",
+  "howToPlay": "How to Play",
+  "settings": "Settings",
+  "startGame": "Start Game",
+  "continueButton": "Continue",
+  "playAgain": "Play Again",
+  "newSetup": "New Setup",
+  "shareResults": "Share Results",
+  "home": "Home",
+  "close": "Close",
+  "endGame": "End Game",
+  "endTurn": "End Turn",
+  "showQuestion": "Show Question",
+  "refreshQuestion": "New Question",
+  "showAnswers": "Show Answers",
+  "hideAnswers": "Hide Answers",
+  "restoreDefaults": "Restore Defaults",
+
+  "gameSetup": "Game Setup",
+  "numberOfTeams": "Number of Teams",
+  "teamSetup": "Team Setup",
+  "gameSettings": "Game Settings",
+  "numberOfRounds": "Number of Rounds",
+  "roundDuration": "Round Duration",
+  "difficulty": "Difficulty",
+  "teamName": "Team Name",
+  "teamColor": "Team Color",
+  "enterTeamName": "Enter team name",
+
+  "team": "Team",
+  "teams": "Teams",
+  "teamWithNumber": "Team {number}",
+  "@teamWithNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "easy": "Easy",
+  "medium": "Medium",
+  "hard": "Hard",
+
+  "seconds30": "30s",
+  "seconds45": "45s",
+  "seconds60": "60s",
+  "seconds90": "90s",
+
+  "roundOf": "Round {current} of {total}",
+  "@roundOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+
+  "findAnswersInTime": "Find 10 answers in {seconds} seconds",
+  "@findAnswersInTime": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+
+  "passDeviceMessage": "It's {currentTeam}'s turn, pass device to {nextTeam}",
+  "@passDeviceMessage": {
+    "placeholders": {
+      "currentTeam": {
+        "type": "String"
+      },
+      "nextTeam": {
+        "type": "String"
+      }
+    }
+  },
+
+  "readyStartTurn": "Ready? Start Turn",
+  "tapToStartTimer": "Tap the card to start the timer",
+
+  "gameOver": "Game Over!",
+  "teamWins": "{teamName} Wins!",
+  "@teamWins": {
+    "placeholders": {
+      "teamName": {
+        "type": "String"
+      }
+    }
+  },
+  "itsATie": "It's a Tie!",
+  "noWinner": "No winner",
+  "noScoresRecorded": "No scores recorded",
+
+  "nPoints": "{count, plural, =1{1 point} other{{count} points}}",
+  "@nPoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "nPts": "{count, plural, =1{1 pt} other{{count} pts}}",
+  "@nPts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "roundComplete": "Round Complete!",
+  "foundOf": "Found {found} of {total}",
+  "@foundOf": {
+    "placeholders": {
+      "found": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "scoresSoFar": "Scores So Far",
+  "finalScores": "Final Scores",
+
+  "foundWithCount": "Found ({count}) ({points} pts)",
+  "@foundWithCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "missedWithCount": "Missed ({count})",
+  "@missedWithCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "rank1st": "1st",
+  "rank2nd": "2nd",
+  "rank3rd": "3rd",
+  "rankNth": "{rank}th",
+  "@rankNth": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+
+  "settingsTitle": "Settings",
+  "audio": "Audio",
+  "haptics": "Haptics",
+  "appearance": "Appearance",
+  "language": "Language",
+  "soundEffects": "Sound Effects",
+  "soundEffectsDesc": "Play sounds during gameplay",
+  "hapticFeedback": "Haptic Feedback",
+  "hapticFeedbackDesc": "Vibrate on interactions",
+  "darkMode": "Dark Mode",
+  "darkModeDesc": "Coming soon in a future update",
+  "settingsRestored": "Settings restored to defaults",
+  "versionNumber": "Version {number}",
+  "@versionNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+
+  "validationNameEmpty": "Team name cannot be empty",
+  "validationNameDuplicate": "Team name must be unique",
+  "validationFixErrors": "Please fix validation errors before starting",
+
+  "howToPlayTitle": "How to Play",
+  "step1Title": "Set Up Teams",
+  "step1Desc": "Create 2-4 teams and choose unique names and colors for each team. Each team will take turns guessing answers.",
+  "step2Title": "Read the Prompt",
+  "step2Desc": "Each round, the active team sees a prompt (like \"Name European capital cities\"). Their goal is to guess 10 correct answers from a hidden list.",
+  "step3Title": "Beat the Clock",
+  "step3Desc": "Teams have a time limit (30-90 seconds) to find as many answers as possible. Tap the hidden chips to reveal answers when you guess correctly.",
+  "step4Title": "Score Points",
+  "step4Desc": "Each correct answer found earns 1 point. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.",
+  "step5Title": "Take Turns",
+  "step5Desc": "Teams take turns playing rounds until all configured rounds are complete. The game alternates between teams in order.",
+  "step6Title": "Win the Game",
+  "step6Desc": "After all rounds, the team with the most points wins! If there's a tie for first place, overtime rounds determine the winner.",
+
+  "proTips": "Pro Tips",
+  "tip1": "Communication is key! Discuss answers with your team.",
+  "tip2": "Think of multiple variations of an answer (e.g., \"USA\" vs \"United States\").",
+  "tip3": "Watch the timer! The last 10 seconds are critical.",
+  "tip4": "Learn from revealed answers at the end of each round.",
+
+  "shareTitle": "Say & Find - Game Results",
+  "shareWinner": "Winner:",
+  "shareTie": "Tie between:",
+  "shareScore": "Score:",
+  "shareFinalStandings": "Final Standings:",
+
+  "english": "English",
+  "spanish": "Spanish"
+}

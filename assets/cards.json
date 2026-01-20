@@ -26,8 +26,31 @@
       "Brazil": 2,
       "Bangladesh": 3,
       "Russia": 3,
-      "Ethiopia": 4
-    }
+      "Ethiopia": 4,
+      "Estados Unidos": 1,
+      "Pakistán": 3,
+      "Brasil": 2,
+      "Bangladés": 3,
+      "Rusia": 3,
+      "Etiopía": 4
+    },
+    "promptEs": "Nombra los 10 países más poblados del mundo (2025)",
+    "answersEs": [
+      "India",
+      "China",
+      "Estados Unidos",
+      "Indonesia",
+      "Pakistán",
+      "Nigeria",
+      "Brasil",
+      "Bangladés",
+      "Rusia",
+      "Etiopía"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "2",
@@ -57,7 +80,24 @@
       "Tesla": 3,
       "Mercedes-Benz": 4,
       "Nissan": 4
-    }
+    },
+    "promptEs": "Nombra 10 marcas de autos con las mayores ventas globales en 2025",
+    "answersEs": [
+      "Toyota",
+      "BYD",
+      "Volkswagen",
+      "Ford",
+      "Honda",
+      "BMW",
+      "Kia",
+      "Tesla",
+      "Mercedes-Benz",
+      "Nissan"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "3",
@@ -86,8 +126,31 @@
       "India": 3,
       "Argentina": 3,
       "Kazakhstan": 3,
-      "Algeria": 4
-    }
+      "Algeria": 4,
+      "Rusia": 1,
+      "Canadá": 1,
+      "Estados Unidos": 2,
+      "Brasil": 2,
+      "Kazajistán": 3,
+      "Argelia": 4
+    },
+    "promptEs": "Nombra los 10 países más grandes del mundo por área",
+    "answersEs": [
+      "Rusia",
+      "Canadá",
+      "China",
+      "Estados Unidos",
+      "Brasil",
+      "Australia",
+      "India",
+      "Argentina",
+      "Kazajistán",
+      "Argelia"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "4",
@@ -112,8 +175,30 @@
       "Jupiter": 1,
       "Saturn": 1,
       "Uranus": 2,
-      "Neptune": 2
-    }
+      "Neptune": 2,
+      "Mercurio": 1,
+      "Tierra": 1,
+      "Marte": 1,
+      "Júpiter": 1,
+      "Saturno": 1,
+      "Urano": 2,
+      "Neptuno": 2
+    },
+    "promptEs": "Nombra los 8 planetas oficiales de nuestro sistema solar",
+    "answersEs": [
+      "Mercurio",
+      "Venus",
+      "Tierra",
+      "Marte",
+      "Júpiter",
+      "Saturno",
+      "Urano",
+      "Neptuno"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "5",
@@ -142,8 +227,33 @@
       "Watermelon": 1,
       "Mango": 2,
       "Peach": 2,
-      "Pear": 2
-    }
+      "Pear": 2,
+      "Manzana": 1,
+      "Naranja": 1,
+      "Uva": 1,
+      "Fresa": 1,
+      "Piña": 2,
+      "Sandía": 1,
+      "Durazno": 2,
+      "Pera": 2
+    },
+    "promptEs": "Nombra 10 frutas comunes consumidas en el mundo",
+    "answersEs": [
+      "Manzana",
+      "Banana",
+      "Naranja",
+      "Uva",
+      "Fresa",
+      "Piña",
+      "Sandía",
+      "Mango",
+      "Durazno",
+      "Pera"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "6",
@@ -172,8 +282,32 @@
       "Ob-Irtysh": 5,
       "Paraná": 4,
       "Congo": 3,
-      "Amur": 5
-    }
+      "Amur": 5,
+      "Nilo": 2,
+      "Amazonas": 2,
+      "Yangtsé": 3,
+      "Misisipi-Misuri": 3,
+      "Yeniséi": 4,
+      "Amarillo": 4,
+      "Obi-Irtish": 5
+    },
+    "promptEs": "Nombra los 10 ríos más largos del mundo",
+    "answersEs": [
+      "Nilo",
+      "Amazonas",
+      "Yangtsé",
+      "Misisipi-Misuri",
+      "Yeniséi",
+      "Amarillo",
+      "Obi-Irtish",
+      "Paraná",
+      "Congo",
+      "Amur"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "7",
@@ -202,8 +336,35 @@
       "Nitrogen": 1,
       "Oxygen": 1,
       "Fluorine": 3,
-      "Neon": 3
-    }
+      "Neon": 3,
+      "Hidrógeno": 1,
+      "Helio": 1,
+      "Litio": 3,
+      "Berilio": 3,
+      "Boro": 3,
+      "Carbono": 1,
+      "Nitrógeno": 1,
+      "Oxígeno": 1,
+      "Flúor": 3,
+      "Neón": 3
+    },
+    "promptEs": "Nombra los 10 elementos químicos con números atómicos del 1 al 10",
+    "answersEs": [
+      "Hidrógeno",
+      "Helio",
+      "Litio",
+      "Berilio",
+      "Boro",
+      "Carbono",
+      "Nitrógeno",
+      "Oxígeno",
+      "Flúor",
+      "Neón"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "8",
@@ -232,8 +393,34 @@
       "Appalachian Mountains": 3,
       "Karakoram": 4,
       "Caucasus Mountains": 3,
-      "Great Dividing Range": 4
-    }
+      "Great Dividing Range": 4,
+      "Himalaya": 2,
+      "Montañas Rocosas": 2,
+      "Alpes": 2,
+      "Montes Urales": 3,
+      "Montes Atlas": 3,
+      "Montes Apalaches": 3,
+      "Karakórum": 4,
+      "Montes del Cáucaso": 3,
+      "Gran Cordillera Divisoria": 4
+    },
+    "promptEs": "Nombra 10 grandes cordilleras del mundo",
+    "answersEs": [
+      "Himalaya",
+      "Andes",
+      "Montañas Rocosas",
+      "Alpes",
+      "Montes Urales",
+      "Montes Atlas",
+      "Montes Apalaches",
+      "Karakórum",
+      "Montes del Cáucaso",
+      "Gran Cordillera Divisoria"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "9",
@@ -262,8 +449,35 @@
       "Physiology": 4,
       "Mathematics": 5,
       "Humanitarian": 5,
-      "Achievement": 5
-    }
+      "Achievement": 5,
+      "Física": 3,
+      "Química": 3,
+      "Medicina": 3,
+      "Literatura": 3,
+      "Paz": 3,
+      "Economía": 3,
+      "Fisiología": 4,
+      "Matemáticas": 5,
+      "Humanitario": 5,
+      "Logro": 5
+    },
+    "promptEs": "Nombra 10 categorías del Premio Nobel",
+    "answersEs": [
+      "Física",
+      "Química",
+      "Medicina",
+      "Literatura",
+      "Paz",
+      "Economía",
+      "Fisiología",
+      "Matemáticas",
+      "Humanitario",
+      "Logro"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "10",
@@ -292,8 +506,26 @@
       "Salvador Dalí": 3,
       "Frida Kahlo": 4,
       "Andy Warhol": 4,
-      "Georgia O’Keeffe": 5
-    }
+      "Georgia O’Keeffe": 5,
+      "Miguel Ángel": 2
+    },
+    "promptEs": "Nombra 10 pintores famosos de la historia",
+    "answersEs": [
+      "Leonardo da Vinci",
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Claude Monet",
+      "Miguel Ángel",
+      "Rembrandt",
+      "Salvador Dalí",
+      "Frida Kahlo",
+      "Andy Warhol",
+      "Georgia O’Keeffe"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "11",
@@ -322,8 +554,35 @@
       "Guinea Pig": 3,
       "Turtle": 3,
       "Lizard": 4,
-      "Snake": 4
-    }
+      "Snake": 4,
+      "Perro": 1,
+      "Gato": 1,
+      "Pez": 1,
+      "Pájaro": 2,
+      "Hámster": 2,
+      "Conejo": 2,
+      "Cobaya": 3,
+      "Tortuga": 3,
+      "Lagarto": 4,
+      "Serpiente": 4
+    },
+    "promptEs": "Nombra 10 mascotas comunes",
+    "answersEs": [
+      "Perro",
+      "Gato",
+      "Pez",
+      "Pájaro",
+      "Hámster",
+      "Conejo",
+      "Cobaya",
+      "Tortuga",
+      "Lagarto",
+      "Serpiente"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "12",
@@ -352,8 +611,33 @@
       "Bengali": 3,
       "Russian": 3,
       "Portuguese": 3,
-      "Urdu": 4
-    }
+      "Urdu": 4,
+      "Inglés": 1,
+      "Chino mandarín": 1,
+      "Español": 1,
+      "Árabe": 2,
+      "Francés": 2,
+      "Bengalí": 3,
+      "Ruso": 3,
+      "Portugués": 3
+    },
+    "promptEs": "Nombra 10 idiomas principales del mundo por hablantes",
+    "answersEs": [
+      "Inglés",
+      "Chino mandarín",
+      "Español",
+      "Hindi",
+      "Árabe",
+      "Francés",
+      "Bengalí",
+      "Ruso",
+      "Portugués",
+      "Urdu"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "13",
@@ -382,8 +666,27 @@
       "Johannes Brahms": 3,
       "Richard Wagner": 3,
       "Igor Stravinsky": 4,
-      "George Gershwin": 4
-    }
+      "George Gershwin": 4,
+      "Piotr Ilich Chaikovski": 2,
+      "Igor Stravinski": 4
+    },
+    "promptEs": "Nombra 10 compositores famosos de música clásica",
+    "answersEs": [
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart",
+      "Johann Sebastian Bach",
+      "Frédéric Chopin",
+      "Piotr Ilich Chaikovski",
+      "Antonio Vivaldi",
+      "Johannes Brahms",
+      "Richard Wagner",
+      "Igor Stravinski",
+      "George Gershwin"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "14",
@@ -412,8 +715,32 @@
       "Brasília": 3,
       "Rome": 2,
       "Madrid": 2,
-      "New Delhi": 2
-    }
+      "New Delhi": 2,
+      "Tokio": 1,
+      "París": 1,
+      "Londres": 1,
+      "Pekín": 1,
+      "Brasilia": 3,
+      "Roma": 2,
+      "Nueva Delhi": 2
+    },
+    "promptEs": "Nombra 10 capitales del mundo",
+    "answersEs": [
+      "Tokio",
+      "París",
+      "Londres",
+      "Pekín",
+      "Canberra",
+      "Ottawa",
+      "Brasilia",
+      "Roma",
+      "Madrid",
+      "Nueva Delhi"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "15",
@@ -442,8 +769,30 @@
       "Ares": 3,
       "Aphrodite": 2,
       "Hermes": 3,
-      "Hades": 3
-    }
+      "Hades": 3,
+      "Atenea": 1,
+      "Apolo": 1,
+      "Artemisa": 2,
+      "Poseidón": 2,
+      "Afrodita": 2
+    },
+    "promptEs": "Nombra 10 figuras de la mitología griega",
+    "answersEs": [
+      "Zeus",
+      "Hera",
+      "Atenea",
+      "Apolo",
+      "Artemisa",
+      "Poseidón",
+      "Ares",
+      "Afrodita",
+      "Hermes",
+      "Hades"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "16",
@@ -473,7 +822,24 @@
       "Barack Obama": 2,
       "Donald Trump": 3,
       "Joe Biden": 4
-    }
+    },
+    "promptEs": "Nombra 10 presidentes de Estados Unidos",
+    "answersEs": [
+      "George Washington",
+      "Abraham Lincoln",
+      "Thomas Jefferson",
+      "Theodore Roosevelt",
+      "Franklin D. Roosevelt",
+      "John F. Kennedy",
+      "Ronald Reagan",
+      "Barack Obama",
+      "Donald Trump",
+      "Joe Biden"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "17",
@@ -502,8 +868,33 @@
       "Twelfth Night": 3,
       "The Tempest": 3,
       "A Midsummer Night's Dream": 3,
-      "Much Ado About Nothing": 3
-    }
+      "Much Ado About Nothing": 3,
+      "Romeo y Julieta": 1,
+      "Otelo": 2,
+      "El rey Lear": 2,
+      "Julio César": 2,
+      "Noche de Reyes": 3,
+      "La tempestad": 3,
+      "Sueño de una noche de verano": 3,
+      "Mucho ruido y pocas nueces": 3
+    },
+    "promptEs": "Nombra 10 obras famosas de Shakespeare",
+    "answersEs": [
+      "Hamlet",
+      "Macbeth",
+      "Romeo y Julieta",
+      "Otelo",
+      "El rey Lear",
+      "Julio César",
+      "Noche de Reyes",
+      "La tempestad",
+      "Sueño de una noche de verano",
+      "Mucho ruido y pocas nueces"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "18",
@@ -532,8 +923,35 @@
       "Magnesium (from Magnesia)": 3,
       "Scandium (from Scandinavia)": 4,
       "Strontium": 4,
-      "Tellurium": 4
-    }
+      "Tellurium": 4,
+      "Polonio": 3,
+      "Americio": 3,
+      "Europio": 3,
+      "Germanio": 3,
+      "Californio": 4,
+      "Cobre (de Chipre)": 3,
+      "Magnesio (de Magnesia)": 3,
+      "Escandio (de Escandinavia)": 4,
+      "Estroncio": 4,
+      "Telurio": 4
+    },
+    "promptEs": "Nombra 10 elementos químicos nombrados por lugares",
+    "answersEs": [
+      "Polonio",
+      "Americio",
+      "Europio",
+      "Germanio",
+      "Californio",
+      "Cobre (de Chipre)",
+      "Magnesio (de Magnesia)",
+      "Escandio (de Escandinavia)",
+      "Estroncio",
+      "Telurio"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "19",
@@ -562,8 +980,35 @@
       "South China Sea": 3,
       "Gulf of Mexico": 3,
       "Bering Sea": 4,
-      "Red Sea": 4
-    }
+      "Red Sea": 4,
+      "Océano Pacífico": 1,
+      "Océano Atlántico": 1,
+      "Océano Índico": 1,
+      "Océano Ártico": 2,
+      "Mar Mediterráneo": 2,
+      "Mar Caribe": 3,
+      "Mar de China Meridional": 3,
+      "Golfo de México": 3,
+      "Mar de Bering": 4,
+      "Mar Rojo": 4
+    },
+    "promptEs": "Nombra 10 grandes cuerpos de agua (mares u océanos)",
+    "answersEs": [
+      "Océano Pacífico",
+      "Océano Atlántico",
+      "Océano Índico",
+      "Océano Ártico",
+      "Mar Mediterráneo",
+      "Mar Caribe",
+      "Mar de China Meridional",
+      "Golfo de México",
+      "Mar de Bering",
+      "Mar Rojo"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "20",
@@ -592,8 +1037,29 @@
       "Ohio": 2,
       "Georgia": 2,
       "North Carolina": 2,
-      "Michigan": 2
-    }
+      "Michigan": 2,
+      "Nueva York": 1,
+      "Pensilvania": 2,
+      "Carolina del Norte": 2,
+      "Míchigan": 2
+    },
+    "promptEs": "Nombra 10 estados de EE. UU.",
+    "answersEs": [
+      "California",
+      "Texas",
+      "Florida",
+      "Nueva York",
+      "Pensilvania",
+      "Illinois",
+      "Ohio",
+      "Georgia",
+      "Carolina del Norte",
+      "Míchigan"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "21",
@@ -622,8 +1088,27 @@
       "Quaoar": 5,
       "Sedna": 5,
       "Varuna": 5,
-      "Salacia": 5
-    }
+      "Salacia": 5,
+      "Plutón": 2,
+      "Orco": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 planetas enanos o asteroides grandes del sistema solar",
+    "answersEs": [
+      "Plutón",
+      "Eris",
+      "Haumea",
+      "Makemake",
+      "Ceres",
+      "Orco",
+      "Quaoar",
+      "Sedna",
+      "Varuna",
+      "Salacia"
+    ]
   },
   {
     "id": "22",
@@ -652,8 +1137,35 @@
       "Boxing": 2,
       "Cycling": 2,
       "Volleyball": 2,
-      "Wrestling": 2
-    }
+      "Wrestling": 2,
+      "Atletismo": 1,
+      "Natación": 1,
+      "Gimnasia": 1,
+      "Baloncesto": 1,
+      "Fútbol": 1,
+      "Tenis": 2,
+      "Boxeo": 2,
+      "Ciclismo": 2,
+      "Voleibol": 2,
+      "Lucha": 2
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 deportes de los Juegos Olímpicos de verano",
+    "answersEs": [
+      "Atletismo",
+      "Natación",
+      "Gimnasia",
+      "Baloncesto",
+      "Fútbol",
+      "Tenis",
+      "Boxeo",
+      "Ciclismo",
+      "Voleibol",
+      "Lucha"
+    ]
   },
   {
     "id": "23",
@@ -683,7 +1195,24 @@
       "Rust": 4,
       "Swift": 3,
       "Kotlin": 3
-    }
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 lenguajes de programación populares",
+    "answersEs": [
+      "Python",
+      "JavaScript",
+      "Java",
+      "C++",
+      "C#",
+      "TypeScript",
+      "Go",
+      "Rust",
+      "Swift",
+      "Kotlin"
+    ]
   },
   {
     "id": "24",
@@ -712,8 +1241,30 @@
       "Angkor Wat": 2,
       "Grand Canyon": 2,
       "Chichen Itza": 2,
-      "Stonehenge": 3
-    }
+      "Stonehenge": 3,
+      "Gran Muralla China": 1,
+      "Pirámides de Guiza": 1,
+      "Coliseo": 2,
+      "Gran Cañón": 2,
+      "Chichén Itzá": 2
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 sitios famosos de patrimonio mundial",
+    "answersEs": [
+      "Gran Muralla China",
+      "Pirámides de Guiza",
+      "Taj Mahal",
+      "Machu Picchu",
+      "Coliseo",
+      "Petra",
+      "Angkor Wat",
+      "Gran Cañón",
+      "Chichén Itzá",
+      "Stonehenge"
+    ]
   },
   {
     "id": "25",
@@ -742,8 +1293,35 @@
       "Broccoli": 2,
       "Spinach": 2,
       "Peas": 2,
-      "Cabbage": 2
-    }
+      "Cabbage": 2,
+      "Zanahoria": 1,
+      "Patata": 1,
+      "Tomate": 1,
+      "Cebolla": 1,
+      "Lechuga": 1,
+      "Pepino": 1,
+      "Brócoli": 2,
+      "Espinaca": 2,
+      "Guisantes": 2,
+      "Repollo": 2
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 verduras comunes",
+    "answersEs": [
+      "Zanahoria",
+      "Patata",
+      "Tomate",
+      "Cebolla",
+      "Lechuga",
+      "Pepino",
+      "Brócoli",
+      "Espinaca",
+      "Guisantes",
+      "Repollo"
+    ]
   },
   {
     "id": "26",
@@ -772,8 +1350,35 @@
       "Ob-Irtysh River": 4,
       "Paraná River": 4,
       "Congo River": 3,
-      "Amur River": 5
-    }
+      "Amur River": 5,
+      "Río Nilo": 1,
+      "Río Amazonas": 1,
+      "Río Yangtsé": 2,
+      "Sistema fluvial Misisipi–Misuri": 2,
+      "Río Yeniséi": 3,
+      "Río Amarillo": 3,
+      "Río Obi-Irtish": 4,
+      "Río Paraná": 4,
+      "Río Congo": 3,
+      "Río Amur": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra los 10 ríos más largos del mundo",
+    "answersEs": [
+      "Río Nilo",
+      "Río Amazonas",
+      "Río Yangtsé",
+      "Sistema fluvial Misisipi–Misuri",
+      "Río Yeniséi",
+      "Río Amarillo",
+      "Río Obi-Irtish",
+      "Río Paraná",
+      "Río Congo",
+      "Río Amur"
+    ]
   },
   {
     "id": "27",
@@ -802,8 +1407,35 @@
       "Lake Baikal": 3,
       "Great Bear Lake": 4,
       "Lake Malawi": 4,
-      "Great Slave Lake": 5
-    }
+      "Great Slave Lake": 5,
+      "Mar Caspio": 1,
+      "Lago Superior": 2,
+      "Lago Victoria": 2,
+      "Lago Hurón": 3,
+      "Lago Míchigan": 2,
+      "Lago Tanganica": 3,
+      "Lago Baikal": 3,
+      "Gran Lago del Oso": 4,
+      "Lago Malaui": 4,
+      "Gran Lago del Esclavo": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra los 10 lagos más grandes del mundo por área",
+    "answersEs": [
+      "Mar Caspio",
+      "Lago Superior",
+      "Lago Victoria",
+      "Lago Hurón",
+      "Lago Míchigan",
+      "Lago Tanganica",
+      "Lago Baikal",
+      "Gran Lago del Oso",
+      "Lago Malaui",
+      "Gran Lago del Esclavo"
+    ]
   },
   {
     "id": "28",
@@ -832,8 +1464,29 @@
       "Miami": 4,
       "Denver": 4,
       "Philadelphia": 3,
-      "Las Vegas": 5
-    }
+      "Las Vegas": 5,
+      "Nueva York": 1,
+      "Los Ángeles": 1,
+      "Washington, D. C.": 3,
+      "Filadelfia": 3
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de las ciudades más pobladas de Estados Unidos (estimaciones 2025)",
+    "answersEs": [
+      "Nueva York",
+      "Los Ángeles",
+      "Houston",
+      "Chicago",
+      "Washington, D. C.",
+      "San Francisco",
+      "Miami",
+      "Denver",
+      "Filadelfia",
+      "Las Vegas"
+    ]
   },
   {
     "id": "29",
@@ -862,8 +1515,35 @@
       "Chlorine": 2,
       "Argon": 4,
       "Potassium": 3,
-      "Calcium": 2
-    }
+      "Calcium": 2,
+      "Sodio": 3,
+      "Magnesio": 3,
+      "Aluminio": 2,
+      "Silicio": 2,
+      "Fósforo": 4,
+      "Azufre": 2,
+      "Cloro": 2,
+      "Argón": 4,
+      "Potasio": 3,
+      "Calcio": 2
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 elementos químicos con números atómicos del 11 al 20",
+    "answersEs": [
+      "Sodio",
+      "Magnesio",
+      "Aluminio",
+      "Silicio",
+      "Fósforo",
+      "Azufre",
+      "Cloro",
+      "Argón",
+      "Potasio",
+      "Calcio"
+    ]
   },
   {
     "id": "30",
@@ -892,8 +1572,33 @@
       "The Iliad": 1,
       "Jane Eyre": 3,
       "Great Expectations": 2,
-      "The Brothers Karamazov": 4
-    }
+      "The Brothers Karamazov": 4,
+      "Guerra y paz": 2,
+      "Orgullo y prejuicio": 1,
+      "Don Quijote": 2,
+      "La Odisea": 1,
+      "Crimen y castigo": 3,
+      "La Ilíada": 1,
+      "Grandes esperanzas": 2,
+      "Los hermanos Karamázov": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 novelas clásicas famosas",
+    "answersEs": [
+      "Guerra y paz",
+      "Orgullo y prejuicio",
+      "Don Quijote",
+      "Moby Dick",
+      "La Odisea",
+      "Crimen y castigo",
+      "La Ilíada",
+      "Jane Eyre",
+      "Grandes esperanzas",
+      "Los hermanos Karamázov"
+    ]
   },
   {
     "id": "31",
@@ -922,8 +1627,31 @@
       "Ganges": 3,
       "Brahmaputra": 5,
       "Indus": 4,
-      "Yenisey": 4
-    }
+      "Yenisey": 4,
+      "Yangtsé": 2,
+      "Río Amarillo": 3,
+      "Irtish": 5,
+      "Obi": 5,
+      "Indo": 4,
+      "Yeniséi": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 sistemas fluviales más largos de Asia",
+    "answersEs": [
+      "Yangtsé",
+      "Río Amarillo",
+      "Mekong",
+      "Lena",
+      "Irtish",
+      "Obi",
+      "Ganges",
+      "Brahmaputra",
+      "Indo",
+      "Yeniséi"
+    ]
   },
   {
     "id": "32",
@@ -952,8 +1680,33 @@
       "Angola": 3,
       "Mali": 4,
       "South Africa": 2,
-      "Ethiopia": 3
-    }
+      "Ethiopia": 3,
+      "Argelia": 1,
+      "República Democrática del Congo": 2,
+      "Sudán": 2,
+      "Libia": 3,
+      "Níger": 4,
+      "Malí": 4,
+      "Sudáfrica": 2,
+      "Etiopía": 3
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de los países más grandes de África por área",
+    "answersEs": [
+      "Argelia",
+      "República Democrática del Congo",
+      "Sudán",
+      "Libia",
+      "Chad",
+      "Níger",
+      "Angola",
+      "Malí",
+      "Sudáfrica",
+      "Etiopía"
+    ]
   },
   {
     "id": "33",
@@ -982,8 +1735,33 @@
       "France": 2,
       "Brazil": 3,
       "Canada": 3,
-      "Italy": 3
-    }
+      "Italy": 3,
+      "Estados Unidos": 1,
+      "Japón": 1,
+      "Alemania": 1,
+      "Reino Unido": 2,
+      "Francia": 2,
+      "Brasil": 3,
+      "Canadá": 3,
+      "Italia": 3
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de las economías más grandes del mundo por PIB (2025)",
+    "answersEs": [
+      "Estados Unidos",
+      "China",
+      "Japón",
+      "Alemania",
+      "India",
+      "Reino Unido",
+      "Francia",
+      "Brasil",
+      "Canadá",
+      "Italia"
+    ]
   },
   {
     "id": "34",
@@ -1012,8 +1790,29 @@
       "Lena": 5,
       "Mekong": 5,
       "Volga": 3,
-      "Niger": 5
-    }
+      "Niger": 5,
+      "Amazonas": 1,
+      "Yangtsé": 3,
+      "Misisipi": 4,
+      "Níger": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 ríos del mundo famosos por su caudal",
+    "answersEs": [
+      "Amazonas",
+      "Ganges–Brahmaputra–Meghna",
+      "Congo",
+      "Orinoco",
+      "Yangtsé",
+      "Misisipi",
+      "Lena",
+      "Mekong",
+      "Volga",
+      "Níger"
+    ]
   },
   {
     "id": "35",
@@ -1042,8 +1841,30 @@
       "Great Victoria": 5,
       "Mojave": 5,
       "Great Basin": 5,
-      "Thar": 4
-    }
+      "Thar": 4,
+      "Arábigo": 2,
+      "Patagónico": 4,
+      "Sirio": 4,
+      "Gran Desierto Victoria": 5,
+      "Gran Cuenca": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 desiertos importantes del mundo",
+    "answersEs": [
+      "Sahara",
+      "Arábigo",
+      "Gobi",
+      "Kalahari",
+      "Patagónico",
+      "Sirio",
+      "Gran Desierto Victoria",
+      "Mojave",
+      "Gran Cuenca",
+      "Thar"
+    ]
   },
   {
     "id": "36",
@@ -1072,8 +1893,35 @@
       "Poland": 3,
       "Romania": 4,
       "Netherlands": 3,
-      "Belgium": 4
-    }
+      "Belgium": 4,
+      "Alemania": 1,
+      "Francia": 1,
+      "Reino Unido": 1,
+      "Italia": 2,
+      "España": 2,
+      "Ucrania": 3,
+      "Polonia": 3,
+      "Rumanía": 4,
+      "Países Bajos": 3,
+      "Bélgica": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 países de Europa por población (estimaciones 2025)",
+    "answersEs": [
+      "Alemania",
+      "Francia",
+      "Reino Unido",
+      "Italia",
+      "España",
+      "Ucrania",
+      "Polonia",
+      "Rumanía",
+      "Países Bajos",
+      "Bélgica"
+    ]
   },
   {
     "id": "37",
@@ -1102,8 +1950,33 @@
       "Quark–gluon plasma": 5,
       "Supercritical fluid": 4,
       "Rydberg matter": 5,
-      "Time crystal": 5
-    }
+      "Time crystal": 5,
+      "Sólido": 1,
+      "Líquido": 1,
+      "Condensado de Bose-Einstein": 4,
+      "Condensado fermiónico": 5,
+      "Plasma de quarks y gluones": 5,
+      "Fluido supercrítico": 4,
+      "Materia de Rydberg": 5,
+      "Cristal de tiempo": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 estados físicos de la materia (incluyendo clásicos y menos comunes)",
+    "answersEs": [
+      "Sólido",
+      "Líquido",
+      "Gas",
+      "Plasma",
+      "Condensado de Bose-Einstein",
+      "Condensado fermiónico",
+      "Plasma de quarks y gluones",
+      "Fluido supercrítico",
+      "Materia de Rydberg",
+      "Cristal de tiempo"
+    ]
   },
   {
     "id": "38",
@@ -1132,8 +2005,32 @@
       "Accra": 3,
       "Algiers": 2,
       "Dakar": 4,
-      "Tunis": 4
-    }
+      "Tunis": 4,
+      "El Cairo": 1,
+      "Kinsasa": 2,
+      "Ciudad del Cabo": 3,
+      "Adís Abeba": 2,
+      "Acra": 3,
+      "Argel": 2,
+      "Túnez": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 capitales africanas",
+    "answersEs": [
+      "El Cairo",
+      "Lagos",
+      "Kinsasa",
+      "Nairobi",
+      "Ciudad del Cabo",
+      "Adís Abeba",
+      "Acra",
+      "Argel",
+      "Dakar",
+      "Túnez"
+    ]
   },
   {
     "id": "39",
@@ -1162,8 +2059,33 @@
       "Olmec": 4,
       "Ancient Greece": 2,
       "Hittite": 5,
-      "Persian Empire": 3
-    }
+      "Persian Empire": 3,
+      "Egipto antiguo": 1,
+      "Valle del Indo": 2,
+      "China antigua": 1,
+      "Minoica": 4,
+      "Olmeca": 4,
+      "Grecia antigua": 2,
+      "Hitita": 5,
+      "Imperio persa": 3
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de las civilizaciones más antiguas conocidas",
+    "answersEs": [
+      "Mesopotamia",
+      "Egipto antiguo",
+      "Valle del Indo",
+      "China antigua",
+      "Minoica",
+      "Norte Chico",
+      "Olmeca",
+      "Grecia antigua",
+      "Hitita",
+      "Imperio persa"
+    ]
   },
   {
     "id": "40",
@@ -1192,8 +2114,34 @@
       "Wave": 4,
       "Ocean Thermal": 5,
       "Hydrogen": 3,
-      "Enhanced geothermal systems": 5
-    }
+      "Enhanced geothermal systems": 5,
+      "Eólica": 1,
+      "Hidroeléctrica": 1,
+      "Geotérmica": 2,
+      "Biomasa": 2,
+      "Mareomotriz": 3,
+      "Undimotriz": 4,
+      "Térmica oceánica": 5,
+      "Hidrógeno": 3,
+      "Sistemas geotérmicos mejorados": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 tipos de fuentes de energía renovable",
+    "answersEs": [
+      "Solar",
+      "Eólica",
+      "Hidroeléctrica",
+      "Geotérmica",
+      "Biomasa",
+      "Mareomotriz",
+      "Undimotriz",
+      "Térmica oceánica",
+      "Hidrógeno",
+      "Sistemas geotérmicos mejorados"
+    ]
   },
   {
     "id": "41",
@@ -1222,8 +2170,28 @@
       "Country": 2,
       "Blues": 3,
       "Reggae": 3,
-      "Folk": 3
-    }
+      "Folk": 3,
+      "Clásica": 2,
+      "Hip hop": 1,
+      "Electrónica": 2
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 tipos de géneros musicales",
+    "answersEs": [
+      "Rock",
+      "Pop",
+      "Jazz",
+      "Clásica",
+      "Hip hop",
+      "Electrónica",
+      "Country",
+      "Blues",
+      "Reggae",
+      "Folk"
+    ]
   },
   {
     "id": "42",
@@ -1252,8 +2220,35 @@
       "Dutch": 3,
       "Portuguese": 2,
       "Swedish": 4,
-      "Romanian": 4
-    }
+      "Romanian": 4,
+      "Inglés": 1,
+      "Alemán": 1,
+      "Francés": 1,
+      "Italiano": 2,
+      "Español": 2,
+      "Polaco": 3,
+      "Neerlandés": 3,
+      "Portugués": 2,
+      "Sueco": 4,
+      "Rumano": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 idiomas europeos con más hablantes",
+    "answersEs": [
+      "Inglés",
+      "Alemán",
+      "Francés",
+      "Italiano",
+      "Español",
+      "Polaco",
+      "Neerlandés",
+      "Portugués",
+      "Sueco",
+      "Rumano"
+    ]
   },
   {
     "id": "43",
@@ -1282,8 +2277,33 @@
       "Nuclear energy": 2,
       "GPS": 3,
       "Laser": 3,
-      "MRI scanner": 4
-    }
+      "MRI scanner": 4,
+      "Avión": 1,
+      "Televisión": 1,
+      "Computadora personal": 1,
+      "Teléfono inteligente": 1,
+      "Antibióticos": 2,
+      "Energía nuclear": 2,
+      "Láser": 3,
+      "Resonancia magnética": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 inventos famosos del siglo XX",
+    "answersEs": [
+      "Internet",
+      "Avión",
+      "Televisión",
+      "Computadora personal",
+      "Teléfono inteligente",
+      "Antibióticos",
+      "Energía nuclear",
+      "GPS",
+      "Láser",
+      "Resonancia magnética"
+    ]
   },
   {
     "id": "44",
@@ -1312,8 +2332,32 @@
       "British Shorthair": 3,
       "Scottish Fold": 4,
       "Russian Blue": 4,
-      "Abyssinian": 5
-    }
+      "Abyssinian": 5,
+      "Siamés": 1,
+      "Persa": 1,
+      "Bengalí": 3,
+      "Esfinge": 4,
+      "Británico de pelo corto": 3,
+      "Azul ruso": 4,
+      "Abisinio": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 razas de gatos domésticos",
+    "answersEs": [
+      "Siamés",
+      "Persa",
+      "Maine Coon",
+      "Ragdoll",
+      "Bengalí",
+      "Esfinge",
+      "Británico de pelo corto",
+      "Scottish Fold",
+      "Azul ruso",
+      "Abisinio"
+    ]
   },
   {
     "id": "45",
@@ -1342,8 +2386,32 @@
       "Manila": 3,
       "Seoul": 2,
       "Bangkok": 2,
-      "Tehran": 4
-    }
+      "Tehran": 4,
+      "Tokio": 1,
+      "Shanghái": 2,
+      "Pekín": 2,
+      "Daca": 3,
+      "Yakarta": 2,
+      "Seúl": 2,
+      "Teherán": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de las ciudades más pobladas de Asia",
+    "answersEs": [
+      "Tokio",
+      "Delhi",
+      "Shanghái",
+      "Pekín",
+      "Daca",
+      "Yakarta",
+      "Manila",
+      "Seúl",
+      "Bangkok",
+      "Teherán"
+    ]
   },
   {
     "id": "51",
@@ -1372,8 +2440,31 @@
       "Honshu": 4,
       "Victoria Island": 4,
       "Great Britain": 3,
-      "Ellesmere Island": 5
-    }
+      "Ellesmere Island": 5,
+      "Groenlandia": 1,
+      "Nueva Guinea": 2,
+      "Isla de Baffin": 3,
+      "Isla Victoria": 4,
+      "Gran Bretaña": 3,
+      "Isla Ellesmere": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra las 10 islas más grandes del mundo por área",
+    "answersEs": [
+      "Groenlandia",
+      "Nueva Guinea",
+      "Borneo",
+      "Madagascar",
+      "Isla de Baffin",
+      "Sumatra",
+      "Honshu",
+      "Isla Victoria",
+      "Gran Bretaña",
+      "Isla Ellesmere"
+    ]
   },
   {
     "id": "52",
@@ -1402,8 +2493,31 @@
       "Abidjan": 4,
       "Nairobi": 4,
       "Accra": 5,
-      "Dar es Salaam": 5
-    }
+      "Dar es Salaam": 5,
+      "El Cairo": 1,
+      "Kinsasa": 2,
+      "Johannesburgo": 3,
+      "Jartum": 4,
+      "Abiyán": 4,
+      "Acra": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de las ciudades más pobladas de África (estimaciones 2025)",
+    "answersEs": [
+      "El Cairo",
+      "Lagos",
+      "Kinsasa",
+      "Johannesburgo",
+      "Luanda",
+      "Jartum",
+      "Abiyán",
+      "Nairobi",
+      "Acra",
+      "Dar es Salaam"
+    ]
   },
   {
     "id": "53",
@@ -1432,8 +2546,31 @@
       "Iceland": 5,
       "Sri Lanka": 5,
       "Papua New Guinea": 4,
-      "Malaysia": 5
-    }
+      "Malaysia": 5,
+      "Japón": 3,
+      "Filipinas": 3,
+      "Reino Unido": 4,
+      "Islandia": 5,
+      "Papúa Nueva Guinea": 4,
+      "Malasia": 5
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de los países insulares más grandes por área",
+    "answersEs": [
+      "Indonesia",
+      "Madagascar",
+      "Japón",
+      "Filipinas",
+      "Reino Unido",
+      "Cuba",
+      "Islandia",
+      "Sri Lanka",
+      "Papúa Nueva Guinea",
+      "Malasia"
+    ]
   },
   {
     "id": "54",
@@ -1462,8 +2599,35 @@
       "Great Slave Lake": 5,
       "Crater Lake": 5,
       "Lake Tahoe": 4,
-      "Lake Erie": 4
-    }
+      "Lake Erie": 4,
+      "Lago Superior": 1,
+      "Lago Victoria": 2,
+      "Lago Baikal": 2,
+      "Lago Míchigan": 3,
+      "Lago Tanganica": 3,
+      "Lago Hurón": 4,
+      "Gran Lago del Esclavo": 5,
+      "Lago del Cráter": 5,
+      "Lago Tahoe": 4,
+      "Lago Erie": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 lagos conocidos de todo el mundo",
+    "answersEs": [
+      "Lago Superior",
+      "Lago Victoria",
+      "Lago Baikal",
+      "Lago Míchigan",
+      "Lago Tanganica",
+      "Lago Hurón",
+      "Gran Lago del Esclavo",
+      "Lago del Cráter",
+      "Lago Tahoe",
+      "Lago Erie"
+    ]
   },
   {
     "id": "55",
@@ -1492,8 +2656,31 @@
       "Igbo": 4,
       "Zulu": 4,
       "French": 2,
-      "English": 2
-    }
+      "English": 2,
+      "Suajili": 2,
+      "Árabe": 1,
+      "Amárico": 3,
+      "Zulú": 4,
+      "Francés": 2,
+      "Inglés": 2
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de los idiomas más hablados en África",
+    "answersEs": [
+      "Suajili",
+      "Árabe",
+      "Hausa",
+      "Amárico",
+      "Yoruba",
+      "Oromo",
+      "Igbo",
+      "Zulú",
+      "Francés",
+      "Inglés"
+    ]
   },
   {
     "id": "56",
@@ -1522,8 +2709,33 @@
       "Pyramids of Giza": 2,
       "Christ the Redeemer": 3,
       "Tower of London": 3,
-      "Sagrada Familia": 3
-    }
+      "Sagrada Familia": 3,
+      "Torre Eiffel": 1,
+      "Estatua de la Libertad": 1,
+      "Gran Muralla China": 1,
+      "Coliseo": 2,
+      "Ópera de Sídney": 2,
+      "Pirámides de Guiza": 2,
+      "Cristo Redentor": 3,
+      "Torre de Londres": 3
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 monumentos arquitectónicos famosos del mundo",
+    "answersEs": [
+      "Torre Eiffel",
+      "Estatua de la Libertad",
+      "Gran Muralla China",
+      "Taj Mahal",
+      "Coliseo",
+      "Ópera de Sídney",
+      "Pirámides de Guiza",
+      "Cristo Redentor",
+      "Torre de Londres",
+      "Sagrada Familia"
+    ]
   },
   {
     "id": "57",
@@ -1552,8 +2764,35 @@
       "Black Sea": 3,
       "Bering Sea": 4,
       "Coral Sea": 4,
-      "Sea of Japan": 4
-    }
+      "Sea of Japan": 4,
+      "Mar Mediterráneo": 1,
+      "Mar Caribe": 2,
+      "Mar de China Meridional": 2,
+      "Mar Báltico": 3,
+      "Mar Rojo": 3,
+      "Mar Arábigo": 3,
+      "Mar Negro": 3,
+      "Mar de Bering": 4,
+      "Mar del Coral": 4,
+      "Mar de Japón": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 mares importantes del mundo",
+    "answersEs": [
+      "Mar Mediterráneo",
+      "Mar Caribe",
+      "Mar de China Meridional",
+      "Mar Báltico",
+      "Mar Rojo",
+      "Mar Arábigo",
+      "Mar Negro",
+      "Mar de Bering",
+      "Mar del Coral",
+      "Mar de Japón"
+    ]
   },
   {
     "id": "58",
@@ -1582,8 +2821,34 @@
       "Universal Declaration of Human Rights": 3,
       "Emancipation Proclamation": 3,
       "Rosetta Stone": 5,
-      "Napoleonic Code": 4
-    }
+      "Napoleonic Code": 4,
+      "Constitución de Estados Unidos": 1,
+      "Declaración de Independencia": 2,
+      "Carta de Derechos": 2,
+      "Tratado de Versalles": 3,
+      "Código de Hammurabi": 4,
+      "Declaración Universal de Derechos Humanos": 3,
+      "Proclamación de Emancipación": 3,
+      "Piedra de Rosetta": 5,
+      "Código Napoleónico": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 documentos históricos significativos",
+    "answersEs": [
+      "Magna Carta",
+      "Constitución de Estados Unidos",
+      "Declaración de Independencia",
+      "Carta de Derechos",
+      "Tratado de Versalles",
+      "Código de Hammurabi",
+      "Declaración Universal de Derechos Humanos",
+      "Proclamación de Emancipación",
+      "Piedra de Rosetta",
+      "Código Napoleónico"
+    ]
   },
   {
     "id": "59",
@@ -1612,8 +2877,34 @@
       "Canadian Dollar": 2,
       "Australian Dollar": 2,
       "Indian Rupee": 3,
-      "Russian Ruble": 3
-    }
+      "Russian Ruble": 3,
+      "Dólar estadounidense": 1,
+      "Yen japonés": 1,
+      "Libra esterlina": 1,
+      "Yuan chino": 2,
+      "Franco suizo": 2,
+      "Dólar canadiense": 2,
+      "Dólar australiano": 2,
+      "Rupia india": 3,
+      "Rublo ruso": 3
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 monedas reconocidas internacionalmente",
+    "answersEs": [
+      "Dólar estadounidense",
+      "Euro",
+      "Yen japonés",
+      "Libra esterlina",
+      "Yuan chino",
+      "Franco suizo",
+      "Dólar canadiense",
+      "Dólar australiano",
+      "Rupia india",
+      "Rublo ruso"
+    ]
   },
   {
     "id": "60",
@@ -1642,8 +2933,32 @@
       "Millau Viaduct": 4,
       "Akashi Kaikyō Bridge": 5,
       "Ponte Vecchio": 4,
-      "Rialto Bridge": 4
-    }
+      "Rialto Bridge": 4,
+      "Puente Golden Gate": 1,
+      "Puente de Brooklyn": 1,
+      "Puente del puerto de Sídney": 2,
+      "Puente de Carlos": 3,
+      "Viaducto de Millau": 4,
+      "Puente Akashi Kaikyō": 5,
+      "Puente de Rialto": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 puentes icónicos del mundo",
+    "answersEs": [
+      "Puente Golden Gate",
+      "Tower Bridge",
+      "Puente de Brooklyn",
+      "Puente del puerto de Sídney",
+      "London Bridge",
+      "Puente de Carlos",
+      "Viaducto de Millau",
+      "Puente Akashi Kaikyō",
+      "Ponte Vecchio",
+      "Puente de Rialto"
+    ]
   },
   {
     "id": "61",
@@ -1672,8 +2987,31 @@
       "Luge": 4,
       "Curling": 3,
       "Biathlon": 4,
-      "Skeleton": 5
-    }
+      "Skeleton": 5,
+      "Patinaje artístico": 1,
+      "Hockey sobre hielo": 1,
+      "Esquí": 2,
+      "Snowboard": 2,
+      "Patinaje de velocidad": 3,
+      "Biatlón": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 deportes de los Juegos Olímpicos de invierno",
+    "answersEs": [
+      "Patinaje artístico",
+      "Hockey sobre hielo",
+      "Esquí",
+      "Snowboard",
+      "Patinaje de velocidad",
+      "Bobsleigh",
+      "Luge",
+      "Curling",
+      "Biatlón",
+      "Skeleton"
+    ]
   },
   {
     "id": "62",
@@ -1702,757 +3040,1368 @@
       "Stephen Hawking": 3,
       "Rosalind Franklin": 4,
       "James Watson": 3,
-      "Dmitri Mendeleev": 4
-    }
+      "Dmitri Mendeleev": 4,
+      "Dmitri Mendeléyev": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 científicos célebres de la historia",
+    "answersEs": [
+      "Albert Einstein",
+      "Isaac Newton",
+      "Marie Curie",
+      "Galileo Galilei",
+      "Charles Darwin",
+      "Nikola Tesla",
+      "Stephen Hawking",
+      "Rosalind Franklin",
+      "James Watson",
+      "Dmitri Mendeléyev"
+    ]
   },
   {
-      "id": "76",
-      "promptEn": "Name 10 largest islands in the world by area",
-      "answersEn": [
-        "Greenland",
-        "New Guinea",
-        "Borneo",
-        "Madagascar",
-        "Baffin Island",
-        "Sumatra",
-        "Honshu",
-        "Victoria Island",
-        "Great Britain",
-        "Ellesmere Island"
-      ],
-      "difficulty": "medium",
-      "source": "Source: World’s largest islands by area (Wikipedia)",
-      "answerPoints": {
-        "Greenland": 1,
-        "New Guinea": 2,
-        "Borneo": 2,
-        "Madagascar": 3,
-        "Baffin Island": 4,
-        "Sumatra": 4,
-        "Honshu": 4,
-        "Victoria Island": 5,
-        "Great Britain": 3,
-        "Ellesmere Island": 5
-      }
+    "id": "76",
+    "promptEn": "Name 10 largest islands in the world by area",
+    "answersEn": [
+      "Greenland",
+      "New Guinea",
+      "Borneo",
+      "Madagascar",
+      "Baffin Island",
+      "Sumatra",
+      "Honshu",
+      "Victoria Island",
+      "Great Britain",
+      "Ellesmere Island"
+    ],
+    "difficulty": "medium",
+    "source": "Source: World’s largest islands by area (Wikipedia)",
+    "answerPoints": {
+      "Greenland": 1,
+      "New Guinea": 2,
+      "Borneo": 2,
+      "Madagascar": 3,
+      "Baffin Island": 4,
+      "Sumatra": 4,
+      "Honshu": 4,
+      "Victoria Island": 5,
+      "Great Britain": 3,
+      "Ellesmere Island": 5,
+      "Groenlandia": 1,
+      "Nueva Guinea": 2,
+      "Isla de Baffin": 4,
+      "Isla Victoria": 5,
+      "Gran Bretaña": 3,
+      "Isla Ellesmere": 5
     },
-    {
-      "id": "77",
-      "promptEn": "Name 10 of the longest mountain ranges on Earth",
-      "answersEn": [
-        "Andes",
-        "Rocky Mountains",
-        "Great Dividing Range",
-        "Himalayas",
-        "Alps",
-        "Ural Mountains",
-        "Karakoram",
-        "Appalachian Mountains",
-        "Atlas Mountains",
-        "Tien Shan"
-      ],
-      "difficulty": "medium",
-      "source": "Source: World mountain range rankings",
-      "answerPoints": {
-        "Andes": 1,
-        "Rocky Mountains": 2,
-        "Great Dividing Range": 4,
-        "Himalayas": 1,
-        "Alps": 3,
-        "Ural Mountains": 3,
-        "Karakoram": 5,
-        "Appalachian Mountains": 4,
-        "Atlas Mountains": 4,
-        "Tien Shan": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra las 10 islas más grandes del mundo por área",
+    "answersEs": [
+      "Groenlandia",
+      "Nueva Guinea",
+      "Borneo",
+      "Madagascar",
+      "Isla de Baffin",
+      "Sumatra",
+      "Honshu",
+      "Isla Victoria",
+      "Gran Bretaña",
+      "Isla Ellesmere"
+    ]
+  },
+  {
+    "id": "77",
+    "promptEn": "Name 10 of the longest mountain ranges on Earth",
+    "answersEn": [
+      "Andes",
+      "Rocky Mountains",
+      "Great Dividing Range",
+      "Himalayas",
+      "Alps",
+      "Ural Mountains",
+      "Karakoram",
+      "Appalachian Mountains",
+      "Atlas Mountains",
+      "Tien Shan"
+    ],
+    "difficulty": "medium",
+    "source": "Source: World mountain range rankings",
+    "answerPoints": {
+      "Andes": 1,
+      "Rocky Mountains": 2,
+      "Great Dividing Range": 4,
+      "Himalayas": 1,
+      "Alps": 3,
+      "Ural Mountains": 3,
+      "Karakoram": 5,
+      "Appalachian Mountains": 4,
+      "Atlas Mountains": 4,
+      "Tien Shan": 5,
+      "Montañas Rocosas": 2,
+      "Gran Cordillera Divisoria": 4,
+      "Himalaya": 1,
+      "Alpes": 3,
+      "Montes Urales": 3,
+      "Karakórum": 5,
+      "Montes Apalaches": 4,
+      "Montes Atlas": 4
     },
-    {
-      "id": "78",
-      "promptEn": "Name 10 major rivers in Europe",
-      "answersEn": [
-        "Danube",
-        "Volga",
-        "Rhine",
-        "Elbe",
-        "Dnieper",
-        "Po",
-        "Seine",
-        "Loire",
-        "Thames",
-        "Tagus"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Major European rivers",
-      "answerPoints": {
-        "Danube": 1,
-        "Volga": 2,
-        "Rhine": 2,
-        "Elbe": 3,
-        "Dnieper": 3,
-        "Po": 4,
-        "Seine": 4,
-        "Loire": 5,
-        "Thames": 5,
-        "Tagus": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de las cordilleras más largas de la Tierra",
+    "answersEs": [
+      "Andes",
+      "Montañas Rocosas",
+      "Gran Cordillera Divisoria",
+      "Himalaya",
+      "Alpes",
+      "Montes Urales",
+      "Karakórum",
+      "Montes Apalaches",
+      "Montes Atlas",
+      "Tien Shan"
+    ]
+  },
+  {
+    "id": "78",
+    "promptEn": "Name 10 major rivers in Europe",
+    "answersEn": [
+      "Danube",
+      "Volga",
+      "Rhine",
+      "Elbe",
+      "Dnieper",
+      "Po",
+      "Seine",
+      "Loire",
+      "Thames",
+      "Tagus"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Major European rivers",
+    "answerPoints": {
+      "Danube": 1,
+      "Volga": 2,
+      "Rhine": 2,
+      "Elbe": 3,
+      "Dnieper": 3,
+      "Po": 4,
+      "Seine": 4,
+      "Loire": 5,
+      "Thames": 5,
+      "Tagus": 5,
+      "Danubio": 1,
+      "Rin": 2,
+      "Elba": 3,
+      "Dniéper": 3,
+      "Sena": 4,
+      "Loira": 5,
+      "Támesis": 5,
+      "Tajo": 5
     },
-    {
-      "id": "79",
-      "promptEn": "Name 10 of the most common gemstones",
-      "answersEn": [
-        "Diamond",
-        "Ruby",
-        "Sapphire",
-        "Emerald",
-        "Amethyst",
-        "Topaz",
-        "Opal",
-        "Garnet",
-        "Aquamarine",
-        "Peridot"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Gemstone classification lists",
-      "answerPoints": {
-        "Diamond": 1,
-        "Ruby": 2,
-        "Sapphire": 2,
-        "Emerald": 2,
-        "Amethyst": 3,
-        "Topaz": 3,
-        "Opal": 4,
-        "Garnet": 3,
-        "Aquamarine": 4,
-        "Peridot": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 ríos principales de Europa",
+    "answersEs": [
+      "Danubio",
+      "Volga",
+      "Rin",
+      "Elba",
+      "Dniéper",
+      "Po",
+      "Sena",
+      "Loira",
+      "Támesis",
+      "Tajo"
+    ]
+  },
+  {
+    "id": "79",
+    "promptEn": "Name 10 of the most common gemstones",
+    "answersEn": [
+      "Diamond",
+      "Ruby",
+      "Sapphire",
+      "Emerald",
+      "Amethyst",
+      "Topaz",
+      "Opal",
+      "Garnet",
+      "Aquamarine",
+      "Peridot"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Gemstone classification lists",
+    "answerPoints": {
+      "Diamond": 1,
+      "Ruby": 2,
+      "Sapphire": 2,
+      "Emerald": 2,
+      "Amethyst": 3,
+      "Topaz": 3,
+      "Opal": 4,
+      "Garnet": 3,
+      "Aquamarine": 4,
+      "Peridot": 5,
+      "Diamante": 1,
+      "Rubí": 2,
+      "Zafiro": 2,
+      "Esmeralda": 2,
+      "Amatista": 3,
+      "Topacio": 3,
+      "Ópalo": 4,
+      "Granate": 3,
+      "Aguamarina": 4,
+      "Peridoto": 5
     },
-    {
-      "id": "80",
-      "promptEn": "Name 10 historically significant wars",
-      "answersEn": [
-        "World War I",
-        "World War II",
-        "American Civil War",
-        "Vietnam War",
-        "Korean War",
-        "Napoleonic Wars",
-        "Cold War",
-        "War of 1812",
-        "Thirty Years’ War",
-        "Crimean War"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Global conflict history",
-      "answerPoints": {
-        "World War I": 1,
-        "World War II": 1,
-        "American Civil War": 2,
-        "Vietnam War": 3,
-        "Korean War": 3,
-        "Napoleonic Wars": 4,
-        "Cold War": 2,
-        "War of 1812": 5,
-        "Thirty Years’ War": 5,
-        "Crimean War": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 de las piedras preciosas más comunes",
+    "answersEs": [
+      "Diamante",
+      "Rubí",
+      "Zafiro",
+      "Esmeralda",
+      "Amatista",
+      "Topacio",
+      "Ópalo",
+      "Granate",
+      "Aguamarina",
+      "Peridoto"
+    ]
+  },
+  {
+    "id": "80",
+    "promptEn": "Name 10 historically significant wars",
+    "answersEn": [
+      "World War I",
+      "World War II",
+      "American Civil War",
+      "Vietnam War",
+      "Korean War",
+      "Napoleonic Wars",
+      "Cold War",
+      "War of 1812",
+      "Thirty Years’ War",
+      "Crimean War"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Global conflict history",
+    "answerPoints": {
+      "World War I": 1,
+      "World War II": 1,
+      "American Civil War": 2,
+      "Vietnam War": 3,
+      "Korean War": 3,
+      "Napoleonic Wars": 4,
+      "Cold War": 2,
+      "War of 1812": 5,
+      "Thirty Years’ War": 5,
+      "Crimean War": 5,
+      "Primera Guerra Mundial": 1,
+      "Segunda Guerra Mundial": 1,
+      "Guerra Civil estadounidense": 2,
+      "Guerra de Vietnam": 3,
+      "Guerra de Corea": 3,
+      "Guerras Napoleónicas": 4,
+      "Guerra Fría": 2,
+      "Guerra de 1812": 5,
+      "Guerra de los Treinta Años": 5,
+      "Guerra de Crimea": 5
     },
-    {
-      "id": "81",
-      "promptEn": "Name 10 large online platforms by active user count",
-      "answersEn": [
-        "Facebook",
-        "YouTube",
-        "Instagram",
-        "TikTok",
-        "WeChat",
-        "WhatsApp",
-        "Twitter (X)",
-        "Snapchat",
-        "LinkedIn",
-        "Pinterest"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Online platform user statistics",
-      "answerPoints": {
-        "Facebook": 2,
-        "YouTube": 1,
-        "Instagram": 1,
-        "TikTok": 1,
-        "WeChat": 2,
-        "WhatsApp": 2,
-        "Twitter (X)": 3,
-        "Snapchat": 4,
-        "LinkedIn": 4,
-        "Pinterest": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 guerras históricamente significativas",
+    "answersEs": [
+      "Primera Guerra Mundial",
+      "Segunda Guerra Mundial",
+      "Guerra Civil estadounidense",
+      "Guerra de Vietnam",
+      "Guerra de Corea",
+      "Guerras Napoleónicas",
+      "Guerra Fría",
+      "Guerra de 1812",
+      "Guerra de los Treinta Años",
+      "Guerra de Crimea"
+    ]
+  },
+  {
+    "id": "81",
+    "promptEn": "Name 10 large online platforms by active user count",
+    "answersEn": [
+      "Facebook",
+      "YouTube",
+      "Instagram",
+      "TikTok",
+      "WeChat",
+      "WhatsApp",
+      "Twitter (X)",
+      "Snapchat",
+      "LinkedIn",
+      "Pinterest"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Online platform user statistics",
+    "answerPoints": {
+      "Facebook": 2,
+      "YouTube": 1,
+      "Instagram": 1,
+      "TikTok": 1,
+      "WeChat": 2,
+      "WhatsApp": 2,
+      "Twitter (X)": 3,
+      "Snapchat": 4,
+      "LinkedIn": 4,
+      "Pinterest": 5
     },
-    {
-      "id": "82",
-      "promptEn": "Name 10 major world religions",
-      "answersEn": [
-        "Christianity",
-        "Islam",
-        "Hinduism",
-        "Buddhism",
-        "Sikhism",
-        "Judaism",
-        "Baháʼí Faith",
-        "Jainism",
-        "Shinto",
-        "Taoism"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Global religious demographic studies",
-      "answerPoints": {
-        "Christianity": 1,
-        "Islam": 1,
-        "Hinduism": 1,
-        "Buddhism": 1,
-        "Sikhism": 3,
-        "Judaism": 4,
-        "Baháʼí Faith": 5,
-        "Jainism": 5,
-        "Shinto": 4,
-        "Taoism": 4
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 grandes plataformas en línea por usuarios activos",
+    "answersEs": [
+      "Facebook",
+      "YouTube",
+      "Instagram",
+      "TikTok",
+      "WeChat",
+      "WhatsApp",
+      "Twitter (X)",
+      "Snapchat",
+      "LinkedIn",
+      "Pinterest"
+    ]
+  },
+  {
+    "id": "82",
+    "promptEn": "Name 10 major world religions",
+    "answersEn": [
+      "Christianity",
+      "Islam",
+      "Hinduism",
+      "Buddhism",
+      "Sikhism",
+      "Judaism",
+      "Baháʼí Faith",
+      "Jainism",
+      "Shinto",
+      "Taoism"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Global religious demographic studies",
+    "answerPoints": {
+      "Christianity": 1,
+      "Islam": 1,
+      "Hinduism": 1,
+      "Buddhism": 1,
+      "Sikhism": 3,
+      "Judaism": 4,
+      "Baháʼí Faith": 5,
+      "Jainism": 5,
+      "Shinto": 4,
+      "Taoism": 4,
+      "Cristianismo": 1,
+      "Hinduismo": 1,
+      "Budismo": 1,
+      "Sijismo": 3,
+      "Judaísmo": 4,
+      "Fe baháʼí": 5,
+      "Jainismo": 5,
+      "Sintoísmo": 4,
+      "Taoísmo": 4
     },
-    {
-      "id": "83",
-      "promptEn": "Name 10 popular Olympic track and field events",
-      "answersEn": [
-        "100m sprint",
-        "200m sprint",
-        "400m run",
-        "800m run",
-        "1500m run",
-        "Marathon",
-        "Long jump",
-        "High jump",
-        "Shot put",
-        "Javelin throw"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Olympic athletics competitions",
-      "answerPoints": {
-        "100m sprint": 1,
-        "200m sprint": 1,
-        "400m run": 2,
-        "800m run": 3,
-        "1500m run": 3,
-        "Marathon": 2,
-        "Long jump": 4,
-        "High jump": 4,
-        "Shot put": 5,
-        "Javelin throw": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 religiones principales del mundo",
+    "answersEs": [
+      "Cristianismo",
+      "Islam",
+      "Hinduismo",
+      "Budismo",
+      "Sijismo",
+      "Judaísmo",
+      "Fe baháʼí",
+      "Jainismo",
+      "Sintoísmo",
+      "Taoísmo"
+    ]
+  },
+  {
+    "id": "83",
+    "promptEn": "Name 10 popular Olympic track and field events",
+    "answersEn": [
+      "100m sprint",
+      "200m sprint",
+      "400m run",
+      "800m run",
+      "1500m run",
+      "Marathon",
+      "Long jump",
+      "High jump",
+      "Shot put",
+      "Javelin throw"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Olympic athletics competitions",
+    "answerPoints": {
+      "100m sprint": 1,
+      "200m sprint": 1,
+      "400m run": 2,
+      "800m run": 3,
+      "1500m run": 3,
+      "Marathon": 2,
+      "Long jump": 4,
+      "High jump": 4,
+      "Shot put": 5,
+      "Javelin throw": 5,
+      "100 m lisos": 1,
+      "200 m lisos": 1,
+      "400 m": 2,
+      "800 m": 3,
+      "1500 m": 3,
+      "Maratón": 2,
+      "Salto de longitud": 4,
+      "Salto de altura": 4,
+      "Lanzamiento de bala": 5,
+      "Lanzamiento de jabalina": 5
     },
-    {
-      "id": "84",
-      "promptEn": "Name 10 famous world explorers",
-      "answersEn": [
-        "Christopher Columbus",
-        "Marco Polo",
-        "Ferdinand Magellan",
-        "Vasco da Gama",
-        "James Cook",
-        "Ibn Battuta",
-        "Leif Erikson",
-        "Zheng He",
-        "Roald Amundsen",
-        "Ernest Shackleton"
-      ],
-      "difficulty": "medium",
-      "source": "Source: History of exploration",
-      "answerPoints": {
-        "Christopher Columbus": 1,
-        "Marco Polo": 1,
-        "Ferdinand Magellan": 2,
-        "Vasco da Gama": 2,
-        "James Cook": 3,
-        "Ibn Battuta": 4,
-        "Leif Erikson": 4,
-        "Zheng He": 5,
-        "Roald Amundsen": 5,
-        "Ernest Shackleton": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 pruebas populares del atletismo olímpico",
+    "answersEs": [
+      "100 m lisos",
+      "200 m lisos",
+      "400 m",
+      "800 m",
+      "1500 m",
+      "Maratón",
+      "Salto de longitud",
+      "Salto de altura",
+      "Lanzamiento de bala",
+      "Lanzamiento de jabalina"
+    ]
+  },
+  {
+    "id": "84",
+    "promptEn": "Name 10 famous world explorers",
+    "answersEn": [
+      "Christopher Columbus",
+      "Marco Polo",
+      "Ferdinand Magellan",
+      "Vasco da Gama",
+      "James Cook",
+      "Ibn Battuta",
+      "Leif Erikson",
+      "Zheng He",
+      "Roald Amundsen",
+      "Ernest Shackleton"
+    ],
+    "difficulty": "medium",
+    "source": "Source: History of exploration",
+    "answerPoints": {
+      "Christopher Columbus": 1,
+      "Marco Polo": 1,
+      "Ferdinand Magellan": 2,
+      "Vasco da Gama": 2,
+      "James Cook": 3,
+      "Ibn Battuta": 4,
+      "Leif Erikson": 4,
+      "Zheng He": 5,
+      "Roald Amundsen": 5,
+      "Ernest Shackleton": 5,
+      "Cristóbal Colón": 1,
+      "Fernando de Magallanes": 2
     },
-    {
-      "id": "85",
-      "promptEn": "Name the 10 largest economies in South America by GDP (2025 estimates)",
-      "answersEn": [
-        "Brazil",
-        "Argentina",
-        "Colombia",
-        "Chile",
-        "Peru",
-        "Ecuador",
-        "Uruguay",
-        "Venezuela",
-        "Bolivia",
-        "Paraguay"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Regional GDP data 2025 estimates",
-      "answerPoints": {
-        "Brazil": 1,
-        "Argentina": 2,
-        "Colombia": 2,
-        "Chile": 3,
-        "Peru": 3,
-        "Ecuador": 4,
-        "Uruguay": 4,
-        "Venezuela": 5,
-        "Bolivia": 5,
-        "Paraguay": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 exploradores famosos del mundo",
+    "answersEs": [
+      "Cristóbal Colón",
+      "Marco Polo",
+      "Fernando de Magallanes",
+      "Vasco da Gama",
+      "James Cook",
+      "Ibn Battuta",
+      "Leif Erikson",
+      "Zheng He",
+      "Roald Amundsen",
+      "Ernest Shackleton"
+    ]
+  },
+  {
+    "id": "85",
+    "promptEn": "Name the 10 largest economies in South America by GDP (2025 estimates)",
+    "answersEn": [
+      "Brazil",
+      "Argentina",
+      "Colombia",
+      "Chile",
+      "Peru",
+      "Ecuador",
+      "Uruguay",
+      "Venezuela",
+      "Bolivia",
+      "Paraguay"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Regional GDP data 2025 estimates",
+    "answerPoints": {
+      "Brazil": 1,
+      "Argentina": 2,
+      "Colombia": 2,
+      "Chile": 3,
+      "Peru": 3,
+      "Ecuador": 4,
+      "Uruguay": 4,
+      "Venezuela": 5,
+      "Bolivia": 5,
+      "Paraguay": 5,
+      "Brasil": 1,
+      "Perú": 3
     },
-    {
-      "id": "86",
-      "promptEn": "Name 10 different forms of government systems",
-      "answersEn": [
-        "Democracy",
-        "Republic",
-        "Monarchy",
-        "Oligarchy",
-        "Theocracy",
-        "Communism",
-        "Federation",
-        "Autocracy",
-        "Anarchy",
-        "Parliamentary"
-      ],
-      "difficulty": "hard",
-      "source": "Source: Political system classifications",
-      "answerPoints": {
-        "Democracy": 1,
-        "Republic": 2,
-        "Monarchy": 2,
-        "Oligarchy": 4,
-        "Theocracy": 5,
-        "Communism": 4,
-        "Federation": 3,
-        "Autocracy": 4,
-        "Anarchy": 5,
-        "Parliamentary": 3
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra las 10 economías más grandes de Sudamérica por PIB (estimaciones 2025)",
+    "answersEs": [
+      "Brasil",
+      "Argentina",
+      "Colombia",
+      "Chile",
+      "Perú",
+      "Ecuador",
+      "Uruguay",
+      "Venezuela",
+      "Bolivia",
+      "Paraguay"
+    ]
+  },
+  {
+    "id": "86",
+    "promptEn": "Name 10 different forms of government systems",
+    "answersEn": [
+      "Democracy",
+      "Republic",
+      "Monarchy",
+      "Oligarchy",
+      "Theocracy",
+      "Communism",
+      "Federation",
+      "Autocracy",
+      "Anarchy",
+      "Parliamentary"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Political system classifications",
+    "answerPoints": {
+      "Democracy": 1,
+      "Republic": 2,
+      "Monarchy": 2,
+      "Oligarchy": 4,
+      "Theocracy": 5,
+      "Communism": 4,
+      "Federation": 3,
+      "Autocracy": 4,
+      "Anarchy": 5,
+      "Parliamentary": 3,
+      "Democracia": 1,
+      "República": 2,
+      "Monarquía": 2,
+      "Oligarquía": 4,
+      "Teocracia": 5,
+      "Comunismo": 4,
+      "Federación": 3,
+      "Autocracia": 4,
+      "Anarquía": 5,
+      "Parlamentario": 3
     },
-    {
-      "id": "87",
-      "promptEn": "Name 10 influential tech companies founded before 2000",
-      "answersEn": [
-        "Microsoft",
-        "IBM",
-        "Apple",
-        "Oracle",
-        "Intel",
-        "Cisco",
-        "SAP",
-        "Adobe",
-        "Sony",
-        "Nokia"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Technology company foundation dates",
-      "answerPoints": {
-        "Microsoft": 1,
-        "IBM": 1,
-        "Apple": 1,
-        "Oracle": 2,
-        "Intel": 2,
-        "Cisco": 3,
-        "SAP": 4,
-        "Adobe": 3,
-        "Sony": 2,
-        "Nokia": 4
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 formas diferentes de sistemas de gobierno",
+    "answersEs": [
+      "Democracia",
+      "República",
+      "Monarquía",
+      "Oligarquía",
+      "Teocracia",
+      "Comunismo",
+      "Federación",
+      "Autocracia",
+      "Anarquía",
+      "Parlamentario"
+    ]
+  },
+  {
+    "id": "87",
+    "promptEn": "Name 10 influential tech companies founded before 2000",
+    "answersEn": [
+      "Microsoft",
+      "IBM",
+      "Apple",
+      "Oracle",
+      "Intel",
+      "Cisco",
+      "SAP",
+      "Adobe",
+      "Sony",
+      "Nokia"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Technology company foundation dates",
+    "answerPoints": {
+      "Microsoft": 1,
+      "IBM": 1,
+      "Apple": 1,
+      "Oracle": 2,
+      "Intel": 2,
+      "Cisco": 3,
+      "SAP": 4,
+      "Adobe": 3,
+      "Sony": 2,
+      "Nokia": 4
     },
-    {
-      "id": "88",
-      "promptEn": "Name 10 major European rivers",
-      "answersEn": [
-        "Danube",
-        "Rhine",
-        "Volga",
-        "Elbe",
-        "Seine",
-        "Loire",
-        "Po",
-        "Tagus",
-        "Tiber",
-        "Dnieper"
-      ],
-      "difficulty": "medium",
-      "source": "Source: European rivers list",
-      "answerPoints": {
-        "Danube": 1,
-        "Rhine": 1,
-        "Volga": 2,
-        "Elbe": 3,
-        "Seine": 4,
-        "Loire": 4,
-        "Po": 5,
-        "Tagus": 5,
-        "Tiber": 5,
-        "Dnieper": 3
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 empresas tecnológicas influyentes fundadas antes del 2000",
+    "answersEs": [
+      "Microsoft",
+      "IBM",
+      "Apple",
+      "Oracle",
+      "Intel",
+      "Cisco",
+      "SAP",
+      "Adobe",
+      "Sony",
+      "Nokia"
+    ]
+  },
+  {
+    "id": "88",
+    "promptEn": "Name 10 major European rivers",
+    "answersEn": [
+      "Danube",
+      "Rhine",
+      "Volga",
+      "Elbe",
+      "Seine",
+      "Loire",
+      "Po",
+      "Tagus",
+      "Tiber",
+      "Dnieper"
+    ],
+    "difficulty": "medium",
+    "source": "Source: European rivers list",
+    "answerPoints": {
+      "Danube": 1,
+      "Rhine": 1,
+      "Volga": 2,
+      "Elbe": 3,
+      "Seine": 4,
+      "Loire": 4,
+      "Po": 5,
+      "Tagus": 5,
+      "Tiber": 5,
+      "Dnieper": 3,
+      "Danubio": 1,
+      "Rin": 1,
+      "Elba": 3,
+      "Sena": 4,
+      "Loira": 4,
+      "Tajo": 5,
+      "Tíber": 5,
+      "Dniéper": 3
     },
-    {
-      "id": "89",
-      "promptEn": "Name 10 significant bodies of water in North America",
-      "answersEn": [
-        "Great Lakes",
-        "Mississippi River",
-        "Hudson Bay",
-        "Gulf of Mexico",
-        "Bering Sea",
-        "Caribbean Sea",
-        "Rio Grande",
-        "Lake Winnipeg",
-        "Beaufort Sea",
-        "St. Lawrence River"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Major North American water features",
-      "answerPoints": {
-        "Great Lakes": 1,
-        "Mississippi River": 1,
-        "Hudson Bay": 2,
-        "Gulf of Mexico": 2,
-        "Bering Sea": 3,
-        "Caribbean Sea": 4,
-        "Rio Grande": 5,
-        "Lake Winnipeg": 5,
-        "Beaufort Sea": 5,
-        "St. Lawrence River": 3
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 ríos principales de Europa",
+    "answersEs": [
+      "Danubio",
+      "Rin",
+      "Volga",
+      "Elba",
+      "Sena",
+      "Loira",
+      "Po",
+      "Tajo",
+      "Tíber",
+      "Dniéper"
+    ]
+  },
+  {
+    "id": "89",
+    "promptEn": "Name 10 significant bodies of water in North America",
+    "answersEn": [
+      "Great Lakes",
+      "Mississippi River",
+      "Hudson Bay",
+      "Gulf of Mexico",
+      "Bering Sea",
+      "Caribbean Sea",
+      "Rio Grande",
+      "Lake Winnipeg",
+      "Beaufort Sea",
+      "St. Lawrence River"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Major North American water features",
+    "answerPoints": {
+      "Great Lakes": 1,
+      "Mississippi River": 1,
+      "Hudson Bay": 2,
+      "Gulf of Mexico": 2,
+      "Bering Sea": 3,
+      "Caribbean Sea": 4,
+      "Rio Grande": 5,
+      "Lake Winnipeg": 5,
+      "Beaufort Sea": 5,
+      "St. Lawrence River": 3,
+      "Grandes Lagos": 1,
+      "Río Misisipi": 1,
+      "Bahía de Hudson": 2,
+      "Golfo de México": 2,
+      "Mar de Bering": 3,
+      "Mar Caribe": 4,
+      "Río Grande": 5,
+      "Lago Winnipeg": 5,
+      "Mar de Beaufort": 5,
+      "Río San Lorenzo": 3
     },
-    {
-      "id": "90",
-      "promptEn": "Name 10 famous composers of the Baroque period",
-      "answersEn": [
-        "Johann Sebastian Bach",
-        "George Frideric Handel",
-        "Antonio Vivaldi",
-        "Claudio Monteverdi",
-        "Domenico Scarlatti",
-        "Henry Purcell",
-        "Jean-Philippe Rameau",
-        "Arcangelo Corelli",
-        "Georg Philipp Telemann",
-        "Johann Pachelbel"
-      ],
-      "difficulty": "hard",
-      "source": "Source: Baroque music history",
-      "answerPoints": {
-        "Johann Sebastian Bach": 1,
-        "George Frideric Handel": 1,
-        "Antonio Vivaldi": 2,
-        "Claudio Monteverdi": 3,
-        "Domenico Scarlatti": 4,
-        "Henry Purcell": 4,
-        "Jean-Philippe Rameau": 5,
-        "Arcangelo Corelli": 5,
-        "Georg Philipp Telemann": 5,
-        "Johann Pachelbel": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 cuerpos de agua significativos de Norteamérica",
+    "answersEs": [
+      "Grandes Lagos",
+      "Río Misisipi",
+      "Bahía de Hudson",
+      "Golfo de México",
+      "Mar de Bering",
+      "Mar Caribe",
+      "Río Grande",
+      "Lago Winnipeg",
+      "Mar de Beaufort",
+      "Río San Lorenzo"
+    ]
+  },
+  {
+    "id": "90",
+    "promptEn": "Name 10 famous composers of the Baroque period",
+    "answersEn": [
+      "Johann Sebastian Bach",
+      "George Frideric Handel",
+      "Antonio Vivaldi",
+      "Claudio Monteverdi",
+      "Domenico Scarlatti",
+      "Henry Purcell",
+      "Jean-Philippe Rameau",
+      "Arcangelo Corelli",
+      "Georg Philipp Telemann",
+      "Johann Pachelbel"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Baroque music history",
+    "answerPoints": {
+      "Johann Sebastian Bach": 1,
+      "George Frideric Handel": 1,
+      "Antonio Vivaldi": 2,
+      "Claudio Monteverdi": 3,
+      "Domenico Scarlatti": 4,
+      "Henry Purcell": 4,
+      "Jean-Philippe Rameau": 5,
+      "Arcangelo Corelli": 5,
+      "Georg Philipp Telemann": 5,
+      "Johann Pachelbel": 5,
+      "Georg Friedrich Händel": 1
     },
-    {
-      "id": "91",
-      "promptEn": "Name 10 common fruits eaten around the world",
-      "answersEn": [
-        "Apple",
-        "Banana",
-        "Orange",
-        "Grape",
-        "Strawberry",
-        "Pineapple",
-        "Watermelon",
-        "Mango",
-        "Pear",
-        "Peach"
-      ],
-      "difficulty": "easy",
-      "source": "Source: Global common fruit list",
-      "answerPoints": {
-        "Apple": 1,
-        "Banana": 1,
-        "Orange": 1,
-        "Grape": 2,
-        "Strawberry": 2,
-        "Pineapple": 3,
-        "Watermelon": 2,
-        "Mango": 3,
-        "Pear": 3,
-        "Peach": 3
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 compositores famosos del periodo barroco",
+    "answersEs": [
+      "Johann Sebastian Bach",
+      "Georg Friedrich Händel",
+      "Antonio Vivaldi",
+      "Claudio Monteverdi",
+      "Domenico Scarlatti",
+      "Henry Purcell",
+      "Jean-Philippe Rameau",
+      "Arcangelo Corelli",
+      "Georg Philipp Telemann",
+      "Johann Pachelbel"
+    ]
+  },
+  {
+    "id": "91",
+    "promptEn": "Name 10 common fruits eaten around the world",
+    "answersEn": [
+      "Apple",
+      "Banana",
+      "Orange",
+      "Grape",
+      "Strawberry",
+      "Pineapple",
+      "Watermelon",
+      "Mango",
+      "Pear",
+      "Peach"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Global common fruit list",
+    "answerPoints": {
+      "Apple": 1,
+      "Banana": 1,
+      "Orange": 1,
+      "Grape": 2,
+      "Strawberry": 2,
+      "Pineapple": 3,
+      "Watermelon": 2,
+      "Mango": 3,
+      "Pear": 3,
+      "Peach": 3,
+      "Manzana": 1,
+      "Naranja": 1,
+      "Uva": 2,
+      "Fresa": 2,
+      "Piña": 3,
+      "Sandía": 2,
+      "Pera": 3,
+      "Durazno": 3
     },
-    {
-      "id": "92",
-      "promptEn": "Name 10 types of renewable energy sources",
-      "answersEn": [
-        "Solar",
-        "Wind",
-        "Hydropower",
-        "Geothermal",
-        "Biomass",
-        "Ocean Thermal",
-        "Tidal",
-        "Wave",
-        "Hydrogen",
-        "Enhanced geothermal systems"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Renewable energy classification",
-      "answerPoints": {
-        "Solar": 1,
-        "Wind": 1,
-        "Hydropower": 1,
-        "Geothermal": 2,
-        "Biomass": 2,
-        "Ocean Thermal": 5,
-        "Tidal": 3,
-        "Wave": 4,
-        "Hydrogen": 3,
-        "Enhanced geothermal systems": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 frutas comunes consumidas en el mundo",
+    "answersEs": [
+      "Manzana",
+      "Banana",
+      "Naranja",
+      "Uva",
+      "Fresa",
+      "Piña",
+      "Sandía",
+      "Mango",
+      "Pera",
+      "Durazno"
+    ]
+  },
+  {
+    "id": "92",
+    "promptEn": "Name 10 types of renewable energy sources",
+    "answersEn": [
+      "Solar",
+      "Wind",
+      "Hydropower",
+      "Geothermal",
+      "Biomass",
+      "Ocean Thermal",
+      "Tidal",
+      "Wave",
+      "Hydrogen",
+      "Enhanced geothermal systems"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Renewable energy classification",
+    "answerPoints": {
+      "Solar": 1,
+      "Wind": 1,
+      "Hydropower": 1,
+      "Geothermal": 2,
+      "Biomass": 2,
+      "Ocean Thermal": 5,
+      "Tidal": 3,
+      "Wave": 4,
+      "Hydrogen": 3,
+      "Enhanced geothermal systems": 5,
+      "Eólica": 1,
+      "Hidroeléctrica": 1,
+      "Geotérmica": 2,
+      "Biomasa": 2,
+      "Térmica oceánica": 5,
+      "Mareomotriz": 3,
+      "Undimotriz": 4,
+      "Hidrógeno": 3,
+      "Sistemas geotérmicos mejorados": 5
     },
-    {
-      "id": "93",
-      "promptEn": "Name 10 major ancient wonders of the world",
-      "answersEn": [
-        "Great Pyramid of Giza",
-        "Hanging Gardens of Babylon",
-        "Temple of Artemis",
-        "Statue of Zeus at Olympia",
-        "Mausoleum at Halicarnassus",
-        "Colossus of Rhodes",
-        "Lighthouse of Alexandria",
-        "Stonehenge",
-        "Terracotta Army",
-        "Great Wall of China"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Ancient wonders & historical sites",
-      "answerPoints": {
-        "Great Pyramid of Giza": 1,
-        "Hanging Gardens of Babylon": 3,
-        "Temple of Artemis": 4,
-        "Statue of Zeus at Olympia": 5,
-        "Mausoleum at Halicarnassus": 5,
-        "Colossus of Rhodes": 5,
-        "Lighthouse of Alexandria": 4,
-        "Stonehenge": 3,
-        "Terracotta Army": 3,
-        "Great Wall of China": 2
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 tipos de fuentes de energía renovable",
+    "answersEs": [
+      "Solar",
+      "Eólica",
+      "Hidroeléctrica",
+      "Geotérmica",
+      "Biomasa",
+      "Térmica oceánica",
+      "Mareomotriz",
+      "Undimotriz",
+      "Hidrógeno",
+      "Sistemas geotérmicos mejorados"
+    ]
+  },
+  {
+    "id": "93",
+    "promptEn": "Name 10 major ancient wonders of the world",
+    "answersEn": [
+      "Great Pyramid of Giza",
+      "Hanging Gardens of Babylon",
+      "Temple of Artemis",
+      "Statue of Zeus at Olympia",
+      "Mausoleum at Halicarnassus",
+      "Colossus of Rhodes",
+      "Lighthouse of Alexandria",
+      "Stonehenge",
+      "Terracotta Army",
+      "Great Wall of China"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Ancient wonders & historical sites",
+    "answerPoints": {
+      "Great Pyramid of Giza": 1,
+      "Hanging Gardens of Babylon": 3,
+      "Temple of Artemis": 4,
+      "Statue of Zeus at Olympia": 5,
+      "Mausoleum at Halicarnassus": 5,
+      "Colossus of Rhodes": 5,
+      "Lighthouse of Alexandria": 4,
+      "Stonehenge": 3,
+      "Terracotta Army": 3,
+      "Great Wall of China": 2,
+      "Gran Pirámide de Guiza": 1,
+      "Jardines Colgantes de Babilonia": 3,
+      "Templo de Artemisa": 4,
+      "Estatua de Zeus en Olimpia": 5,
+      "Mausoleo de Halicarnaso": 5,
+      "Coloso de Rodas": 5,
+      "Faro de Alejandría": 4,
+      "Ejército de terracota": 3,
+      "Gran Muralla China": 2
     },
-    {
-      "id": "94",
-      "promptEn": "Name 10 globally recognized sports leagues",
-      "answersEn": [
-        "NFL",
-        "NBA",
-        "Premier League",
-        "La Liga",
-        "Serie A",
-        "Bundesliga",
-        "MLB",
-        "NHL",
-        "UEFA Champions League",
-        "Formula One"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Major sports league popularity",
-      "answerPoints": {
-        "NFL": 1,
-        "NBA": 1,
-        "Premier League": 1,
-        "La Liga": 2,
-        "Serie A": 3,
-        "Bundesliga": 3,
-        "MLB": 2,
-        "NHL": 3,
-        "UEFA Champions League": 1,
-        "Formula One": 2
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 grandes maravillas antiguas del mundo",
+    "answersEs": [
+      "Gran Pirámide de Guiza",
+      "Jardines Colgantes de Babilonia",
+      "Templo de Artemisa",
+      "Estatua de Zeus en Olimpia",
+      "Mausoleo de Halicarnaso",
+      "Coloso de Rodas",
+      "Faro de Alejandría",
+      "Stonehenge",
+      "Ejército de terracota",
+      "Gran Muralla China"
+    ]
+  },
+  {
+    "id": "94",
+    "promptEn": "Name 10 globally recognized sports leagues",
+    "answersEn": [
+      "NFL",
+      "NBA",
+      "Premier League",
+      "La Liga",
+      "Serie A",
+      "Bundesliga",
+      "MLB",
+      "NHL",
+      "UEFA Champions League",
+      "Formula One"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Major sports league popularity",
+    "answerPoints": {
+      "NFL": 1,
+      "NBA": 1,
+      "Premier League": 1,
+      "La Liga": 2,
+      "Serie A": 3,
+      "Bundesliga": 3,
+      "MLB": 2,
+      "NHL": 3,
+      "UEFA Champions League": 1,
+      "Formula One": 2,
+      "Liga de Campeones de la UEFA": 1,
+      "Fórmula 1": 2
     },
-    {
-      "id": "95",
-      "promptEn": "Name 10 iconic movie directors",
-      "answersEn": [
-        "Steven Spielberg",
-        "Martin Scorsese",
-        "Alfred Hitchcock",
-        "Stanley Kubrick",
-        "Akira Kurosawa",
-        "Francis Ford Coppola",
-        "Quentin Tarantino",
-        "Christopher Nolan",
-        "Ridley Scott",
-        "Hayao Miyazaki"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Renowned film directors lists",
-      "answerPoints": {
-        "Steven Spielberg": 1,
-        "Martin Scorsese": 1,
-        "Alfred Hitchcock": 1,
-        "Stanley Kubrick": 2,
-        "Akira Kurosawa": 3,
-        "Francis Ford Coppola": 3,
-        "Quentin Tarantino": 2,
-        "Christopher Nolan": 2,
-        "Ridley Scott": 3,
-        "Hayao Miyazaki": 4
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 ligas deportivas reconocidas globalmente",
+    "answersEs": [
+      "NFL",
+      "NBA",
+      "Premier League",
+      "La Liga",
+      "Serie A",
+      "Bundesliga",
+      "MLB",
+      "NHL",
+      "Liga de Campeones de la UEFA",
+      "Fórmula 1"
+    ]
+  },
+  {
+    "id": "95",
+    "promptEn": "Name 10 iconic movie directors",
+    "answersEn": [
+      "Steven Spielberg",
+      "Martin Scorsese",
+      "Alfred Hitchcock",
+      "Stanley Kubrick",
+      "Akira Kurosawa",
+      "Francis Ford Coppola",
+      "Quentin Tarantino",
+      "Christopher Nolan",
+      "Ridley Scott",
+      "Hayao Miyazaki"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Renowned film directors lists",
+    "answerPoints": {
+      "Steven Spielberg": 1,
+      "Martin Scorsese": 1,
+      "Alfred Hitchcock": 1,
+      "Stanley Kubrick": 2,
+      "Akira Kurosawa": 3,
+      "Francis Ford Coppola": 3,
+      "Quentin Tarantino": 2,
+      "Christopher Nolan": 2,
+      "Ridley Scott": 3,
+      "Hayao Miyazaki": 4
     },
-    {
-      "id": "96",
-      "promptEn": "Name 10 foundational philosophical thinkers",
-      "answersEn": [
-        "Plato",
-        "Aristotle",
-        "Immanuel Kant",
-        "René Descartes",
-        "Confucius",
-        "Søren Kierkegaard",
-        "Friedrich Nietzsche",
-        "John Locke",
-        "Thomas Aquinas",
-        "Jean-Jacques Rousseau"
-      ],
-      "difficulty": "hard",
-      "source": "Source: History of philosophy",
-      "answerPoints": {
-        "Plato": 1,
-        "Aristotle": 1,
-        "Immanuel Kant": 2,
-        "René Descartes": 3,
-        "Confucius": 4,
-        "Søren Kierkegaard": 5,
-        "Friedrich Nietzsche": 5,
-        "John Locke": 4,
-        "Thomas Aquinas": 5,
-        "Jean-Jacques Rousseau": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 directores de cine icónicos",
+    "answersEs": [
+      "Steven Spielberg",
+      "Martin Scorsese",
+      "Alfred Hitchcock",
+      "Stanley Kubrick",
+      "Akira Kurosawa",
+      "Francis Ford Coppola",
+      "Quentin Tarantino",
+      "Christopher Nolan",
+      "Ridley Scott",
+      "Hayao Miyazaki"
+    ]
+  },
+  {
+    "id": "96",
+    "promptEn": "Name 10 foundational philosophical thinkers",
+    "answersEn": [
+      "Plato",
+      "Aristotle",
+      "Immanuel Kant",
+      "René Descartes",
+      "Confucius",
+      "Søren Kierkegaard",
+      "Friedrich Nietzsche",
+      "John Locke",
+      "Thomas Aquinas",
+      "Jean-Jacques Rousseau"
+    ],
+    "difficulty": "hard",
+    "source": "Source: History of philosophy",
+    "answerPoints": {
+      "Plato": 1,
+      "Aristotle": 1,
+      "Immanuel Kant": 2,
+      "René Descartes": 3,
+      "Confucius": 4,
+      "Søren Kierkegaard": 5,
+      "Friedrich Nietzsche": 5,
+      "John Locke": 4,
+      "Thomas Aquinas": 5,
+      "Jean-Jacques Rousseau": 5,
+      "Platón": 1,
+      "Aristóteles": 1,
+      "Confucio": 4,
+      "Tomás de Aquino": 5
     },
-    {
-      "id": "97",
-      "promptEn": "Name 10 significant economic indicators",
-      "answersEn": [
-        "GDP",
-        "Inflation rate",
-        "Unemployment rate",
-        "Consumer Price Index",
-        "Trade balance",
-        "Interest rate",
-        "Budget deficit",
-        "Foreign reserves",
-        "Productivity growth",
-        "Exchange rate"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Macroeconomic indicator definitions",
-      "answerPoints": {
-        "GDP": 1,
-        "Inflation rate": 2,
-        "Unemployment rate": 2,
-        "Consumer Price Index": 3,
-        "Trade balance": 3,
-        "Interest rate": 3,
-        "Budget deficit": 4,
-        "Foreign reserves": 4,
-        "Productivity growth": 5,
-        "Exchange rate": 3
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 pensadores filosóficos fundamentales",
+    "answersEs": [
+      "Platón",
+      "Aristóteles",
+      "Immanuel Kant",
+      "René Descartes",
+      "Confucio",
+      "Søren Kierkegaard",
+      "Friedrich Nietzsche",
+      "John Locke",
+      "Tomás de Aquino",
+      "Jean-Jacques Rousseau"
+    ]
+  },
+  {
+    "id": "97",
+    "promptEn": "Name 10 significant economic indicators",
+    "answersEn": [
+      "GDP",
+      "Inflation rate",
+      "Unemployment rate",
+      "Consumer Price Index",
+      "Trade balance",
+      "Interest rate",
+      "Budget deficit",
+      "Foreign reserves",
+      "Productivity growth",
+      "Exchange rate"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Macroeconomic indicator definitions",
+    "answerPoints": {
+      "GDP": 1,
+      "Inflation rate": 2,
+      "Unemployment rate": 2,
+      "Consumer Price Index": 3,
+      "Trade balance": 3,
+      "Interest rate": 3,
+      "Budget deficit": 4,
+      "Foreign reserves": 4,
+      "Productivity growth": 5,
+      "Exchange rate": 3,
+      "PIB": 1,
+      "Tasa de inflación": 2,
+      "Tasa de desempleo": 2,
+      "Índice de precios al consumidor": 3,
+      "Balanza comercial": 3,
+      "Tasa de interés": 3,
+      "Déficit presupuestario": 4,
+      "Reservas internacionales": 4,
+      "Crecimiento de productividad": 5,
+      "Tipo de cambio": 3
     },
-    {
-      "id": "98",
-      "promptEn": "Name 10 widely spoken Scandinavian languages or dialects",
-      "answersEn": [
-        "Swedish",
-        "Norwegian",
-        "Danish",
-        "Finnish",
-        "Icelandic",
-        "Sámi",
-        "Greenlandic",
-        "Faroese",
-        "Estonian",
-        "Inari Sámi"
-      ],
-      "difficulty": "hard",
-      "source": "Source: Nordic linguistic maps",
-      "answerPoints": {
-        "Swedish": 1,
-        "Norwegian": 1,
-        "Danish": 1,
-        "Finnish": 2,
-        "Icelandic": 3,
-        "Sámi": 4,
-        "Greenlandic": 5,
-        "Faroese": 5,
-        "Estonian": 5,
-        "Inari Sámi": 5
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 indicadores económicos significativos",
+    "answersEs": [
+      "PIB",
+      "Tasa de inflación",
+      "Tasa de desempleo",
+      "Índice de precios al consumidor",
+      "Balanza comercial",
+      "Tasa de interés",
+      "Déficit presupuestario",
+      "Reservas internacionales",
+      "Crecimiento de productividad",
+      "Tipo de cambio"
+    ]
+  },
+  {
+    "id": "98",
+    "promptEn": "Name 10 widely spoken Scandinavian languages or dialects",
+    "answersEn": [
+      "Swedish",
+      "Norwegian",
+      "Danish",
+      "Finnish",
+      "Icelandic",
+      "Sámi",
+      "Greenlandic",
+      "Faroese",
+      "Estonian",
+      "Inari Sámi"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Nordic linguistic maps",
+    "answerPoints": {
+      "Swedish": 1,
+      "Norwegian": 1,
+      "Danish": 1,
+      "Finnish": 2,
+      "Icelandic": 3,
+      "Sámi": 4,
+      "Greenlandic": 5,
+      "Faroese": 5,
+      "Estonian": 5,
+      "Inari Sámi": 5,
+      "Sueco": 1,
+      "Noruego": 1,
+      "Danés": 1,
+      "Finés": 2,
+      "Islandés": 3,
+      "Sami": 4,
+      "Groenlandés": 5,
+      "Feroés": 5,
+      "Estonio": 5,
+      "Sami de Inari": 5
     },
-    {
-      "id": "99",
-      "promptEn": "Name 10 recognised national flags by their colours",
-      "answersEn": [
-        "Red, White, Blue (France)",
-        "Red, White, Blue (United States)",
-        "Red, White, Green (Italy)",
-        "Red, Yellow, Red (Spain)",
-        "Blue, Yellow, Blue (Sweden)",
-        "White, Red (Japan)",
-        "Red, Yellow, Green (Bolivia)",
-        "Blue, White (Greece)",
-        "Green, White, Orange (Ireland)",
-        "Black, Red, Yellow (Germany)"
-      ],
-      "difficulty": "medium",
-      "source": "Source: Country flag colour patterns",
-      "answerPoints": {
-        "France": 2,
-        "United States": 1,
-        "Italy": 2,
-        "Spain": 3,
-        "Sweden": 3,
-        "Japan": 2,
-        "Bolivia": 4,
-        "Greece": 3,
-        "Ireland": 4,
-        "Germany": 2
-      }
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 idiomas o dialectos escandinavos ampliamente hablados",
+    "answersEs": [
+      "Sueco",
+      "Noruego",
+      "Danés",
+      "Finés",
+      "Islandés",
+      "Sami",
+      "Groenlandés",
+      "Feroés",
+      "Estonio",
+      "Sami de Inari"
+    ]
+  },
+  {
+    "id": "99",
+    "promptEn": "Name 10 recognised national flags by their colours",
+    "answersEn": [
+      "Red, White, Blue (France)",
+      "Red, White, Blue (United States)",
+      "Red, White, Green (Italy)",
+      "Red, Yellow, Red (Spain)",
+      "Blue, Yellow, Blue (Sweden)",
+      "White, Red (Japan)",
+      "Red, Yellow, Green (Bolivia)",
+      "Blue, White (Greece)",
+      "Green, White, Orange (Ireland)",
+      "Black, Red, Yellow (Germany)"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Country flag colour patterns",
+    "answerPoints": {
+      "France": 2,
+      "United States": 1,
+      "Italy": 2,
+      "Spain": 3,
+      "Sweden": 3,
+      "Japan": 2,
+      "Bolivia": 4,
+      "Greece": 3,
+      "Ireland": 4,
+      "Germany": 2,
+      "Red, White, Blue (France)": 2,
+      "Rojo, Blanco, Azul (Francia)": 2,
+      "Red, White, Blue (United States)": 1,
+      "Rojo, Blanco, Azul (Estados Unidos)": 1,
+      "Red, White, Green (Italy)": 2,
+      "Rojo, Blanco, Verde (Italia)": 2,
+      "Red, Yellow, Red (Spain)": 3,
+      "Rojo, Amarillo, Rojo (España)": 3,
+      "Blue, Yellow, Blue (Sweden)": 3,
+      "Azul, Amarillo, Azul (Suecia)": 3,
+      "White, Red (Japan)": 2,
+      "Blanco, Rojo (Japón)": 2,
+      "Red, Yellow, Green (Bolivia)": 4,
+      "Rojo, Amarillo, Verde (Bolivia)": 4,
+      "Blue, White (Greece)": 3,
+      "Azul, Blanco (Grecia)": 3,
+      "Green, White, Orange (Ireland)": 4,
+      "Verde, Blanco, Naranja (Irlanda)": 4,
+      "Black, Red, Yellow (Germany)": 2,
+      "Negro, Rojo, Amarillo (Alemania)": 2
     },
-    {
-      "id": "100",
-      "promptEn": "Name 10 influential global leaders of the 20th century",
-      "answersEn": [
-        "Winston Churchill",
-        "Franklin D. Roosevelt",
-        "Mahatma Gandhi",
-        "Nelson Mandela",
-        "Mikhail Gorbachev",
-        "Margaret Thatcher",
-        "John F. Kennedy",
-        "Queen Elizabeth II",
-        "Ho Chi Minh",
-        "Fidel Castro"
-      ],
-      "difficulty": "medium",
-      "source": "Source: 20th century political leaders",
-      "answerPoints": {
-        "Winston Churchill": 1,
-        "Franklin D. Roosevelt": 1,
-        "Mahatma Gandhi": 1,
-        "Nelson Mandela": 2,
-        "Mikhail Gorbachev": 3,
-        "Margaret Thatcher": 3,
-        "John F. Kennedy": 2,
-        "Queen Elizabeth II": 4,
-        "Ho Chi Minh": 4,
-        "Fidel Castro": 5
-      }
-    }
-  ]
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 banderas nacionales reconocidas por sus colores",
+    "answersEs": [
+      "Rojo, Blanco, Azul (Francia)",
+      "Rojo, Blanco, Azul (Estados Unidos)",
+      "Rojo, Blanco, Verde (Italia)",
+      "Rojo, Amarillo, Rojo (España)",
+      "Azul, Amarillo, Azul (Suecia)",
+      "Blanco, Rojo (Japón)",
+      "Rojo, Amarillo, Verde (Bolivia)",
+      "Azul, Blanco (Grecia)",
+      "Verde, Blanco, Naranja (Irlanda)",
+      "Negro, Rojo, Amarillo (Alemania)"
+    ]
+  },
+  {
+    "id": "100",
+    "promptEn": "Name 10 influential global leaders of the 20th century",
+    "answersEn": [
+      "Winston Churchill",
+      "Franklin D. Roosevelt",
+      "Mahatma Gandhi",
+      "Nelson Mandela",
+      "Mikhail Gorbachev",
+      "Margaret Thatcher",
+      "John F. Kennedy",
+      "Queen Elizabeth II",
+      "Ho Chi Minh",
+      "Fidel Castro"
+    ],
+    "difficulty": "medium",
+    "source": "Source: 20th century political leaders",
+    "answerPoints": {
+      "Winston Churchill": 1,
+      "Franklin D. Roosevelt": 1,
+      "Mahatma Gandhi": 1,
+      "Nelson Mandela": 2,
+      "Mikhail Gorbachev": 3,
+      "Margaret Thatcher": 3,
+      "John F. Kennedy": 2,
+      "Queen Elizabeth II": 4,
+      "Ho Chi Minh": 4,
+      "Fidel Castro": 5,
+      "Mijaíl Gorbachov": 3,
+      "Reina Isabel II": 4
+    },
+    "languageScope": [
+      "en",
+      "es"
+    ],
+    "promptEs": "Nombra 10 líderes globales influyentes del siglo XX",
+    "answersEs": [
+      "Winston Churchill",
+      "Franklin D. Roosevelt",
+      "Mahatma Gandhi",
+      "Nelson Mandela",
+      "Mijaíl Gorbachov",
+      "Margaret Thatcher",
+      "John F. Kennedy",
+      "Reina Isabel II",
+      "Ho Chi Minh",
+      "Fidel Castro"
+    ]
+  }
+]

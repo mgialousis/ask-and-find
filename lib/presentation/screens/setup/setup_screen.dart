@@ -5,6 +5,7 @@ import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/domain/entities/game_config.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/screens/setup/game_config_section.dart';
 import 'package:pes_vres/presentation/screens/setup/team_setup_section.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
@@ -33,6 +34,7 @@ class SetupScreen extends ConsumerStatefulWidget {
 class _SetupScreenState extends ConsumerState<SetupScreen> {
   final _uuid = const Uuid();
   bool _didScheduleProviderInit = false;
+  bool _didSyncDefaultTeams = false;
 
   // Team configuration
   int _numberOfTeams = 2;
@@ -47,7 +49,6 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeTeams();
 
     Future(() {
       ref.read(gameStateProvider.notifier).reset();
@@ -63,13 +64,22 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     });
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_teams.isEmpty) {
+      _initializeTeams();
+    }
+  }
+
   /// Initialize teams with default names and colors
   void _initializeTeams() {
+    final l10n = AppLocalizations.of(context);
     _teams = List.generate(
       _numberOfTeams,
       (index) => Team(
         id: _uuid.v4(),
-        name: 'Team ${index + 1}',
+        name: l10n.teamWithNumber(index + 1),
         color: AppColors.teamColors[index % AppColors.teamColors.length],
         score: 0,
       ),
@@ -80,6 +90,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
   void _onTeamNumberChanged(int newNumber) {
     setState(() {
       _numberOfTeams = newNumber;
+      final l10n = AppLocalizations.of(context);
 
       if (newNumber > _teams.length) {
         // Add new teams
@@ -89,7 +100,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
           _teams.add(
             Team(
               id: _uuid.v4(),
-              name: 'Team ${index + 1}',
+              name: l10n.teamWithNumber(index + 1),
               color: AppColors.teamColors[index % AppColors.teamColors.length],
               score: 0,
             ),
@@ -134,8 +145,10 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
   /// Validate team name (non-empty and unique)
   void _validateTeamName(int index, String name) {
+    final l10n = AppLocalizations.of(context);
+
     if (name.trim().isEmpty) {
-      _nameErrors[index] = 'Team name cannot be empty';
+      _nameErrors[index] = l10n.validationNameEmpty;
       return;
     }
 
@@ -147,7 +160,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     );
 
     if (duplicateIndex != -1) {
-      _nameErrors[index] = 'Team name must be unique';
+      _nameErrors[index] = l10n.validationNameDuplicate;
       return;
     }
 
@@ -157,6 +170,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
   /// Validate all teams before starting game
   bool _validateAllTeams() {
+    final l10n = AppLocalizations.of(context);
     bool isValid = true;
 
     for (int i = 0; i < _teams.length; i++) {
@@ -164,7 +178,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
       if (name.isEmpty) {
         setState(() {
-          _nameErrors[i] = 'Team name cannot be empty';
+          _nameErrors[i] = l10n.validationNameEmpty;
         });
         isValid = false;
         continue;
@@ -179,7 +193,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
       if (duplicateIndex != -1) {
         setState(() {
-          _nameErrors[i] = 'Team name must be unique';
+          _nameErrors[i] = l10n.validationNameDuplicate;
         });
         isValid = false;
       }
@@ -190,10 +204,12 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
   /// Start the game
   void _startGame() {
+    final l10n = AppLocalizations.of(context);
+
     if (!_validateAllTeams()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please fix validation errors before starting'),
+        SnackBar(
+          content: Text(l10n.validationFixErrors),
           backgroundColor: AppColors.error,
         ),
       );
@@ -210,9 +226,12 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final setupState = ref.watch(gameSetupProvider);
+
     if (setupState.teams.isEmpty && !_didScheduleProviderInit) {
       _didScheduleProviderInit = true;
+      _didSyncDefaultTeams = false;
       Future(() {
         if (!mounted) return;
         ref.read(gameSetupProvider.notifier).initializeTeams(_numberOfTeams);
@@ -224,13 +243,25 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
           ),
         );
       });
+    } else if (setupState.teams.isNotEmpty &&
+        !_didSyncDefaultTeams &&
+        setupState.teams.length == _teams.length &&
+        _teams.isNotEmpty) {
+      _didSyncDefaultTeams = true;
+      Future(() {
+        if (!mounted) return;
+        final notifier = ref.read(gameSetupProvider.notifier);
+        for (int i = 0; i < _teams.length; i++) {
+          notifier.updateTeam(i, _teams[i]);
+        }
+      });
     } else if (setupState.teams.isNotEmpty) {
       _didScheduleProviderInit = false;
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Game Setup'),
+        title: Text(l10n.gameSetup),
       ),
       body: SafeArea(
         child: Column(
@@ -243,7 +274,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                   children: [
                     // Number of Teams Selector
                     Text(
-                      'Number of Teams',
+                      l10n.numberOfTeams,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -317,7 +348,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
               child: PrimaryButton(
                 onPressed: _startGame,
                 isFullWidth: true,
-                child: const Text('Start Game'),
+                child: Text(l10n.startGame),
               ),
             ),
           ],
@@ -338,11 +369,14 @@ class _TeamNumberSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Row(
       children: [
         Expanded(
           child: _NumberButton(
             number: 2,
+            label: l10n.teams,
             isSelected: selectedNumber == 2,
             onTap: () => onChanged(2),
           ),
@@ -351,6 +385,7 @@ class _TeamNumberSelector extends StatelessWidget {
         Expanded(
           child: _NumberButton(
             number: 3,
+            label: l10n.teams,
             isSelected: selectedNumber == 3,
             onTap: () => onChanged(3),
           ),
@@ -359,6 +394,7 @@ class _TeamNumberSelector extends StatelessWidget {
         Expanded(
           child: _NumberButton(
             number: 4,
+            label: l10n.teams,
             isSelected: selectedNumber == 4,
             onTap: () => onChanged(4),
           ),
@@ -371,11 +407,13 @@ class _TeamNumberSelector extends StatelessWidget {
 class _NumberButton extends StatelessWidget {
   const _NumberButton({
     required this.number,
+    required this.label,
     required this.isSelected,
     required this.onTap,
   });
 
   final int number;
+  final String label;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -411,7 +449,7 @@ class _NumberButton extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                number == 1 ? 'Team' : 'Teams',
+                label,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,

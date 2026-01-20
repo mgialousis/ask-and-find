@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
+import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/widgets/game/score_card.dart';
 
 /// Scoreboard widget
@@ -71,6 +72,7 @@ class _ScoreboardWidgetState extends State<ScoreboardWidget>
   Widget build(BuildContext context) {
     final sortedTeams = _sortedTeams;
     final highestScore = _getHighestScore();
+    final l10n = AppLocalizations.of(context);
 
     return Column(
       children: [
@@ -87,16 +89,16 @@ class _ScoreboardWidgetState extends State<ScoreboardWidget>
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Final Scores',
-                style: TextStyle(
+              Text(
+                l10n.finalScores,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: AppColors.primary,
                 ),
               ),
               Text(
-                '${sortedTeams.length} ${sortedTeams.length == 1 ? 'Team' : 'Teams'}',
+                '${sortedTeams.length} ${sortedTeams.length == 1 ? l10n.team : l10n.teams}',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
