@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/state/locale_provider.dart';
 import 'package:pes_vres/presentation/state/settings_provider.dart';
+import 'package:pes_vres/presentation/state/submission_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 
 /// Settings screen - App preferences and configuration
@@ -144,6 +147,11 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const Divider(),
 
+          // Community Section
+          _SectionHeader(title: l10n.community),
+          _CommunitySection(),
+          const Divider(),
+
           // Reset Section
           const SizedBox(height: 24),
           Padding(
@@ -206,6 +214,52 @@ class _SectionHeader extends StatelessWidget {
           letterSpacing: 0.5,
         ),
       ),
+    );
+  }
+}
+
+/// Community section with submit card and report issue options
+class _CommunitySection extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final submissionState = ref.watch(submissionProvider);
+    final pendingCount = submissionState.pendingCount;
+
+    return Column(
+      children: [
+        ListTile(
+          leading: const Icon(Icons.add_circle_outline),
+          title: Text(l10n.submitNewCard),
+          subtitle: Text(l10n.submitNewCardDesc),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => context.go(AppRoutes.cardSubmission),
+        ),
+        ListTile(
+          leading: const Icon(Icons.flag_outlined),
+          title: Text(l10n.reportIssue),
+          subtitle: Text(l10n.reportIssueDesc),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => context.go(AppRoutes.reportIssue),
+        ),
+        if (pendingCount > 0)
+          ListTile(
+            leading: Icon(
+              Icons.cloud_upload_outlined,
+              color: AppColors.warning,
+            ),
+            title: Text(l10n.pendingSubmissions),
+            subtitle: Text(l10n.pendingSubmissionsCount(pendingCount)),
+            trailing: TextButton(
+              onPressed: () async {
+                await ref
+                    .read(submissionProvider.notifier)
+                    .syncPendingSubmissions();
+              },
+              child: Text(l10n.retrySubmissions),
+            ),
+          ),
+      ],
     );
   }
 }

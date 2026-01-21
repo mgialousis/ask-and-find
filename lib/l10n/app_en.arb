@@ -219,5 +219,84 @@
   "shareFinalStandings": "Final Standings:",
 
   "english": "English",
-  "spanish": "Spanish"
+  "spanish": "Spanish",
+
+  "community": "Community",
+  "submitNewCard": "Submit New Card",
+  "submitNewCardDesc": "Propose a new trivia card for review.",
+  "reportIssue": "Report Issue",
+  "reportIssueDesc": "Flag a problem with an existing card.",
+  "pendingSubmissions": "Pending Submissions",
+  "pendingSubmissionsCount": "{count, plural, =1{1 pending submission} other{{count} pending submissions}}",
+  "@pendingSubmissionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "retrySubmissions": "Retry",
+
+  "submitCardTitle": "Submit a New Card",
+  "reportIssueTitle": "Report an Issue",
+  "questionLabel": "Question",
+  "questionHint": "e.g., Name 10 European capital cities",
+  "answersLabel": "Answers",
+  "answersHint": "Provide 10 correct answers.",
+  "answersCount": "{count} of {min} answers filled",
+  "@answersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "addAnswer": "Add Answer",
+  "sourceLabel": "Source",
+  "sourceHint": "Optional source or reference",
+  "yourNameLabel": "Your Name",
+  "yourNameHint": "Optional",
+  "yourEmailLabel": "Your Email",
+  "yourEmailHint": "Optional, for follow-up",
+  "optional": "optional",
+  "previewCard": "Preview",
+  "submitCard": "Submit Card",
+  "submitReport": "Submit Report",
+  "offlineSubmissionSaved": "You're offline. We'll send this when you're back online.",
+  "submissionError": "Submission failed. Please try again.",
+  "submissionSuccess": "Submission received",
+  "submissionSuccessMessage": "Thanks for helping improve the game.",
+  "submitAnother": "Submit Another",
+  "backToSettings": "Back to Settings",
+
+  "cardBeingCorrected": "Card Being Corrected",
+  "selectCard": "Select a Card",
+  "changeCard": "Change Card",
+  "searchCards": "Search cards",
+  "filterByDifficulty": "Filter by difficulty",
+  "all": "All",
+  "errorLoadingCards": "Couldn't load cards.",
+  "noCardsFound": "No cards found.",
+  "issueTypeLabel": "Issue Type",
+  "issueTypeWrongAnswer": "Wrong answer",
+  "issueTypeWrongAnswerDesc": "An answer is incorrect or missing.",
+  "issueTypeOutdated": "Outdated info",
+  "issueTypeOutdatedDesc": "The card uses outdated facts.",
+  "issueTypeSpelling": "Spelling/grammar",
+  "issueTypeSpellingDesc": "Spelling or grammar needs correction.",
+  "issueTypeUnclear": "Unclear question",
+  "issueTypeUnclearDesc": "The prompt is confusing or ambiguous.",
+  "issueTypeOther": "Other",
+  "issueTypeOtherDesc": "Something else needs attention.",
+  "describeIssue": "Describe the issue",
+  "describeIssueHint": "Tell us what's wrong and how to fix it.",
+
+  "validationQuestionRequired": "Question is required",
+  "validationQuestionTooShort": "Question must be at least 10 characters",
+  "validationDescriptionRequired": "Description is required",
+  "validationDescriptionTooShort": "Description must be at least 20 characters",
+  "validationInvalidEmail": "Invalid email format"
 }

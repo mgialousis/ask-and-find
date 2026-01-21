@@ -357,4 +357,191 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get spanish => 'Spanish';
+
+  @override
+  String get community => 'Community';
+
+  @override
+  String get submitNewCard => 'Submit New Card';
+
+  @override
+  String get submitNewCardDesc => 'Propose a new trivia card for review.';
+
+  @override
+  String get reportIssue => 'Report Issue';
+
+  @override
+  String get reportIssueDesc => 'Flag a problem with an existing card.';
+
+  @override
+  String get pendingSubmissions => 'Pending Submissions';
+
+  @override
+  String pendingSubmissionsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pending submissions',
+      one: '1 pending submission',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get retrySubmissions => 'Retry';
+
+  @override
+  String get submitCardTitle => 'Submit a New Card';
+
+  @override
+  String get reportIssueTitle => 'Report an Issue';
+
+  @override
+  String get questionLabel => 'Question';
+
+  @override
+  String get questionHint => 'e.g., Name 10 European capital cities';
+
+  @override
+  String get answersLabel => 'Answers';
+
+  @override
+  String get answersHint => 'Provide 10 correct answers.';
+
+  @override
+  String answersCount(int count, int min) {
+    return '$count of $min answers filled';
+  }
+
+  @override
+  String get addAnswer => 'Add Answer';
+
+  @override
+  String get sourceLabel => 'Source';
+
+  @override
+  String get sourceHint => 'Optional source or reference';
+
+  @override
+  String get yourNameLabel => 'Your Name';
+
+  @override
+  String get yourNameHint => 'Optional';
+
+  @override
+  String get yourEmailLabel => 'Your Email';
+
+  @override
+  String get yourEmailHint => 'Optional, for follow-up';
+
+  @override
+  String get optional => 'optional';
+
+  @override
+  String get previewCard => 'Preview';
+
+  @override
+  String get submitCard => 'Submit Card';
+
+  @override
+  String get submitReport => 'Submit Report';
+
+  @override
+  String get offlineSubmissionSaved =>
+      'You\'re offline. We\'ll send this when you\'re back online.';
+
+  @override
+  String get submissionError => 'Submission failed. Please try again.';
+
+  @override
+  String get submissionSuccess => 'Submission received';
+
+  @override
+  String get submissionSuccessMessage => 'Thanks for helping improve the game.';
+
+  @override
+  String get submitAnother => 'Submit Another';
+
+  @override
+  String get backToSettings => 'Back to Settings';
+
+  @override
+  String get cardBeingCorrected => 'Card Being Corrected';
+
+  @override
+  String get selectCard => 'Select a Card';
+
+  @override
+  String get changeCard => 'Change Card';
+
+  @override
+  String get searchCards => 'Search cards';
+
+  @override
+  String get filterByDifficulty => 'Filter by difficulty';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get errorLoadingCards => 'Couldn\'t load cards.';
+
+  @override
+  String get noCardsFound => 'No cards found.';
+
+  @override
+  String get issueTypeLabel => 'Issue Type';
+
+  @override
+  String get issueTypeWrongAnswer => 'Wrong answer';
+
+  @override
+  String get issueTypeWrongAnswerDesc => 'An answer is incorrect or missing.';
+
+  @override
+  String get issueTypeOutdated => 'Outdated info';
+
+  @override
+  String get issueTypeOutdatedDesc => 'The card uses outdated facts.';
+
+  @override
+  String get issueTypeSpelling => 'Spelling/grammar';
+
+  @override
+  String get issueTypeSpellingDesc => 'Spelling or grammar needs correction.';
+
+  @override
+  String get issueTypeUnclear => 'Unclear question';
+
+  @override
+  String get issueTypeUnclearDesc => 'The prompt is confusing or ambiguous.';
+
+  @override
+  String get issueTypeOther => 'Other';
+
+  @override
+  String get issueTypeOtherDesc => 'Something else needs attention.';
+
+  @override
+  String get describeIssue => 'Describe the issue';
+
+  @override
+  String get describeIssueHint => 'Tell us what\'s wrong and how to fix it.';
+
+  @override
+  String get validationQuestionRequired => 'Question is required';
+
+  @override
+  String get validationQuestionTooShort =>
+      'Question must be at least 10 characters';
+
+  @override
+  String get validationDescriptionRequired => 'Description is required';
+
+  @override
+  String get validationDescriptionTooShort =>
+      'Description must be at least 20 characters';
+
+  @override
+  String get validationInvalidEmail => 'Invalid email format';
 }

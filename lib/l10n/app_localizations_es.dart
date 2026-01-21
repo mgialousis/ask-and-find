@@ -359,4 +359,192 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get spanish => 'Español';
+
+  @override
+  String get community => 'Comunidad';
+
+  @override
+  String get submitNewCard => 'Enviar nueva tarjeta';
+
+  @override
+  String get submitNewCardDesc => 'Propón una nueva tarjeta para revisión.';
+
+  @override
+  String get reportIssue => 'Reportar problema';
+
+  @override
+  String get reportIssueDesc => 'Señala un problema en una tarjeta existente.';
+
+  @override
+  String get pendingSubmissions => 'Envíos pendientes';
+
+  @override
+  String pendingSubmissionsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count envíos pendientes',
+      one: '1 envío pendiente',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get retrySubmissions => 'Reintentar';
+
+  @override
+  String get submitCardTitle => 'Enviar nueva tarjeta';
+
+  @override
+  String get reportIssueTitle => 'Reportar un problema';
+
+  @override
+  String get questionLabel => 'Pregunta';
+
+  @override
+  String get questionHint => 'p. ej., Nombra 10 capitales europeas';
+
+  @override
+  String get answersLabel => 'Respuestas';
+
+  @override
+  String get answersHint => 'Agrega 10 respuestas correctas.';
+
+  @override
+  String answersCount(int count, int min) {
+    return '$count de $min respuestas completadas';
+  }
+
+  @override
+  String get addAnswer => 'Agregar respuesta';
+
+  @override
+  String get sourceLabel => 'Fuente';
+
+  @override
+  String get sourceHint => 'Fuente o referencia (opcional)';
+
+  @override
+  String get yourNameLabel => 'Tu nombre';
+
+  @override
+  String get yourNameHint => 'Opcional';
+
+  @override
+  String get yourEmailLabel => 'Tu correo';
+
+  @override
+  String get yourEmailHint => 'Opcional, para contacto';
+
+  @override
+  String get optional => 'opcional';
+
+  @override
+  String get previewCard => 'Vista previa';
+
+  @override
+  String get submitCard => 'Enviar tarjeta';
+
+  @override
+  String get submitReport => 'Enviar reporte';
+
+  @override
+  String get offlineSubmissionSaved =>
+      'Estás sin conexión. Lo enviaremos cuando vuelvas a estar en línea.';
+
+  @override
+  String get submissionError => 'No se pudo enviar. Intenta de nuevo.';
+
+  @override
+  String get submissionSuccess => 'Envío recibido';
+
+  @override
+  String get submissionSuccessMessage =>
+      'Gracias por ayudar a mejorar el juego.';
+
+  @override
+  String get submitAnother => 'Enviar otra';
+
+  @override
+  String get backToSettings => 'Volver a ajustes';
+
+  @override
+  String get cardBeingCorrected => 'Tarjeta a corregir';
+
+  @override
+  String get selectCard => 'Seleccionar tarjeta';
+
+  @override
+  String get changeCard => 'Cambiar tarjeta';
+
+  @override
+  String get searchCards => 'Buscar tarjetas';
+
+  @override
+  String get filterByDifficulty => 'Filtrar por dificultad';
+
+  @override
+  String get all => 'Todas';
+
+  @override
+  String get errorLoadingCards => 'No se pudieron cargar las tarjetas.';
+
+  @override
+  String get noCardsFound => 'No se encontraron tarjetas.';
+
+  @override
+  String get issueTypeLabel => 'Tipo de problema';
+
+  @override
+  String get issueTypeWrongAnswer => 'Respuesta incorrecta';
+
+  @override
+  String get issueTypeWrongAnswerDesc => 'Falta una respuesta o es incorrecta.';
+
+  @override
+  String get issueTypeOutdated => 'Info desactualizada';
+
+  @override
+  String get issueTypeOutdatedDesc => 'La tarjeta tiene datos antiguos.';
+
+  @override
+  String get issueTypeSpelling => 'Ortografía/gramática';
+
+  @override
+  String get issueTypeSpellingDesc => 'Corrige ortografía o gramática.';
+
+  @override
+  String get issueTypeUnclear => 'Pregunta confusa';
+
+  @override
+  String get issueTypeUnclearDesc => 'El enunciado es ambiguo o confuso.';
+
+  @override
+  String get issueTypeOther => 'Otro';
+
+  @override
+  String get issueTypeOtherDesc => 'Otro problema a revisar.';
+
+  @override
+  String get describeIssue => 'Describe el problema';
+
+  @override
+  String get describeIssueHint => 'Cuéntanos qué está mal y cómo corregirlo.';
+
+  @override
+  String get validationQuestionRequired => 'La pregunta es obligatoria';
+
+  @override
+  String get validationQuestionTooShort =>
+      'La pregunta debe tener al menos 10 caracteres';
+
+  @override
+  String get validationDescriptionRequired => 'La descripción es obligatoria';
+
+  @override
+  String get validationDescriptionTooShort =>
+      'La descripción debe tener al menos 20 caracteres';
+
+  @override
+  String get validationInvalidEmail => 'Formato de correo inválido';
 }

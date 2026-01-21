@@ -171,6 +171,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         foundAnswers: result.foundAnswers,
         missedAnswers: result.missedAnswers,
         prompt: currentCard.getPrompt(locale),
+        card: currentCard,
         source: currentCard.source,
         pointsForAnswer: currentCard.pointsForAnswer,
         onScoreAdjust: (delta) {

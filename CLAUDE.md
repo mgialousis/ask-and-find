@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Quick Status:** 🎉 FEATURE COMPLETE! 75 cards, confetti, animations, sounds, haptics + 99 tests. Ready for release!
+> **Quick Status:** 🎉 FEATURE COMPLETE + User Submissions! 75 cards, confetti, animations, sounds, haptics, + community card submission feature with Google Sheets backend.
 
 ## Project Overview
 
@@ -23,13 +23,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Tech Stack:**
 - Flutter (SDK: ^3.10.4)
 - Target platforms: Android and iOS
-- Local storage only (no backend for v1)
+- Local storage: SharedPreferences for settings and offline queue
+- Backend: Google Sheets API for user submissions (gsheets ^0.5.0)
 - State management: Riverpod (flutter_riverpod ^2.4.0)
 - Navigation: go_router (^12.0.0)
+- Connectivity: connectivity_plus ^6.0.0
+- App info: package_info_plus ^8.1.0
 
 ## Implementation Status
 
-**Current Phase:** Phase 4 - Day 11 COMPLETE! 🎉
+**Current Phase:** Phase 4 - Day 12+ COMPLETE! 🎉
+
+### Day 12+ Achievements (User Submissions Feature):
+- ✅ **Submit New Cards** - Users can propose new trivia cards with 10 answers
+- ✅ **Report Issues** - Users can report problems with existing cards
+- ✅ **Google Sheets Backend** - Submissions stored in Google Spreadsheet
+- ✅ **Offline Support** - Submissions queued locally when offline, synced when online
+- ✅ **Card Preview** - Real-time preview while composing submissions
+- ✅ **Bilingual Support** - Full English and Spanish localization for submission UI
+- ✅ **Settings Integration** - Community section in Settings screen
+- ✅ **Round Result Integration** - Report Issue button after each round
 
 ### Day 11 Achievements (Polish & Testing):
 - ✅ **Answer Chip Animation** - Satisfying bounce/scale effect on tap
@@ -63,14 +76,18 @@ test/
 - ✅ **Scores So Far** - Round results show current team standings
 - ✅ **75 Question Cards** - Varied topics across all difficulties
 - ✅ **Results Confetti** - Celebration animation on winner screen
+- ✅ **User Submissions** - Submit new cards or report issues via Google Sheets
+- ✅ **Offline Queue** - Submissions saved locally when offline, auto-synced
 
 ### What's Working:
 1. **Home Screen** - Navigation to all sections
-2. **Settings** - Sound, haptics, dark mode (persisted)
+2. **Settings** - Sound, haptics, dark mode (persisted), Community section
 3. **Setup Screen** - Teams (2-4), rounds (5/7/10), timer (30/45/60/90s), difficulty (Easy/Medium/Hard)
 4. **Game Loop** - Complete with visible answers, toggle selection, point display, animations
-5. **Round Results** - Points, scores so far, answer toggle, End Game option
+5. **Round Results** - Points, scores so far, answer toggle, End Game option, Report Issue button
 6. **Final Results** - Winner announcement, scoreboard, Play Again
+7. **Card Submission** - Submit new cards with 10 answers, difficulty, optional source
+8. **Issue Reporting** - Report problems with existing cards, select card, describe issue
 
 ### Important Notes for Claude:
 - **99 tests passing** - Run `flutter test` to verify
@@ -78,6 +95,9 @@ test/
 - **Timer pulse animation** - Continuous pulse in `lib/presentation/screens/game/widgets/timer_display.dart`
 - **Sound effects** - Integrated in `game_screen.dart` via audioplayers
 - **Haptic feedback** - HapticFeedback.lightImpact/heavyImpact on actions
+- **User submissions** - Google Sheets config in `lib/core/config/sheets_config.dart`
+- **Offline queue** - Pending submissions stored via SharedPreferences
+- **Card submissions require exactly 10 answers** - Validation enforced in forms
 - All files pass `flutter analyze` with no issues
 
 **Completed:**
@@ -90,6 +110,7 @@ test/
 - ⏳ Tie-breaker/overtime rounds
 - ⏳ Dark mode implementation
 - ⏳ App store preparation
+- ⏳ Google Sheets credentials setup (see `lib/core/config/sheets_config.dart`)
 
 ### What Can Be Tested Right Now
 
@@ -131,13 +152,28 @@ test/
 - Rounds: 5, 7, or 10
 - Timer: 30s, 45s, 60s, or 90s
 - Difficulty: Easy (1pt), Medium (2pts), Hard (3pts)
-- Cards: 25 question cards with varied topics
+- Cards: 75 question cards with varied topics
+
+**App Routes (go_router):**
+- `/` - Home screen
+- `/setup` - Game setup
+- `/game` - Active gameplay
+- `/results` - Final results
+- `/settings` - App settings (includes Community section)
+- `/how-to-play` - Instructions
+- `/submit-card` - Submit new card form
+- `/report-issue` - Report issue form (accepts CardItem as extra)
+- `/submission-success` - Submission confirmation
 
 **Files to Reference:**
 - Main game logic: `lib/presentation/screens/game/game_screen.dart`
 - Game state: `lib/presentation/state/game_state_provider.dart`
 - Cards database: `assets/cards.json`
 - Results screen: `lib/presentation/screens/results/results_screen.dart`
+- Submission screen: `lib/presentation/screens/submission/card_submission_screen.dart`
+- Submission state: `lib/presentation/state/submission_provider.dart`
+- Google Sheets config: `lib/core/config/sheets_config.dart`
+- Offline storage: `lib/data/sources/offline_submissions_storage.dart`
 
 ## Common Commands
 
@@ -209,19 +245,23 @@ lib/
 ├── core/              # Cross-cutting concerns
 │   ├── theme/         # App theme, colors, text styles
 │   ├── routing/       # Navigation and route definitions
+│   ├── config/        # Configuration (sheets_config.dart)
 │   └── utils/         # Utilities and helpers
 ├── data/              # Data layer
 │   ├── models/        # Data models (CardItem, etc.)
-│   ├── repositories/  # Data access abstractions
-│   └── sources/       # Local storage implementation
+│   ├── repositories/  # Data access (cards_repository, submissions_repository)
+│   └── sources/       # Storage (google_sheets_service, offline_submissions_storage)
 ├── domain/            # Business logic layer
-│   ├── entities/      # Domain models (Team, RoundResult)
+│   ├── entities/      # Domain models (Team, RoundResult, CardSubmission)
 │   ├── repositories/  # Repository interfaces
 │   └── usecases/      # Business logic use cases
 └── presentation/      # UI layer
     ├── screens/       # Screen widgets
+    │   ├── game/      # Game screens
+    │   ├── submission/# Card submission screens and widgets
+    │   └── ...        # Other screens
     ├── widgets/       # Reusable UI components
-    └── state/         # State management (providers/blocs)
+    └── state/         # State management (providers including submission_provider)
 ```
 
 ### Key Domain Models
@@ -249,6 +289,21 @@ Based on `initial-requrements.md`, the following models are central to the app:
 - `foundAnswers`: List<String> (subset of selectedAnswers)
 - `pointsEarned`: int
 - `isOvertime`: bool
+
+**CardSubmission:** (for user-submitted cards/corrections)
+- `id`: String (UUID)
+- `type`: SubmissionType (newCard, correction)
+- `submittedAt`: DateTime
+- For new cards: `promptEn`, `answersEn` (exactly 10), `difficulty`, `source`
+- For corrections: `existingCardId`, `existingCardPrompt`, `issueType`, `issueDescription`
+- Optional: `submitterName`, `submitterEmail`, `appVersion`, `locale`
+
+**IssueType:** (for corrections)
+- `wrongAnswer` - An answer is incorrect or missing
+- `outdatedInfo` - The card uses outdated facts
+- `spellingGrammar` - Spelling or grammar needs correction
+- `unclearQuestion` - The prompt is confusing or ambiguous
+- `other` - Something else needs attention
 
 ### Game Flow Architecture (✅ FULLY IMPLEMENTED)
 
@@ -337,9 +392,11 @@ log('Message here', name: 'ComponentName');
 ## Design Considerations
 
 ### Internationalization
-- v1 is **English only**
-- Code structure MUST support future locales (use Flutter's i18n patterns)
-- All UI strings should be externalized for easy translation
+- **English and Spanish** fully supported
+- Localization files: `lib/l10n/app_en.arb` and `lib/l10n/app_es.arb`
+- Language selection in Settings screen
+- All UI strings externalized using Flutter's i18n patterns
+- Submission feature includes ~40 localization strings per language
 
 ### Accessibility
 - Text must be readable on phones and tablets
@@ -364,9 +421,17 @@ log('Message here', name: 'ComponentName');
 - Visual countdown with distinct warning when approaching 0
 
 ### Local Storage
-- v1 requires no backend
-- Store game cards locally (consider JSON assets or SQLite)
-- Settings persistence (sound, haptics, theme)
+- Game cards stored in `assets/cards.json`
+- Settings persistence via SharedPreferences (sound, haptics, theme, locale)
+- Offline submissions queue stored in SharedPreferences
+
+### User Submissions (Google Sheets Backend)
+- Submissions sent to Google Sheets via `gsheets` package
+- Requires Google Cloud service account credentials in `sheets_config.dart`
+- Two sheets: "New Card Submissions" and "Card Corrections"
+- Offline support: submissions queued locally, auto-synced when online
+- Connectivity monitored via `connectivity_plus` package
+- App version captured via `package_info_plus` package
 
 ### Platform-Specific Features
 - Share functionality: Use OS sharing sheet

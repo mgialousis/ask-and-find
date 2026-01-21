@@ -119,5 +119,84 @@
   "shareFinalStandings": "Posiciones Finales:",
 
   "english": "Inglés",
-  "spanish": "Español"
+  "spanish": "Español",
+
+  "community": "Comunidad",
+  "submitNewCard": "Enviar nueva tarjeta",
+  "submitNewCardDesc": "Propón una nueva tarjeta para revisión.",
+  "reportIssue": "Reportar problema",
+  "reportIssueDesc": "Señala un problema en una tarjeta existente.",
+  "pendingSubmissions": "Envíos pendientes",
+  "pendingSubmissionsCount": "{count, plural, =1{1 envío pendiente} other{{count} envíos pendientes}}",
+  "@pendingSubmissionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "retrySubmissions": "Reintentar",
+
+  "submitCardTitle": "Enviar nueva tarjeta",
+  "reportIssueTitle": "Reportar un problema",
+  "questionLabel": "Pregunta",
+  "questionHint": "p. ej., Nombra 10 capitales europeas",
+  "answersLabel": "Respuestas",
+  "answersHint": "Agrega 10 respuestas correctas.",
+  "answersCount": "{count} de {min} respuestas completadas",
+  "@answersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "addAnswer": "Agregar respuesta",
+  "sourceLabel": "Fuente",
+  "sourceHint": "Fuente o referencia (opcional)",
+  "yourNameLabel": "Tu nombre",
+  "yourNameHint": "Opcional",
+  "yourEmailLabel": "Tu correo",
+  "yourEmailHint": "Opcional, para contacto",
+  "optional": "opcional",
+  "previewCard": "Vista previa",
+  "submitCard": "Enviar tarjeta",
+  "submitReport": "Enviar reporte",
+  "offlineSubmissionSaved": "Estás sin conexión. Lo enviaremos cuando vuelvas a estar en línea.",
+  "submissionError": "No se pudo enviar. Intenta de nuevo.",
+  "submissionSuccess": "Envío recibido",
+  "submissionSuccessMessage": "Gracias por ayudar a mejorar el juego.",
+  "submitAnother": "Enviar otra",
+  "backToSettings": "Volver a ajustes",
+
+  "cardBeingCorrected": "Tarjeta a corregir",
+  "selectCard": "Seleccionar tarjeta",
+  "changeCard": "Cambiar tarjeta",
+  "searchCards": "Buscar tarjetas",
+  "filterByDifficulty": "Filtrar por dificultad",
+  "all": "Todas",
+  "errorLoadingCards": "No se pudieron cargar las tarjetas.",
+  "noCardsFound": "No se encontraron tarjetas.",
+  "issueTypeLabel": "Tipo de problema",
+  "issueTypeWrongAnswer": "Respuesta incorrecta",
+  "issueTypeWrongAnswerDesc": "Falta una respuesta o es incorrecta.",
+  "issueTypeOutdated": "Info desactualizada",
+  "issueTypeOutdatedDesc": "La tarjeta tiene datos antiguos.",
+  "issueTypeSpelling": "Ortografía/gramática",
+  "issueTypeSpellingDesc": "Corrige ortografía o gramática.",
+  "issueTypeUnclear": "Pregunta confusa",
+  "issueTypeUnclearDesc": "El enunciado es ambiguo o confuso.",
+  "issueTypeOther": "Otro",
+  "issueTypeOtherDesc": "Otro problema a revisar.",
+  "describeIssue": "Describe el problema",
+  "describeIssueHint": "Cuéntanos qué está mal y cómo corregirlo.",
+
+  "validationQuestionRequired": "La pregunta es obligatoria",
+  "validationQuestionTooShort": "La pregunta debe tener al menos 10 caracteres",
+  "validationDescriptionRequired": "La descripción es obligatoria",
+  "validationDescriptionTooShort": "La descripción debe tener al menos 20 caracteres",
+  "validationInvalidEmail": "Formato de correo inválido"
 }

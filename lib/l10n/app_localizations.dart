@@ -709,6 +709,354 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Spanish'**
   String get spanish;
+
+  /// No description provided for @community.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get community;
+
+  /// No description provided for @submitNewCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit New Card'**
+  String get submitNewCard;
+
+  /// No description provided for @submitNewCardDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Propose a new trivia card for review.'**
+  String get submitNewCardDesc;
+
+  /// No description provided for @reportIssue.
+  ///
+  /// In en, this message translates to:
+  /// **'Report Issue'**
+  String get reportIssue;
+
+  /// No description provided for @reportIssueDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Flag a problem with an existing card.'**
+  String get reportIssueDesc;
+
+  /// No description provided for @pendingSubmissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Submissions'**
+  String get pendingSubmissions;
+
+  /// No description provided for @pendingSubmissionsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 pending submission} other{{count} pending submissions}}'**
+  String pendingSubmissionsCount(int count);
+
+  /// No description provided for @retrySubmissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retrySubmissions;
+
+  /// No description provided for @submitCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit a New Card'**
+  String get submitCardTitle;
+
+  /// No description provided for @reportIssueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report an Issue'**
+  String get reportIssueTitle;
+
+  /// No description provided for @questionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String get questionLabel;
+
+  /// No description provided for @questionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Name 10 European capital cities'**
+  String get questionHint;
+
+  /// No description provided for @answersLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Answers'**
+  String get answersLabel;
+
+  /// No description provided for @answersHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide 10 correct answers.'**
+  String get answersHint;
+
+  /// No description provided for @answersCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of {min} answers filled'**
+  String answersCount(int count, int min);
+
+  /// No description provided for @addAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Answer'**
+  String get addAnswer;
+
+  /// No description provided for @sourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get sourceLabel;
+
+  /// No description provided for @sourceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional source or reference'**
+  String get sourceHint;
+
+  /// No description provided for @yourNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Name'**
+  String get yourNameLabel;
+
+  /// No description provided for @yourNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get yourNameHint;
+
+  /// No description provided for @yourEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Email'**
+  String get yourEmailLabel;
+
+  /// No description provided for @yourEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional, for follow-up'**
+  String get yourEmailHint;
+
+  /// No description provided for @optional.
+  ///
+  /// In en, this message translates to:
+  /// **'optional'**
+  String get optional;
+
+  /// No description provided for @previewCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get previewCard;
+
+  /// No description provided for @submitCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Card'**
+  String get submitCard;
+
+  /// No description provided for @submitReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Report'**
+  String get submitReport;
+
+  /// No description provided for @offlineSubmissionSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline. We\'ll send this when you\'re back online.'**
+  String get offlineSubmissionSaved;
+
+  /// No description provided for @submissionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Submission failed. Please try again.'**
+  String get submissionError;
+
+  /// No description provided for @submissionSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Submission received'**
+  String get submissionSuccess;
+
+  /// No description provided for @submissionSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for helping improve the game.'**
+  String get submissionSuccessMessage;
+
+  /// No description provided for @submitAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Another'**
+  String get submitAnother;
+
+  /// No description provided for @backToSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Settings'**
+  String get backToSettings;
+
+  /// No description provided for @cardBeingCorrected.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Being Corrected'**
+  String get cardBeingCorrected;
+
+  /// No description provided for @selectCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a Card'**
+  String get selectCard;
+
+  /// No description provided for @changeCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Card'**
+  String get changeCard;
+
+  /// No description provided for @searchCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Search cards'**
+  String get searchCards;
+
+  /// No description provided for @filterByDifficulty.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by difficulty'**
+  String get filterByDifficulty;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @errorLoadingCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load cards.'**
+  String get errorLoadingCards;
+
+  /// No description provided for @noCardsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards found.'**
+  String get noCardsFound;
+
+  /// No description provided for @issueTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Issue Type'**
+  String get issueTypeLabel;
+
+  /// No description provided for @issueTypeWrongAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong answer'**
+  String get issueTypeWrongAnswer;
+
+  /// No description provided for @issueTypeWrongAnswerDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'An answer is incorrect or missing.'**
+  String get issueTypeWrongAnswerDesc;
+
+  /// No description provided for @issueTypeOutdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Outdated info'**
+  String get issueTypeOutdated;
+
+  /// No description provided for @issueTypeOutdatedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The card uses outdated facts.'**
+  String get issueTypeOutdatedDesc;
+
+  /// No description provided for @issueTypeSpelling.
+  ///
+  /// In en, this message translates to:
+  /// **'Spelling/grammar'**
+  String get issueTypeSpelling;
+
+  /// No description provided for @issueTypeSpellingDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Spelling or grammar needs correction.'**
+  String get issueTypeSpellingDesc;
+
+  /// No description provided for @issueTypeUnclear.
+  ///
+  /// In en, this message translates to:
+  /// **'Unclear question'**
+  String get issueTypeUnclear;
+
+  /// No description provided for @issueTypeUnclearDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The prompt is confusing or ambiguous.'**
+  String get issueTypeUnclearDesc;
+
+  /// No description provided for @issueTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get issueTypeOther;
+
+  /// No description provided for @issueTypeOtherDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else needs attention.'**
+  String get issueTypeOtherDesc;
+
+  /// No description provided for @describeIssue.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the issue'**
+  String get describeIssue;
+
+  /// No description provided for @describeIssueHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what\'s wrong and how to fix it.'**
+  String get describeIssueHint;
+
+  /// No description provided for @validationQuestionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Question is required'**
+  String get validationQuestionRequired;
+
+  /// No description provided for @validationQuestionTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Question must be at least 10 characters'**
+  String get validationQuestionTooShort;
+
+  /// No description provided for @validationDescriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Description is required'**
+  String get validationDescriptionRequired;
+
+  /// No description provided for @validationDescriptionTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Description must be at least 20 characters'**
+  String get validationDescriptionTooShort;
+
+  /// No description provided for @validationInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email format'**
+  String get validationInvalidEmail;
 }
 
 class _AppLocalizationsDelegate

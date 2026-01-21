@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/domain/entities/card_item.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
@@ -23,6 +26,7 @@ class RoundResultDialog extends StatefulWidget {
     required this.foundAnswers,
     required this.missedAnswers,
     required this.prompt,
+    required this.card,
     this.source,
     required this.pointsForAnswer,
     required this.onScoreAdjust,
@@ -35,6 +39,7 @@ class RoundResultDialog extends StatefulWidget {
   final List<String> foundAnswers;
   final List<String> missedAnswers;
   final String prompt;
+  final CardItem card;
   final String? source;
   final int Function(String answer) pointsForAnswer;
   final ValueChanged<int> onScoreAdjust;
@@ -236,7 +241,17 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                 ),
                 const SizedBox(height: 24),
 
-                // Show Answers Toggle
+                // Report Issue and Show Answers Toggle
+                TextButton.icon(
+                  onPressed: () {
+                    context.push(AppRoutes.reportIssue, extra: widget.card);
+                  },
+                  icon: const Icon(Icons.flag_outlined, size: 18),
+                  label: Text(l10n.reportIssue),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.textSecondary,
+                  ),
+                ),
                 TextButton.icon(
                   onPressed: () {
                     setState(() {

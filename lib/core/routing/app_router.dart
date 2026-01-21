@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pes_vres/domain/entities/card_item.dart';
 import 'package:pes_vres/presentation/screens/home/home_screen.dart';
 import 'package:pes_vres/presentation/screens/how_to_play/how_to_play_screen.dart';
 import 'package:pes_vres/presentation/screens/settings/settings_screen.dart';
 import 'package:pes_vres/presentation/screens/setup/setup_screen.dart';
 import 'package:pes_vres/presentation/screens/game/game_screen.dart';
 import 'package:pes_vres/presentation/screens/results/results_screen.dart';
+import 'package:pes_vres/presentation/screens/submission/card_submission_screen.dart';
+import 'package:pes_vres/presentation/screens/submission/submission_success_screen.dart';
 
 /// Route paths
 class AppRoutes {
@@ -15,6 +18,9 @@ class AppRoutes {
   static const String results = '/results';
   static const String settings = '/settings';
   static const String howToPlay = '/how-to-play';
+  static const String cardSubmission = '/submit-card';
+  static const String reportIssue = '/report-issue';
+  static const String submissionSuccess = '/submission-success';
 }
 
 /// Route names (for use with pushNamed)
@@ -25,6 +31,9 @@ class AppRouteNames {
   static const String results = 'results';
   static const String settings = 'settings';
   static const String howToPlay = 'howToPlay';
+  static const String cardSubmission = 'cardSubmission';
+  static const String reportIssue = 'reportIssue';
+  static const String submissionSuccess = 'submissionSuccess';
 }
 
 /// Router configuration for the app
@@ -62,6 +71,31 @@ class AppRouter {
           path: AppRoutes.howToPlay,
           name: 'howToPlay',
           builder: (context, state) => const HowToPlayScreen(),
+        ),
+        GoRoute(
+          path: AppRoutes.cardSubmission,
+          name: 'cardSubmission',
+          builder: (context, state) => const CardSubmissionScreen(
+            mode: SubmissionMode.newCard,
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.reportIssue,
+          name: 'reportIssue',
+          builder: (context, state) {
+            final preselectedCard = state.extra is CardItem
+                ? state.extra as CardItem
+                : null;
+            return CardSubmissionScreen(
+              mode: SubmissionMode.correction,
+              preselectedCard: preselectedCard,
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.submissionSuccess,
+          name: 'submissionSuccess',
+          builder: (context, state) => const SubmissionSuccessScreen(),
         ),
       ],
       errorBuilder: (context, state) => Scaffold(
