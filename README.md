@@ -116,6 +116,9 @@ lib/
 git clone <repository-url>
 cd pes_vres
 
+# Optional: configure .env for submissions/analytics
+cp .env.example .env
+
 # Install dependencies
 flutter pub get
 
@@ -148,6 +151,8 @@ See `CLAUDE.md` for development guidelines and project overview.
 
 See `PROJECT_STATUS.md` for current implementation status.
 
+See `docs/RELEASE_GUIDE.md` for publishing/build steps.
+
 ## 🎨 Design System
 
 - **Theme:** Material Design 3
@@ -171,6 +176,16 @@ flutter test --coverage
 
 **Current Status:** 1 widget test (app launch)
 **Phase 5:** Comprehensive test suite planned
+
+## 📊 Analytics (PostHog)
+
+- Analytics are optional and can be disabled in Settings → Privacy → Analytics.
+- No PII is sent. Custom card content and team names are not captured.
+- Configure keys via `.env` (recommended) or `--dart-define`:
+  - `.env` keys: `POSTHOG_API_KEY`, `POSTHOG_HOST`, `POSTHOG_ALLOW_DEBUG`
+  - `--dart-define=POSTHOG_API_KEY=...`
+  - `--dart-define=POSTHOG_HOST=https://app.posthog.com`
+  - Optional: `--dart-define=POSTHOG_ALLOW_DEBUG=true` for non-release builds.
 
 ## 📝 Development Notes
 

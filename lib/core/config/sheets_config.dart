@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 /// Configuration for Google Sheets integration
 ///
 /// To set up Google Sheets integration:
@@ -12,13 +16,17 @@
 ///      existing_card_id, existing_card_prompt, issue_type, issue_description,
 ///      submitter_email, app_version, locale
 /// 5. Share the spreadsheet with the service account email (with Editor access)
-/// 6. Update the values below with your credentials and spreadsheet ID
+/// 6. Store the JSON credentials in `.env` as `SHEETS_CREDENTIALS_JSON`
+/// 7. Set the spreadsheet ID in `.env` as `SHEETS_SPREADSHEET_ID`
 class SheetsConfig {
   SheetsConfig._();
 
   /// Google Sheets spreadsheet ID
   /// Found in the URL: https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit
-  static const String spreadsheetId = 'YOUR_SPREADSHEET_ID_HERE';
+  static String get spreadsheetId =>
+      dotenv.maybeGet('SHEETS_SPREADSHEET_ID', fallback: '')!.trim().isNotEmpty
+          ? dotenv.get('SHEETS_SPREADSHEET_ID')
+          : 'YOUR_SPREADSHEET_ID_HERE';
 
   /// Sheet names within the spreadsheet
   static const String newCardsSheetName = 'New Card Submissions';
@@ -53,25 +61,21 @@ class SheetsConfig {
     'locale',
   ];
 
-  /// Service account credentials for Google Sheets API
-  /// IMPORTANT: In production, consider using a more secure method
-  /// to store credentials (e.g., environment variables, secure storage)
-  static const Map<String, String> credentials = {
-    'type': 'service_account',
-    'project_id': 'YOUR_PROJECT_ID',
-    'private_key_id': 'YOUR_PRIVATE_KEY_ID',
-    'private_key': 'YOUR_PRIVATE_KEY',
-    'client_email': 'YOUR_SERVICE_ACCOUNT_EMAIL',
-    'client_id': 'YOUR_CLIENT_ID',
-    'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
-    'token_uri': 'https://oauth2.googleapis.com/token',
-    'auth_provider_x509_cert_url':
-        'https://www.googleapis.com/oauth2/v1/certs',
-    'client_x509_cert_url': 'YOUR_CERT_URL',
-  };
-
   /// Check if credentials are configured
   static bool get isConfigured =>
       spreadsheetId != 'YOUR_SPREADSHEET_ID_HERE' &&
-      credentials['project_id'] != 'YOUR_PROJECT_ID';
+      (dotenv.maybeGet('SHEETS_CREDENTIALS_JSON', fallback: '')!
+          .trim()
+          .isNotEmpty);
+
+  static Future<Map<String, dynamic>> loadCredentials() async {
+    final rawJson =
+        dotenv.maybeGet('SHEETS_CREDENTIALS_JSON', fallback: '')?.trim();
+    if (rawJson == null || rawJson.isEmpty) {
+      throw StateError(
+        'Missing SHEETS_CREDENTIALS_JSON in .env configuration.',
+      );
+    }
+    return jsonDecode(rawJson) as Map<String, dynamic>;
+  }
 }

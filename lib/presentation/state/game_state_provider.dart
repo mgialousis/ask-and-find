@@ -1,12 +1,15 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pes_vres/core/analytics/analytics_service.dart';
 import 'package:pes_vres/data/repositories/cards_repository.dart';
 import 'package:pes_vres/domain/entities/card_item.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/cards_provider.dart';
 import 'package:pes_vres/presentation/state/locale_provider.dart';
+import 'package:pes_vres/presentation/state/timer_provider.dart';
 
 /// Game phases during gameplay
 enum GamePhase {
@@ -169,12 +172,39 @@ class GameStateNotifier extends StateNotifier<GameState> {
       usedCardIdsInGame: {...state.usedCardIdsInGame, card.id},
       gamePhase: GamePhase.preview,
     );
+
+    await AnalyticsService.instance.capture(
+      'round_preview_shown',
+      properties: {
+        'round': state.currentRound,
+        'team_index': state.currentTeamIndex,
+        'difficulty': card.difficulty.name,
+        'card_id': card.id,
+        'locale': locale.languageCode,
+      },
+    );
   }
 
   /// Begin the active turn (start timer and allow answering)
   void beginTurn() {
     if (state.gamePhase != GamePhase.preview) return;
     state = state.copyWith(gamePhase: GamePhase.playing);
+
+    final card = state.currentCard;
+    final locale = _ref.read(localeProvider);
+    if (card == null) return;
+    unawaited(
+      AnalyticsService.instance.capture(
+        'round_started',
+        properties: {
+          'round': state.currentRound,
+          'team_index': state.currentTeamIndex,
+          'difficulty': card.difficulty.name,
+          'card_id': card.id,
+          'locale': locale.languageCode,
+        },
+      ),
+    );
   }
 
   /// Refresh the current card with a new random card of the same difficulty.
@@ -211,6 +241,15 @@ class GameStateNotifier extends StateNotifier<GameState> {
       usedCardIdsInGame: {...state.usedCardIdsInGame, card.id},
       gamePhase: GamePhase.preview,
     );
+
+    await AnalyticsService.instance.capture(
+      'question_refreshed',
+      properties: {
+        'difficulty': card.difficulty.name,
+        'card_id': card.id,
+        'locale': locale.languageCode,
+      },
+    );
   }
 
   /// Toggle answer selection (add if not selected, remove if already selected)
@@ -221,7 +260,10 @@ class GameStateNotifier extends StateNotifier<GameState> {
 
     final updatedFoundAnswers = List<String>.from(state.foundAnswers);
 
-    if (updatedFoundAnswers.contains(answer)) {
+    final card = state.currentCard;
+    final wasSelected = updatedFoundAnswers.contains(answer);
+
+    if (wasSelected) {
       // Deselect: remove from found answers
       updatedFoundAnswers.remove(answer);
     } else {
@@ -230,6 +272,18 @@ class GameStateNotifier extends StateNotifier<GameState> {
     }
 
     state = state.copyWith(foundAnswers: updatedFoundAnswers);
+
+    if (card != null) {
+      unawaited(
+        AnalyticsService.instance.capture(
+          'answer_toggled',
+          properties: {
+            'selected': !wasSelected,
+            'points': card.pointsForAnswer(answer),
+          },
+        ),
+      );
+    }
 
     // Note: Don't auto-end round when all answers found
     // Let players review their selections
@@ -265,6 +319,26 @@ class GameStateNotifier extends StateNotifier<GameState> {
     state = state.copyWith(
       gamePhase: GamePhase.roundEnd,
       lastRoundResult: result,
+    );
+
+    final timerState = _ref.read(timerProvider);
+    final durationSeconds =
+        timerState.initialSeconds - timerState.secondsRemaining;
+    final locale = _ref.read(localeProvider);
+    unawaited(
+      AnalyticsService.instance.capture(
+        'round_ended',
+        properties: {
+          'round': state.currentRound,
+          'team_index': state.currentTeamIndex,
+          'found_count': state.foundAnswers.length,
+          'points_earned': pointsEarned,
+          'duration_seconds': durationSeconds,
+          'difficulty': card.difficulty.name,
+          'card_id': card.id,
+          'locale': locale.languageCode,
+        },
+      ),
     );
   }
 
@@ -307,6 +381,19 @@ class GameStateNotifier extends StateNotifier<GameState> {
 
   /// Reset game state to initial (for new game)
   void reset() {
+    if (state.gamePhase != GamePhase.ready &&
+        state.gamePhase != GamePhase.roundEnd) {
+      unawaited(
+        AnalyticsService.instance.capture(
+          'game_abandoned',
+          properties: {
+            'phase': state.gamePhase.name,
+            'round': state.currentRound,
+            'team_index': state.currentTeamIndex,
+          },
+        ),
+      );
+    }
     state = GameState.initial();
   }
 }

@@ -210,15 +210,19 @@ All submissions are sent to **Google Sheets** as a lightweight backend (no Fireb
    - Give it Editor access.
 
 4. **Add Credentials to the App**
-   - Open `lib/core/config/sheets_config.dart`.
-   - Paste the service account JSON into `SheetsConfig.credentials`.
-   - Paste the spreadsheet ID into `SheetsConfig.spreadsheetId`.
+   - Copy `.env.example` to `.env` in the repo root.
+   - Set `SHEETS_SPREADSHEET_ID=<your-sheet-id>`.
+   - Set `SHEETS_CREDENTIALS_JSON=<full JSON contents on one line>`.
+   - For the JSON, keep the `\\n` escapes in `private_key`.
+   - Keep `.env` private (it is ignored by git).
 
 5. **Verify Submissions**
    - Run the app, open **Settings → Community → Submit New Card**.
    - Submit a card and confirm a new row appears in the sheet.
    - Test **Report Issue** and confirm a row appears in the corrections sheet.
    - (Optional) Go offline, submit, then go online and confirm the queued submission syncs.
+   - (Optional) Use `scripts/test_sheets_submission.dart` to append a test row via CLI.
+   - (Optional) Use `scripts/create_google_sheet.dart` to create a new sheet (requires Drive API permissions for the service account).
                                                                                                                                                                                                                                                                                                                         
 ---                                                                                                                                                                                                                                                                                                                   
 

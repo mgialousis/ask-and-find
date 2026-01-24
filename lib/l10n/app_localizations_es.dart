@@ -238,6 +238,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appearance => 'Apariencia';
 
   @override
+  String get privacy => 'Privacidad';
+
+  @override
   String get language => 'Idioma';
 
   @override
@@ -257,6 +260,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get darkModeDesc => 'Próximamente';
+
+  @override
+  String get analytics => 'Analíticas';
+
+  @override
+  String get analyticsDesc =>
+      'Ayuda a mejorar el juego enviando datos anónimos';
 
   @override
   String get settingsRestored => 'Ajustes restaurados';

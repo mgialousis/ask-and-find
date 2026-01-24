@@ -171,6 +171,7 @@
   "audio": "Audio",
   "haptics": "Haptics",
   "appearance": "Appearance",
+  "privacy": "Privacy",
   "language": "Language",
   "soundEffects": "Sound Effects",
   "soundEffectsDesc": "Play sounds during gameplay",
@@ -178,6 +179,8 @@
   "hapticFeedbackDesc": "Vibrate on interactions",
   "darkMode": "Dark Mode",
   "darkModeDesc": "Coming soon in a future update",
+  "analytics": "Analytics",
+  "analyticsDesc": "Help improve the game by sending anonymous usage data",
   "settingsRestored": "Settings restored to defaults",
   "versionNumber": "Version {number}",
   "@versionNumber": {

@@ -3,6 +3,9 @@
 *.log
 *.pyc
 *.swp
+.env
+.env.local
+.env.*.local
 .DS_Store
 .atom/
 .build/
@@ -67,3 +70,6 @@ app.*.map.json
 
 # IDE
 .vscode/
+
+# Credentials
+lib/core/config/sheets_credentials.json

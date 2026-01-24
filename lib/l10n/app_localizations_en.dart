@@ -238,6 +238,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appearance => 'Appearance';
 
   @override
+  String get privacy => 'Privacy';
+
+  @override
   String get language => 'Language';
 
   @override
@@ -257,6 +260,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get darkModeDesc => 'Coming soon in a future update';
+
+  @override
+  String get analytics => 'Analytics';
+
+  @override
+  String get analyticsDesc =>
+      'Help improve the game by sending anonymous usage data';
 
   @override
   String get settingsRestored => 'Settings restored to defaults';

@@ -147,6 +147,19 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const Divider(),
 
+          // Privacy Section
+          _SectionHeader(title: l10n.privacy),
+          SwitchListTile(
+            title: Text(l10n.analytics),
+            subtitle: Text(l10n.analyticsDesc),
+            value: settings.analyticsEnabled,
+            onChanged: (value) {
+              ref.read(settingsProvider.notifier).setAnalyticsEnabled(value);
+            },
+            secondary: const Icon(Icons.analytics_outlined),
+          ),
+          const Divider(),
+
           // Community Section
           _SectionHeader(title: l10n.community),
           _CommunitySection(),

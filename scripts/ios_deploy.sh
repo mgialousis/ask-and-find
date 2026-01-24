@@ -3,6 +3,10 @@ set -euo pipefail
 
 MODE="--release"
 DEVICE_ID=""
+DART_DEFINES=()
+POSTHOG_KEY=""
+POSTHOG_HOST=""
+POSTHOG_DEBUG=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -14,6 +18,18 @@ while [[ $# -gt 0 ]]; do
       MODE="--release"
       shift
       ;;
+    --posthog-key)
+      POSTHOG_KEY="$2"
+      shift 2
+      ;;
+    --posthog-host)
+      POSTHOG_HOST="$2"
+      shift 2
+      ;;
+    --posthog-debug)
+      POSTHOG_DEBUG="true"
+      shift
+      ;;
     *)
       DEVICE_ID="$1"
       shift
@@ -22,9 +38,25 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "${DEVICE_ID}" ]]; then
-  echo "Usage: $(basename "$0") [--debug|--release] <device-id>"
+  echo "Usage: $(basename "$0") [--debug|--release] [--posthog-key <key>] [--posthog-host <host>] [--posthog-debug] <device-id>"
   echo "Tip: flutter devices"
   exit 1
+fi
+
+if [[ -n "${POSTHOG_KEY}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_API_KEY=${POSTHOG_KEY}")
+elif [[ -n "${POSTHOG_API_KEY:-}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_API_KEY=${POSTHOG_API_KEY}")
+fi
+if [[ -n "${POSTHOG_HOST}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_HOST=${POSTHOG_HOST}")
+elif [[ -n "${POSTHOG_HOST:-}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_HOST=${POSTHOG_HOST}")
+fi
+if [[ -n "${POSTHOG_DEBUG}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_ALLOW_DEBUG=true")
+elif [[ -n "${POSTHOG_ALLOW_DEBUG:-}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_ALLOW_DEBUG=${POSTHOG_ALLOW_DEBUG}")
 fi
 
 flutter clean
@@ -34,7 +66,7 @@ pushd ios >/dev/null
 pod install
 popd >/dev/null
 
-flutter run -d "${DEVICE_ID}" "${MODE}"
+flutter run -d "${DEVICE_ID}" "${MODE}" "${DART_DEFINES[@]}"
 
 
 # RELEASE APK -  flutter build apk --release

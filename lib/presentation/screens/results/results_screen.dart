@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pes_vres/core/analytics/analytics_service.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
@@ -30,6 +33,7 @@ class ResultsScreen extends ConsumerStatefulWidget {
 class _ResultsScreenState extends ConsumerState<ResultsScreen> {
   late final ConfettiController _confettiController;
   bool _didPlayConfetti = false;
+  bool _didCaptureCompletion = false;
   OverlayEntry? _confettiOverlay;
 
   @override
@@ -40,6 +44,7 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _playConfettiIfNeeded();
+      _captureGameCompleted();
     });
   }
 
@@ -89,6 +94,33 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     _didPlayConfetti = true;
     _showConfettiOverlay();
     _confettiController.play();
+  }
+
+  void _captureGameCompleted() {
+    if (_didCaptureCompletion) return;
+    _didCaptureCompletion = true;
+
+    final setupState = ref.read(gameSetupProvider);
+    final totalPoints =
+        setupState.teams.fold<int>(0, (total, team) => total + team.score);
+    final winners = _winners(ref);
+    final isTie = _isTie(ref);
+    final winnerIndices = winners
+        .map((winner) => setupState.teams.indexOf(winner))
+        .where((index) => index >= 0)
+        .toList();
+
+    unawaited(
+      AnalyticsService.instance.capture(
+        'game_completed',
+        properties: {
+          'total_rounds': setupState.config.numberOfRounds,
+          'total_points': totalPoints,
+          'winner_indices': winnerIndices,
+          'is_tie': isTie,
+        },
+      ),
+    );
   }
 
   @override

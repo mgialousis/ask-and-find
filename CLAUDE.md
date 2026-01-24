@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Quick Status:** 🎉 FEATURE COMPLETE + User Submissions! 75 cards, confetti, animations, sounds, haptics, + community card submission feature with Google Sheets backend.
+> **Quick Status:** 🎉 FEATURE COMPLETE + User Submissions + Analytics! 75 cards, confetti, animations, sounds, haptics, community card submissions (Google Sheets), PostHog analytics with privacy controls, bilingual (EN/ES).
 
 ## Project Overview
 
@@ -25,6 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Target platforms: Android and iOS
 - Local storage: SharedPreferences for settings and offline queue
 - Backend: Google Sheets API for user submissions (gsheets ^0.5.0)
+- Analytics: PostHog (posthog_flutter ^4.10.0) with opt-out support
 - State management: Riverpod (flutter_riverpod ^2.4.0)
 - Navigation: go_router (^12.0.0)
 - Connectivity: connectivity_plus ^6.0.0
@@ -34,7 +35,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Current Phase:** Phase 4 - Day 12+ COMPLETE! 🎉
 
-### Day 12+ Achievements (User Submissions Feature):
+### Day 12+ Achievements (User Submissions + Analytics):
 - ✅ **Submit New Cards** - Users can propose new trivia cards with 10 answers
 - ✅ **Report Issues** - Users can report problems with existing cards
 - ✅ **Google Sheets Backend** - Submissions stored in Google Spreadsheet
@@ -43,6 +44,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - ✅ **Bilingual Support** - Full English and Spanish localization for submission UI
 - ✅ **Settings Integration** - Community section in Settings screen
 - ✅ **Round Result Integration** - Report Issue button after each round
+- ✅ **PostHog Analytics** - Anonymous usage tracking with user opt-out
+- ✅ **Privacy Settings** - Analytics toggle in Settings > Privacy section
+- ✅ **Build Scripts** - Android and iOS build scripts with analytics config
 
 ### Day 11 Achievements (Polish & Testing):
 - ✅ **Answer Chip Animation** - Satisfying bounce/scale effect on tap
@@ -54,15 +58,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Test Coverage:
 ```
 test/
-├── widget_test.dart              # Basic app test
+├── widget_test.dart                    # Basic app test
+├── l10n/
+│   └── localization_test.dart          # Localization tests
 ├── providers/
-│   ├── timer_provider_test.dart  # 22 tests
-│   └── game_state_provider_test.dart  # 36 tests
+│   ├── timer_provider_test.dart        # 22 tests
+│   ├── game_state_provider_test.dart   # 36 tests
+│   └── submission_provider_test.dart   # Submission provider tests
 ├── widgets/
-│   ├── answer_chip_test.dart     # 3 tests
-│   └── timer_display_test.dart   # 16 tests
+│   ├── answer_chip_test.dart           # 3 tests
+│   └── timer_display_test.dart         # 16 tests
 └── screens/
-    └── setup_screen_test.dart    # 34 tests
+    └── setup_screen_test.dart          # 34 tests
 ```
 
 ### Core Features Complete:
@@ -78,19 +85,22 @@ test/
 - ✅ **Results Confetti** - Celebration animation on winner screen
 - ✅ **User Submissions** - Submit new cards or report issues via Google Sheets
 - ✅ **Offline Queue** - Submissions saved locally when offline, auto-synced
+- ✅ **Analytics** - PostHog integration with privacy-respecting opt-out
+- ✅ **Privacy Controls** - Users can disable analytics in Settings
 
 ### What's Working:
 1. **Home Screen** - Navigation to all sections
-2. **Settings** - Sound, haptics, dark mode (persisted), Community section
+2. **Settings** - Sound, haptics, dark mode, Privacy section (analytics toggle), Community section
 3. **Setup Screen** - Teams (2-4), rounds (5/7/10), timer (30/45/60/90s), difficulty (Easy/Medium/Hard)
 4. **Game Loop** - Complete with visible answers, toggle selection, point display, animations
 5. **Round Results** - Points, scores so far, answer toggle, End Game option, Report Issue button
 6. **Final Results** - Winner announcement, scoreboard, Play Again
 7. **Card Submission** - Submit new cards with 10 answers, difficulty, optional source
 8. **Issue Reporting** - Report problems with existing cards, select card, describe issue
+9. **Analytics** - PostHog event tracking (settings changes, game events), user opt-out supported
 
 ### Important Notes for Claude:
-- **99 tests passing** - Run `flutter test` to verify
+- **99+ tests passing** - Run `flutter test` to verify
 - **Answer chip animation** - Bounce effect in `lib/presentation/widgets/game/answer_chip.dart`
 - **Timer pulse animation** - Continuous pulse in `lib/presentation/screens/game/widgets/timer_display.dart`
 - **Sound effects** - Integrated in `game_screen.dart` via audioplayers
@@ -98,6 +108,8 @@ test/
 - **User submissions** - Google Sheets config in `lib/core/config/sheets_config.dart`
 - **Offline queue** - Pending submissions stored via SharedPreferences
 - **Card submissions require exactly 10 answers** - Validation enforced in forms
+- **Analytics** - PostHog config via environment variables (see `lib/core/config/analytics_config.dart`)
+- **Privacy** - Analytics opt-out via Settings > Privacy, persisted in SharedPreferences
 - All files pass `flutter analyze` with no issues
 
 **Completed:**
@@ -174,6 +186,10 @@ test/
 - Submission state: `lib/presentation/state/submission_provider.dart`
 - Google Sheets config: `lib/core/config/sheets_config.dart`
 - Offline storage: `lib/data/sources/offline_submissions_storage.dart`
+- Analytics service: `lib/core/analytics/analytics_service.dart`
+- Analytics config: `lib/core/config/analytics_config.dart`
+- Settings state: `lib/presentation/state/settings_provider.dart`
+- Preferences keys: `lib/core/config/preferences_keys.dart`
 
 ## Common Commands
 
@@ -222,17 +238,23 @@ dart format --output=none --set-exit-if-changed lib/ test/
 
 ### Building
 ```bash
-# Build APK (Android)
+# Build APK (Android) - simple
 flutter build apk
+
+# Build APK with analytics (Android) - using build script
+POSTHOG_API_KEY=your_key scripts/android_build.sh --release
 
 # Build app bundle (Android - for Play Store)
 flutter build appbundle
 
-# Build iOS (requires macOS and Xcode)
-flutter build ios
+# Build iOS (requires macOS and Xcode) - using build script
+scripts/ios_deploy.sh --release
 
 # Build for release with specific flavor
 flutter build apk --release
+
+# Build with analytics environment variables
+flutter build apk --dart-define=POSTHOG_API_KEY=your_key --dart-define=POSTHOG_HOST=https://app.posthog.com
 ```
 
 ## Architecture & Code Organization
@@ -245,7 +267,8 @@ lib/
 ├── core/              # Cross-cutting concerns
 │   ├── theme/         # App theme, colors, text styles
 │   ├── routing/       # Navigation and route definitions
-│   ├── config/        # Configuration (sheets_config.dart)
+│   ├── config/        # Configuration (sheets_config, analytics_config, preferences_keys)
+│   ├── analytics/     # Analytics service (PostHog integration)
 │   └── utils/         # Utilities and helpers
 ├── data/              # Data layer
 │   ├── models/        # Data models (CardItem, etc.)
@@ -262,6 +285,11 @@ lib/
     │   └── ...        # Other screens
     ├── widgets/       # Reusable UI components
     └── state/         # State management (providers including submission_provider)
+
+scripts/               # Build and utility scripts
+├── android_build.sh   # Android APK build with analytics config
+├── ios_deploy.sh      # iOS build and deployment
+└── flag_language_sensitive_cards.py  # Card localization helper
 ```
 
 ### Key Domain Models
@@ -432,6 +460,17 @@ log('Message here', name: 'ComponentName');
 - Offline support: submissions queued locally, auto-synced when online
 - Connectivity monitored via `connectivity_plus` package
 - App version captured via `package_info_plus` package
+
+### Analytics (PostHog)
+- PostHog integration via `posthog_flutter` package
+- Configuration via environment variables at build time:
+  - `POSTHOG_API_KEY` - Your PostHog project API key
+  - `POSTHOG_HOST` - PostHog host (default: https://app.posthog.com)
+  - `POSTHOG_ALLOW_DEBUG` - Enable analytics in debug builds (default: false)
+- User opt-out: Settings > Privacy > Analytics toggle
+- Events captured: settings changes, game events (with anonymous device ID)
+- Super properties: app_version, platform, os_version, locale, timezone
+- Analytics disabled if API key is empty or user opts out
 
 ### Platform-Specific Features
 - Share functionality: Use OS sharing sheet

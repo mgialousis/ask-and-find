@@ -488,6 +488,12 @@ abstract class AppLocalizations {
   /// **'Appearance'**
   String get appearance;
 
+  /// No description provided for @privacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get privacy;
+
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
@@ -529,6 +535,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coming soon in a future update'**
   String get darkModeDesc;
+
+  /// No description provided for @analytics.
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics'**
+  String get analytics;
+
+  /// No description provided for @analyticsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve the game by sending anonymous usage data'**
+  String get analyticsDesc;
 
   /// No description provided for @settingsRestored.
   ///

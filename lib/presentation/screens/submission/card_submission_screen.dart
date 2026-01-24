@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:pes_vres/core/analytics/analytics_service.dart';
 import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/card_item.dart';
@@ -58,6 +61,14 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
     super.initState();
     _mode = widget.mode;
     _loadAppVersion();
+    unawaited(
+      AnalyticsService.instance.capture(
+        'submission_opened',
+        properties: {
+          'mode': _mode.name,
+        },
+      ),
+    );
 
     // Initialize form based on mode
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -145,6 +156,17 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
 
   void _handleResult(SubmissionResult result, AppLocalizations l10n) {
     if (!mounted) return;
+
+    unawaited(
+      AnalyticsService.instance.capture(
+        'submission_submitted',
+        properties: {
+          'mode': _mode.name,
+          'result': result.name,
+          'locale': Localizations.localeOf(context).languageCode,
+        },
+      ),
+    );
 
     switch (result) {
       case SubmissionResult.success:

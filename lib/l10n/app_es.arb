@@ -78,6 +78,7 @@
   "audio": "Audio",
   "haptics": "Vibración",
   "appearance": "Apariencia",
+  "privacy": "Privacidad",
   "language": "Idioma",
   "soundEffects": "Efectos de Sonido",
   "soundEffectsDesc": "Reproducir sonidos durante el juego",
@@ -85,6 +86,8 @@
   "hapticFeedbackDesc": "Vibrar en las interacciones",
   "darkMode": "Modo Oscuro",
   "darkModeDesc": "Próximamente",
+  "analytics": "Analíticas",
+  "analyticsDesc": "Ayuda a mejorar el juego enviando datos anónimos",
   "settingsRestored": "Ajustes restaurados",
   "versionNumber": "Versión {number}",
 

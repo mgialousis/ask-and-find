@@ -37,7 +37,8 @@ class GoogleSheetsService {
     }
 
     try {
-      _gsheets = GSheets(SheetsConfig.credentials);
+      final credentials = await SheetsConfig.loadCredentials();
+      _gsheets = GSheets(credentials);
       _spreadsheet = await _gsheets!.spreadsheet(SheetsConfig.spreadsheetId);
 
       // Get or create the sheets

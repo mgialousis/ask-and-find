@@ -1,219 +1,120 @@
 # Say & Find - Project Status
 
-**Last Updated:** 2026-01-19
+**Last Updated:** 2026-01-23
 
 ## Quick Summary
 
-- **Phase:** Phase 4 - Polish & Testing (Day 12 Complete!)
-- **Progress:** Feature-complete party trivia game with full polish
-- **Status:** 🎉 READY FOR RELEASE
-- **Cards:** 75 question cards
-- **Code Quality:** All files pass `flutter analyze`
-- **Tests:** 99 tests passing (5 test files)
+- **Phase:** Phase 4+ (Polish, Internationalization, Submissions, Analytics)
+- **Progress:** Feature-complete core game loop with content and submission tools
+- **Status:** Active development with new integrations in place
+- **Cards:** JSON-driven card library with per-answer point values and language support
+- **Analytics:** PostHog integrated with opt-out and `.env` config
 
 ## What Works Right Now
 
-### Fully Functional Game Features
+### Core Game Features
 
-1. **Home Screen** - Navigate to all sections
-2. **How to Play** - Full game instructions
-3. **Settings** - Sound, haptics, dark mode toggles (persisted)
-4. **Setup Screen** - Configure teams (2-4) and game settings:
-   - Team names and colors (with duplicate prevention)
-   - Number of rounds (5/7/10)
-   - Timer duration (30/45/60/90 seconds)
-   - Difficulty level (Easy/Medium/Hard)
+1. **Home Screen** - Navigate to New Game, How to Play, Settings
+2. **How to Play** - Full instructions
+3. **Settings** - Sound, haptics, dark mode (placeholder), language, analytics opt-out
+4. **Setup Screen** - Configure teams (2-4), rounds, duration, difficulty selection
+5. **Game Loop**
+   - Team handoff screen before each turn
+   - Pre-turn question preview card (tap to start timer)
+   - Refresh question button (same difficulty, avoids repeats)
+   - Countdown timer with audio tick (last 10s) and end beep
+   - Answer chips toggle selection/deselection
+   - Per-answer point values shown in round results
+   - End Round / End Game flows
+   - Team rotation: all teams play each round
+6. **Round Results Dialog**
+   - Found/missed answers
+   - Score adjustments by toggling answers
+   - Scores so far and source attribution
+   - Report issue entry point
+7. **Results Screen**
+   - Winner/tie announcement
+   - Confetti celebration
+   - Scoreboard and actions: Play Again, New Setup, Share, Home
 
-5. **Game Loop** - Complete gameplay from start to finish:
-   - Team handoff screens ("Pass device to Team X")
-   - Timer countdown with visual warnings (orange at 10s, red at 5s)
-   - **Timer pulse animation** when < 10 seconds
-   - **All answers visible from start** (no hidden numbers!)
-   - **Tap to select/deselect answers** (toggle behavior)
-   - **Answer chip bounce animation** on tap
-   - **Sound effects** for selection, timer warnings, round end
-   - **Haptic feedback** on key actions
-   - **Difficulty-based scoring:**
-     - Easy: 1 point per answer
-     - Medium: 2 points per answer
-     - Hard: 3 points per answer
-   - **Per-answer point values** shown on each chip
-   - **End Round button** to finish early
-   - **End Game button** to skip remaining rounds
-   - Team rotation (all teams play each round)
+### Content & Data
 
-6. **Round Results Dialog**:
-   - Points earned with found/missed breakdown
-   - **"Scores So Far"** showing all team standings
-   - **Toggle answers** to fix mistakes (adjusts score!)
-   - **End Game** button to skip to final results
-   - Source attribution for each question
+- Cards stored in `assets/cards.json` with:
+  - `promptEn` / `promptEs`
+  - `answersEn` / `answersEs`
+  - `answerPoints` (1-5 per answer)
+  - `languageScope` for language-specific prompts
+- Randomized selection avoids repeats within a round and across the game.
+- Answer list validation enforces exactly 10 answers for submissions.
 
-7. **Results Screen** - Final game results:
-   - Winner announcement (or tie detection)
-   - **Confetti animation** for winner celebration
-   - Sorted scoreboard with rank badges
-   - Trophy icons for top 3
-   - Share results functionality
-   - Play Again / New Setup / Home navigation
+### Submissions & Reporting
 
-### Polish Features Complete!
+- New card submission flow with validation
+- Report Issue / correction mode for existing cards
+- Offline queue and retry for submissions
+- Card preview in submission UI
+- Google Sheets setup documented in `docs/Card Submission Plan.md`
 
-- **Answer Chip Animation:** Satisfying bounce/scale effect on tap
-- **Timer Pulse Animation:** Continuous pulse when < 10s, faster when < 5s
-- **Sound Effects:** Selection sounds, countdown warnings, round end sounds
-- **Haptic Feedback:** Light impact on answer tap, heavy on round end
-- **Results Confetti:** Celebration animation on winner screen
-- **75 Question Cards:** Expanded content database
-- **Comprehensive Test Suite:** 99 tests covering providers, widgets, and screens
-- **Device Tested:** All features verified on physical device
+### Internationalization
 
-### Test Coverage
+- UI localized for English and Spanish
+- First 20+ cards translated, plus full cards translation support
+- Language selection in Settings
+- Language-sensitive cards can be flagged
 
-```
-test/
-├── widget_test.dart              # Basic app test
-├── providers/
-│   ├── timer_provider_test.dart  # 22 tests (TimerState, TimerNotifier)
-│   └── game_state_provider_test.dart  # 36 tests (GameState, RoundResult, GameStateNotifier)
-├── widgets/
-│   ├── answer_chip_test.dart     # 3 tests (display, selection, tap callback)
-│   └── timer_display_test.dart   # 16 tests (formatting, warnings, pulse animation)
-└── screens/
-    └── setup_screen_test.dart    # 34 tests (GameConfigSection, TeamSetupSection, GameSetupNotifier)
-```
+### Analytics (PostHog)
 
-## Game Flow
+- PostHog integration via `posthog_flutter`
+- Opt-out toggle in Settings → Privacy → Analytics
+- Events: app opened, game start/preview/start/end, answer toggles, refresh, game completion, submission events, language changes
+- Configuration via `.env` (`POSTHOG_API_KEY`, `POSTHOG_HOST`, `POSTHOG_ALLOW_DEBUG`) or `--dart-define`
 
-### With 2 Teams, 3 Rounds:
-```
-Round 1:
-  → Team A plays (timer, select answers, see results)
-  → Team B plays (timer, select answers, see results)
-Round 2:
-  → Team A plays
-  → Team B plays
-Round 3:
-  → Team A plays
-  → Team B plays
-→ Final Results Screen (6 total plays)
-```
+### Scripts
 
-### Scoring Example (Medium Difficulty):
-- Each answer = 2 points
-- Find 7 of 10 answers = 14 points
-- Find all 10 = 20 points
+- `scripts/ios_deploy.sh` (supports `--debug`/`--release` + PostHog env)
+- `scripts/android_build.sh` (supports `--debug`/`--release`, `--no-tree-shake-icons` + PostHog env)
 
-## Cards Database
+## Architecture Snapshot
 
-- **75 question cards** with varied topics
-- **Easy:** Days of week, pets, months, US states, body parts, colors, fruits, countries, and more
-- **Medium:** Planets, capitals, programming languages, Olympic sports, movies, instruments, cars, artists, and more
-- **Hard:** Shakespeare plays, chemical elements, state capitals, Nobel prizes, Greek gods, algorithms, constellations, and more
-
-## How to Test
-
-```bash
-# Run the app
-flutter run
-
-# Run all tests
-flutter test
-
-# Run tests with verbose output
-flutter test --reporter expanded
-
-# On physical device
-flutter run -d <device-id> --release
-
-# Test complete flow:
-# 1. Home → New Game
-# 2. Configure teams (2-4), rounds, timer, difficulty
-# 3. Start Game
-# 4. Play through rounds (all answers visible, tap to select)
-# 5. Verify team rotation (all teams play each round)
-# 6. Test End Round / End Game buttons
-# 7. Check final results
-```
-
-## Key Files
-
-### Critical Files
-1. `lib/presentation/screens/game/game_screen.dart` - Main game logic
-2. `lib/presentation/screens/setup/setup_screen.dart` - Setup configuration
-3. `lib/presentation/state/game_state_provider.dart` - Game orchestration
-4. `lib/presentation/widgets/game/answer_chip.dart` - Answer selection with animation
-5. `lib/presentation/screens/game/widgets/timer_display.dart` - Timer with pulse animation
-6. `assets/cards.json` - Question database
-
-### Architecture
 ```
 lib/
-├── core/                   # Theme, routing, utils
-├── domain/entities/        # Team, CardItem, Difficulty, GameConfig
-├── data/
-│   ├── models/             # Mock data
-│   └── repositories/       # Cards repository
+├── core/                   # Theme, routing, analytics/config
+├── domain/entities/        # Team, CardItem, Difficulty, GameConfig, submissions
+├── data/                   # Repositories and card loading
 └── presentation/
-    ├── state/              # Riverpod providers
-    │   ├── settings_provider.dart
-    │   ├── game_setup_provider.dart
-    │   ├── timer_provider.dart
-    │   └── game_state_provider.dart
-    ├── screens/            # All screens
-    └── widgets/            # Reusable components
+    ├── state/              # Riverpod providers (game, timer, settings, locale)
+    ├── screens/            # Home, setup, game, results, submission, settings
+    └── widgets/            # Reusable UI components
 ```
 
-## Known Issues
-
-**None** - All implemented features working as designed.
-
-## What's Next
-
-### Completed (Day 12):
-- [x] Manual testing on physical device
-- [x] Add more question cards (75 total!)
-- [x] Results screen confetti animation
-
-### Remaining Optional:
-- [ ] Performance profiling
-- [ ] Edge case testing
-- [ ] Score counting animation
-- [ ] Tie-breaker/overtime rounds
-- [ ] Game history tracking
-
-### Future Phases:
-- Dark mode implementation
-- App store preparation
-- Internationalization
-
-## Quick Commands
+## How to Build / Run
 
 ```bash
-flutter analyze        # Check code quality
-flutter test           # Run tests (99 tests)
-flutter run            # Run the app
-flutter run --release  # Run in release mode
+# Run locally
+flutter run
+
+# iOS deploy (device id required)
+./scripts/ios_deploy.sh --release <device-id>
+
+# Android APK
+./scripts/android_build.sh --release
 ```
+
+## Known Gaps / Follow-ups
+
+- Verify analytics events and payloads in PostHog dashboard
+- Run `flutter test` to validate current test suite after recent changes
+- Continue remaining tasks from `docs/INTERNATIONALIZATION_PLAN.md`
 
 ## Recent Progress
 
-### Day 12 (2026-01-19) - Content & Final Polish
-- ✅ Manual device testing complete
-- ✅ 75 question cards (expanded from 25)
-- ✅ Results screen confetti animation
-
-### Day 11 - Animations & Testing
-- ✅ Answer chip bounce animation
-- ✅ Timer continuous pulse animation
-- ✅ Comprehensive test suite (99 tests)
-
-### Previous Days
-- **Day 10:** Results screen refactored, Play Again functionality
-- **Day 9:** Timer provider, Game state provider, Game screen refactored
-- **Day 8:** Settings and Setup providers, persistence
-- **Days 1-7:** Core UI, game loop, all screens
-
----
-
-**Bottom Line:** 🎉 Feature-complete party trivia game! 75 question cards, sound effects, haptic feedback, smooth animations, confetti celebration, and comprehensive test coverage (99 tests). Ready for release!
+- Implemented PostHog analytics with opt-out toggle and events
+- Added Spanish localization keys and translated cards infrastructure
+- Added card submission and correction flow with validation and previews
+- Introduced per-answer point values and randomized answer selection
+- Added pre-turn question preview card and refresh question action
+- Improved audio feedback (countdown + timer-end beep)
+- Added scripts for iOS deploy and Android builds
+- Moved Sheets credentials to `.env` and added `.env.example`
+- Added `docs/RELEASE_GUIDE.md` with APK/TestFlight publishing steps
+- Added CLI scripts for sheet creation/testing via `scripts/create_google_sheet.dart` and `scripts/test_sheets_submission.dart`

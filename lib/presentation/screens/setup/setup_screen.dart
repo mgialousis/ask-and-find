@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pes_vres/core/analytics/analytics_service.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/domain/entities/game_config.dart';
@@ -215,6 +218,21 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
       );
       return;
     }
+
+    final setupState = ref.read(gameSetupProvider);
+    unawaited(
+      AnalyticsService.instance.capture(
+        'new_game_started',
+        properties: {
+          'rounds': setupState.config.numberOfRounds,
+          'duration_seconds': setupState.config.roundDurationSeconds,
+          'teams_count': setupState.teams.length,
+          'difficulties': setupState.config.difficulties
+              .map((difficulty) => difficulty.name)
+              .toList(),
+        },
+      ),
+    );
 
     ref.read(gameStateProvider.notifier).reset();
     ref.read(timerProvider.notifier).reset();
