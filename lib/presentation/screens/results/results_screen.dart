@@ -35,6 +35,8 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
   bool _didPlayConfetti = false;
   bool _didCaptureCompletion = false;
   OverlayEntry? _confettiOverlay;
+  Timer? _confettiCleanupTimer;
+  bool _isDisposed = false;
 
   @override
   void initState() {
@@ -49,6 +51,7 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
   }
 
   void _showConfettiOverlay() {
+    if (_isDisposed || !mounted) return;
     _confettiOverlay?.remove();
     _confettiOverlay = OverlayEntry(
       builder: (context) => Positioned.fill(
@@ -83,17 +86,21 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     }
     overlay.insert(_confettiOverlay!);
 
-    Future.delayed(const Duration(seconds: 6), () {
+    _confettiCleanupTimer?.cancel();
+    _confettiCleanupTimer = Timer(const Duration(seconds: 6), () {
+      if (_isDisposed) return;
       _confettiOverlay?.remove();
       _confettiOverlay = null;
     });
   }
 
   void _playConfettiIfNeeded() {
-    if (_didPlayConfetti) return;
+    if (_didPlayConfetti || _isDisposed || !mounted) return;
     _didPlayConfetti = true;
     _showConfettiOverlay();
-    _confettiController.play();
+    if (!_isDisposed) {
+      _confettiController.play();
+    }
   }
 
   void _captureGameCompleted() {
@@ -125,6 +132,9 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
 
   @override
   void dispose() {
+    _isDisposed = true;
+    _confettiCleanupTimer?.cancel();
+    _confettiCleanupTimer = null;
     _confettiOverlay?.remove();
     _confettiOverlay = null;
     _confettiController.dispose();

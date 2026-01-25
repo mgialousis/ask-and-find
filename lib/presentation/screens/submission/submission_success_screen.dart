@@ -8,7 +8,12 @@ import 'package:pes_vres/presentation/widgets/common/secondary_button.dart';
 
 /// Screen shown after a successful submission
 class SubmissionSuccessScreen extends StatefulWidget {
-  const SubmissionSuccessScreen({super.key});
+  const SubmissionSuccessScreen({
+    super.key,
+    required this.returnToGame,
+  });
+
+  final bool returnToGame;
 
   @override
   State<SubmissionSuccessScreen> createState() =>
@@ -136,17 +141,36 @@ class _SubmissionSuccessScreenState extends State<SubmissionSuccessScreen>
                 child: Column(
                   children: [
                     PrimaryButton(
-                      onPressed: () =>
-                          context.go(AppRoutes.cardSubmission),
+                      onPressed: () => context.go(
+                        AppRoutes.cardSubmission,
+                        extra: CardSubmissionLookback(
+                          returnToGame: widget.returnToGame,
+                        ),
+                      ),
                       isFullWidth: true,
                       child: Text(l10n.submitAnother),
                     ),
                     const SizedBox(height: 12),
-                    SecondaryButton(
-                      onPressed: () => context.go(AppRoutes.settings),
-                      isFullWidth: true,
-                      child: Text(l10n.backToSettings),
-                    ),
+                    if (widget.returnToGame)
+                      SecondaryButton(
+                        onPressed: () {
+                          final router = GoRouter.of(context);
+                          if (router.canPop()) {
+                            router.pop();
+                          }
+                          if (router.canPop()) {
+                            router.pop();
+                          }
+                        },
+                        isFullWidth: true,
+                        child: Text(l10n.backToGame),
+                      )
+                    else
+                      SecondaryButton(
+                        onPressed: () => context.go(AppRoutes.settings),
+                        isFullWidth: true,
+                        child: Text(l10n.backToSettings),
+                      ),
                     const SizedBox(height: 12),
                     TextButton(
                       onPressed: () => context.go(AppRoutes.home),

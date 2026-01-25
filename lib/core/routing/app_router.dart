@@ -23,6 +23,32 @@ class AppRoutes {
   static const String submissionSuccess = '/submission-success';
 }
 
+class ReportIssueLookback {
+  const ReportIssueLookback({
+    required this.returnToGame,
+    this.card,
+  });
+
+  final bool returnToGame;
+  final CardItem? card;
+}
+
+class CardSubmissionLookback {
+  const CardSubmissionLookback({
+    required this.returnToGame,
+  });
+
+  final bool returnToGame;
+}
+
+class SubmissionSuccessArgs {
+  const SubmissionSuccessArgs({
+    required this.returnToGame,
+  });
+
+  final bool returnToGame;
+}
+
 /// Route names (for use with pushNamed)
 class AppRouteNames {
   static const String home = 'home';
@@ -75,27 +101,43 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.cardSubmission,
           name: 'cardSubmission',
-          builder: (context, state) => const CardSubmissionScreen(
-            mode: SubmissionMode.newCard,
-          ),
+          builder: (context, state) {
+            final CardSubmissionLookback? lookback =
+                state.extra is CardSubmissionLookback
+                    ? state.extra as CardSubmissionLookback
+                    : null;
+            return CardSubmissionScreen(
+              mode: SubmissionMode.newCard,
+              returnToGame: lookback?.returnToGame ?? false,
+            );
+          },
         ),
         GoRoute(
           path: AppRoutes.reportIssue,
           name: 'reportIssue',
           builder: (context, state) {
-            final preselectedCard = state.extra is CardItem
-                ? state.extra as CardItem
+            final ReportIssueLookback? lookback = state.extra
+                    is ReportIssueLookback
+                ? state.extra as ReportIssueLookback
                 : null;
+            final preselectedCard = lookback?.card ??
+                (state.extra is CardItem ? state.extra as CardItem : null);
             return CardSubmissionScreen(
               mode: SubmissionMode.correction,
               preselectedCard: preselectedCard,
+              returnToGame: lookback?.returnToGame ?? false,
             );
           },
         ),
         GoRoute(
           path: AppRoutes.submissionSuccess,
           name: 'submissionSuccess',
-          builder: (context, state) => const SubmissionSuccessScreen(),
+          builder: (context, state) {
+            final args = state.extra is SubmissionSuccessArgs
+                ? state.extra as SubmissionSuccessArgs
+                : const SubmissionSuccessArgs(returnToGame: false);
+            return SubmissionSuccessScreen(returnToGame: args.returnToGame);
+          },
         ),
       ],
       errorBuilder: (context, state) => Scaffold(

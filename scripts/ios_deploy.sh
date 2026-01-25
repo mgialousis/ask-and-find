@@ -6,7 +6,7 @@ DEVICE_ID=""
 DART_DEFINES=()
 POSTHOG_KEY=""
 POSTHOG_HOST=""
-POSTHOG_DEBUG=""
+POSTHOG_DEBUG="true"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -66,7 +66,7 @@ pushd ios >/dev/null
 pod install
 popd >/dev/null
 
-flutter run -d "${DEVICE_ID}" "${MODE}" "${DART_DEFINES[@]}"
+flutter run -d "${DEVICE_ID}" "${MODE}" ${DART_DEFINES[@]+"${DART_DEFINES[@]}"}
 
 
 # RELEASE APK -  flutter build apk --release

@@ -473,6 +473,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get submitAnother => 'Submit Another';
 
   @override
+  String get backToGame => 'Back to Game';
+
+  @override
   String get backToSettings => 'Back to Settings';
 
   @override

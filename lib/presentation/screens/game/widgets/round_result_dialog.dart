@@ -244,7 +244,13 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                 // Report Issue and Show Answers Toggle
                 TextButton.icon(
                   onPressed: () {
-                    context.push(AppRoutes.reportIssue, extra: widget.card);
+                    context.push(
+                      AppRoutes.reportIssue,
+                      extra: ReportIssueLookback(
+                        returnToGame: true,
+                        card: widget.card,
+                      ),
+                    );
                   },
                   icon: const Icon(Icons.flag_outlined, size: 18),
                   label: Text(l10n.reportIssue),

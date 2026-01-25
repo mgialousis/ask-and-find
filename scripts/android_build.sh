@@ -6,7 +6,7 @@ no_tree_shake="false"
 DART_DEFINES=()
 POSTHOG_KEY=""
 POSTHOG_HOST=""
-POSTHOG_DEBUG=""
+POSTHOG_DEBUG="true"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in

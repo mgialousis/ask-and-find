@@ -476,6 +476,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get submitAnother => 'Enviar otra';
 
   @override
+  String get backToGame => 'Volver al juego';
+
+  @override
   String get backToSettings => 'Volver a ajustes';
 
   @override

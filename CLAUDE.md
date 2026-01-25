@@ -22,7 +22,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Tech Stack:**
 - Flutter (SDK: ^3.10.4)
-- Target platforms: Android and iOS
+- Target platforms: Android (JVM 17, Kotlin 1.9) and iOS
 - Local storage: SharedPreferences for settings and offline queue
 - Backend: Google Sheets API for user submissions (gsheets ^0.5.0)
 - Analytics: PostHog (posthog_flutter ^4.10.0) with opt-out support
@@ -30,6 +30,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Navigation: go_router (^12.0.0)
 - Connectivity: connectivity_plus ^6.0.0
 - App info: package_info_plus ^8.1.0
+- Environment config: flutter_dotenv ^5.1.0
 
 ## Implementation Status
 
@@ -482,3 +483,29 @@ log('Message here', name: 'ComponentName');
 - Unit tests for game logic (scoring, card selection, timer)
 - Integration tests for game flow
 - Test on both phone and tablet form factors
+
+### Android Build Configuration
+The project uses JVM 17 and Kotlin 1.9 for Android builds. This is configured in:
+- `android/app/build.gradle.kts` - App-level Java/Kotlin settings
+- `android/build.gradle.kts` - Project-level settings applied to all subprojects
+
+Key configuration (in `android/build.gradle.kts`):
+```kotlin
+gradle.projectsEvaluated {
+    allprojects {
+        tasks.withType<KotlinCompile>().configureEach {
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_17)
+                languageVersion.set(KotlinVersion.KOTLIN_1_9)
+                apiVersion.set(KotlinVersion.KOTLIN_1_9)
+            }
+        }
+        tasks.withType<JavaCompile>().configureEach {
+            sourceCompatibility = "17"
+            targetCompatibility = "17"
+        }
+    }
+}
+```
+
+This ensures all Flutter plugins (like `audioplayers_android`, `posthog_flutter`) compile with consistent JVM targets.

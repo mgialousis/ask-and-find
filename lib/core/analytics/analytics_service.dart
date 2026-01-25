@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -23,6 +24,10 @@ class AnalyticsService {
     if (_initialized) return;
 
     if (AnalyticsConfig.apiKey.isEmpty) {
+      log(
+        'Analytics disabled: missing POSTHOG_API_KEY',
+        name: 'AnalyticsService',
+      );
       _initialized = true;
       return;
     }
@@ -42,6 +47,11 @@ class AnalyticsService {
 
     await _registerSuperProperties();
     await _identifyDevice();
+
+    log(
+      'Analytics initialized (enabled=$_enabled, allowDebug=${AnalyticsConfig.allowDebug}, host=${AnalyticsConfig.host})',
+      name: 'AnalyticsService',
+    );
 
     _initialized = true;
   }

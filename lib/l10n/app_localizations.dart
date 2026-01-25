@@ -914,6 +914,12 @@ abstract class AppLocalizations {
   /// **'Submit Another'**
   String get submitAnother;
 
+  /// No description provided for @backToGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Game'**
+  String get backToGame;
+
   /// No description provided for @backToSettings.
   ///
   /// In en, this message translates to:

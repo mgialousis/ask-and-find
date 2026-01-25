@@ -31,6 +31,7 @@ class CardSubmissionScreen extends ConsumerStatefulWidget {
     super.key,
     this.mode = SubmissionMode.newCard,
     this.preselectedCard,
+    this.returnToGame = false,
   });
 
   /// The submission mode
@@ -38,6 +39,9 @@ class CardSubmissionScreen extends ConsumerStatefulWidget {
 
   /// Pre-selected card for correction mode (from round result dialog)
   final CardItem? preselectedCard;
+
+  /// Whether to return to the game flow after reporting an issue
+  final bool returnToGame;
 
   @override
   ConsumerState<CardSubmissionScreen> createState() =>
@@ -170,7 +174,7 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
 
     switch (result) {
       case SubmissionResult.success:
-        context.go(AppRoutes.submissionSuccess);
+        _navigateAfterSubmit();
         break;
       case SubmissionResult.savedLocally:
         ScaffoldMessenger.of(context).showSnackBar(
@@ -179,7 +183,7 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
             backgroundColor: AppColors.warning,
           ),
         );
-        context.go(AppRoutes.submissionSuccess);
+        _navigateAfterSubmit();
         break;
       case SubmissionResult.failed:
         ScaffoldMessenger.of(context).showSnackBar(
@@ -190,6 +194,17 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
         );
         break;
     }
+  }
+
+  void _navigateAfterSubmit() {
+    if (widget.returnToGame) {
+      context.push(
+        AppRoutes.submissionSuccess,
+        extra: const SubmissionSuccessArgs(returnToGame: true),
+      );
+      return;
+    }
+    context.go(AppRoutes.submissionSuccess);
   }
 
   @override

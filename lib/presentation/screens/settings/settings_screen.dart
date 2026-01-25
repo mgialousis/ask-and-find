@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
+import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/locale_provider.dart';
 import 'package:pes_vres/presentation/state/settings_provider.dart';
 import 'package:pes_vres/presentation/state/submission_provider.dart';
@@ -246,7 +247,13 @@ class _CommunitySection extends ConsumerWidget {
           title: Text(l10n.submitNewCard),
           subtitle: Text(l10n.submitNewCardDesc),
           trailing: const Icon(Icons.chevron_right),
-          onTap: () => context.go(AppRoutes.cardSubmission),
+          onTap: () {
+            final hasActiveGame = ref.read(gameSetupProvider).teams.isNotEmpty;
+            context.go(
+              AppRoutes.cardSubmission,
+              extra: CardSubmissionLookback(returnToGame: hasActiveGame),
+            );
+          },
         ),
         ListTile(
           leading: const Icon(Icons.flag_outlined),
