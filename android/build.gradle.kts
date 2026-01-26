@@ -28,14 +28,14 @@ gradle.projectsEvaluated {
     allprojects {
         tasks.withType<KotlinCompile>().configureEach {
             compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_17)
-                languageVersion.set(KotlinVersion.KOTLIN_1_9)
-                apiVersion.set(KotlinVersion.KOTLIN_1_9)
+                jvmTarget.set(JvmTarget.JVM_1_8)
+                languageVersion.set(KotlinVersion.KOTLIN_1_8)
+                apiVersion.set(KotlinVersion.KOTLIN_1_8)
             }
         }
         tasks.withType<JavaCompile>().configureEach {
-            sourceCompatibility = "17"
-            targetCompatibility = "17"
+            sourceCompatibility = "1.8"
+            targetCompatibility = "1.8"
         }
     }
 }

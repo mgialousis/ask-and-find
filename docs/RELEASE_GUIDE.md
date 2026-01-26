@@ -65,3 +65,4 @@ dart run scripts/test_sheets_submission.dart
 
 - Do not commit `.env` or credentials JSON.
 - If submissions are enabled, ensure the Google Sheet is shared with the service account email.
+- Android builds assume Java/Kotlin target 1.8. If you see JVM target mismatch errors, check `android/app/build.gradle.kts` and `android/build.gradle.kts`.

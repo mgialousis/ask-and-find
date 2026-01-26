@@ -555,6 +555,12 @@ flutter pub get
 flutter run
 ```
 
+**If the error mentions JVM target mismatch (Java 1.8 vs Kotlin 17):**
+- Ensure Java/Kotlin targets match in:
+  - `android/app/build.gradle.kts` (`compileOptions` + `kotlinOptions`)
+  - `android/build.gradle.kts` (`compilerOptions` for Kotlin, `JavaCompile` tasks)
+- This repo is configured for Java/Kotlin 1.8 to align plugin modules.
+
 ---
 
 ## Quick Reference Commands
