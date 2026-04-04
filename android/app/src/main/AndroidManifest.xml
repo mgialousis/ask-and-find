@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="pes_vres"
+        android:label="Ask &amp; Find"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

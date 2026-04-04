@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 
-/// Typography styles for the "Say & Find" app
+/// Typography styles for the "Ask & Find" app
 class AppTextStyles {
   // Private constructor to prevent instantiation
   AppTextStyles._();

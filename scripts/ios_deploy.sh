@@ -4,9 +4,17 @@ set -euo pipefail
 MODE="--release"
 DEVICE_ID=""
 DART_DEFINES=()
-POSTHOG_KEY=""
-POSTHOG_HOST=""
-POSTHOG_DEBUG="true"
+POSTHOG_KEY_ARG=""
+POSTHOG_HOST_ARG=""
+POSTHOG_DEBUG_ARG="true"
+ENV_FILE="${ENV_FILE:-.env}"
+
+if [[ -f "${ENV_FILE}" ]]; then
+  set -a
+  # shellcheck disable=SC1090
+  source "${ENV_FILE}"
+  set +a
+fi
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -19,15 +27,15 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --posthog-key)
-      POSTHOG_KEY="$2"
+      POSTHOG_KEY_ARG="$2"
       shift 2
       ;;
     --posthog-host)
-      POSTHOG_HOST="$2"
+      POSTHOG_HOST_ARG="$2"
       shift 2
       ;;
     --posthog-debug)
-      POSTHOG_DEBUG="true"
+      POSTHOG_DEBUG_ARG="true"
       shift
       ;;
     *)
@@ -43,17 +51,17 @@ if [[ -z "${DEVICE_ID}" ]]; then
   exit 1
 fi
 
-if [[ -n "${POSTHOG_KEY}" ]]; then
-  DART_DEFINES+=("--dart-define=POSTHOG_API_KEY=${POSTHOG_KEY}")
+if [[ -n "${POSTHOG_KEY_ARG}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_API_KEY=${POSTHOG_KEY_ARG}")
 elif [[ -n "${POSTHOG_API_KEY:-}" ]]; then
   DART_DEFINES+=("--dart-define=POSTHOG_API_KEY=${POSTHOG_API_KEY}")
 fi
-if [[ -n "${POSTHOG_HOST}" ]]; then
-  DART_DEFINES+=("--dart-define=POSTHOG_HOST=${POSTHOG_HOST}")
+if [[ -n "${POSTHOG_HOST_ARG}" ]]; then
+  DART_DEFINES+=("--dart-define=POSTHOG_HOST=${POSTHOG_HOST_ARG}")
 elif [[ -n "${POSTHOG_HOST:-}" ]]; then
   DART_DEFINES+=("--dart-define=POSTHOG_HOST=${POSTHOG_HOST}")
 fi
-if [[ -n "${POSTHOG_DEBUG}" ]]; then
+if [[ -n "${POSTHOG_DEBUG_ARG}" ]]; then
   DART_DEFINES+=("--dart-define=POSTHOG_ALLOW_DEBUG=true")
 elif [[ -n "${POSTHOG_ALLOW_DEBUG:-}" ]]; then
   DART_DEFINES+=("--dart-define=POSTHOG_ALLOW_DEBUG=${POSTHOG_ALLOW_DEBUG}")

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/core/theme/app_text_styles.dart';
 
-/// Theme configuration for the "Say & Find" app
+/// Theme configuration for the "Ask & Find" app
 class AppTheme {
   // Private constructor to prevent instantiation
   AppTheme._();

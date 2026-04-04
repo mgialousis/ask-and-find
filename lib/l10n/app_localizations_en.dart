@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Say & Find';
+  String get appTitle => 'Ask & Find';
 
   @override
   String get appTagline => 'The Ultimate Party Trivia Game';
@@ -348,7 +348,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tip4 => 'Learn from revealed answers at the end of each round.';
 
   @override
-  String get shareTitle => 'Say & Find - Game Results';
+  String get shareTitle => 'Ask & Find - Game Results';
 
   @override
   String get shareWinner => 'Winner:';

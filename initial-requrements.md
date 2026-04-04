@@ -1,4 +1,4 @@
-# Initial Requirements – “Say & Find” (English Version of Πες Βρες)
+# Initial Requirements – “Ask & Find” (English Version of Πες Βρες)
 
 > This document specifies the first version of a Flutter application that replicates the functionality of the Greek party game app “Πες Βρες!” (Pes Vres), but fully in English. It should **match the core gameplay and feature set**, without copying any copyrighted branding, artwork, or question text from the original.
 
@@ -8,7 +8,7 @@
 
 ### 1.1 Concept
 
-“Say & Find” is a **local multiplayer party trivia game** played on a **single device** (phone or tablet).  
+“Ask & Find” is a **local multiplayer party trivia game** played on a **single device** (phone or tablet).  
 Players split into **2–4 teams**. Each round, one team tries to guess as many items as possible from a hidden list (e.g., “European capitals”) **before the timer expires**. Their correct guesses score points. After a fixed number of rounds, the team with the highest score wins.
 
 This is effectively an **English clone of “Πες Βρες!”** in terms of functionality:
@@ -134,7 +134,7 @@ This mirrors the “overtime in case of tie” feature in the original app.  [oa
 
 ### 3.1 Splash / Launch Screen
 
-- Simple logo + app name (“Say & Find” or TBD).
+- Simple logo + app name (“Ask & Find” or TBD).
 - Short loading state if needed while initializing local DB / assets.
 
 ### 3.2 Home Screen
@@ -223,7 +223,7 @@ Elements:
     - “New Setup” (return to setup).
     - “Share Result”:
         - Use OS sharing sheet with text like:
-            - “We just played ‘Say & Find’ – Winner: Team Green with 27 points!”
+            - “We just played ‘Ask & Find’ – Winner: Team Green with 27 points!”
 
 The original app allows sharing wins on social platforms; here we use generic share to respect platform-neutral design.  [oai_citation:7‡Πες Βρες App](https://www.pesvres.com/?utm_source=chatgpt.com)
 
@@ -303,7 +303,7 @@ class RoundResult {
     - Exact question/card texts
     - Brand name “Πες Βρες”
     - Game graphics or logo assets from the original app.
-- Use **original English prompts and answers**, and new branding (e.g., “Say & Find”).
+- Use **original English prompts and answers**, and new branding (e.g., “Ask & Find”).
 
 ### 5.5 Code Style & Architecture Guidelines
 To ensure maintainable, scalable, and readable code, the following style and architectural patterns must be applied throughout the project:

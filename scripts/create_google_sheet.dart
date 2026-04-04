@@ -36,7 +36,7 @@ Future<void> main() async {
   final credentials = jsonDecode(rawCredentials) as Map<String, dynamic>;
   final gsheets = GSheets(credentials);
 
-  final title = 'Say & Find Submissions ${DateTime.now().toIso8601String().substring(0, 10)}';
+  final title = 'Ask & Find Submissions ${DateTime.now().toIso8601String().substring(0, 10)}';
   final spreadsheet = await gsheets.createSpreadsheet(
     title,
     worksheetTitles: const [

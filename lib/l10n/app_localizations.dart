@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Say & Find'**
+  /// **'Ask & Find'**
   String get appTitle;
 
   /// No description provided for @appTagline.
@@ -689,7 +689,7 @@ abstract class AppLocalizations {
   /// No description provided for @shareTitle.
   ///
   /// In en, this message translates to:
-  /// **'Say & Find - Game Results'**
+  /// **'Ask & Find - Game Results'**
   String get shareTitle;
 
   /// No description provided for @shareWinner.

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This plan details how to add Spanish language support to the "Say & Find" app, making it fully bilingual (English/Spanish) with the ability to easily add more languages in the future.
+This plan details how to add Spanish language support to the "Ask & Find" app, making it fully bilingual (English/Spanish) with the ability to easily add more languages in the future.
 
 ## Progress (current)
 
@@ -94,7 +94,7 @@ lib/
 {
   "@@locale": "en",
 
-  "appTitle": "Say & Find",
+  "appTitle": "Ask & Find",
   "appTagline": "The Ultimate Party Trivia Game",
 
   "newGame": "New Game",
@@ -271,7 +271,7 @@ lib/
   "tip3": "Watch the timer! The last 10 seconds are critical.",
   "tip4": "Learn from revealed answers at the end of each round.",
 
-  "shareTitle": "Say & Find - Game Results",
+  "shareTitle": "Ask & Find - Game Results",
   "shareWinner": "Winner:",
   "shareTie": "Tie between:",
   "shareScore": "Score:",

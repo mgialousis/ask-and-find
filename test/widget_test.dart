@@ -1,4 +1,4 @@
-// Basic widget test for Say & Find app
+// Basic widget test for Ask & Find app
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility in the flutter_test package.
@@ -13,7 +13,7 @@ void main() {
     await tester.pumpWidget(const App());
 
     // Verify that the home screen renders with app title
-    expect(find.text('Say & Find'), findsOneWidget);
+    expect(find.text('Ask & Find'), findsOneWidget);
     expect(find.text('New Game'), findsOneWidget);
   });
 }

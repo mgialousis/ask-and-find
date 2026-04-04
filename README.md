@@ -1,10 +1,10 @@
-# Say & Find
+# Ask & Find
 
 A local multiplayer party trivia game built with Flutter. Teams compete to guess items from hidden lists before time runs out!
 
-## 🎮 What is Say & Find?
+## 🎮 What is Ask & Find?
 
-Say & Find is an English version inspired by the Greek game "Πες Βρες!" where 2-4 teams take turns guessing answers from category-based prompts. Think of it as a party game mashup of trivia and speed thinking!
+Ask & Find is an English version inspired by the Greek game "Πες Βρες!" where 2-4 teams take turns guessing answers from category-based prompts. Think of it as a party game mashup of trivia and speed thinking!
 
 **Example Prompt:** "Name countries in Europe"
 - 10 hidden answers to discover

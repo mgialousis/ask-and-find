@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// App-wide color palette for the "Say & Find" game
+/// App-wide color palette for the "Ask & Find" game
 class AppColors {
   // Private constructor to prevent instantiation
   AppColors._();

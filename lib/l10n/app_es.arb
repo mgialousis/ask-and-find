@@ -1,7 +1,7 @@
 {
   "@@locale": "es",
 
-  "appTitle": "Di y Encuentra",
+  "appTitle": "Pregunta y Encuentra",
   "appTagline": "El Juego de Trivia Definitivo",
 
   "newGame": "Nuevo Juego",
@@ -115,7 +115,7 @@
   "tip3": "¡Vigila el temporizador! Los últimos 10 segundos son críticos.",
   "tip4": "Aprende de las respuestas reveladas al final de cada ronda.",
 
-  "shareTitle": "Di y Encuentra - Resultados",
+  "shareTitle": "Pregunta y Encuentra - Resultados",
   "shareWinner": "Ganador:",
   "shareTie": "Empate entre:",
   "shareScore": "Puntuación:",

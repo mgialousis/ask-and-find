@@ -1,6 +1,6 @@
-# Mobile Testing Guide - Say & Find
+# Mobile Testing Guide - Ask & Find
 
-This guide walks you through testing the "Say & Find" Flutter app on physical Android and iOS devices.
+This guide walks you through testing the "Ask & Find" Flutter app on physical Android and iOS devices.
 
 ---
 

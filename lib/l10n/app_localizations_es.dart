@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'Di y Encuentra';
+  String get appTitle => 'Pregunta y Encuentra';
 
   @override
   String get appTagline => 'El Juego de Trivia Definitivo';
@@ -350,7 +350,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Aprende de las respuestas reveladas al final de cada ronda.';
 
   @override
-  String get shareTitle => 'Di y Encuentra - Resultados';
+  String get shareTitle => 'Pregunta y Encuentra - Resultados';
 
   @override
   String get shareWinner => 'Ganador:';
