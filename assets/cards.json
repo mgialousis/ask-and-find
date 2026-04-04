@@ -423,63 +423,6 @@
     ]
   },
   {
-    "id": "9",
-    "promptEn": "Name 10 Nobel Prize categories",
-    "answersEn": [
-      "Physics",
-      "Chemistry",
-      "Medicine",
-      "Literature",
-      "Peace",
-      "Economics",
-      "Physiology",
-      "Mathematics",
-      "Humanitarian",
-      "Achievement"
-    ],
-    "difficulty": "hard",
-    "source": "Source: Nobel Foundation categories",
-    "answerPoints": {
-      "Physics": 3,
-      "Chemistry": 3,
-      "Medicine": 3,
-      "Literature": 3,
-      "Peace": 3,
-      "Economics": 3,
-      "Physiology": 4,
-      "Mathematics": 5,
-      "Humanitarian": 5,
-      "Achievement": 5,
-      "Física": 3,
-      "Química": 3,
-      "Medicina": 3,
-      "Literatura": 3,
-      "Paz": 3,
-      "Economía": 3,
-      "Fisiología": 4,
-      "Matemáticas": 5,
-      "Humanitario": 5,
-      "Logro": 5
-    },
-    "promptEs": "Nombra 10 categorías del Premio Nobel",
-    "answersEs": [
-      "Física",
-      "Química",
-      "Medicina",
-      "Literatura",
-      "Paz",
-      "Economía",
-      "Fisiología",
-      "Matemáticas",
-      "Humanitario",
-      "Logro"
-    ],
-    "languageScope": [
-      "en",
-      "es"
-    ]
-  },
-  {
     "id": "10",
     "promptEn": "Name 10 famous painters in history",
     "answersEn": [
@@ -897,63 +840,6 @@
     ]
   },
   {
-    "id": "18",
-    "promptEn": "Name 10 chemical elements named after places",
-    "answersEn": [
-      "Polonium",
-      "Americium",
-      "Europium",
-      "Germanium",
-      "Californium",
-      "Copper (from Cyprus)",
-      "Magnesium (from Magnesia)",
-      "Scandium (from Scandinavia)",
-      "Strontium",
-      "Tellurium"
-    ],
-    "difficulty": "hard",
-    "source": "Source: Periodic Table name origins",
-    "answerPoints": {
-      "Polonium": 3,
-      "Americium": 3,
-      "Europium": 3,
-      "Germanium": 3,
-      "Californium": 4,
-      "Copper (from Cyprus)": 3,
-      "Magnesium (from Magnesia)": 3,
-      "Scandium (from Scandinavia)": 4,
-      "Strontium": 4,
-      "Tellurium": 4,
-      "Polonio": 3,
-      "Americio": 3,
-      "Europio": 3,
-      "Germanio": 3,
-      "Californio": 4,
-      "Cobre (de Chipre)": 3,
-      "Magnesio (de Magnesia)": 3,
-      "Escandio (de Escandinavia)": 4,
-      "Estroncio": 4,
-      "Telurio": 4
-    },
-    "promptEs": "Nombra 10 elementos químicos nombrados por lugares",
-    "answersEs": [
-      "Polonio",
-      "Americio",
-      "Europio",
-      "Germanio",
-      "Californio",
-      "Cobre (de Chipre)",
-      "Magnesio (de Magnesia)",
-      "Escandio (de Escandinavia)",
-      "Estroncio",
-      "Telurio"
-    ],
-    "languageScope": [
-      "en",
-      "es"
-    ]
-  },
-  {
     "id": "19",
     "promptEn": "Name 10 large bodies of water (seas or oceans)",
     "answersEn": [
@@ -1324,63 +1210,6 @@
     ]
   },
   {
-    "id": "26",
-    "promptEn": "Name 10 longest rivers in the world",
-    "answersEn": [
-      "Nile River",
-      "Amazon River",
-      "Yangtze River",
-      "Mississippi-Missouri River System",
-      "Yenisei River",
-      "Yellow River",
-      "Ob-Irtysh River",
-      "Paraná River",
-      "Congo River",
-      "Amur River"
-    ],
-    "difficulty": "hard",
-    "source": "Source: Longest rivers global rankings",
-    "answerPoints": {
-      "Nile River": 1,
-      "Amazon River": 1,
-      "Yangtze River": 2,
-      "Mississippi-Missouri River System": 2,
-      "Yenisei River": 3,
-      "Yellow River": 3,
-      "Ob-Irtysh River": 4,
-      "Paraná River": 4,
-      "Congo River": 3,
-      "Amur River": 5,
-      "Río Nilo": 1,
-      "Río Amazonas": 1,
-      "Río Yangtsé": 2,
-      "Sistema fluvial Misisipi–Misuri": 2,
-      "Río Yeniséi": 3,
-      "Río Amarillo": 3,
-      "Río Obi-Irtish": 4,
-      "Río Paraná": 4,
-      "Río Congo": 3,
-      "Río Amur": 5
-    },
-    "languageScope": [
-      "en",
-      "es"
-    ],
-    "promptEs": "Nombra los 10 ríos más largos del mundo",
-    "answersEs": [
-      "Río Nilo",
-      "Río Amazonas",
-      "Río Yangtsé",
-      "Sistema fluvial Misisipi–Misuri",
-      "Río Yeniséi",
-      "Río Amarillo",
-      "Río Obi-Irtish",
-      "Río Paraná",
-      "Río Congo",
-      "Río Amur"
-    ]
-  },
-  {
     "id": "27",
     "promptEn": "Name 10 largest lakes in the world by area",
     "answersEn": [
@@ -1443,32 +1272,31 @@
     "answersEn": [
       "New York City",
       "Los Angeles",
-      "Houston",
       "Chicago",
-      "Washington, D.C.",
-      "San Francisco",
-      "Miami",
-      "Denver",
+      "Houston",
+      "Phoenix",
       "Philadelphia",
-      "Las Vegas"
+      "San Antonio",
+      "San Diego",
+      "Dallas",
+      "Jacksonville"
     ],
     "difficulty": "medium",
-    "source": "Source: U.S. city population estimates 2025",
+    "source": "Source: U.S. Census Bureau population estimates 2024",
     "answerPoints": {
       "New York City": 1,
       "Los Angeles": 1,
+      "Chicago": 1,
       "Houston": 2,
-      "Chicago": 2,
-      "Washington, D.C.": 3,
-      "San Francisco": 3,
-      "Miami": 4,
-      "Denver": 4,
-      "Philadelphia": 3,
-      "Las Vegas": 5,
+      "Phoenix": 2,
+      "Philadelphia": 2,
+      "San Antonio": 3,
+      "San Diego": 3,
+      "Dallas": 3,
+      "Jacksonville": 4,
       "Nueva York": 1,
       "Los Ángeles": 1,
-      "Washington, D. C.": 3,
-      "Filadelfia": 3
+      "Filadelfia": 2
     },
     "languageScope": [
       "en",
@@ -1478,14 +1306,14 @@
     "answersEs": [
       "Nueva York",
       "Los Ángeles",
-      "Houston",
       "Chicago",
-      "Washington, D. C.",
-      "San Francisco",
-      "Miami",
-      "Denver",
+      "Houston",
+      "Phoenix",
       "Filadelfia",
-      "Las Vegas"
+      "San Antonio",
+      "San Diego",
+      "Dallas",
+      "Jacksonville"
     ]
   },
   {
@@ -1714,8 +1542,8 @@
     "answersEn": [
       "United States",
       "China",
-      "Japan",
       "Germany",
+      "Japan",
       "India",
       "United Kingdom",
       "France",
@@ -1724,7 +1552,7 @@
       "Italy"
     ],
     "difficulty": "medium",
-    "source": "Source: IMF World Economic Outlook 2025",
+    "source": "Source: IMF World Economic Outlook 2025 (Germany overtook Japan in 2023)",
     "answerPoints": {
       "United States": 1,
       "China": 1,
@@ -1753,8 +1581,8 @@
     "answersEs": [
       "Estados Unidos",
       "China",
-      "Japón",
       "Alemania",
+      "Japón",
       "India",
       "Reino Unido",
       "Francia",
@@ -1983,10 +1811,10 @@
     "promptEn": "Name 10 African capital cities",
     "answersEn": [
       "Cairo",
-      "Lagos",
+      "Abuja",
       "Kinshasa",
       "Nairobi",
-      "Cape Town",
+      "Pretoria",
       "Addis Ababa",
       "Accra",
       "Algiers",
@@ -1994,21 +1822,21 @@
       "Tunis"
     ],
     "difficulty": "medium",
-    "source": "Source: Africa capital cities list",
+    "source": "Source: African capital cities (UN geographic data)",
     "answerPoints": {
       "Cairo": 1,
-      "Lagos": 2,
+      "Abuja": 2,
       "Kinshasa": 2,
       "Nairobi": 3,
-      "Cape Town": 3,
+      "Pretoria": 3,
       "Addis Ababa": 2,
       "Accra": 3,
       "Algiers": 2,
       "Dakar": 4,
       "Tunis": 4,
       "El Cairo": 1,
+      "Abuya": 2,
       "Kinsasa": 2,
-      "Ciudad del Cabo": 3,
       "Adís Abeba": 2,
       "Acra": 3,
       "Argel": 2,
@@ -2021,10 +1849,10 @@
     "promptEs": "Nombra 10 capitales africanas",
     "answersEs": [
       "El Cairo",
-      "Lagos",
+      "Abuya",
       "Kinsasa",
       "Nairobi",
-      "Ciudad del Cabo",
+      "Pretoria",
       "Adís Abeba",
       "Acra",
       "Argel",
@@ -3062,59 +2890,6 @@
     ]
   },
   {
-    "id": "76",
-    "promptEn": "Name 10 largest islands in the world by area",
-    "answersEn": [
-      "Greenland",
-      "New Guinea",
-      "Borneo",
-      "Madagascar",
-      "Baffin Island",
-      "Sumatra",
-      "Honshu",
-      "Victoria Island",
-      "Great Britain",
-      "Ellesmere Island"
-    ],
-    "difficulty": "medium",
-    "source": "Source: World’s largest islands by area (Wikipedia)",
-    "answerPoints": {
-      "Greenland": 1,
-      "New Guinea": 2,
-      "Borneo": 2,
-      "Madagascar": 3,
-      "Baffin Island": 4,
-      "Sumatra": 4,
-      "Honshu": 4,
-      "Victoria Island": 5,
-      "Great Britain": 3,
-      "Ellesmere Island": 5,
-      "Groenlandia": 1,
-      "Nueva Guinea": 2,
-      "Isla de Baffin": 4,
-      "Isla Victoria": 5,
-      "Gran Bretaña": 3,
-      "Isla Ellesmere": 5
-    },
-    "languageScope": [
-      "en",
-      "es"
-    ],
-    "promptEs": "Nombra las 10 islas más grandes del mundo por área",
-    "answersEs": [
-      "Groenlandia",
-      "Nueva Guinea",
-      "Borneo",
-      "Madagascar",
-      "Isla de Baffin",
-      "Sumatra",
-      "Honshu",
-      "Isla Victoria",
-      "Gran Bretaña",
-      "Isla Ellesmere"
-    ]
-  },
-  {
     "id": "77",
     "promptEn": "Name 10 of the longest mountain ranges on Earth",
     "answersEn": [
@@ -3861,117 +3636,6 @@
     ]
   },
   {
-    "id": "91",
-    "promptEn": "Name 10 common fruits eaten around the world",
-    "answersEn": [
-      "Apple",
-      "Banana",
-      "Orange",
-      "Grape",
-      "Strawberry",
-      "Pineapple",
-      "Watermelon",
-      "Mango",
-      "Pear",
-      "Peach"
-    ],
-    "difficulty": "easy",
-    "source": "Source: Global common fruit list",
-    "answerPoints": {
-      "Apple": 1,
-      "Banana": 1,
-      "Orange": 1,
-      "Grape": 2,
-      "Strawberry": 2,
-      "Pineapple": 3,
-      "Watermelon": 2,
-      "Mango": 3,
-      "Pear": 3,
-      "Peach": 3,
-      "Manzana": 1,
-      "Naranja": 1,
-      "Uva": 2,
-      "Fresa": 2,
-      "Piña": 3,
-      "Sandía": 2,
-      "Pera": 3,
-      "Durazno": 3
-    },
-    "languageScope": [
-      "en",
-      "es"
-    ],
-    "promptEs": "Nombra 10 frutas comunes consumidas en el mundo",
-    "answersEs": [
-      "Manzana",
-      "Banana",
-      "Naranja",
-      "Uva",
-      "Fresa",
-      "Piña",
-      "Sandía",
-      "Mango",
-      "Pera",
-      "Durazno"
-    ]
-  },
-  {
-    "id": "92",
-    "promptEn": "Name 10 types of renewable energy sources",
-    "answersEn": [
-      "Solar",
-      "Wind",
-      "Hydropower",
-      "Geothermal",
-      "Biomass",
-      "Ocean Thermal",
-      "Tidal",
-      "Wave",
-      "Hydrogen",
-      "Enhanced geothermal systems"
-    ],
-    "difficulty": "medium",
-    "source": "Source: Renewable energy classification",
-    "answerPoints": {
-      "Solar": 1,
-      "Wind": 1,
-      "Hydropower": 1,
-      "Geothermal": 2,
-      "Biomass": 2,
-      "Ocean Thermal": 5,
-      "Tidal": 3,
-      "Wave": 4,
-      "Hydrogen": 3,
-      "Enhanced geothermal systems": 5,
-      "Eólica": 1,
-      "Hidroeléctrica": 1,
-      "Geotérmica": 2,
-      "Biomasa": 2,
-      "Térmica oceánica": 5,
-      "Mareomotriz": 3,
-      "Undimotriz": 4,
-      "Hidrógeno": 3,
-      "Sistemas geotérmicos mejorados": 5
-    },
-    "languageScope": [
-      "en",
-      "es"
-    ],
-    "promptEs": "Nombra 10 tipos de fuentes de energía renovable",
-    "answersEs": [
-      "Solar",
-      "Eólica",
-      "Hidroeléctrica",
-      "Geotérmica",
-      "Biomasa",
-      "Térmica oceánica",
-      "Mareomotriz",
-      "Undimotriz",
-      "Hidrógeno",
-      "Sistemas geotérmicos mejorados"
-    ]
-  },
-  {
     "id": "93",
     "promptEn": "Name 10 major ancient wonders of the world",
     "answersEn": [
@@ -4232,130 +3896,6 @@
     ]
   },
   {
-    "id": "98",
-    "promptEn": "Name 10 widely spoken Scandinavian languages or dialects",
-    "answersEn": [
-      "Swedish",
-      "Norwegian",
-      "Danish",
-      "Finnish",
-      "Icelandic",
-      "Sámi",
-      "Greenlandic",
-      "Faroese",
-      "Estonian",
-      "Inari Sámi"
-    ],
-    "difficulty": "hard",
-    "source": "Source: Nordic linguistic maps",
-    "answerPoints": {
-      "Swedish": 1,
-      "Norwegian": 1,
-      "Danish": 1,
-      "Finnish": 2,
-      "Icelandic": 3,
-      "Sámi": 4,
-      "Greenlandic": 5,
-      "Faroese": 5,
-      "Estonian": 5,
-      "Inari Sámi": 5,
-      "Sueco": 1,
-      "Noruego": 1,
-      "Danés": 1,
-      "Finés": 2,
-      "Islandés": 3,
-      "Sami": 4,
-      "Groenlandés": 5,
-      "Feroés": 5,
-      "Estonio": 5,
-      "Sami de Inari": 5
-    },
-    "languageScope": [
-      "en",
-      "es"
-    ],
-    "promptEs": "Nombra 10 idiomas o dialectos escandinavos ampliamente hablados",
-    "answersEs": [
-      "Sueco",
-      "Noruego",
-      "Danés",
-      "Finés",
-      "Islandés",
-      "Sami",
-      "Groenlandés",
-      "Feroés",
-      "Estonio",
-      "Sami de Inari"
-    ]
-  },
-  {
-    "id": "99",
-    "promptEn": "Name 10 recognised national flags by their colours",
-    "answersEn": [
-      "Red, White, Blue (France)",
-      "Red, White, Blue (United States)",
-      "Red, White, Green (Italy)",
-      "Red, Yellow, Red (Spain)",
-      "Blue, Yellow, Blue (Sweden)",
-      "White, Red (Japan)",
-      "Red, Yellow, Green (Bolivia)",
-      "Blue, White (Greece)",
-      "Green, White, Orange (Ireland)",
-      "Black, Red, Yellow (Germany)"
-    ],
-    "difficulty": "medium",
-    "source": "Source: Country flag colour patterns",
-    "answerPoints": {
-      "France": 2,
-      "United States": 1,
-      "Italy": 2,
-      "Spain": 3,
-      "Sweden": 3,
-      "Japan": 2,
-      "Bolivia": 4,
-      "Greece": 3,
-      "Ireland": 4,
-      "Germany": 2,
-      "Red, White, Blue (France)": 2,
-      "Rojo, Blanco, Azul (Francia)": 2,
-      "Red, White, Blue (United States)": 1,
-      "Rojo, Blanco, Azul (Estados Unidos)": 1,
-      "Red, White, Green (Italy)": 2,
-      "Rojo, Blanco, Verde (Italia)": 2,
-      "Red, Yellow, Red (Spain)": 3,
-      "Rojo, Amarillo, Rojo (España)": 3,
-      "Blue, Yellow, Blue (Sweden)": 3,
-      "Azul, Amarillo, Azul (Suecia)": 3,
-      "White, Red (Japan)": 2,
-      "Blanco, Rojo (Japón)": 2,
-      "Red, Yellow, Green (Bolivia)": 4,
-      "Rojo, Amarillo, Verde (Bolivia)": 4,
-      "Blue, White (Greece)": 3,
-      "Azul, Blanco (Grecia)": 3,
-      "Green, White, Orange (Ireland)": 4,
-      "Verde, Blanco, Naranja (Irlanda)": 4,
-      "Black, Red, Yellow (Germany)": 2,
-      "Negro, Rojo, Amarillo (Alemania)": 2
-    },
-    "languageScope": [
-      "en",
-      "es"
-    ],
-    "promptEs": "Nombra 10 banderas nacionales reconocidas por sus colores",
-    "answersEs": [
-      "Rojo, Blanco, Azul (Francia)",
-      "Rojo, Blanco, Azul (Estados Unidos)",
-      "Rojo, Blanco, Verde (Italia)",
-      "Rojo, Amarillo, Rojo (España)",
-      "Azul, Amarillo, Azul (Suecia)",
-      "Blanco, Rojo (Japón)",
-      "Rojo, Amarillo, Verde (Bolivia)",
-      "Azul, Blanco (Grecia)",
-      "Verde, Blanco, Naranja (Irlanda)",
-      "Negro, Rojo, Amarillo (Alemania)"
-    ]
-  },
-  {
     "id": "100",
     "promptEn": "Name 10 influential global leaders of the 20th century",
     "answersEn": [
@@ -4448,7 +3988,10 @@
       "Angkor Wat",
       "Chichén Itzá"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "102",
@@ -4492,7 +4035,10 @@
       "Batalla de Midway",
       "Batalla de Verdún"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "103",
@@ -4538,7 +4084,10 @@
       "Vasco da Gama",
       "Lewis y Clark"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "104",
@@ -4553,7 +4102,7 @@
       "Persian Empire",
       "Ancient China",
       "Mesopotamia",
-      "Ottoman Empire"
+      "Phoenicia"
     ],
     "difficulty": "medium",
     "source": "Source: World history",
@@ -4567,7 +4116,16 @@
       "Persian Empire": 3,
       "Ancient China": 2,
       "Mesopotamia": 4,
-      "Ottoman Empire": 3
+      "Phoenicia": 4,
+      "Antiguo Egipto": 1,
+      "Imperio Romano": 1,
+      "Antigua Grecia": 1,
+      "Civilización Maya": 2,
+      "Imperio Inca": 2,
+      "Imperio Azteca": 2,
+      "Imperio Persa": 3,
+      "China Antigua": 2,
+      "Fenicia": 4
     },
     "promptEs": "Nombra 10 civilizaciones antiguas",
     "answersEs": [
@@ -4580,9 +4138,12 @@
       "Imperio Persa",
       "China Antigua",
       "Mesopotamia",
-      "Imperio Otomano"
+      "Fenicia"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "105",
@@ -4626,7 +4187,10 @@
       "Manifiesto Comunista",
       "Discurso de Gettysburg"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "106",
@@ -4670,7 +4234,10 @@
       "Revolución Haitiana",
       "Revolución Digital"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "107",
@@ -4714,7 +4281,10 @@
       "Reina Isabel I de Castilla",
       "Emperatriz Josefina"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "108",
@@ -4763,7 +4333,10 @@
       "El Señor de los Anillos: El Retorno del Rey",
       "Oppenheimer"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "109",
@@ -4808,7 +4381,10 @@
       "Sauron",
       "Freddy Krueger"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "110",
@@ -4852,7 +4428,10 @@
       "Guillermo del Toro",
       "Denis Villeneuve"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "111",
@@ -4900,7 +4479,10 @@
       "El Mago de Oz",
       "Jerry Maguire"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "112",
@@ -4944,7 +4526,10 @@
       "Aardman Animations",
       "Sony Pictures Animation"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "113",
@@ -4992,7 +4577,10 @@
       "Misión Imposible",
       "Matrix"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "114",
@@ -5036,7 +4624,10 @@
       "Chris Hemsworth",
       "Henry Cavill"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "115",
@@ -5089,7 +4680,10 @@
       "Juego de cuchillos",
       "Tazones para mezclar"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "116",
@@ -5133,7 +4727,10 @@
       "Leer noticias",
       "Preparar almuerzo"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "117",
@@ -5177,7 +4774,10 @@
       "Limpiar ventanas",
       "Cortar el césped"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "118",
@@ -5231,7 +4831,10 @@
       "Pasta de dientes",
       "Cortina de ducha"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "119",
@@ -5284,7 +4887,10 @@
       "Yoga",
       "Pesca"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
   },
   {
     "id": "120",
@@ -5338,6 +4944,1145 @@
       "Tarjeta de seguro",
       "Monedas"
     ],
-    "languageScope": ["en", "es"]
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "121",
+    "promptEn": "Name 10 countries with the most Nobel Prize laureates (all time)",
+    "answersEn": [
+      "United States",
+      "United Kingdom",
+      "Germany",
+      "France",
+      "Sweden",
+      "Japan",
+      "Russia",
+      "Canada",
+      "Switzerland",
+      "Austria"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Nobel Prize official statistics (nobelprize.org)",
+    "answerPoints": {
+      "United States": 1,
+      "United Kingdom": 1,
+      "Germany": 2,
+      "France": 2,
+      "Sweden": 3,
+      "Japan": 3,
+      "Russia": 3,
+      "Canada": 3,
+      "Switzerland": 4,
+      "Austria": 4,
+      "Estados Unidos": 1,
+      "Reino Unido": 1,
+      "Alemania": 2,
+      "Francia": 2,
+      "Suecia": 3,
+      "Japón": 3,
+      "Rusia": 3,
+      "Canadá": 3,
+      "Suiza": 4
+    },
+    "promptEs": "Nombra 10 países con más premios Nobel (todos los tiempos)",
+    "answersEs": [
+      "Estados Unidos",
+      "Reino Unido",
+      "Alemania",
+      "Francia",
+      "Suecia",
+      "Japón",
+      "Rusia",
+      "Canadá",
+      "Suiza",
+      "Austria"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "122",
+    "promptEn": "Name 10 deepest ocean trenches in the world",
+    "answersEn": [
+      "Mariana Trench",
+      "Tonga Trench",
+      "Philippine Trench",
+      "Kuril-Kamchatka Trench",
+      "Kermadec Trench",
+      "Izu-Bonin Trench",
+      "Japan Trench",
+      "Puerto Rico Trench",
+      "South Sandwich Trench",
+      "Peru-Chile Trench"
+    ],
+    "difficulty": "hard",
+    "source": "Source: NOAA Ocean Explorer, National Geographic",
+    "answerPoints": {
+      "Mariana Trench": 1,
+      "Tonga Trench": 3,
+      "Philippine Trench": 3,
+      "Kuril-Kamchatka Trench": 4,
+      "Kermadec Trench": 4,
+      "Izu-Bonin Trench": 5,
+      "Japan Trench": 3,
+      "Puerto Rico Trench": 3,
+      "South Sandwich Trench": 5,
+      "Peru-Chile Trench": 4,
+      "Fosa de las Marianas": 1,
+      "Fosa de Tonga": 3,
+      "Fosa de Filipinas": 3,
+      "Fosa de Kuriles-Kamchatka": 4,
+      "Fosa de Kermadec": 4,
+      "Fosa de Izu-Bonin": 5,
+      "Fosa de Japón": 3,
+      "Fosa de Puerto Rico": 3,
+      "Fosa de las Sandwich del Sur": 5,
+      "Fosa de Perú-Chile": 4
+    },
+    "promptEs": "Nombra 10 fosas oceánicas más profundas del mundo",
+    "answersEs": [
+      "Fosa de las Marianas",
+      "Fosa de Tonga",
+      "Fosa de Filipinas",
+      "Fosa de Kuriles-Kamchatka",
+      "Fosa de Kermadec",
+      "Fosa de Izu-Bonin",
+      "Fosa de Japón",
+      "Fosa de Puerto Rico",
+      "Fosa de las Sandwich del Sur",
+      "Fosa de Perú-Chile"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "123",
+    "promptEn": "Name 10 chemical elements discovered in the 19th century",
+    "answersEn": [
+      "Aluminum",
+      "Sodium",
+      "Potassium",
+      "Calcium",
+      "Iodine",
+      "Bromine",
+      "Helium",
+      "Radium",
+      "Cesium",
+      "Fluorine"
+    ],
+    "difficulty": "hard",
+    "source": "Source: IUPAC, Royal Society of Chemistry",
+    "answerPoints": {
+      "Aluminum": 2,
+      "Sodium": 2,
+      "Potassium": 3,
+      "Calcium": 2,
+      "Iodine": 4,
+      "Bromine": 4,
+      "Helium": 3,
+      "Radium": 2,
+      "Cesium": 5,
+      "Fluorine": 4,
+      "Aluminio": 2,
+      "Sodio": 2,
+      "Potasio": 3,
+      "Calcio": 2,
+      "Yodo": 4,
+      "Bromo": 4,
+      "Helio": 3,
+      "Radio": 2,
+      "Cesio": 5,
+      "Flúor": 4
+    },
+    "promptEs": "Nombra 10 elementos químicos descubiertos en el siglo XIX",
+    "answersEs": [
+      "Aluminio",
+      "Sodio",
+      "Potasio",
+      "Calcio",
+      "Yodo",
+      "Bromo",
+      "Helio",
+      "Radio",
+      "Cesio",
+      "Flúor"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "124",
+    "promptEn": "Name 10 landlocked countries in Europe",
+    "answersEn": [
+      "Switzerland",
+      "Austria",
+      "Hungary",
+      "Czech Republic",
+      "Slovakia",
+      "Luxembourg",
+      "Serbia",
+      "Belarus",
+      "Moldova",
+      "North Macedonia"
+    ],
+    "difficulty": "hard",
+    "source": "Source: CIA World Factbook, UN geographic data",
+    "answerPoints": {
+      "Switzerland": 1,
+      "Austria": 1,
+      "Hungary": 2,
+      "Czech Republic": 2,
+      "Slovakia": 3,
+      "Luxembourg": 3,
+      "Serbia": 3,
+      "Belarus": 3,
+      "Moldova": 4,
+      "North Macedonia": 4,
+      "Suiza": 1,
+      "Hungría": 2,
+      "República Checa": 2,
+      "Eslovaquia": 3,
+      "Luxemburgo": 3,
+      "Bielorrusia": 3,
+      "Moldavia": 4,
+      "Macedonia del Norte": 4
+    },
+    "promptEs": "Nombra 10 países sin salida al mar en Europa",
+    "answersEs": [
+      "Suiza",
+      "Austria",
+      "Hungría",
+      "República Checa",
+      "Eslovaquia",
+      "Luxemburgo",
+      "Serbia",
+      "Bielorrusia",
+      "Moldavia",
+      "Macedonia del Norte"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "125",
+    "promptEn": "Name 10 winners of the Ballon d'Or award",
+    "answersEn": [
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Zinedine Zidane",
+      "Ronaldinho",
+      "Kaká",
+      "Luka Modrić",
+      "Ronaldo Nazário",
+      "Michel Platini",
+      "Marco van Basten",
+      "Johan Cruyff"
+    ],
+    "difficulty": "hard",
+    "source": "Source: France Football official Ballon d'Or records",
+    "answerPoints": {
+      "Lionel Messi": 1,
+      "Cristiano Ronaldo": 1,
+      "Zinedine Zidane": 2,
+      "Ronaldinho": 2,
+      "Kaká": 3,
+      "Luka Modrić": 3,
+      "Ronaldo Nazário": 2,
+      "Michel Platini": 3,
+      "Marco van Basten": 4,
+      "Johan Cruyff": 3
+    },
+    "promptEs": "Nombra 10 ganadores del Balón de Oro",
+    "answersEs": [
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Zinedine Zidane",
+      "Ronaldinho",
+      "Kaká",
+      "Luka Modrić",
+      "Ronaldo Nazário",
+      "Michel Platini",
+      "Marco van Basten",
+      "Johan Cruyff"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "126",
+    "promptEn": "Name the 10 official cloud genera (types of clouds)",
+    "answersEn": [
+      "Cumulus",
+      "Cumulonimbus",
+      "Cirrus",
+      "Stratus",
+      "Nimbostratus",
+      "Altocumulus",
+      "Altostratus",
+      "Cirrocumulus",
+      "Cirrostratus",
+      "Stratocumulus"
+    ],
+    "difficulty": "hard",
+    "source": "Source: WMO International Cloud Atlas (exactly 10 genera)",
+    "answerPoints": {
+      "Cumulus": 1,
+      "Cumulonimbus": 2,
+      "Cirrus": 2,
+      "Stratus": 2,
+      "Nimbostratus": 3,
+      "Altocumulus": 3,
+      "Altostratus": 4,
+      "Cirrocumulus": 4,
+      "Cirrostratus": 4,
+      "Stratocumulus": 4,
+      "Cúmulo": 1,
+      "Cumulonimbo": 2,
+      "Cirro": 2,
+      "Estrato": 2,
+      "Nimboestrato": 3,
+      "Altocúmulo": 3,
+      "Altoestrato": 4,
+      "Cirrocúmulo": 4,
+      "Cirroestrato": 4,
+      "Estratocúmulo": 4
+    },
+    "promptEs": "Nombra los 10 géneros oficiales de nubes",
+    "answersEs": [
+      "Cúmulo",
+      "Cumulonimbo",
+      "Cirro",
+      "Estrato",
+      "Nimboestrato",
+      "Altocúmulo",
+      "Altoestrato",
+      "Cirrocúmulo",
+      "Cirroestrato",
+      "Estratocúmulo"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "127",
+    "promptEn": "Name 10 bones in the human body",
+    "answersEn": [
+      "Femur",
+      "Skull",
+      "Humerus",
+      "Tibia",
+      "Fibula",
+      "Radius",
+      "Ulna",
+      "Sternum",
+      "Clavicle",
+      "Scapula"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Gray's Anatomy, MedlinePlus",
+    "answerPoints": {
+      "Femur": 1,
+      "Skull": 1,
+      "Humerus": 2,
+      "Tibia": 2,
+      "Fibula": 3,
+      "Radius": 3,
+      "Ulna": 3,
+      "Sternum": 2,
+      "Clavicle": 2,
+      "Scapula": 3,
+      "Fémur": 1,
+      "Cráneo": 1,
+      "Húmero": 2,
+      "Peroné": 3,
+      "Radio": 3,
+      "Cúbito": 3,
+      "Esternón": 2,
+      "Clavícula": 2,
+      "Escápula": 3
+    },
+    "promptEs": "Nombra 10 huesos del cuerpo humano",
+    "answersEs": [
+      "Fémur",
+      "Cráneo",
+      "Húmero",
+      "Tibia",
+      "Peroné",
+      "Radio",
+      "Cúbito",
+      "Esternón",
+      "Clavícula",
+      "Escápula"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "128",
+    "promptEn": "Name 10 chemical elements that are gases at room temperature",
+    "answersEn": [
+      "Oxygen",
+      "Nitrogen",
+      "Hydrogen",
+      "Helium",
+      "Chlorine",
+      "Neon",
+      "Argon",
+      "Fluorine",
+      "Krypton",
+      "Xenon"
+    ],
+    "difficulty": "hard",
+    "source": "Source: IUPAC Periodic Table, CRC Handbook",
+    "answerPoints": {
+      "Oxygen": 1,
+      "Nitrogen": 1,
+      "Hydrogen": 1,
+      "Helium": 1,
+      "Chlorine": 2,
+      "Neon": 2,
+      "Argon": 2,
+      "Fluorine": 3,
+      "Krypton": 3,
+      "Xenon": 4,
+      "Oxígeno": 1,
+      "Nitrógeno": 1,
+      "Hidrógeno": 1,
+      "Helio": 1,
+      "Cloro": 2,
+      "Neón": 2,
+      "Argón": 2,
+      "Flúor": 3,
+      "Criptón": 3,
+      "Xenón": 4
+    },
+    "promptEs": "Nombra 10 elementos químicos que son gases a temperatura ambiente",
+    "answersEs": [
+      "Oxígeno",
+      "Nitrógeno",
+      "Hidrógeno",
+      "Helio",
+      "Cloro",
+      "Neón",
+      "Argón",
+      "Flúor",
+      "Criptón",
+      "Xenón"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "129",
+    "promptEn": "Name 10 countries on the Equator",
+    "answersEn": [
+      "Brazil",
+      "Ecuador",
+      "Colombia",
+      "Kenya",
+      "Indonesia",
+      "Republic of the Congo",
+      "Democratic Republic of the Congo",
+      "Uganda",
+      "Gabon",
+      "Somalia"
+    ],
+    "difficulty": "hard",
+    "source": "Source: National Geographic, CIA World Factbook (13 total)",
+    "answerPoints": {
+      "Brazil": 1,
+      "Ecuador": 1,
+      "Colombia": 2,
+      "Kenya": 2,
+      "Indonesia": 2,
+      "Republic of the Congo": 3,
+      "Democratic Republic of the Congo": 3,
+      "Uganda": 3,
+      "Gabon": 4,
+      "Somalia": 3,
+      "Brasil": 1,
+      "Kenia": 2,
+      "República del Congo": 3,
+      "República Democrática del Congo": 3,
+      "Gabón": 4
+    },
+    "promptEs": "Nombra 10 países que se encuentran en el Ecuador",
+    "answersEs": [
+      "Brasil",
+      "Ecuador",
+      "Colombia",
+      "Kenia",
+      "Indonesia",
+      "República del Congo",
+      "República Democrática del Congo",
+      "Uganda",
+      "Gabón",
+      "Somalia"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "130",
+    "promptEn": "Name 10 tallest buildings in the world (2025)",
+    "answersEn": [
+      "Burj Khalifa",
+      "Merdeka 118",
+      "Shanghai Tower",
+      "Abraj Al-Bait Clock Tower",
+      "Ping An Finance Centre",
+      "Lotte World Tower",
+      "One World Trade Center",
+      "Guangzhou CTF Finance Centre",
+      "Tianjin CTF Finance Centre",
+      "China Zun"
+    ],
+    "difficulty": "hard",
+    "source": "Source: Council on Tall Buildings and Urban Habitat (CTBUH)",
+    "answerPoints": {
+      "Burj Khalifa": 1,
+      "Merdeka 118": 3,
+      "Shanghai Tower": 2,
+      "Abraj Al-Bait Clock Tower": 3,
+      "Ping An Finance Centre": 4,
+      "Lotte World Tower": 3,
+      "One World Trade Center": 1,
+      "Guangzhou CTF Finance Centre": 5,
+      "Tianjin CTF Finance Centre": 5,
+      "China Zun": 5,
+      "Torre del Reloj de Abraj Al-Bait": 3,
+      "Centro Financiero Ping An": 4,
+      "Torre Lotte World": 3,
+      "Centro Financiero CTF de Guangzhou": 5,
+      "Centro Financiero CTF de Tianjin": 5
+    },
+    "promptEs": "Nombra 10 edificios más altos del mundo (2025)",
+    "answersEs": [
+      "Burj Khalifa",
+      "Merdeka 118",
+      "Shanghai Tower",
+      "Torre del Reloj de Abraj Al-Bait",
+      "Centro Financiero Ping An",
+      "Torre Lotte World",
+      "One World Trade Center",
+      "Centro Financiero CTF de Guangzhou",
+      "Centro Financiero CTF de Tianjin",
+      "China Zun"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "131",
+    "promptEn": "Name 10 best-selling video games of all time",
+    "answersEn": [
+      "Minecraft",
+      "Grand Theft Auto V",
+      "Tetris",
+      "Wii Sports",
+      "PUBG: Battlegrounds",
+      "Mario Kart 8 Deluxe",
+      "Super Mario Bros.",
+      "Red Dead Redemption 2",
+      "Overwatch",
+      "The Witcher 3: Wild Hunt"
+    ],
+    "difficulty": "medium",
+    "source": "Source: VGChartz, official publisher sales data",
+    "answerPoints": {
+      "Minecraft": 1,
+      "Grand Theft Auto V": 1,
+      "Tetris": 2,
+      "Wii Sports": 2,
+      "PUBG: Battlegrounds": 3,
+      "Mario Kart 8 Deluxe": 2,
+      "Super Mario Bros.": 2,
+      "Red Dead Redemption 2": 3,
+      "Overwatch": 4,
+      "The Witcher 3: Wild Hunt": 3
+    },
+    "promptEs": "Nombra 10 videojuegos más vendidos de todos los tiempos",
+    "answersEs": [
+      "Minecraft",
+      "Grand Theft Auto V",
+      "Tetris",
+      "Wii Sports",
+      "PUBG: Battlegrounds",
+      "Mario Kart 8 Deluxe",
+      "Super Mario Bros.",
+      "Red Dead Redemption 2",
+      "Overwatch",
+      "The Witcher 3: Wild Hunt"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "132",
+    "promptEn": "Name 10 countries that border France",
+    "answersEn": [
+      "Spain",
+      "Belgium",
+      "Germany",
+      "Italy",
+      "Switzerland",
+      "Luxembourg",
+      "Monaco",
+      "Andorra",
+      "Brazil",
+      "Suriname"
+    ],
+    "difficulty": "medium",
+    "source": "Source: CIA World Factbook (includes French Guiana overseas borders)",
+    "answerPoints": {
+      "Spain": 1,
+      "Belgium": 1,
+      "Germany": 1,
+      "Italy": 1,
+      "Switzerland": 1,
+      "Luxembourg": 2,
+      "Monaco": 3,
+      "Andorra": 3,
+      "Brazil": 4,
+      "Suriname": 5,
+      "España": 1,
+      "Bélgica": 1,
+      "Alemania": 1,
+      "Italia": 1,
+      "Suiza": 1,
+      "Luxemburgo": 2,
+      "Mónaco": 3,
+      "Brasil": 4
+    },
+    "promptEs": "Nombra 10 países que hacen frontera con Francia",
+    "answersEs": [
+      "España",
+      "Bélgica",
+      "Alemania",
+      "Italia",
+      "Suiza",
+      "Luxemburgo",
+      "Mónaco",
+      "Andorra",
+      "Brasil",
+      "Surinam"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "133",
+    "promptEn": "Name 10 official Disney Princess characters",
+    "answersEn": [
+      "Cinderella",
+      "Snow White",
+      "Ariel",
+      "Belle",
+      "Jasmine",
+      "Mulan",
+      "Rapunzel",
+      "Moana",
+      "Tiana",
+      "Merida"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Disney official Princess franchise (12 total)",
+    "answerPoints": {
+      "Cinderella": 1,
+      "Snow White": 1,
+      "Ariel": 1,
+      "Belle": 1,
+      "Jasmine": 1,
+      "Mulan": 2,
+      "Rapunzel": 1,
+      "Moana": 2,
+      "Tiana": 2,
+      "Merida": 2,
+      "Cenicienta": 1,
+      "Blancanieves": 1,
+      "Bella": 1,
+      "Jasmín": 1,
+      "Mulán": 2,
+      "Vaiana": 2,
+      "Mérida": 2
+    },
+    "promptEs": "Nombra 10 princesas oficiales de Disney",
+    "answersEs": [
+      "Cenicienta",
+      "Blancanieves",
+      "Ariel",
+      "Bella",
+      "Jasmín",
+      "Mulán",
+      "Rapunzel",
+      "Vaiana",
+      "Tiana",
+      "Mérida"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "134",
+    "promptEn": "Name 10 largest dog breeds by weight",
+    "answersEn": [
+      "English Mastiff",
+      "Saint Bernard",
+      "Great Dane",
+      "Newfoundland",
+      "Irish Wolfhound",
+      "Tibetan Mastiff",
+      "Leonberger",
+      "Bernese Mountain Dog",
+      "Cane Corso",
+      "Bullmastiff"
+    ],
+    "difficulty": "medium",
+    "source": "Source: American Kennel Club breed standards",
+    "answerPoints": {
+      "English Mastiff": 2,
+      "Saint Bernard": 1,
+      "Great Dane": 1,
+      "Newfoundland": 2,
+      "Irish Wolfhound": 3,
+      "Tibetan Mastiff": 3,
+      "Leonberger": 4,
+      "Bernese Mountain Dog": 2,
+      "Cane Corso": 3,
+      "Bullmastiff": 3,
+      "Mastín Inglés": 2,
+      "San Bernardo": 1,
+      "Gran Danés": 1,
+      "Terranova": 2,
+      "Lobero Irlandés": 3,
+      "Mastín Tibetano": 3,
+      "Boyero de Berna": 2
+    },
+    "promptEs": "Nombra 10 razas de perros más grandes por peso",
+    "answersEs": [
+      "Mastín Inglés",
+      "San Bernardo",
+      "Gran Danés",
+      "Terranova",
+      "Lobero Irlandés",
+      "Mastín Tibetano",
+      "Leonberger",
+      "Boyero de Berna",
+      "Cane Corso",
+      "Bullmastiff"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "135",
+    "promptEn": "Name 10 most-visited cities in the world (2025)",
+    "answersEn": [
+      "Bangkok",
+      "Paris",
+      "London",
+      "Dubai",
+      "Istanbul",
+      "Singapore",
+      "Tokyo",
+      "Kuala Lumpur",
+      "New York City",
+      "Rome"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Euromonitor International, Mastercard Global Destination Cities Index",
+    "answerPoints": {
+      "Bangkok": 2,
+      "Paris": 1,
+      "London": 1,
+      "Dubai": 2,
+      "Istanbul": 2,
+      "Singapore": 2,
+      "Tokyo": 2,
+      "Kuala Lumpur": 3,
+      "New York City": 1,
+      "Rome": 2,
+      "París": 1,
+      "Londres": 1,
+      "Dubái": 2,
+      "Estambul": 2,
+      "Singapur": 2,
+      "Tokio": 2,
+      "Nueva York": 1,
+      "Roma": 2
+    },
+    "promptEs": "Nombra 10 ciudades más visitadas del mundo (2025)",
+    "answersEs": [
+      "Bangkok",
+      "París",
+      "Londres",
+      "Dubái",
+      "Estambul",
+      "Singapur",
+      "Tokio",
+      "Kuala Lumpur",
+      "Nueva York",
+      "Roma"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "136",
+    "promptEn": "Name 10 types of pasta",
+    "answersEn": [
+      "Spaghetti",
+      "Penne",
+      "Fusilli",
+      "Macaroni",
+      "Lasagna",
+      "Ravioli",
+      "Fettuccine",
+      "Linguine",
+      "Farfalle",
+      "Rigatoni"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Barilla, De Cecco, Italian culinary references",
+    "answerPoints": {
+      "Spaghetti": 1,
+      "Penne": 1,
+      "Fusilli": 1,
+      "Macaroni": 1,
+      "Lasagna": 1,
+      "Ravioli": 1,
+      "Fettuccine": 2,
+      "Linguine": 2,
+      "Farfalle": 2,
+      "Rigatoni": 2,
+      "Espaguetis": 1,
+      "Macarrones": 1,
+      "Lasaña": 1,
+      "Raviolis": 1
+    },
+    "promptEs": "Nombra 10 tipos de pasta",
+    "answersEs": [
+      "Espaguetis",
+      "Penne",
+      "Fusilli",
+      "Macarrones",
+      "Lasaña",
+      "Raviolis",
+      "Fettuccine",
+      "Linguine",
+      "Farfalle",
+      "Rigatoni"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "137",
+    "promptEn": "Name 10 Marvel Cinematic Universe Avengers",
+    "answersEn": [
+      "Iron Man",
+      "Captain America",
+      "Thor",
+      "Hulk",
+      "Black Widow",
+      "Hawkeye",
+      "Spider-Man",
+      "Black Panther",
+      "Scarlet Witch",
+      "Vision"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Marvel Studios official MCU",
+    "answerPoints": {
+      "Iron Man": 1,
+      "Captain America": 1,
+      "Thor": 1,
+      "Hulk": 1,
+      "Black Widow": 1,
+      "Hawkeye": 1,
+      "Spider-Man": 1,
+      "Black Panther": 2,
+      "Scarlet Witch": 2,
+      "Vision": 2,
+      "Hombre de Hierro": 1,
+      "Capitán América": 1,
+      "Viuda Negra": 1,
+      "Ojo de Halcón": 1,
+      "Pantera Negra": 2,
+      "Bruja Escarlata": 2,
+      "Visión": 2
+    },
+    "promptEs": "Nombra 10 Vengadores del Universo Cinematográfico de Marvel",
+    "answersEs": [
+      "Hombre de Hierro",
+      "Capitán América",
+      "Thor",
+      "Hulk",
+      "Viuda Negra",
+      "Ojo de Halcón",
+      "Spider-Man",
+      "Pantera Negra",
+      "Bruja Escarlata",
+      "Visión"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "138",
+    "promptEn": "Name 10 countries that border the Mediterranean Sea",
+    "answersEn": [
+      "Spain",
+      "France",
+      "Italy",
+      "Greece",
+      "Turkey",
+      "Egypt",
+      "Morocco",
+      "Tunisia",
+      "Croatia",
+      "Israel"
+    ],
+    "difficulty": "medium",
+    "source": "Source: National Geographic, CIA World Factbook (21+ total)",
+    "answerPoints": {
+      "Spain": 1,
+      "France": 1,
+      "Italy": 1,
+      "Greece": 1,
+      "Turkey": 1,
+      "Egypt": 1,
+      "Morocco": 2,
+      "Tunisia": 2,
+      "Croatia": 2,
+      "Israel": 2,
+      "España": 1,
+      "Francia": 1,
+      "Italia": 1,
+      "Grecia": 1,
+      "Turquía": 1,
+      "Egipto": 1,
+      "Marruecos": 2,
+      "Túnez": 2,
+      "Croacia": 2
+    },
+    "promptEs": "Nombra 10 países que bordean el mar Mediterráneo",
+    "answersEs": [
+      "España",
+      "Francia",
+      "Italia",
+      "Grecia",
+      "Turquía",
+      "Egipto",
+      "Marruecos",
+      "Túnez",
+      "Croacia",
+      "Israel"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "139",
+    "promptEn": "Name 10 famous volcanoes around the world",
+    "answersEn": [
+      "Mount Vesuvius",
+      "Mount Etna",
+      "Mount Fuji",
+      "Krakatoa",
+      "Mount St. Helens",
+      "Kilauea",
+      "Mount Pinatubo",
+      "Eyjafjallajökull",
+      "Mauna Loa",
+      "Mount Kilimanjaro"
+    ],
+    "difficulty": "medium",
+    "source": "Source: USGS Volcano Hazards Program, Smithsonian Global Volcanism Program",
+    "answerPoints": {
+      "Mount Vesuvius": 1,
+      "Mount Etna": 2,
+      "Mount Fuji": 1,
+      "Krakatoa": 2,
+      "Mount St. Helens": 2,
+      "Kilauea": 2,
+      "Mount Pinatubo": 3,
+      "Eyjafjallajökull": 4,
+      "Mauna Loa": 3,
+      "Mount Kilimanjaro": 2,
+      "Monte Vesubio": 1,
+      "Monte Etna": 2,
+      "Monte Fuji": 1,
+      "Monte Santa Helena": 2,
+      "Monte Pinatubo": 3,
+      "Monte Kilimanjaro": 2
+    },
+    "promptEs": "Nombra 10 volcanes famosos del mundo",
+    "answersEs": [
+      "Monte Vesubio",
+      "Monte Etna",
+      "Monte Fuji",
+      "Krakatoa",
+      "Monte Santa Helena",
+      "Kilauea",
+      "Monte Pinatubo",
+      "Eyjafjallajökull",
+      "Mauna Loa",
+      "Monte Kilimanjaro"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "140",
+    "promptEn": "Name 10 musical instruments in a symphony orchestra",
+    "answersEn": [
+      "Violin",
+      "Cello",
+      "Flute",
+      "Trumpet",
+      "Piano",
+      "Timpani",
+      "French Horn",
+      "Oboe",
+      "Viola",
+      "Trombone"
+    ],
+    "difficulty": "medium",
+    "source": "Source: New York Philharmonic, London Symphony Orchestra",
+    "answerPoints": {
+      "Violin": 1,
+      "Cello": 1,
+      "Flute": 1,
+      "Trumpet": 1,
+      "Piano": 1,
+      "Timpani": 1,
+      "French Horn": 2,
+      "Oboe": 3,
+      "Viola": 2,
+      "Trombone": 2,
+      "Violín": 1,
+      "Violonchelo": 1,
+      "Flauta": 1,
+      "Trompeta": 1,
+      "Timbales": 1,
+      "Trompa": 2,
+      "Trombón": 2
+    },
+    "promptEs": "Nombra 10 instrumentos musicales de una orquesta sinfónica",
+    "answersEs": [
+      "Violín",
+      "Violonchelo",
+      "Flauta",
+      "Trompeta",
+      "Piano",
+      "Timbales",
+      "Trompa",
+      "Oboe",
+      "Viola",
+      "Trombón"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "141",
+    "promptEn": "Name 10 countries that have hosted the FIFA World Cup",
+    "answersEn": [
+      "Brazil",
+      "Germany",
+      "France",
+      "Qatar",
+      "Russia",
+      "South Africa",
+      "Japan",
+      "South Korea",
+      "United States",
+      "Italy"
+    ],
+    "difficulty": "medium",
+    "source": "Source: FIFA official website (17 unique host nations through 2022)",
+    "answerPoints": {
+      "Brazil": 1,
+      "Germany": 1,
+      "France": 1,
+      "Qatar": 1,
+      "Russia": 2,
+      "South Africa": 2,
+      "Japan": 2,
+      "South Korea": 2,
+      "United States": 2,
+      "Italy": 2,
+      "Brasil": 1,
+      "Alemania": 1,
+      "Francia": 1,
+      "Catar": 1,
+      "Rusia": 2,
+      "Sudáfrica": 2,
+      "Japón": 2,
+      "Corea del Sur": 2,
+      "Estados Unidos": 2,
+      "Italia": 2
+    },
+    "promptEs": "Nombra 10 países que han sido sede de la Copa del Mundo FIFA",
+    "answersEs": [
+      "Brasil",
+      "Alemania",
+      "Francia",
+      "Catar",
+      "Rusia",
+      "Sudáfrica",
+      "Japón",
+      "Corea del Sur",
+      "Estados Unidos",
+      "Italia"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
   }
 ]
