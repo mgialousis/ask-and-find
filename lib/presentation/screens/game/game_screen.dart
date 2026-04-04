@@ -35,6 +35,11 @@ class GameScreen extends ConsumerStatefulWidget {
   ConsumerState<GameScreen> createState() => _GameScreenState();
 }
 
+enum _RoundResultAction {
+  continueGame,
+  endGame,
+}
+
 class _GameScreenState extends ConsumerState<GameScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
@@ -137,7 +142,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   }
 
   /// End the current round
-  void _endRound() {
+  Future<void> _endRound() async {
     final gameState = ref.read(gameStateProvider);
     if (gameState.gamePhase != GamePhase.playing) {
       return;
@@ -150,11 +155,11 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     ref.read(gameStateProvider.notifier).endRound();
 
     // Show results dialog
-    _showResultsDialog();
+    await _showResultsDialog();
   }
 
   /// Show round results dialog
-  void _showResultsDialog() {
+  Future<void> _showResultsDialog() async {
     final gameState = ref.read(gameStateProvider);
     final result = gameState.lastRoundResult!;
     final setupState = ref.read(gameSetupProvider);
@@ -162,7 +167,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final currentCard = gameState.currentCard!;
     final locale = ref.read(localeProvider);
 
-    showDialog(
+    final action = await showDialog<_RoundResultAction>(
       context: context,
       barrierDismissible: false,
       builder: (context) => RoundResultDialog(
@@ -180,16 +185,21 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 delta,
               );
         },
-        onContinue: () {
-          Navigator.of(context).pop();
-          _continueToNextRound();
-        },
-        onEndGame: () {
-          Navigator.of(context).pop();
-          _endGame();
-        },
+        onContinue: () =>
+            Navigator.of(context).pop(_RoundResultAction.continueGame),
+        onEndGame: () => Navigator.of(context).pop(_RoundResultAction.endGame),
       ),
     );
+
+    if (!mounted) return;
+
+    if (action == null) return;
+
+    if (action == _RoundResultAction.endGame) {
+      _endGame();
+    } else {
+      _continueToNextRound();
+    }
   }
 
   /// Continue to next round or end game

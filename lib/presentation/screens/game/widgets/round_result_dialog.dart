@@ -97,213 +97,216 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 500),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Header
-                Text(
-                  l10n.roundComplete,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                // Team Indicator
-                TeamIndicator(
-                  team: widget.team,
-                  size: TeamIndicatorSize.large,
-                ),
-                const SizedBox(height: 24),
-
-                // Points Earned
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: AppColors.success.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.success,
-                      width: 2,
+    return PopScope(
+      canPop: false,
+      child: Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 500),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Header
+                  Text(
+                    l10n.roundComplete,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.textPrimary,
                     ),
                   ),
-                  child: Column(
-                    children: [
-                      const Icon(
-                        Icons.emoji_events,
+                  const SizedBox(height: 16),
+
+                  // Team Indicator
+                  TeamIndicator(
+                    team: widget.team,
+                    size: TeamIndicatorSize.large,
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Points Earned
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: AppColors.success.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
                         color: AppColors.success,
-                        size: 48,
+                        width: 2,
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        l10n.nPoints(_pointsEarned),
-                        style: const TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w800,
+                    ),
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.emoji_events,
                           color: AppColors.success,
+                          size: 48,
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        l10n.foundOf(
-                          _foundAnswers.length,
-                          _foundAnswers.length + _missedAnswers.length,
+                        const SizedBox(height: 8),
+                        Text(
+                          l10n.nPoints(_pointsEarned),
+                          style: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.success,
+                          ),
                         ),
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textSecondary,
+                        const SizedBox(height: 4),
+                        Text(
+                          l10n.foundOf(
+                            _foundAnswers.length,
+                            _foundAnswers.length + _missedAnswers.length,
+                          ),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textSecondary,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 24),
-
-                // Scores So Far
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: AppColors.surface,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.surfaceVariant,
-                      width: 1,
+                      ],
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.scoresSoFar,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.textPrimary,
-                        ),
+                  const SizedBox(height: 24),
+
+                  // Scores So Far
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: AppColors.surfaceVariant,
+                        width: 1,
                       ),
-                      const SizedBox(height: 12),
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _sortedTeams.length,
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 8),
-                        itemBuilder: (context, index) {
-                          final team = _sortedTeams[index];
-                          return Row(
-                            children: [
-                              Container(
-                                width: 10,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  color: team.color,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  team.name,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColors.textPrimary,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.scoresSoFar,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textPrimary,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: _sortedTeams.length,
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 8),
+                          itemBuilder: (context, index) {
+                            final team = _sortedTeams[index];
+                            return Row(
+                              children: [
+                                Container(
+                                  width: 10,
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                    color: team.color,
+                                    shape: BoxShape.circle,
                                   ),
                                 ),
-                              ),
-                              Text(
-                                l10n.nPts(team.score),
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.textSecondary,
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    team.name,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.textPrimary,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ],
+                                Text(
+                                  l10n.nPts(team.score),
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.textSecondary,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
-                // Report Issue and Show Answers Toggle
-                TextButton.icon(
-                  onPressed: () {
-                    context.push(
-                      AppRoutes.reportIssue,
-                      extra: ReportIssueLookback(
-                        returnToGame: true,
-                        card: widget.card,
-                      ),
-                    );
-                  },
-                  icon: const Icon(Icons.flag_outlined, size: 18),
-                  label: Text(l10n.reportIssue),
-                  style: TextButton.styleFrom(
-                    foregroundColor: AppColors.textSecondary,
+                  // Report Issue and Show Answers Toggle
+                  TextButton.icon(
+                    onPressed: () {
+                      context.push(
+                        AppRoutes.reportIssue,
+                        extra: ReportIssueLookback(
+                          returnToGame: true,
+                          card: widget.card,
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.flag_outlined, size: 18),
+                    label: Text(l10n.reportIssue),
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppColors.textSecondary,
+                    ),
                   ),
-                ),
-                TextButton.icon(
-                  onPressed: () {
-                    setState(() {
-                      _showAnswers = !_showAnswers;
-                    });
-                  },
-                  icon: Icon(
-                    _showAnswers
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down,
+                  TextButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        _showAnswers = !_showAnswers;
+                      });
+                    },
+                    icon: Icon(
+                      _showAnswers
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
+                    ),
+                    label: Text(
+                      _showAnswers ? l10n.hideAnswers : l10n.showAnswers,
+                    ),
                   ),
-                  label: Text(
-                    _showAnswers ? l10n.hideAnswers : l10n.showAnswers,
-                  ),
-                ),
 
-                // Answers Section (expandable)
-                if (_showAnswers) ...[
-                  const SizedBox(height: 16),
-                  _AnswersSection(
-                    prompt: widget.prompt,
-                    foundAnswers: _foundAnswers,
-                    missedAnswers: _missedAnswers,
-                    source: widget.source,
-                    pointsForAnswer: widget.pointsForAnswer,
-                    onToggleAnswer: _toggleAnswerSelection,
+                  // Answers Section (expandable)
+                  if (_showAnswers) ...[
+                    const SizedBox(height: 16),
+                    _AnswersSection(
+                      prompt: widget.prompt,
+                      foundAnswers: _foundAnswers,
+                      missedAnswers: _missedAnswers,
+                      source: widget.source,
+                      pointsForAnswer: widget.pointsForAnswer,
+                      onToggleAnswer: _toggleAnswerSelection,
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+
+                  // Continue Button
+                  const SizedBox(height: 8),
+                  PrimaryButton(
+                    onPressed: widget.onContinue,
+                    isFullWidth: true,
+                    child: Text(l10n.continueButton),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
+
+                  // End Game Button
+                  SecondaryButton(
+                    onPressed: widget.onEndGame,
+                    isFullWidth: true,
+                    child: Text(l10n.endGame),
+                  ),
                 ],
-
-                // Continue Button
-                const SizedBox(height: 8),
-                PrimaryButton(
-                  onPressed: widget.onContinue,
-                  isFullWidth: true,
-                  child: Text(l10n.continueButton),
-                ),
-                const SizedBox(height: 12),
-
-                // End Game Button
-                SecondaryButton(
-                  onPressed: widget.onEndGame,
-                  isFullWidth: true,
-                  child: Text(l10n.endGame),
-                ),
-              ],
+              ),
             ),
           ),
         ),
