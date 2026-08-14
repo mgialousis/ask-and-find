@@ -19,7 +19,7 @@ The core game is playable end to end on Android and iOS:
 - Complete setup → game → results → play-again flow
 - Configurable teams, rounds, timer, and difficulty
 - Riverpod-managed game, setup, timer, settings, and submission state
-- 115 bilingual English/Spanish trivia cards with per-answer scoring
+- 243 bilingual English/Spanish trivia cards with per-answer scoring
 - Sound effects, haptic feedback, sharing, and persistent settings
 - New-card and correction submissions with offline retry support
 - PostHog analytics with a user-facing privacy toggle
