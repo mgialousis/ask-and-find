@@ -293,10 +293,10 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                     // Number of Teams Selector
                     Text(
                       l10n.numberOfTeams,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary,
+                        color: context.palette.textPrimary,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -354,7 +354,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: AppColors.surface,
+                color: context.palette.surface,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
@@ -438,7 +438,7 @@ class _NumberButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: isSelected ? AppColors.primary : AppColors.surface,
+      color: isSelected ? AppColors.primary : context.palette.surface,
       borderRadius: BorderRadius.circular(12),
       elevation: isSelected ? 4 : 0,
       child: InkWell(
@@ -451,7 +451,7 @@ class _NumberButton extends StatelessWidget {
             border: Border.all(
               color: isSelected
                   ? AppColors.primary
-                  : AppColors.surfaceVariant,
+                  : context.palette.surfaceVariant,
               width: 2,
             ),
           ),
@@ -462,7 +462,7 @@ class _NumberButton extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
-                  color: isSelected ? Colors.white : AppColors.textPrimary,
+                  color: isSelected ? Colors.white : context.palette.textPrimary,
                 ),
               ),
               const SizedBox(height: 4),
@@ -473,7 +473,7 @@ class _NumberButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: isSelected
                       ? Colors.white.withValues(alpha: 0.9)
-                      : AppColors.textSecondary,
+                      : context.palette.textSecondary,
                 ),
               ),
             ],

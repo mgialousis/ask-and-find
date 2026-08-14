@@ -102,7 +102,7 @@ class _ScoreboardWidgetState extends State<ScoreboardWidget>
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.textSecondary,
+                  color: context.palette.textSecondary,
                 ),
               ),
             ],
@@ -112,13 +112,13 @@ class _ScoreboardWidgetState extends State<ScoreboardWidget>
         // Team Score Cards
         Container(
           decoration: BoxDecoration(
-            color: AppColors.surface,
+            color: context.palette.surface,
             borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(16),
               bottomRight: Radius.circular(16),
             ),
             border: Border.all(
-              color: AppColors.surfaceVariant,
+              color: context.palette.surfaceVariant,
               width: 1,
             ),
           ),

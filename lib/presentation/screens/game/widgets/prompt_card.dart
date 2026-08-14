@@ -31,7 +31,7 @@ class PromptCard extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: [
               AppColors.primary.withValues(alpha: 0.05),
-              AppColors.surface,
+              context.palette.surface,
             ],
           ),
         ),
@@ -46,10 +46,10 @@ class PromptCard extends StatelessWidget {
             // Prompt Text
             Text(
               prompt,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
-                color: AppColors.textPrimary,
+                color: context.palette.textPrimary,
                 height: 1.3,
               ),
               textAlign: TextAlign.center,

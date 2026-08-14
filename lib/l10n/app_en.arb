@@ -178,7 +178,7 @@
   "hapticFeedback": "Haptic Feedback",
   "hapticFeedbackDesc": "Vibrate on interactions",
   "darkMode": "Dark Mode",
-  "darkModeDesc": "Coming soon in a future update",
+  "darkModeDesc": "Use a darker colour scheme, easier on the eyes in low light",
   "analytics": "Analytics",
   "analyticsDesc": "Help improve the game by sending anonymous usage data",
   "settingsRestored": "Settings restored to defaults",

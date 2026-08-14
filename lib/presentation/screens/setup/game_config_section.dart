@@ -164,10 +164,10 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w700,
-        color: AppColors.textPrimary,
+        color: context.palette.textPrimary,
       ),
     );
   }
@@ -192,7 +192,7 @@ class _SettingGroup extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: AppColors.textSecondary,
+            color: context.palette.textSecondary,
           ),
         ),
         const SizedBox(height: 8),
@@ -216,7 +216,7 @@ class _ChoiceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: isSelected ? AppColors.primary : AppColors.surface,
+      color: isSelected ? AppColors.primary : context.palette.surface,
       borderRadius: BorderRadius.circular(12),
       elevation: isSelected ? 2 : 0,
       child: InkWell(
@@ -232,7 +232,7 @@ class _ChoiceButton extends StatelessWidget {
             border: Border.all(
               color: isSelected
                   ? AppColors.primary
-                  : AppColors.surfaceVariant,
+                  : context.palette.surfaceVariant,
               width: 2,
             ),
           ),
@@ -242,7 +242,7 @@ class _ChoiceButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isSelected ? Colors.white : AppColors.textPrimary,
+                color: isSelected ? Colors.white : context.palette.textPrimary,
               ),
             ),
           ),

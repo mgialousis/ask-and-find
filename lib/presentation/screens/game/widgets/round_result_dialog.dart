@@ -114,10 +114,10 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                   // Header
                   Text(
                     l10n.roundComplete,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
-                      color: AppColors.textPrimary,
+                      color: context.palette.textPrimary,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -165,7 +165,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.textSecondary,
+                            color: context.palette.textSecondary,
                           ),
                         ),
                       ],
@@ -178,10 +178,10 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppColors.surface,
+                      color: context.palette.surface,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: AppColors.surfaceVariant,
+                        color: context.palette.surfaceVariant,
                         width: 1,
                       ),
                     ),
@@ -190,10 +190,10 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                       children: [
                         Text(
                           l10n.scoresSoFar,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.textPrimary,
+                            color: context.palette.textPrimary,
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -219,10 +219,10 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                                 Expanded(
                                   child: Text(
                                     team.name,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: AppColors.textPrimary,
+                                      color: context.palette.textPrimary,
                                     ),
                                   ),
                                 ),
@@ -231,7 +231,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
-                                    color: AppColors.textSecondary,
+                                    color: context.palette.textSecondary,
                                   ),
                                 ),
                               ],
@@ -257,7 +257,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                     icon: const Icon(Icons.flag_outlined, size: 18),
                     label: Text(l10n.reportIssue),
                     style: TextButton.styleFrom(
-                      foregroundColor: AppColors.textSecondary,
+                      foregroundColor: context.palette.textSecondary,
                     ),
                   ),
                   TextButton.icon(
@@ -342,10 +342,10 @@ class _AnswersSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surfaceVariant.withValues(alpha: 0.3),
+        color: context.palette.surfaceVariant.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppColors.surfaceVariant,
+          color: context.palette.surfaceVariant,
         ),
       ),
       child: Column(
@@ -354,10 +354,10 @@ class _AnswersSection extends StatelessWidget {
           // Prompt
           Text(
             prompt,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: AppColors.textPrimary,
+              color: context.palette.textPrimary,
             ),
           ),
           const SizedBox(height: 16),
@@ -398,7 +398,7 @@ class _AnswersSection extends StatelessWidget {
                     style: const TextStyle(fontSize: 12),
                   ),
                   selectedColor: AppColors.success.withValues(alpha: 0.15),
-                  backgroundColor: AppColors.surfaceVariant.withValues(alpha: 0.3),
+                  backgroundColor: context.palette.surfaceVariant.withValues(alpha: 0.3),
                   checkmarkColor: AppColors.success,
                   side: const BorderSide(color: AppColors.success),
                 );
@@ -413,7 +413,7 @@ class _AnswersSection extends StatelessWidget {
               children: [
                 Icon(
                   Icons.cancel,
-                  color: AppColors.textSecondary,
+                  color: context.palette.textSecondary,
                   size: 16,
                 ),
                 const SizedBox(width: 6),
@@ -422,7 +422,7 @@ class _AnswersSection extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.textSecondary,
+                    color: context.palette.textSecondary,
                   ),
                 ),
               ],
@@ -441,9 +441,9 @@ class _AnswersSection extends StatelessWidget {
                   ),
                   selectedColor: AppColors.success.withValues(alpha: 0.15),
                   backgroundColor:
-                      AppColors.surfaceVariant.withValues(alpha: 0.3),
+                      context.palette.surfaceVariant.withValues(alpha: 0.3),
                   checkmarkColor: AppColors.success,
-                  side: BorderSide(color: AppColors.textSecondary),
+                  side: BorderSide(color: context.palette.textSecondary),
                 );
               }).toList(),
             ),
@@ -459,7 +459,7 @@ class _AnswersSection extends StatelessWidget {
               style: TextStyle(
                 fontSize: 11,
                 fontStyle: FontStyle.italic,
-                color: AppColors.textSecondary,
+                color: context.palette.textSecondary,
               ),
             ),
           ],

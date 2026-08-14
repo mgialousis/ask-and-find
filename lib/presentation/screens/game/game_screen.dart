@@ -279,7 +279,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
-                color: AppColors.textSecondary,
+                color: context.palette.textSecondary,
               ),
             ),
             const SizedBox(height: 12),
@@ -311,7 +311,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.surfaceVariant.withValues(alpha: 0.3),
+                color: context.palette.surfaceVariant.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(
@@ -321,7 +321,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.textSecondary,
+                      color: context.palette.textSecondary,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -329,7 +329,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                     l10n.findAnswersInTime(roundDuration),
                     style: TextStyle(
                       fontSize: 14,
-                      color: AppColors.textSecondary,
+                      color: context.palette.textSecondary,
                     ),
                   ),
                 ],
@@ -379,7 +379,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: AppColors.textSecondary,
+                color: context.palette.textSecondary,
               ),
             ),
             const SizedBox(height: 8),

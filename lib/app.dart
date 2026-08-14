@@ -5,6 +5,7 @@ import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_theme.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/state/locale_provider.dart';
+import 'package:pes_vres/presentation/state/settings_provider.dart';
 
 /// Main app widget with Riverpod ProviderScope and routing
 class App extends StatelessWidget {
@@ -25,13 +26,16 @@ class _AppContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeProvider);
+    final darkModeEnabled = ref.watch(
+      settingsProvider.select((s) => s.darkModeEnabled),
+    );
 
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: darkModeEnabled ? ThemeMode.dark : ThemeMode.light,
       routerConfig: AppRouter.createRouter(),
 
       // Localization configuration

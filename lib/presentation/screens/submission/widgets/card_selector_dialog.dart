@@ -89,7 +89,7 @@ class _CardSelectorDialogState extends ConsumerState<CardSelectorDialog> {
                         l10n.filterByDifficulty,
                         style: TextStyle(
                           fontSize: 12,
-                          color: AppColors.textSecondary,
+                          color: context.palette.textSecondary,
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -147,7 +147,7 @@ class _CardSelectorDialogState extends ConsumerState<CardSelectorDialog> {
                     return Center(
                       child: Text(
                         l10n.noCardsFound,
-                        style: TextStyle(color: AppColors.textSecondary),
+                        style: TextStyle(color: context.palette.textSecondary),
                       ),
                     );
                   }
@@ -295,7 +295,7 @@ class _CardListTile extends StatelessWidget {
                     '${card.answersEn.length} answers',
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppColors.textSecondary,
+                      color: context.palette.textSecondary,
                     ),
                   ),
                 ],
@@ -304,7 +304,7 @@ class _CardListTile extends StatelessWidget {
             // Arrow
             Icon(
               Icons.chevron_right,
-              color: AppColors.textSecondary,
+              color: context.palette.textSecondary,
             ),
           ],
         ),

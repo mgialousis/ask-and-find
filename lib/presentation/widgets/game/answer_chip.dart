@@ -76,7 +76,7 @@ class _AnswerChipState extends State<AnswerChip>
   Color get _backgroundColor {
     switch (widget.state) {
       case AnswerChipState.unselected:
-        return AppColors.surface;
+        return context.palette.surface;
       case AnswerChipState.selected:
         return AppColors.success;
     }
@@ -85,7 +85,7 @@ class _AnswerChipState extends State<AnswerChip>
   Color get _textColor {
     switch (widget.state) {
       case AnswerChipState.unselected:
-        return AppColors.textPrimary;
+        return context.palette.textPrimary;
       case AnswerChipState.selected:
         return Colors.white;
     }

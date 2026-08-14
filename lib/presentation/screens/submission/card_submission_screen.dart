@@ -380,7 +380,7 @@ class _NewCardForm extends ConsumerWidget {
           l10n.answersHint,
           style: TextStyle(
             fontSize: 12,
-            color: AppColors.textSecondary,
+            color: context.palette.textSecondary,
           ),
         ),
         const SizedBox(height: 8),
@@ -583,9 +583,9 @@ class _SelectedCardDisplay extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: AppColors.surfaceVariant.withValues(alpha: 0.3),
+        color: context.palette.surfaceVariant.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.surfaceVariant),
+        border: Border.all(color: context.palette.surfaceVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -643,7 +643,7 @@ class _SectionHeader extends StatelessWidget {
               '(${l10n.optional})',
               style: TextStyle(
                 fontSize: 12,
-                color: AppColors.textSecondary,
+                color: context.palette.textSecondary,
               ),
             ),
           ],

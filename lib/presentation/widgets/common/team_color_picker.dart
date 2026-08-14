@@ -64,7 +64,7 @@ class _ColorOption extends StatelessWidget {
           shape: BoxShape.circle,
           border: isSelected
               ? Border.all(
-                  color: AppColors.textPrimary,
+                  color: context.palette.textPrimary,
                   width: 3,
                 )
               : null,

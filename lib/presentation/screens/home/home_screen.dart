@@ -52,10 +52,10 @@ class HomeScreen extends StatelessWidget {
                 // App Title
                 Text(
                   l10n.appTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.textPrimary,
+                    color: context.palette.textPrimary,
                     letterSpacing: -1,
                   ),
                   textAlign: TextAlign.center,
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                   l10n.appTagline,
                   style: TextStyle(
                     fontSize: 16,
-                    color: AppColors.textSecondary,
+                    color: context.palette.textSecondary,
                     letterSpacing: 0.5,
                   ),
                   textAlign: TextAlign.center,

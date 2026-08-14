@@ -236,7 +236,7 @@ class _AnswerItem extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: Icon(
                 Icons.drag_handle,
-                color: AppColors.textSecondary,
+                color: context.palette.textSecondary,
                 size: 20,
               ),
             ),
@@ -247,7 +247,7 @@ class _AnswerItem extends StatelessWidget {
             height: 28,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: AppColors.surfaceVariant,
+              color: context.palette.surfaceVariant,
               borderRadius: BorderRadius.circular(14),
             ),
             child: Text(
@@ -255,7 +255,7 @@ class _AnswerItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: AppColors.textSecondary,
+                color: context.palette.textSecondary,
               ),
             ),
           ),

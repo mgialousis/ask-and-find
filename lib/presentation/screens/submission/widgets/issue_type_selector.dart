@@ -109,10 +109,10 @@ class _IssueTypeOption extends StatelessWidget {
           decoration: BoxDecoration(
             color: isSelected
                 ? AppColors.primary.withValues(alpha: 0.1)
-                : AppColors.surfaceVariant.withValues(alpha: 0.3),
+                : context.palette.surfaceVariant.withValues(alpha: 0.3),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isSelected ? AppColors.primary : AppColors.surfaceVariant,
+              color: isSelected ? AppColors.primary : context.palette.surfaceVariant,
               width: isSelected ? 2 : 1,
             ),
           ),
@@ -127,7 +127,7 @@ class _IssueTypeOption extends StatelessWidget {
                   border: Border.all(
                     color: isSelected
                         ? AppColors.primary
-                        : AppColors.textSecondary,
+                        : context.palette.textSecondary,
                     width: 2,
                   ),
                   color: isSelected ? AppColors.primary : Colors.transparent,
@@ -145,7 +145,7 @@ class _IssueTypeOption extends StatelessWidget {
               Icon(
                 _icon,
                 size: 24,
-                color: isSelected ? AppColors.primary : AppColors.textSecondary,
+                color: isSelected ? AppColors.primary : context.palette.textSecondary,
               ),
               const SizedBox(width: 12),
               // Text content
@@ -160,7 +160,7 @@ class _IssueTypeOption extends StatelessWidget {
                         fontSize: 14,
                         color: isSelected
                             ? AppColors.primary
-                            : AppColors.textPrimary,
+                            : context.palette.textPrimary,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -168,7 +168,7 @@ class _IssueTypeOption extends StatelessWidget {
                       description,
                       style: TextStyle(
                         fontSize: 12,
-                        color: AppColors.textSecondary,
+                        color: context.palette.textSecondary,
                       ),
                     ),
                   ],

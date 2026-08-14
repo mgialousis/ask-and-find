@@ -44,7 +44,7 @@ class CardPreviewWidget extends StatelessWidget {
                   answer,
                   overflow: TextOverflow.ellipsis,
                 ),
-                backgroundColor: AppColors.surfaceVariant.withValues(alpha: 0.4),
+                backgroundColor: context.palette.surfaceVariant.withValues(alpha: 0.4),
               );
             }).toList(),
           ),

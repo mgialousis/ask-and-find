@@ -140,7 +140,7 @@ class _InstructionStep extends StatelessWidget {
                   description,
                   style: TextStyle(
                     fontSize: 16,
-                    color: AppColors.textSecondary,
+                    color: context.palette.textSecondary,
                     height: 1.5,
                   ),
                 ),
@@ -209,7 +209,7 @@ class _TipCard extends StatelessWidget {
                           tip,
                           style: TextStyle(
                             fontSize: 15,
-                            color: AppColors.textSecondary,
+                            color: context.palette.textSecondary,
                             height: 1.5,
                           ),
                         ),

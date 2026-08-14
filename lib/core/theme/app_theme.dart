@@ -230,10 +230,86 @@ class AppTheme {
     );
   }
 
-  /// Dark theme configuration (placeholder for future implementation)
+  /// Dark theme configuration.
+  ///
+  /// Derived from [lightTheme] so shape, spacing and typography stay identical
+  /// and only colour is overridden. Brand and semantic colours are deliberately
+  /// unchanged — they were chosen to be legible on both backgrounds — while
+  /// surfaces and text come from [AppPalette.dark], the same values widgets
+  /// resolve through `context.palette`.
   static ThemeData get darkTheme {
-    // For now, return light theme
-    // TODO: Implement dark theme in future iteration
-    return lightTheme;
+    const palette = AppPalette.dark;
+    final base = lightTheme;
+
+    return base.copyWith(
+      brightness: Brightness.dark,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.primary,
+        primary: AppColors.primary,
+        primaryContainer: AppColors.primaryDark,
+        secondary: AppColors.primaryLight,
+        surface: palette.surface,
+        error: AppColors.error,
+        onPrimary: AppColors.textOnPrimary,
+        onSurface: palette.textPrimary,
+        onError: Colors.white,
+        brightness: Brightness.dark,
+      ),
+      scaffoldBackgroundColor: palette.background,
+      appBarTheme: base.appBarTheme.copyWith(
+        backgroundColor: palette.surface,
+        foregroundColor: palette.textPrimary,
+        titleTextStyle: base.appBarTheme.titleTextStyle?.copyWith(
+          color: palette.textPrimary,
+        ),
+        iconTheme: IconThemeData(color: palette.textPrimary),
+      ),
+      cardTheme: base.cardTheme.copyWith(color: palette.surface),
+      dialogTheme: base.dialogTheme.copyWith(
+        backgroundColor: palette.surface,
+        titleTextStyle: base.dialogTheme.titleTextStyle?.copyWith(
+          color: palette.textPrimary,
+        ),
+        contentTextStyle: base.dialogTheme.contentTextStyle?.copyWith(
+          color: palette.textPrimary,
+        ),
+      ),
+      bottomSheetTheme: base.bottomSheetTheme.copyWith(
+        backgroundColor: palette.surface,
+      ),
+      inputDecorationTheme: base.inputDecorationTheme.copyWith(
+        fillColor: palette.surfaceVariant,
+        hintStyle: base.inputDecorationTheme.hintStyle?.copyWith(
+          color: palette.textSecondary,
+        ),
+      ),
+      chipTheme: base.chipTheme.copyWith(
+        backgroundColor: palette.surfaceVariant,
+        disabledColor: palette.surfaceVariant.withValues(alpha: 0.5),
+        labelStyle: base.chipTheme.labelStyle?.copyWith(
+          color: palette.textPrimary,
+        ),
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primary;
+          }
+          return palette.textSecondary;
+        }),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryDark;
+          }
+          return palette.surfaceVariant;
+        }),
+      ),
+      dividerTheme: base.dividerTheme.copyWith(color: palette.surfaceVariant),
+      iconTheme: base.iconTheme.copyWith(color: palette.textPrimary),
+      textTheme: base.textTheme.apply(
+        bodyColor: palette.textPrimary,
+        displayColor: palette.textPrimary,
+      ),
+    );
   }
 }

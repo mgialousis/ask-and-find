@@ -266,10 +266,10 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                 const SizedBox(height: 24),
                 Text(
                   l10n.gameOver,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.textPrimary,
+                    color: context.palette.textPrimary,
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -309,7 +309,7 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.textPrimary,
+                            color: context.palette.textPrimary,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -318,10 +318,10 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                       if (winners.isEmpty)
                         Text(
                           l10n.noScoresRecorded,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.textSecondary,
+                            color: context.palette.textSecondary,
                           ),
                         )
                       else
@@ -332,10 +332,10 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                           builder: (context, value, child) {
                             return Text(
                               l10n.nPoints(value),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.textSecondary,
+                                color: context.palette.textSecondary,
                               ),
                             );
                           },

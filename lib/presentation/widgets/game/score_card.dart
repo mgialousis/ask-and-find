@@ -27,7 +27,7 @@ class ScoreCard extends StatelessWidget {
       elevation: isWinner ? 8 : 2,
       color: isWinner
           ? team.color.withValues(alpha: 0.1)
-          : AppColors.surface,
+          : context.palette.surface,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -77,7 +77,7 @@ class ScoreCard extends StatelessWidget {
                     animate: animateScore,
                     style: TextStyle(
                       fontSize: 14,
-                      color: AppColors.textSecondary,
+                      color: context.palette.textSecondary,
                     ),
                     formatter: (score) => l10n.nPoints(score),
                   ),
@@ -148,7 +148,7 @@ class _RankBadge extends StatelessWidget {
       width: 36,
       height: 36,
       decoration: BoxDecoration(
-        color: _getRankColor(),
+        color: _getRankColor(context),
         shape: BoxShape.circle,
       ),
       child: Center(
@@ -177,7 +177,7 @@ class _RankBadge extends StatelessWidget {
     }
   }
 
-  Color _getRankColor() {
+  Color _getRankColor(BuildContext context) {
     switch (rank) {
       case 1:
         return const Color(0xFFFFD700); // Gold
@@ -186,7 +186,7 @@ class _RankBadge extends StatelessWidget {
       case 3:
         return const Color(0xFFCD7F32); // Bronze
       default:
-        return AppColors.textSecondary;
+        return context.palette.textSecondary;
     }
   }
 }

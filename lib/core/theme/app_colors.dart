@@ -79,3 +79,59 @@ class AppColors {
     return color1.toARGB32() == color2.toARGB32();
   }
 }
+
+/// The subset of colors that must flip between light and dark.
+///
+/// Brand and semantic colors ([AppColors.primary], success/error/warning and
+/// the team colors) read correctly on either background and stay constant.
+/// Surfaces and text do not, so widgets resolve them from the ambient theme
+/// via [AppPaletteContext.palette] instead of referencing [AppColors] directly.
+@immutable
+class AppPalette {
+  const AppPalette({
+    required this.background,
+    required this.surface,
+    required this.surfaceVariant,
+    required this.textPrimary,
+    required this.textSecondary,
+    required this.textDisabled,
+  });
+
+  final Color background;
+  final Color surface;
+  final Color surfaceVariant;
+  final Color textPrimary;
+  final Color textSecondary;
+  final Color textDisabled;
+
+  /// Identical to the historical [AppColors] constants, so light mode renders
+  /// exactly as it did before dark mode existed.
+  static const AppPalette light = AppPalette(
+    background: AppColors.background,
+    surface: AppColors.surface,
+    surfaceVariant: AppColors.surfaceVariant,
+    textPrimary: AppColors.textPrimary,
+    textSecondary: AppColors.textSecondary,
+    textDisabled: AppColors.textDisabled,
+  );
+
+  /// Dark surfaces are kept above pure black so elevation and the team colors
+  /// stay legible. Text contrast against [surface] is ~15:1 for [textPrimary]
+  /// and ~7.9:1 for [textSecondary], both above the WCAG AA 4.5:1 threshold.
+  static const AppPalette dark = AppPalette(
+    background: Color(0xFF121316),
+    surface: Color(0xFF1C1E24),
+    surfaceVariant: Color(0xFF282B33),
+    textPrimary: Color(0xFFF3F4F6),
+    textSecondary: Color(0xFFA9B0BD),
+    textDisabled: Color(0xFF6B7280),
+  );
+}
+
+extension AppPaletteContext on BuildContext {
+  /// Surface and text colors for the current theme brightness.
+  AppPalette get palette =>
+      Theme.of(this).brightness == Brightness.dark
+          ? AppPalette.dark
+          : AppPalette.light;
+}

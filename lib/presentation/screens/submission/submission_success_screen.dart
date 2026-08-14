@@ -107,10 +107,10 @@ class _SubmissionSuccessScreenState extends State<SubmissionSuccessScreen>
                   children: [
                     Text(
                       l10n.submissionSuccess,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.textPrimary,
+                        color: context.palette.textPrimary,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -119,7 +119,7 @@ class _SubmissionSuccessScreenState extends State<SubmissionSuccessScreen>
                       l10n.submissionSuccessMessage,
                       style: TextStyle(
                         fontSize: 16,
-                        color: AppColors.textSecondary,
+                        color: context.palette.textSecondary,
                       ),
                       textAlign: TextAlign.center,
                     ),

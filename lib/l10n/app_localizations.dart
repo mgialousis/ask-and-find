@@ -533,7 +533,7 @@ abstract class AppLocalizations {
   /// No description provided for @darkModeDesc.
   ///
   /// In en, this message translates to:
-  /// **'Coming soon in a future update'**
+  /// **'Use a darker colour scheme, easier on the eyes in low light'**
   String get darkModeDesc;
 
   /// No description provided for @analytics.

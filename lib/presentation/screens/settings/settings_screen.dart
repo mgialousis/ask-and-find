@@ -189,7 +189,7 @@ class SettingsScreen extends ConsumerWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.textSecondary,
+                      color: context.palette.textSecondary,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -197,7 +197,7 @@ class SettingsScreen extends ConsumerWidget {
                     l10n.versionNumber('1.0.0'),
                     style: TextStyle(
                       fontSize: 14,
-                      color: AppColors.textSecondary,
+                      color: context.palette.textSecondary,
                     ),
                   ),
                 ],

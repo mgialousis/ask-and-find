@@ -65,10 +65,10 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w700,
-        color: AppColors.textPrimary,
+        color: context.palette.textPrimary,
       ),
     );
   }
@@ -152,10 +152,10 @@ class _TeamCardState extends State<_TeamCard> {
                 const SizedBox(width: 12),
                 Text(
                   l10n.teamWithNumber(widget.index + 1),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
+                    color: context.palette.textPrimary,
                   ),
                 ),
               ],
@@ -185,7 +185,7 @@ class _TeamCardState extends State<_TeamCard> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: AppColors.textSecondary,
+                color: context.palette.textSecondary,
               ),
             ),
             const SizedBox(height: 8),

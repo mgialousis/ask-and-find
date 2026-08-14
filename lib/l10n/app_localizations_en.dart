@@ -259,7 +259,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkMode => 'Dark Mode';
 
   @override
-  String get darkModeDesc => 'Coming soon in a future update';
+  String get darkModeDesc =>
+      'Use a darker colour scheme, easier on the eyes in low light';
 
   @override
   String get analytics => 'Analytics';

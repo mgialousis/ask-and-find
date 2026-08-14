@@ -259,7 +259,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get darkMode => 'Modo Oscuro';
 
   @override
-  String get darkModeDesc => 'Próximamente';
+  String get darkModeDesc => 'Usa colores oscuros, más cómodos con poca luz';
 
   @override
   String get analytics => 'Analíticas';
