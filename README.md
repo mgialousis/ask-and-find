@@ -14,91 +14,61 @@ Ask & Find is an English version inspired by the Greek game "Πες Βρες!" w
 
 ## 🚀 Current Status
 
-**Phase 1: COMPLETE!** 🎉
-**Phase 2: COMPLETE!** 🎉
+The core game is playable end to end on Android and iOS:
 
-- ✅ Full UI implementation with Material Design 3
-- ✅ Complete game loop from setup to results
-- ✅ Timer-based gameplay with visual warnings
-- ✅ Team rotation and score tracking
-- ✅ Winner announcement and results screen
-- ✅ **Settings persistence with SharedPreferences** (Day 8)
-- ✅ **Riverpod state management infrastructure** (Days 8-10)
-- ✅ **Setup → Game → Results → Play Again WORKING!** (Days 8-10) 🎯
-- ✅ **Configuration respected: teams, rounds, timer** (Days 8-10)
-- ✅ **"Play Again" functionality** (Day 10)
-- ✅ 39 files, 7,000+ lines of code
-- ✅ Zero analyzer warnings, all tests passing
+- Complete setup → game → results → play-again flow
+- Configurable teams, rounds, timer, and difficulty
+- Riverpod-managed game, setup, timer, settings, and submission state
+- 115 bilingual English/Spanish trivia cards with per-answer scoring
+- Sound effects, haptic feedback, sharing, and persistent settings
+- New-card and correction submissions with offline retry support
+- PostHog analytics with a user-facing privacy toggle
+- Ask & Find branding and generated Android/iOS launcher icons
 
-**Try it now:** `flutter run`
+Run it locally with `flutter run`.
 
 ## 🎯 Features
 
-### Implemented (Phase 1)
-- ✅ Home screen with navigation
-- ✅ Game setup: 2-4 teams, configurable rounds/timer/difficulty
-- ✅ Team customization: names and colors
-- ✅ Full gameplay: timer, answer discovery, round results
-- ✅ Score tracking and team rotation
-- ✅ Results screen with winner announcement
-- ✅ Share functionality
-- ✅ Responsive design (phone and tablet)
-
-### Phase 2 Complete! (State Management) ✅
-- ✅ Settings persistence (Day 8)
-- ✅ Riverpod provider infrastructure (Days 8-10)
-- ✅ Timer & Game state providers (Day 9)
-- ✅ Setup → Game connection (Day 9) 🎯
-- ✅ Results screen provider integration (Day 10)
-- ✅ Play Again functionality (Day 10) 🎯
-
-### Coming Soon (Phase 3+)
-- ⏳ Domain logic layer
-- ⏳ Animations and sound effects
-- ⏳ 100+ original trivia cards
+- Home screen and routed game flow
+- Team setup for 2-4 teams with custom names and colors
+- Configurable rounds, timer duration, and difficulty
+- Timer-based gameplay with countdown audio and haptics
+- Per-answer scoring, score adjustment, team rotation, and final results
+- Round-complete dialog that requires Continue or End Game
+- English and Spanish localization
+- Card submission and issue-reporting flows
+- Offline submission queue and Google Sheets integration
+- Responsive phone and tablet layouts
 
 ## 🏗️ Architecture
 
 ```
 lib/
-├── core/              # Theme, routing, utils
-├── domain/entities/   # Team, CardItem, RoundResult, GameConfig, etc.
-├── data/models/       # Mock data (10 sample cards)
+├── core/              # Analytics, config, routing, theme, and utilities
+├── domain/entities/   # Game and submission entities
+├── data/
+│   ├── repositories/  # Cards and submission repositories
+│   └── sources/       # Asset loading, Sheets API, and offline storage
 └── presentation/
-    ├── state/         # Riverpod providers (Phase 2 Days 8-9)
-    │   ├── settings_provider.dart      # User preferences
-    │   ├── game_setup_provider.dart    # Team & config
-    │   ├── timer_provider.dart         # Countdown timer
-    │   └── game_state_provider.dart    # Active gameplay
-    ├── screens/       # 14 screen files
-    │   ├── home/
-    │   ├── how_to_play/
-    │   ├── settings/  # Uses Riverpod ✅
-    │   ├── setup/     # Uses Riverpod ✅
-    │   ├── game/      # Uses Riverpod ✅
-    │   └── results/   # Uses Riverpod ✅ (Day 10!)
-    └── widgets/       # 7 reusable components
+    ├── state/         # Riverpod providers and notifiers
+    ├── screens/       # Home, setup, game, results, settings, submissions
+    └── widgets/       # Shared UI components
 ```
 
-**Design Pattern:** Clean Architecture with UI-first approach
-- Phase 1: UI with local state
-- Phase 2: Riverpod state management
-- Phase 3: Domain and data layers
-- Phase 4: Polish and animations
-- Phase 5: Testing and refinement
+Trivia content is loaded from `assets/cards.json`; app and round state are managed with Riverpod.
 
 ## 🎲 How to Play
 
 1. **Setup Teams**: Choose 2-4 teams, pick names and colors
 2. **Configure Game**: Select rounds (5/7/10), timer (30/45/60/90s), difficulty
 3. **Play Rounds**: Each team tries to find 10 answers before time runs out
-4. **Score Points**: 1 point per correct answer discovered
+4. **Score Points**: Earn the per-answer point value for each correct answer
 5. **See Results**: Winner determined by highest score, ties detected
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Flutter ^3.10.4
-- **Language:** Dart
+- **Framework:** Flutter
+- **Language:** Dart ^3.10.4
 - **State Management:** Riverpod (Phase 2)
 - **Navigation:** go_router ^12.0.0
 - **Platforms:** Android, iOS
@@ -145,13 +115,11 @@ flutter run
 
 ## 📁 Project Structure
 
-See `IMPLEMENTATION_PLAN.md` for detailed roadmap and specifications.
-
 See `CLAUDE.md` for development guidelines and project overview.
 
-See `PROJECT_STATUS.md` for current implementation status.
-
 See `docs/RELEASE_GUIDE.md` for publishing/build steps.
+
+See `docs/MOBILE_TESTING_GUIDE.md` for physical-device testing.
 
 ## 🎨 Design System
 
@@ -174,8 +142,7 @@ flutter test test/widget_test.dart
 flutter test --coverage
 ```
 
-**Current Status:** 1 widget test (app launch)
-**Phase 5:** Comprehensive test suite planned
+**Current Status:** 102 declared test cases across 8 test files, covering localization, providers, setup, shared widgets, submissions, and app launch.
 
 ## 📊 Analytics (PostHog)
 
@@ -187,28 +154,13 @@ flutter test --coverage
   - `--dart-define=POSTHOG_HOST=https://app.posthog.com`
   - Optional: `--dart-define=POSTHOG_ALLOW_DEBUG=true` for non-release builds.
 
-## 📝 Development Notes
+## 📝 Recent Changes
 
-### Phase 1 Limitations
-- Setup configuration doesn't affect gameplay (uses hardcoded values)
-- Settings don't persist between sessions
-- "Play Again" shows placeholder message
-
-**These will be addressed in Phase 2 with Riverpod integration**
-
-### Mock Data
-Currently using 10 sample cards in `lib/data/models/mock_cards.dart`. Phase 4 will add 100+ original cards.
-
-## 🗓️ Roadmap
-
-- ✅ **Phase 1 (Days 1-7):** UI-First Development - COMPLETE
-- ✅ **Phase 2 (Days 8-10):** State Management - COMPLETE
-  - Day 8: Settings & Setup providers ✅
-  - Day 9: Timer & Game State providers, Game Screen refactor ✅
-  - Day 10: Results screen refactor & "Play Again" ✅
-- ⏳ **Phase 3 (Days 11-13):** Domain & Data Layers
-- ⏳ **Phase 4 (Days 14-20):** Polish & Features
-- ⏳ **Phase 5 (Days 21-25):** Testing & Refinement
+- Added 21 trivia cards and corrected accuracy issues in existing cards
+- Rebranded the app and platform labels to Ask & Find
+- Added a launcher-icon source and generated Android/iOS icon variants
+- Added the Android build script's optional `--icons` generation step
+- Prevented system back from dismissing the round-complete dialog
 
 ## 🤝 Contributing
 
@@ -227,11 +179,3 @@ This is a personal project. Feedback and suggestions are welcome!
 ## 📧 Contact
 
 [Contact information to be added]
-
----
-
-**Status:** Phase 1 Complete, Phase 2 Complete! 🎉
-
-**Latest:** Phase 2 COMPLETE! Setup → Game → Results → Play Again flow working! ✅
-
-**Next:** Phase 3 - Domain & Data Layers

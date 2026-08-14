@@ -18,10 +18,12 @@ Create a `.env` file from `.env.example` and fill in values:
 
 ### APK (quick testing or direct install)
 ```bash
-./scripts/android_build.sh --release
+./scripts/android_build.sh --release --icons
 ```
 Output:
 - `build/app/outputs/flutter-apk/app-release.apk`
+
+Use `--icons` after changing `assets/icons/app_icon_source.png`. It regenerates the Android and iOS launcher icon files before the APK build. Omit it for faster builds when the icon has not changed.
 
 ### App Bundle (Play Store)
 ```bash
