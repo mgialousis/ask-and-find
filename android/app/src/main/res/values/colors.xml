@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches AppPalette.light.background so the splash hands over to the
+         Flutter UI without a visible colour change. -->
+    <color name="splash_background">#F8F9FA</color>
+</resources>
