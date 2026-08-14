@@ -203,11 +203,11 @@
   "step3Title": "Beat the Clock",
   "step3Desc": "Teams have a time limit (30-90 seconds) to find as many answers as possible. Tap the hidden chips to reveal answers when you guess correctly.",
   "step4Title": "Score Points",
-  "step4Desc": "Each correct answer found earns 1 point. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.",
+  "step4Desc": "Each answer is worth 1 to 5 points depending on how obscure it is, and every chip shows its value. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.",
   "step5Title": "Take Turns",
   "step5Desc": "Teams take turns playing rounds until all configured rounds are complete. The game alternates between teams in order.",
   "step6Title": "Win the Game",
-  "step6Desc": "After all rounds, the team with the most points wins! If there's a tie for first place, overtime rounds determine the winner.",
+  "step6Desc": "After all rounds, the team with the most points wins! If two teams finish level on points, they share first place.",
 
   "proTips": "Pro Tips",
   "tip1": "Communication is key! Discuss answers with your team.",

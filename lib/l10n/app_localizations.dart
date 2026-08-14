@@ -629,7 +629,7 @@ abstract class AppLocalizations {
   /// No description provided for @step4Desc.
   ///
   /// In en, this message translates to:
-  /// **'Each correct answer found earns 1 point. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.'**
+  /// **'Each answer is worth 1 to 5 points depending on how obscure it is, and every chip shows its value. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.'**
   String get step4Desc;
 
   /// No description provided for @step5Title.
@@ -653,7 +653,7 @@ abstract class AppLocalizations {
   /// No description provided for @step6Desc.
   ///
   /// In en, this message translates to:
-  /// **'After all rounds, the team with the most points wins! If there\'s a tie for first place, overtime rounds determine the winner.'**
+  /// **'After all rounds, the team with the most points wins! If two teams finish level on points, they share first place.'**
   String get step6Desc;
 
   /// No description provided for @proTips.

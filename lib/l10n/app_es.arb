@@ -103,11 +103,11 @@
   "step3Title": "Vence al Reloj",
   "step3Desc": "Los equipos tienen un límite de tiempo (30-90 segundos) para encontrar respuestas. Toca las fichas para revelar respuestas correctas.",
   "step4Title": "Gana Puntos",
-  "step4Desc": "Cada respuesta correcta gana puntos. No hay penalizaciones por respuestas incorrectas. Solo cuentan las 10 respuestas seleccionadas.",
+  "step4Desc": "Cada respuesta vale de 1 a 5 puntos según lo difícil que sea, y cada ficha muestra su valor. No hay penalizaciones por respuestas incorrectas. Solo cuentan las 10 respuestas seleccionadas.",
   "step5Title": "Toma Turnos",
   "step5Desc": "Los equipos se turnan para jugar rondas hasta completar todas las configuradas. El juego alterna entre equipos.",
   "step6Title": "Gana el Juego",
-  "step6Desc": "¡Después de todas las rondas, el equipo con más puntos gana! Si hay empate, las rondas extra determinan al ganador.",
+  "step6Desc": "¡Después de todas las rondas, el equipo con más puntos gana! Si dos equipos terminan empatados, comparten el primer puesto.",
 
   "proTips": "Consejos",
   "tip1": "¡La comunicación es clave! Discute las respuestas con tu equipo.",

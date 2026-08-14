@@ -314,7 +314,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get step4Desc =>
-      'Cada respuesta correcta gana puntos. No hay penalizaciones por respuestas incorrectas. Solo cuentan las 10 respuestas seleccionadas.';
+      'Cada respuesta vale de 1 a 5 puntos según lo difícil que sea, y cada ficha muestra su valor. No hay penalizaciones por respuestas incorrectas. Solo cuentan las 10 respuestas seleccionadas.';
 
   @override
   String get step5Title => 'Toma Turnos';
@@ -328,7 +328,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get step6Desc =>
-      '¡Después de todas las rondas, el equipo con más puntos gana! Si hay empate, las rondas extra determinan al ganador.';
+      '¡Después de todas las rondas, el equipo con más puntos gana! Si dos equipos terminan empatados, comparten el primer puesto.';
 
   @override
   String get proTips => 'Consejos';

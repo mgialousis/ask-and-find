@@ -315,7 +315,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get step4Desc =>
-      'Each correct answer found earns 1 point. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.';
+      'Each answer is worth 1 to 5 points depending on how obscure it is, and every chip shows its value. There are no penalties for wrong guesses, so keep trying! Only the 10 selected answers for that round count.';
 
   @override
   String get step5Title => 'Take Turns';
@@ -329,7 +329,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get step6Desc =>
-      'After all rounds, the team with the most points wins! If there\'s a tie for first place, overtime rounds determine the winner.';
+      'After all rounds, the team with the most points wins! If two teams finish level on points, they share first place.';
 
   @override
   String get proTips => 'Pro Tips';
