@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:developer' show log;
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/analytics/analytics_service.dart';
@@ -176,24 +178,49 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     return AppColors.success;
   }
 
-  void _shareResults(
+  Future<void> _shareResults(
     BuildContext context,
     WidgetRef ref,
     AppLocalizations l10n,
-  ) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.shareResults),
-        content: Text(_buildShareText(ref, l10n)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(l10n.close),
-          ),
-        ],
-      ),
-    );
+  ) async {
+    // iPad anchors the share popover to the originating widget; without an
+    // origin rect UIKit throws. Derived from the button that was tapped.
+    final box = context.findRenderObject() as RenderBox?;
+    final origin = box != null && box.hasSize
+        ? box.localToGlobal(Offset.zero) & box.size
+        : null;
+
+    try {
+      await SharePlus.instance.share(
+        ShareParams(
+          text: _buildShareText(ref, l10n),
+          subject: l10n.shareTitle,
+          sharePositionOrigin: origin,
+        ),
+      );
+    } catch (e, stackTrace) {
+      log(
+        'Share failed: $e',
+        name: 'ResultsScreen',
+        error: e,
+        stackTrace: stackTrace,
+      );
+      if (!context.mounted) return;
+      // Fall back to showing the text so the result is never simply lost.
+      await showDialog<void>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(l10n.shareResults),
+          content: Text(_buildShareText(ref, l10n)),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(l10n.close),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   String _buildShareText(WidgetRef ref, AppLocalizations l10n) {
