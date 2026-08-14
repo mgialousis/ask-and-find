@@ -2,510 +2,114 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Quick Status:** 🎉 FEATURE COMPLETE + User Submissions + Analytics! 75 cards, confetti, animations, sounds, haptics, community card submissions (Google Sheets), PostHog analytics with privacy controls, bilingual (EN/ES).
-
 ## Project Overview
 
-"Ask & Find" (Pes Vres) is a **local multiplayer party trivia game** built with Flutter. It's an English version of the Greek game "Πες Βρες!" where 2-4 teams compete to identify items from visible lists before a timer expires.
+"Ask & Find" (package name `pes_vres`) is a local, pass-and-play party trivia game in Flutter. 2–4 teams take turns: a team sees 10 answers drawn from a card and taps the ones it can name before the timer expires. Single device, offline-first; the only network calls are optional analytics (PostHog) and community card submissions (Google Sheets).
 
-**Core Gameplay:**
-- Single-device, pass-and-play format
-- 2-4 teams competing in rounds
-- Each round: a team sees 10 answers and taps to select the ones they identify
-- **All answers visible from start** (tap to select/deselect)
-- **Difficulty-based scoring:**
-  - Easy: 1 point per answer
-  - Medium: 2 points per answer
-  - Hard: 3 points per answer
-- Configurable difficulty levels (Easy/Medium/Hard) and round duration (30/45/60/90 seconds)
-- Team rotation: all teams play within each round before advancing
+Bilingual EN/ES throughout — UI strings *and* card content.
 
-**Tech Stack:**
-- Flutter (SDK: ^3.10.4)
-- Target platforms: Android (JVM 17, Kotlin 1.9) and iOS
-- Local storage: SharedPreferences for settings and offline queue
-- Backend: Google Sheets API for user submissions (gsheets ^0.5.0)
-- Analytics: PostHog (posthog_flutter ^4.10.0) with opt-out support
-- State management: Riverpod (flutter_riverpod ^2.4.0)
-- Navigation: go_router (^12.0.0)
-- Connectivity: connectivity_plus ^6.0.0
-- App info: package_info_plus ^8.1.0
-- Environment config: flutter_dotenv ^5.1.0
+## Commands
 
-## Implementation Status
-
-**Current Phase:** Phase 4 - Day 12+ COMPLETE! 🎉
-
-### Day 12+ Achievements (User Submissions + Analytics):
-- ✅ **Submit New Cards** - Users can propose new trivia cards with 10 answers
-- ✅ **Report Issues** - Users can report problems with existing cards
-- ✅ **Google Sheets Backend** - Submissions stored in Google Spreadsheet
-- ✅ **Offline Support** - Submissions queued locally when offline, synced when online
-- ✅ **Card Preview** - Real-time preview while composing submissions
-- ✅ **Bilingual Support** - Full English and Spanish localization for submission UI
-- ✅ **Settings Integration** - Community section in Settings screen
-- ✅ **Round Result Integration** - Report Issue button after each round
-- ✅ **PostHog Analytics** - Anonymous usage tracking with user opt-out
-- ✅ **Privacy Settings** - Analytics toggle in Settings > Privacy section
-- ✅ **Build Scripts** - Android and iOS build scripts with analytics config
-
-### Day 11 Achievements (Polish & Testing):
-- ✅ **Answer Chip Animation** - Satisfying bounce/scale effect on tap
-- ✅ **Timer Pulse Animation** - Continuous pulse when < 10s, faster when < 5s
-- ✅ **Sound Effects** - Selection sounds, countdown warnings, round end sounds
-- ✅ **Haptic Feedback** - Light impact on answer tap, heavy on round end
-- ✅ **Comprehensive Test Suite** - 99 tests passing across 5 test files
-
-### Test Coverage:
-```
-test/
-├── widget_test.dart                    # Basic app test
-├── l10n/
-│   └── localization_test.dart          # Localization tests
-├── providers/
-│   ├── timer_provider_test.dart        # 22 tests
-│   ├── game_state_provider_test.dart   # 36 tests
-│   └── submission_provider_test.dart   # Submission provider tests
-├── widgets/
-│   ├── answer_chip_test.dart           # 3 tests
-│   └── timer_display_test.dart         # 16 tests
-└── screens/
-    └── setup_screen_test.dart          # 34 tests
-```
-
-### Core Features Complete:
-- ✅ **All Answers Visible** - No hidden numbers, all 10 answers shown from start
-- ✅ **Toggle Selection** - Tap to select (green), tap again to deselect
-- ✅ **Difficulty Scoring** - Easy (1pt), Medium (2pts), Hard (3pts) per answer
-- ✅ **Per-Answer Points** - Point value shown on each chip
-- ✅ **Team Rotation** - All teams play within each round before advancing
-- ✅ **Early Exit** - End Round and End Game buttons available
-- ✅ **Score Adjustment** - Can toggle answers on results to fix mistakes
-- ✅ **Scores So Far** - Round results show current team standings
-- ✅ **75 Question Cards** - Varied topics across all difficulties
-- ✅ **Results Confetti** - Celebration animation on winner screen
-- ✅ **User Submissions** - Submit new cards or report issues via Google Sheets
-- ✅ **Offline Queue** - Submissions saved locally when offline, auto-synced
-- ✅ **Analytics** - PostHog integration with privacy-respecting opt-out
-- ✅ **Privacy Controls** - Users can disable analytics in Settings
-
-### What's Working:
-1. **Home Screen** - Navigation to all sections
-2. **Settings** - Sound, haptics, dark mode, Privacy section (analytics toggle), Community section
-3. **Setup Screen** - Teams (2-4), rounds (5/7/10), timer (30/45/60/90s), difficulty (Easy/Medium/Hard)
-4. **Game Loop** - Complete with visible answers, toggle selection, point display, animations
-5. **Round Results** - Points, scores so far, answer toggle, End Game option, Report Issue button
-6. **Final Results** - Winner announcement, scoreboard, Play Again
-7. **Card Submission** - Submit new cards with 10 answers, difficulty, optional source
-8. **Issue Reporting** - Report problems with existing cards, select card, describe issue
-9. **Analytics** - PostHog event tracking (settings changes, game events), user opt-out supported
-
-### Important Notes for Claude:
-- **99+ tests passing** - Run `flutter test` to verify
-- **Answer chip animation** - Bounce effect in `lib/presentation/widgets/game/answer_chip.dart`
-- **Timer pulse animation** - Continuous pulse in `lib/presentation/screens/game/widgets/timer_display.dart`
-- **Sound effects** - Integrated in `game_screen.dart` via audioplayers
-- **Haptic feedback** - HapticFeedback.lightImpact/heavyImpact on actions
-- **User submissions** - Google Sheets config in `lib/core/config/sheets_config.dart`
-- **Offline queue** - Pending submissions stored via SharedPreferences
-- **Card submissions require exactly 10 answers** - Validation enforced in forms
-- **Analytics** - PostHog config via environment variables (see `lib/core/config/analytics_config.dart`)
-- **Privacy** - Analytics opt-out via Settings > Privacy, persisted in SharedPreferences
-- All files pass `flutter analyze` with no issues
-
-**Completed:**
-- ✅ Manual testing on physical device
-- ✅ 75 question cards (expanded from 25)
-- ✅ Results screen confetti animation
-
-**Optional Remaining:**
-- ⏳ Performance profiling
-- ⏳ Tie-breaker/overtime rounds
-- ⏳ Dark mode implementation
-- ⏳ App store preparation
-- ⏳ Google Sheets credentials setup (see `lib/core/config/sheets_config.dart`)
-
-### What Can Be Tested Right Now
-
-**Fully Functional Gameplay (End-to-End):**
-
-1. **Run the app**: `flutter run`
-2. **Navigate**: Home → Tap "New Game"
-3. **Setup Game**:
-   - Select number of teams (2, 3, or 4)
-   - Customize team names and colors
-   - Choose rounds (5/7/10), timer (30/45/60/90s), difficulty (Easy/Medium/Hard)
-   - Tap "Start Game"
-4. **Play Game**:
-   - See "Pass device to Team X" screen
-   - Tap "Ready? Start Turn"
-   - Timer starts counting down
-   - **All 10 answers visible** with point values (e.g., "France (1 pt)")
-   - **Tap to select** (turns green with checkmark)
-   - **Tap again to deselect** (back to gray)
-   - Timer turns orange at 10s, red at 5s
-   - **"End Turn" button** to finish early
-5. **View Round Results**:
-   - See points earned based on difficulty
-   - **"Scores So Far"** showing all team standings
-   - Tap "Show Answers" to see found/missed
-   - **Tap answers to toggle** selection (adjusts score!)
-   - **"End Game"** to skip remaining rounds
-   - Tap "Continue" for next team
-6. **Team Rotation**:
-   - All teams play within each round
-   - Round number advances after all teams play
-7. **Final Results**:
-   - Winner announcement (or "It's a Tie!")
-   - Sorted scoreboard with rank badges
-   - Play Again / New Setup / Home buttons
-
-**Configuration Options:**
-- Teams: 2-4 (fully configurable)
-- Rounds: 5, 7, or 10
-- Timer: 30s, 45s, 60s, or 90s
-- Difficulty: Easy (1pt), Medium (2pts), Hard (3pts)
-- Cards: 75 question cards with varied topics
-
-**App Routes (go_router):**
-- `/` - Home screen
-- `/setup` - Game setup
-- `/game` - Active gameplay
-- `/results` - Final results
-- `/settings` - App settings (includes Community section)
-- `/how-to-play` - Instructions
-- `/submit-card` - Submit new card form
-- `/report-issue` - Report issue form (accepts CardItem as extra)
-- `/submission-success` - Submission confirmation
-
-**Files to Reference:**
-- Main game logic: `lib/presentation/screens/game/game_screen.dart`
-- Game state: `lib/presentation/state/game_state_provider.dart`
-- Cards database: `assets/cards.json`
-- Results screen: `lib/presentation/screens/results/results_screen.dart`
-- Submission screen: `lib/presentation/screens/submission/card_submission_screen.dart`
-- Submission state: `lib/presentation/state/submission_provider.dart`
-- Google Sheets config: `lib/core/config/sheets_config.dart`
-- Offline storage: `lib/data/sources/offline_submissions_storage.dart`
-- Analytics service: `lib/core/analytics/analytics_service.dart`
-- Analytics config: `lib/core/config/analytics_config.dart`
-- Settings state: `lib/presentation/state/settings_provider.dart`
-- Preferences keys: `lib/core/config/preferences_keys.dart`
-
-## Common Commands
-
-### Development
 ```bash
-# Install dependencies
 flutter pub get
-
-# Run the app (debug mode)
-flutter run
-
-# Run on specific device
-flutter devices                    # List available devices
-flutter run -d <device-id>        # Run on specific device
-
-# Hot reload during development
-# Press 'r' in terminal or save files in IDE
-
-# Hot restart (full restart)
-# Press 'R' in terminal
-```
-
-### Testing
-```bash
-# Run all tests
-flutter test
-
-# Run a single test file
-flutter test test/widget_test.dart
-
-# Run tests with coverage
+flutter run                       # flutter run -d <device-id> for a specific device
+flutter test                      # 108 tests, all passing
+flutter test test/providers/game_state_provider_test.dart          # single file
+flutter test --plain-name "toggleAnswer adds answer"               # single test
 flutter test --coverage
-```
-
-### Code Quality
-```bash
-# Analyze code (static analysis)
-flutter analyze
-
-# Format code
+flutter analyze                   # see "Analyzer baseline" below — not clean
 dart format lib/ test/
-
-# Check formatting without changes
-dart format --output=none --set-exit-if-changed lib/ test/
+flutter gen-l10n                  # regenerate localizations after editing .arb files
 ```
 
-### Building
+Builds — prefer the scripts, which source `.env` and forward PostHog values as `--dart-define`:
+
 ```bash
-# Build APK (Android) - simple
-flutter build apk
-
-# Build APK with analytics (Android) - using build script
-POSTHOG_API_KEY=your_key scripts/android_build.sh --release
-
-# Build app bundle (Android - for Play Store)
-flutter build appbundle
-
-# Build iOS (requires macOS and Xcode) - using build script
-scripts/ios_deploy.sh --release
-
-# Build for release with specific flavor
-flutter build apk --release
-
-# Build with analytics environment variables
-flutter build apk --dart-define=POSTHOG_API_KEY=your_key --dart-define=POSTHOG_HOST=https://app.posthog.com
+scripts/android_build.sh --release [--icons] [--no-tree-shake-icons]   # → build/app/outputs/flutter-apk/
+scripts/ios_deploy.sh --release <device-id>                            # pod install + flutter run
+flutter build appbundle --release                                      # Play Store (no script)
 ```
 
-## Architecture & Code Organization
+Both scripts run `flutter clean` first, so they are slow; use plain `flutter run` for iteration.
 
-### Required Folder Structure
-The codebase **must** follow a clean architecture pattern with clear separation of concerns:
+## Configuration: `.env`
 
-```
-lib/
-├── core/              # Cross-cutting concerns
-│   ├── theme/         # App theme, colors, text styles
-│   ├── routing/       # Navigation and route definitions
-│   ├── config/        # Configuration (sheets_config, analytics_config, preferences_keys)
-│   ├── analytics/     # Analytics service (PostHog integration)
-│   └── utils/         # Utilities and helpers
-├── data/              # Data layer
-│   ├── models/        # Data models (CardItem, etc.)
-│   ├── repositories/  # Data access (cards_repository, submissions_repository)
-│   └── sources/       # Storage (google_sheets_service, offline_submissions_storage)
-├── domain/            # Business logic layer
-│   ├── entities/      # Domain models (Team, RoundResult, CardSubmission)
-│   ├── repositories/  # Repository interfaces
-│   └── usecases/      # Business logic use cases
-└── presentation/      # UI layer
-    ├── screens/       # Screen widgets
-    │   ├── game/      # Game screens
-    │   ├── submission/# Card submission screens and widgets
-    │   └── ...        # Other screens
-    ├── widgets/       # Reusable UI components
-    └── state/         # State management (providers including submission_provider)
+`.env` is **gitignored but declared as a Flutter asset in `pubspec.yaml`** — builds fail if the file is absent. A fresh clone must `cp .env.example .env` even if all values stay empty.
 
-scripts/               # Build and utility scripts
-├── android_build.sh   # Android APK build with analytics config
-├── ios_deploy.sh      # iOS build and deployment
-└── flag_language_sensitive_cards.py  # Card localization helper
-```
+`main.dart` loads it with `dotenv.load(isOptional: true)`; every config value is read through `AnalyticsConfig` / `SheetsConfig`, which check `.env` first and fall back to `String.fromEnvironment` (`--dart-define`). Keys: `SHEETS_SPREADSHEET_ID`, `SHEETS_CREDENTIALS_JSON` (service-account JSON on one line), `POSTHOG_API_KEY`, `POSTHOG_HOST`, `POSTHOG_ALLOW_DEBUG`.
 
-### Key Domain Models
+Since `.env` ships inside the app bundle, anything put there is distributed with the binary.
 
-Based on `initial-requrements.md`, the following models are central to the app:
+## Architecture
 
-**CardItem:**
-- `id`: String
-- `promptEn`: String (e.g., "Name European capital cities")
-- `answersEn`: List<String> (10-15 possible answers)
-- `difficulty`: Enum (EASY, MEDIUM, HARD)
-- `source`: String? (optional, e.g., "Source: Wikipedia")
+Layers under `lib/`: `core/` (theme, routing, config, analytics), `domain/entities/` (pure models), `data/` (repositories + sources), `presentation/` (screens, widgets, `state/` providers). Riverpod (`StateNotifierProvider`) is the only state mechanism; `go_router` the only navigation.
 
-**Team:**
-- `id`: String
-- `name`: String
-- `color`: Color (for UI highlights)
-- `score`: int (total correct answers across rounds)
+### Provider graph
 
-**RoundResult:**
-- `roundNumber`: int
-- `teamId`: String
-- `cardId`: String
-- `selectedAnswers`: List<String> (the 10 answers chosen for scoring)
-- `foundAnswers`: List<String> (subset of selectedAnswers)
-- `pointsEarned`: int
-- `isOvertime`: bool
+State is split across providers that read each other via `Ref`, so changing one usually means checking its consumers:
 
-**CardSubmission:** (for user-submitted cards/corrections)
-- `id`: String (UUID)
-- `type`: SubmissionType (newCard, correction)
-- `submittedAt`: DateTime
-- For new cards: `promptEn`, `answersEn` (exactly 10), `difficulty`, `source`
-- For corrections: `existingCardId`, `existingCardPrompt`, `issueType`, `issueDescription`
-- Optional: `submitterName`, `submitterEmail`, `appVersion`, `locale`
+- `gameSetupProvider` — teams, colors, **and live team scores**, plus `GameConfig` (rounds, duration, `Set<Difficulty>`). Scores live here, not in game state, and survive across rounds; `resetScores()` is what "Play Again" calls.
+- `gameStateProvider` — the active round: phase, current card, the 10 selected answers, found answers, used-card sets. Reads `gameSetupProvider`, `cardsProvider`, `localeProvider`, `timerProvider`; writes scores back through `gameSetupProvider.notifier.updateTeamScore`.
+- `timerProvider` — countdown only. `GameScreen` bridges it to game state: a `ref.listenManual` in `initState` plays tick sounds under 10s and calls `endRound()` when it hits 0.
+- `cardsProvider` — `FutureProvider` that parses `assets/cards.json` once.
+- `settingsProvider`, `localeProvider` — SharedPreferences-backed; keys in `core/config/preferences_keys.dart`.
+- `submissionProvider` + `submissionsRepositoryProvider`; form state in `newCardFormProvider` / `correctionFormProvider`.
 
-**IssueType:** (for corrections)
-- `wrongAnswer` - An answer is incorrect or missing
-- `outdatedInfo` - The card uses outdated facts
-- `spellingGrammar` - Spelling or grammar needs correction
-- `unclearQuestion` - The prompt is confusing or ambiguous
-- `other` - Something else needs attention
+### Game loop
 
-### Game Flow Architecture (✅ FULLY IMPLEMENTED)
+Four phases in `GamePhase`: `ready` (pass-device handoff) → `preview` (question shown, timer not started, "refresh card" available) → `playing` → `roundEnd`. `roundEnd` renders the playing UI underneath a modal dialog rather than its own screen.
 
-**Current Implementation Status:**
+Round mechanics worth knowing before touching `game_state_provider.dart`:
 
-1. ✅ **Home Screen** → New Game button
-2. ✅ **Setup Screen:**
-   - Number of teams (2-4) with dynamic team cards
-   - Team names and colors with validation (unique, non-empty)
-   - Number of rounds (5/7/10)
-   - Difficulty selection (Easy/Medium/Hard)
-   - Round duration (30/45/60/90 seconds)
-3. ✅ **Game Loop (per round):**
-   - **Ready Phase**: "Pass device to [Team]" handoff screen
-   - **Start Round**: Tap "Ready? Start Round" button
-   - Random card selection from mockCards (10 cards)
-   - Random 10-answer subset from card's 10-15 answers
-   - **Active Gameplay**:
-     * Display prompt with difficulty badge
-     * Display 10 hidden answer chips (numbered 1-10)
-     * Timer counts down (MM:SS format)
-     * Visual warnings at 10s (orange) and 5s (red)
-     * Tap chips to reveal and mark as found
-     * Found counter updates (X/10)
-   - **Auto Round End** when:
-     * Timer reaches 0, OR
-     * All 10 answers found
-   - **Round Results Dialog**:
-     * Team name and points earned
-     * Found vs missed breakdown
-     * Expandable answer list with source
-     * "Continue" to next round
-   - Team rotation (round-robin)
-   - Score tracking and updates
-4. ⏳ **Final Results:** (In Progress - Day 7)
-   - Display scoreboard sorted by score
-   - Winner/tie announcement
-   - Action buttons (Play Again, New Setup, Share, Home)
+- `startRound()` picks a card excluding `usedCardIdsInRound ∪ usedCardIdsInGame`, filtered by the configured difficulty **set** and by the current locale (see `languageScope`), then shuffles the card's 10–15 answers down to exactly 10.
+- The round does **not** auto-end when all answers are found — only timer expiry or the End Turn button ends it, so players can review selections.
+- `toggleAnswer` is allowed in both `playing` and `roundEnd`, which is how the results dialog lets teams fix mis-taps and adjust the score after the fact.
+- Team rotation happens *within* a round: every team plays before `currentRound` increments, and `usedCardIdsInRound` clears at that boundary (so all teams in a round see distinct cards, and no card repeats in a game).
 
-**Technical Implementation:**
-- File: `lib/presentation/screens/game/game_screen.dart` (344 lines)
-- Three game phases: ready, playing, roundEnd (GamePhase enum)
-- Timer.periodic for countdown (±1s precision)
-- StatefulWidget with local state (Riverpod in Phase 2)
-- PopScope prevents accidental back navigation
-- Clean widget separation (6 sub-widgets)
+### Cards and scoring
 
-### Critical Implementation Rules
+`assets/cards.json` holds 243 cards (49 easy / 123 medium / 71 hard). Each entry carries `promptEn`/`promptEs`, `answersEn`/`answersEs`, `difficulty`, `languageScope` (locales the card is playable in — locale-specific trivia is scoped out of the other language), `source`, and `answerPoints`.
 
-**Separation of Concerns:**
-- NEVER mix UI code with business logic or data access
-- NO network/storage calls directly from UI widgets
-- State and logic MUST NOT live inside widget `build()` methods
-- NO global mutable state
+**Scoring is per answer, not per card.** `CardItem.pointsForAnswer` returns the `answerPoints[answer]` value (clamped 1–5) when present and only falls back to `Difficulty.pointsPerAnswer` (easy 1 / medium 2 / hard 3) when it isn't. Every card currently in `cards.json` has explicit `answerPoints`, so the difficulty-based values are effectively a fallback for user-submitted cards. `answerDifficulties` is accepted as a legacy alias for `answerPoints` when parsing.
 
-**Widget Guidelines:**
-- Prefer **small, focused, and composable widgets**
-- Use **flexible layouts** (`Expanded`, `Flexible`, `Spacer`, `LayoutBuilder`, `MediaQuery`)
-- Must adapt to both **phones** and **tablets**
-- Avoid absolute positioning unless necessary
-- Avoid hard-coded pixel sizes
+**`answerPoints` must be keyed by both the English and the Spanish answer string.** The lookup happens on the displayed answer, so a card missing its Spanish keys silently scores that answer at the difficulty default in Spanish only. `test/cards_asset_integrity_test.dart` guards this, along with the 10–15 answer range and EN/ES alignment — run it after editing `cards.json`.
 
-**State Management:**
-- Use modern approach (Riverpod, Bloc, or Provider)
-- Be consistent throughout the project
-- State must be managed outside widgets
+### Submissions pipeline
 
-**Logging:**
-Use `dart:developer` for logging:
-```dart
-import 'dart:developer' show log;
-log('Message here', name: 'ComponentName');
-```
+`SubmissionsRepository` → tries `GoogleSheetsService` when online *and* configured; on failure or offline, queues into `OfflineSubmissionsStorage` (SharedPreferences) and returns `savedLocally`. `SubmissionNotifier` subscribes to the connectivity stream and drains the queue automatically when the device reconnects. Two worksheets — "New Card Submissions" and "Card Corrections" — with column orders fixed by `SheetsConfig.newCardHeaders` / `correctionHeaders`; changing the sheet layout means changing those lists.
 
-**Card Selection Logic:**
-- At runtime, filter cards by selected difficulty
-- Choose card pseudo-randomly (avoid repeats within session)
-- From card's `answersEn` (10-15 items), randomly select exactly 10 for scoring
-- Only these 10 selected answers award points for that round
+New-card validation (`CardSubmission.isValidNewCard`): prompt 10–200 chars, **exactly 10** answers. Corrections need a 20–1000 char description.
 
-**Scoring Rules:**
-- 1 point per correct answer found (out of 10 selected)
-- No negative points for wrong guesses
-- Tie-breaker: tied teams play extra rounds until tie is broken
+### Analytics
 
-## Design Considerations
+`AnalyticsService` is a singleton initialized in `main()` before `runApp`. Capture is gated on four conditions: initialized, non-empty API key, `kReleaseMode || POSTHOG_ALLOW_DEBUG`, and the user's `settingsProvider.analyticsEnabled` opt-out. Identity is an anonymous UUID in SharedPreferences — no PII, no card content, no team names. Events are fired inline from notifiers (`round_started`, `round_ended`, `answer_toggled`, `settings_changed`, …), usually via `unawaited(...)`.
 
-### Internationalization
-- **English and Spanish** fully supported
-- Localization files: `lib/l10n/app_en.arb` and `lib/l10n/app_es.arb`
-- Language selection in Settings screen
-- All UI strings externalized using Flutter's i18n patterns
-- Submission feature includes ~40 localization strings per language
+### Localization
 
-### Accessibility
-- Text must be readable on phones and tablets
-- Buttons and tappable areas large enough for party play
-- Color usage should consider color-blind friendliness (pair colors with labels/icons)
+`.arb` sources and the *generated* `app_localizations*.dart` both live in `lib/l10n/` and are **both committed**. After editing an `.arb`, run `flutter gen-l10n` and commit the regenerated Dart. Screens read strings via `AppLocalizations.of(context)`; card text is selected by locale through `CardItem.getPrompt(locale)` / `getAnswers(locale)`, never by looking at `promptEn` directly.
 
-### Performance
-- Must run smoothly on mid-range Android and iOS devices
-- Timer must be accurate to within ~100ms of real time
-- Animations should be lightweight and non-blocking
+### Theme, sharing, and launch UI
 
-### Legal & IP
-- **DO NOT** copy exact question/card texts from "Πες Βρες"
-- **DO NOT** use branding, graphics, or logo assets from the original app
-- Use **original English prompts and answers**
+`settingsProvider.darkModeEnabled` now drives `MaterialApp.themeMode`. `AppTheme.darkTheme` supplies the Material component theme, while widgets that need explicit surface or text colours use `context.palette` from `AppPaletteContext`; keep `AppColors` for brand, semantic, and team colours.
 
-## Development Tips
+The results screen shares standings through the native `share_plus` sheet. iPad calls require a non-empty `sharePositionOrigin`; failures are logged and fall back to a dialog containing the share text.
 
-### Timer Implementation
-- Timer accuracy is critical (±100ms acceptable)
-- Consider using `Timer.periodic` from `dart:async`
-- Visual countdown with distinct warning when approaching 0
+Android and iOS use branded launch images. Android's density-specific `drawable-*/splash_logo.png` files are shown by `launch_background.xml`, with light/dark splash colours in `values/colors.xml` and `values-night/colors.xml`. iOS uses the three images in `LaunchImage.imageset` from `LaunchScreen.storyboard`.
 
-### Local Storage
-- Game cards stored in `assets/cards.json`
-- Settings persistence via SharedPreferences (sound, haptics, theme, locale)
-- Offline submissions queue stored in SharedPreferences
+## Conventions
 
-### User Submissions (Google Sheets Backend)
-- Submissions sent to Google Sheets via `gsheets` package
-- Requires Google Cloud service account credentials in `sheets_config.dart`
-- Two sheets: "New Card Submissions" and "Card Corrections"
-- Offline support: submissions queued locally, auto-synced when online
-- Connectivity monitored via `connectivity_plus` package
-- App version captured via `package_info_plus` package
+- No business logic, storage, or network access inside widgets or `build()`; put it in a provider or repository.
+- Small composable widgets, flexible layouts (`Expanded`, `LayoutBuilder`, `MediaQuery`); tablet breakpoint is 600dp via `ResponsiveLayout`. Avoid hard-coded pixel sizes.
+- Logging: `import 'dart:developer' show log;` then `log('msg', name: 'ComponentName')`.
+- Files `lower_snake_case.dart`, types `UpperCamelCase`, 2-space indent, trailing commas.
+- Card content must be original — do not copy prompts, answers, or assets from "Πες Βρες".
 
-### Analytics (PostHog)
-- PostHog integration via `posthog_flutter` package
-- Configuration via environment variables at build time:
-  - `POSTHOG_API_KEY` - Your PostHog project API key
-  - `POSTHOG_HOST` - PostHog host (default: https://app.posthog.com)
-  - `POSTHOG_ALLOW_DEBUG` - Enable analytics in debug builds (default: false)
-- User opt-out: Settings > Privacy > Analytics toggle
-- Events captured: settings changes, game events (with anonymous device ID)
-- Super properties: app_version, platform, os_version, locale, timezone
-- Analytics disabled if API key is empty or user opts out
+## Current state / known gaps
 
-### Platform-Specific Features
-- Share functionality: Use OS sharing sheet
-- Sound effects: Platform-agnostic audio library
-- Haptic feedback: Check platform support
+- **Analyzer baseline is not clean:** 31 infos and warnings as of 2026-08-14. In addition to the existing deprecated `Radio` API, unused imports/local, and 19 `unnecessary_underscores` infos, the latest changes add an unnecessary null check in `results_screen.dart` and an unused Riverpod import in `dark_mode_test.dart`. `flutter analyze` exits non-zero.
+- **iOS asset-symbol setting needs correction:** the Debug and Release project configurations set the boolean `ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS` to `AppIcon` instead of `YES`; Profile still uses `YES`. The separate Runner target setting `ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon` is already correct.
+- **Android targets Java/Kotlin 1.8**, set in `android/build.gradle.kts` under `gradle.projectsEvaluated` for all subprojects (this overrides plugin defaults; it is what keeps `audioplayers_android` and `posthog_flutter` compiling consistently). The root build dir is redirected to `<repo>/build`.
+- Release APKs are still signed with the debug keystore (`android/app/build.gradle.kts`).
+- No tie-breaker/overtime rounds, though `initial-requrements.md` §2.4 specifies them; ties are simply announced on the results screen.
 
-### Testing Strategy
-- Widget tests for UI components
-- Unit tests for game logic (scoring, card selection, timer)
-- Integration tests for game flow
-- Test on both phone and tablet form factors
-
-### Android Build Configuration
-The project uses JVM 17 and Kotlin 1.9 for Android builds. This is configured in:
-- `android/app/build.gradle.kts` - App-level Java/Kotlin settings
-- `android/build.gradle.kts` - Project-level settings applied to all subprojects
-
-Key configuration (in `android/build.gradle.kts`):
-```kotlin
-gradle.projectsEvaluated {
-    allprojects {
-        tasks.withType<KotlinCompile>().configureEach {
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_17)
-                languageVersion.set(KotlinVersion.KOTLIN_1_9)
-                apiVersion.set(KotlinVersion.KOTLIN_1_9)
-            }
-        }
-        tasks.withType<JavaCompile>().configureEach {
-            sourceCompatibility = "17"
-            targetCompatibility = "17"
-        }
-    }
-}
-```
-
-This ensures all Flutter plugins (like `audioplayers_android`, `posthog_flutter`) compile with consistent JVM targets.
+Further docs: `docs/RELEASE_GUIDE.md` (build/publish), `docs/MOBILE_TESTING_GUIDE.md` (device setup), `docs/INTERNATIONALIZATION_PLAN.md`, `initial-requrements.md` (original spec — predates several decisions above).
