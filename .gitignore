@@ -73,3 +73,8 @@ app.*.map.json
 
 # Credentials
 lib/core/config/sheets_credentials.json
+
+# Gradle build output under android/ (the root /build/ rule does not cover it)
+/android/build/
+# Stray file emitted by the Android manifest merger
+com.android.manifmerger.ManifestMerger2*
