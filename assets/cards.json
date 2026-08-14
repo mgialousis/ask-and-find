@@ -8507,7 +8507,8 @@
       "Cambodia",
       "Laos",
       "Brunei",
-      "East Timor"
+      "East Timor",
+      "Indonesia"
     ],
     "difficulty": "medium",
     "source": "Source: ASEAN and neighbouring states",
@@ -8529,7 +8530,8 @@
       "Brunei": 4,
       "Brunéi": 4,
       "East Timor": 5,
-      "Timor Oriental": 5
+      "Timor Oriental": 5,
+      "Indonesia": 1
     },
     "promptEs": "Nombra 10 países del Sudeste Asiático",
     "answersEs": [
@@ -8542,7 +8544,8 @@
       "Camboya",
       "Laos",
       "Brunéi",
-      "Timor Oriental"
+      "Timor Oriental",
+      "Indonesia"
     ],
     "languageScope": [
       "en",
@@ -9134,7 +9137,7 @@
       "Sangria"
     ],
     "difficulty": "medium",
-    "source": "Source: IBA official cocktail list",
+    "source": "Source: Classic cocktails and mixed drinks",
     "answerPoints": {
       "Mojito": 1,
       "Margarita": 1,
@@ -10333,7 +10336,7 @@
       "Landslide",
       "Blizzard",
       "Avalanche",
-      "Cyclone"
+      "Heatwave"
     ],
     "difficulty": "medium",
     "source": "Source: Natural hazard classifications",
@@ -10358,8 +10361,8 @@
       "Ventisca": 3,
       "Avalanche": 3,
       "Avalancha": 3,
-      "Cyclone": 3,
-      "Ciclón": 3
+      "Heatwave": 3,
+      "Ola de calor": 3
     },
     "promptEs": "Nombra 10 tipos de desastre natural",
     "answersEs": [
@@ -10374,7 +10377,7 @@
       "Deslizamiento de tierra",
       "Ventisca",
       "Avalancha",
-      "Ciclón"
+      "Ola de calor"
     ],
     "languageScope": [
       "en",
@@ -10446,8 +10449,8 @@
     "id": "212",
     "promptEn": "Name 10 marine mammals",
     "answersEn": [
-      "Dolphin",
-      "Whale",
+      "Bottlenose dolphin",
+      "Blue whale",
       "Seal",
       "Orca",
       "Sea lion",
@@ -10462,10 +10465,6 @@
     "difficulty": "medium",
     "source": "Source: Marine mammal species",
     "answerPoints": {
-      "Dolphin": 1,
-      "Delfín": 1,
-      "Whale": 1,
-      "Ballena": 1,
       "Seal": 1,
       "Foca": 1,
       "Orca": 2,
@@ -10483,12 +10482,16 @@
       "Dugong": 5,
       "Dugongo": 5,
       "Porpoise": 4,
-      "Marsopa": 4
+      "Marsopa": 4,
+      "Blue whale": 1,
+      "Ballena azul": 1,
+      "Bottlenose dolphin": 1,
+      "Delfín mular": 1
     },
     "promptEs": "Nombra 10 mamíferos marinos",
     "answersEs": [
-      "Delfín",
-      "Ballena",
+      "Delfín mular",
+      "Ballena azul",
       "Foca",
       "Orca",
       "León marino",
@@ -11026,7 +11029,7 @@
   },
   {
     "id": "222",
-    "promptEn": "Name 10 British monarchs",
+    "promptEn": "Name 10 English or British monarchs",
     "answersEn": [
       "Elizabeth II",
       "Henry VIII",
@@ -11068,7 +11071,7 @@
       "James I": 4,
       "Jacobo I": 4
     },
-    "promptEs": "Nombra 10 monarcas británicos",
+    "promptEs": "Nombra 10 monarcas ingleses o británicos",
     "answersEs": [
       "Isabel II",
       "Enrique VIII",
@@ -12172,7 +12175,7 @@
       "Ulaanbaatar",
       "Baku",
       "Kathmandu",
-      "Colombo"
+      "Riyadh"
     ],
     "difficulty": "hard",
     "source": "Source: Capitals of Asian states",
@@ -12196,7 +12199,8 @@
       "Bakú": 4,
       "Kathmandu": 3,
       "Katmandú": 3,
-      "Colombo": 4
+      "Riyadh": 3,
+      "Riad": 3
     },
     "promptEs": "Nombra 10 capitales de Asia",
     "answersEs": [
@@ -12211,7 +12215,7 @@
       "Ulán Bator",
       "Bakú",
       "Katmandú",
-      "Colombo"
+      "Riad"
     ],
     "languageScope": [
       "en",
@@ -12725,7 +12729,7 @@
       "Allosaurus",
       "Iguanodon",
       "Parasaurolophus",
-      "Archaeopteryx"
+      "Pachycephalosaurus"
     ],
     "difficulty": "hard",
     "source": "Source: Dinosaur genera",
@@ -12748,7 +12752,8 @@
       "Iguanodon": 4,
       "Iguanodonte": 4,
       "Parasaurolophus": 4,
-      "Archaeopteryx": 5
+      "Pachycephalosaurus": 5,
+      "Paquicefalosaurio": 5
     },
     "promptEs": "Nombra 10 dinosaurios",
     "answersEs": [
@@ -12763,7 +12768,7 @@
       "Alosaurio",
       "Iguanodonte",
       "Parasaurolophus",
-      "Archaeopteryx"
+      "Paquicefalosaurio"
     ],
     "languageScope": [
       "en",
