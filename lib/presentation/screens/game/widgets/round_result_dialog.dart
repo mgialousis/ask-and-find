@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/card_item.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
@@ -25,8 +26,8 @@ class RoundResultDialog extends StatefulWidget {
     required this.teams,
     required this.foundAnswers,
     required this.missedAnswers,
-    required this.prompt,
     required this.card,
+    required this.cardLanguageMode,
     this.source,
     required this.pointsForAnswer,
     required this.onScoreAdjust,
@@ -38,8 +39,8 @@ class RoundResultDialog extends StatefulWidget {
   final List<Team> teams;
   final List<String> foundAnswers;
   final List<String> missedAnswers;
-  final String prompt;
   final CardItem card;
+  final CardLanguageMode cardLanguageMode;
   final String? source;
   final int Function(String answer) pointsForAnswer;
   final ValueChanged<int> onScoreAdjust;
@@ -60,15 +61,36 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
   @override
   void initState() {
     super.initState();
-    _foundAnswers = List<String>.from(widget.foundAnswers)..sort();
-    _missedAnswers = List<String>.from(widget.missedAnswers)..sort();
+    _foundAnswers = List<String>.from(widget.foundAnswers);
+    _missedAnswers = List<String>.from(widget.missedAnswers);
+    _sortAnswers();
     _pointsEarned = _sumPoints(_foundAnswers);
     _sortedTeams = List<Team>.from(widget.teams)
       ..sort((a, b) => b.score.compareTo(a.score));
   }
 
   int _sumPoints(Iterable<String> answers) {
-    return answers.fold(0, (total, answer) => total + widget.pointsForAnswer(answer));
+    return answers.fold(
+      0,
+      (total, answer) => total + widget.pointsForAnswer(answer),
+    );
+  }
+
+  void _sortAnswers() {
+    int compare(String left, String right) {
+      final leftLabel = widget.card.getPrimaryAnswer(
+        left,
+        widget.cardLanguageMode,
+      );
+      final rightLabel = widget.card.getPrimaryAnswer(
+        right,
+        widget.cardLanguageMode,
+      );
+      return leftLabel.compareTo(rightLabel);
+    }
+
+    _foundAnswers.sort(compare);
+    _missedAnswers.sort(compare);
   }
 
   void _toggleAnswerSelection(String answer, bool currentlyFound) {
@@ -80,8 +102,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
       _foundAnswers.add(answer);
     }
 
-    _foundAnswers.sort();
-    _missedAnswers.sort();
+    _sortAnswers();
 
     final newPoints = _sumPoints(_foundAnswers);
     final delta = newPoints - _pointsEarned;
@@ -100,9 +121,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
     return PopScope(
       canPop: false,
       child: Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Container(
           constraints: const BoxConstraints(maxWidth: 500),
           child: SingleChildScrollView(
@@ -135,10 +154,7 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                     decoration: BoxDecoration(
                       color: AppColors.success.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: AppColors.success,
-                        width: 2,
-                      ),
+                      border: Border.all(color: AppColors.success, width: 2),
                     ),
                     child: Column(
                       children: [
@@ -280,11 +296,20 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
                   if (_showAnswers) ...[
                     const SizedBox(height: 16),
                     _AnswersSection(
-                      prompt: widget.prompt,
+                      prompt: widget.card.getPrimaryPrompt(
+                        widget.cardLanguageMode,
+                      ),
+                      secondaryPrompt: widget.card.getSecondaryPrompt(
+                        widget.cardLanguageMode,
+                      ),
                       foundAnswers: _foundAnswers,
                       missedAnswers: _missedAnswers,
                       source: widget.source,
                       pointsForAnswer: widget.pointsForAnswer,
+                      primaryAnswerFor: (answer) => widget.card
+                          .getPrimaryAnswer(answer, widget.cardLanguageMode),
+                      secondaryAnswerFor: (answer) => widget.card
+                          .getSecondaryAnswer(answer, widget.cardLanguageMode),
                       onToggleAnswer: _toggleAnswerSelection,
                     ),
                     const SizedBox(height: 16),
@@ -318,18 +343,24 @@ class _RoundResultDialogState extends State<RoundResultDialog> {
 class _AnswersSection extends StatelessWidget {
   const _AnswersSection({
     required this.prompt,
+    this.secondaryPrompt,
     required this.foundAnswers,
     required this.missedAnswers,
     this.source,
     required this.pointsForAnswer,
+    required this.primaryAnswerFor,
+    required this.secondaryAnswerFor,
     required this.onToggleAnswer,
   });
 
   final String prompt;
+  final String? secondaryPrompt;
   final List<String> foundAnswers;
   final List<String> missedAnswers;
   final String? source;
   final int Function(String answer) pointsForAnswer;
+  final String Function(String answer) primaryAnswerFor;
+  final String? Function(String answer) secondaryAnswerFor;
   final void Function(String answer, bool currentlyFound) onToggleAnswer;
 
   int _sumPoints(Iterable<String> answers) {
@@ -344,9 +375,7 @@ class _AnswersSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.palette.surfaceVariant.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: context.palette.surfaceVariant,
-        ),
+        border: Border.all(color: context.palette.surfaceVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -360,6 +389,17 @@ class _AnswersSection extends StatelessWidget {
               color: context.palette.textPrimary,
             ),
           ),
+          if (secondaryPrompt != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              secondaryPrompt!,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: context.palette.textSecondary,
+              ),
+            ),
+          ],
           const SizedBox(height: 16),
 
           // Found Answers
@@ -393,12 +433,15 @@ class _AnswersSection extends StatelessWidget {
                 return FilterChip(
                   selected: true,
                   onSelected: (_) => onToggleAnswer(answer, true),
-                  label: Text(
-                    '$answer (${l10n.nPts(pointsForAnswer(answer))})',
-                    style: const TextStyle(fontSize: 12),
+                  label: _ResultAnswerLabel(
+                    primary: primaryAnswerFor(answer),
+                    secondary: secondaryAnswerFor(answer),
+                    points: l10n.nPts(pointsForAnswer(answer)),
                   ),
                   selectedColor: AppColors.success.withValues(alpha: 0.15),
-                  backgroundColor: context.palette.surfaceVariant.withValues(alpha: 0.3),
+                  backgroundColor: context.palette.surfaceVariant.withValues(
+                    alpha: 0.3,
+                  ),
                   checkmarkColor: AppColors.success,
                   side: const BorderSide(color: AppColors.success),
                 );
@@ -435,13 +478,15 @@ class _AnswersSection extends StatelessWidget {
                 return FilterChip(
                   selected: false,
                   onSelected: (_) => onToggleAnswer(answer, false),
-                  label: Text(
-                    '$answer (${l10n.nPts(pointsForAnswer(answer))})',
-                    style: const TextStyle(fontSize: 12),
+                  label: _ResultAnswerLabel(
+                    primary: primaryAnswerFor(answer),
+                    secondary: secondaryAnswerFor(answer),
+                    points: l10n.nPts(pointsForAnswer(answer)),
                   ),
                   selectedColor: AppColors.success.withValues(alpha: 0.15),
-                  backgroundColor:
-                      context.palette.surfaceVariant.withValues(alpha: 0.3),
+                  backgroundColor: context.palette.surfaceVariant.withValues(
+                    alpha: 0.3,
+                  ),
                   checkmarkColor: AppColors.success,
                   side: BorderSide(color: context.palette.textSecondary),
                 );
@@ -465,6 +510,50 @@ class _AnswersSection extends StatelessWidget {
           ],
         ],
       ),
+    );
+  }
+}
+
+class _ResultAnswerLabel extends StatelessWidget {
+  const _ResultAnswerLabel({
+    required this.primary,
+    required this.secondary,
+    required this.points,
+  });
+
+  final String primary;
+  final String? secondary;
+  final String points;
+
+  @override
+  Widget build(BuildContext context) {
+    if (secondary == null) {
+      return Text(
+        '$primary ($points)',
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 12),
+      );
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          primary,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 12),
+        ),
+        if (secondary != null)
+          Text(
+            secondary!,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 11,
+              color: context.palette.textSecondary,
+            ),
+          ),
+        Text(points, style: const TextStyle(fontSize: 10)),
+      ],
     );
   }
 }

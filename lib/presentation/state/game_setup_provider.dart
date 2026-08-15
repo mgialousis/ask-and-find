@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/domain/entities/game_config.dart';
 import 'package:pes_vres/domain/entities/team.dart';
@@ -12,25 +13,17 @@ import 'package:uuid/uuid.dart';
 /// This state is configured during the setup screen and used
 /// throughout the game session.
 class GameSetupState extends Equatable {
-  const GameSetupState({
-    required this.teams,
-    required this.config,
-  });
+  const GameSetupState({required this.teams, required this.config});
 
   final List<Team> teams;
   final GameConfig config;
 
   /// Initial empty state with default config
-  factory GameSetupState.initial() => GameSetupState(
-        teams: [],
-        config: GameConfig.defaultConfig(),
-      );
+  factory GameSetupState.initial() =>
+      GameSetupState(teams: [], config: GameConfig.defaultConfig());
 
   /// Create a copy with optional field updates
-  GameSetupState copyWith({
-    List<Team>? teams,
-    GameConfig? config,
-  }) {
+  GameSetupState copyWith({List<Team>? teams, GameConfig? config}) {
     return GameSetupState(
       teams: teams ?? this.teams,
       config: config ?? this.config,
@@ -148,6 +141,13 @@ class GameSetupNotifier extends StateNotifier<GameSetupState> {
     );
   }
 
+  /// Update the language used to display card content.
+  void updateCardLanguageMode(CardLanguageMode mode) {
+    state = state.copyWith(
+      config: state.config.copyWith(cardLanguageMode: mode),
+    );
+  }
+
   /// Reset all team scores to zero
   ///
   /// Used for "Play Again" functionality - keeps teams and config,
@@ -188,5 +188,5 @@ class GameSetupNotifier extends StateNotifier<GameSetupState> {
 /// ```
 final gameSetupProvider =
     StateNotifierProvider<GameSetupNotifier, GameSetupState>(
-  (ref) => GameSetupNotifier(),
-);
+      (ref) => GameSetupNotifier(),
+    );

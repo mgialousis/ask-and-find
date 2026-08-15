@@ -12,7 +12,6 @@ import 'package:pes_vres/presentation/screens/game/widgets/round_result_dialog.d
 import 'package:pes_vres/presentation/screens/game/widgets/timer_display.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/game_state_provider.dart';
-import 'package:pes_vres/presentation/state/locale_provider.dart';
 import 'package:pes_vres/presentation/state/settings_provider.dart';
 import 'package:pes_vres/presentation/state/timer_provider.dart';
 import 'package:pes_vres/presentation/widgets/game/team_indicator.dart';
@@ -35,10 +34,7 @@ class GameScreen extends ConsumerStatefulWidget {
   ConsumerState<GameScreen> createState() => _GameScreenState();
 }
 
-enum _RoundResultAction {
-  continueGame,
-  endGame,
-}
+enum _RoundResultAction { continueGame, endGame }
 
 class _GameScreenState extends ConsumerState<GameScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
@@ -80,29 +76,20 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     if (!settings.soundEffectsEnabled) return;
     final intensity = (11 - secondsRemaining) / 10.0;
     final volume = (0.2 + intensity * 0.8).clamp(0.2, 1.0);
-    _audioPlayer.play(
-      AssetSource('sounds/countdown_tick.wav'),
-      volume: volume,
-    );
+    _audioPlayer.play(AssetSource('sounds/countdown_tick.wav'), volume: volume);
   }
 
   void _playTimerEndSound() {
     final settings = ref.read(settingsProvider);
     if (!settings.soundEffectsEnabled) return;
-    _audioPlayer.play(
-      AssetSource('sounds/timer_end.wav'),
-      volume: 1.0,
-    );
+    _audioPlayer.play(AssetSource('sounds/timer_end.wav'), volume: 1.0);
   }
 
   /// Play selection sound (short tick)
   void _playSelectionSound() {
     final settings = ref.read(settingsProvider);
     if (!settings.soundEffectsEnabled) return;
-    _audioPlayer.play(
-      AssetSource('sounds/countdown_tick.wav'),
-      volume: 0.5,
-    );
+    _audioPlayer.play(AssetSource('sounds/countdown_tick.wav'), volume: 0.5);
   }
 
   /// Trigger haptic feedback
@@ -126,9 +113,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   void _beginTurn() {
     final setupState = ref.read(gameSetupProvider);
     ref.read(gameStateProvider.notifier).beginTurn();
-    ref.read(timerProvider.notifier).start(
-          setupState.config.roundDurationSeconds,
-        );
+    ref
+        .read(timerProvider.notifier)
+        .start(setupState.config.roundDurationSeconds);
   }
 
   /// Handle answer tap (toggle selection)
@@ -165,7 +152,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final setupState = ref.read(gameSetupProvider);
     final currentTeam = setupState.teams[result.teamIndex];
     final currentCard = gameState.currentCard!;
-    final locale = ref.read(localeProvider);
 
     final action = await showDialog<_RoundResultAction>(
       context: context,
@@ -175,15 +161,14 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         teams: setupState.teams,
         foundAnswers: result.foundAnswers,
         missedAnswers: result.missedAnswers,
-        prompt: currentCard.getPrompt(locale),
         card: currentCard,
+        cardLanguageMode: setupState.config.cardLanguageMode,
         source: currentCard.source,
         pointsForAnswer: currentCard.pointsForAnswer,
         onScoreAdjust: (delta) {
-          ref.read(gameSetupProvider.notifier).updateTeamScore(
-                result.teamIndex,
-                delta,
-              );
+          ref
+              .read(gameSetupProvider.notifier)
+              .updateTeamScore(result.teamIndex, delta);
         },
         onContinue: () =>
             Navigator.of(context).pop(_RoundResultAction.continueGame),
@@ -204,7 +189,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   /// Continue to next round or end game
   void _continueToNextRound() {
-    final continues = ref.read(gameStateProvider.notifier).continueToNextRound();
+    final continues = ref
+        .read(gameStateProvider.notifier)
+        .continueToNextRound();
 
     if (!continues) {
       // Game ended, navigate to results
@@ -225,9 +212,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        body: SafeArea(
-          child: _buildGamePhaseContent(gameState.gamePhase),
-        ),
+        body: SafeArea(child: _buildGamePhaseContent(gameState.gamePhase)),
       ),
     );
   }
@@ -255,8 +240,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       return const Center(child: CircularProgressIndicator());
     }
     final currentTeam = setupState.teams[gameState.currentTeamIndex];
-    final nextTeam =
-        setupState.teams[(gameState.currentTeamIndex + 1) % setupState.teams.length];
+    final nextTeam = setupState
+        .teams[(gameState.currentTeamIndex + 1) % setupState.teams.length];
     final totalRounds = setupState.config.numberOfRounds;
     final roundDuration = setupState.config.roundDurationSeconds;
 
@@ -267,11 +252,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Pass Device Message
-            Icon(
-              Icons.sync_alt,
-              size: 80,
-              color: currentTeam.color,
-            ),
+            Icon(Icons.sync_alt, size: 80, color: currentTeam.color),
             const SizedBox(height: 24),
             Text(
               l10n.passDeviceMessage(currentTeam.name, nextTeam.name),
@@ -284,17 +265,11 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             const SizedBox(height: 12),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               decoration: BoxDecoration(
                 color: currentTeam.color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: currentTeam.color,
-                  width: 3,
-                ),
+                border: Border.all(color: currentTeam.color, width: 3),
               ),
               child: Text(
                 currentTeam.name,
@@ -354,7 +329,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final gameState = ref.watch(gameStateProvider);
     final setupState = ref.watch(gameSetupProvider);
     final l10n = AppLocalizations.of(context);
-    final locale = ref.watch(localeProvider);
     if (setupState.teams.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -368,10 +342,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TeamIndicator(
-              team: currentTeam,
-              size: TeamIndicatorSize.large,
-            ),
+            TeamIndicator(team: currentTeam, size: TeamIndicatorSize.large),
             const SizedBox(height: 24),
             Text(
               l10n.tapToStartTimer,
@@ -394,7 +365,12 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             GestureDetector(
               onTap: _beginTurn,
               child: PromptCard(
-                prompt: gameState.currentCard!.getPrompt(locale),
+                prompt: gameState.currentCard!.getPrimaryPrompt(
+                  setupState.config.cardLanguageMode,
+                ),
+                secondaryPrompt: gameState.currentCard!.getSecondaryPrompt(
+                  setupState.config.cardLanguageMode,
+                ),
                 difficulty: gameState.currentCard!.difficulty,
               ),
             ),
@@ -410,7 +386,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final setupState = ref.watch(gameSetupProvider);
     final timerState = ref.watch(timerProvider);
     final l10n = AppLocalizations.of(context);
-    final locale = ref.watch(localeProvider);
 
     if (setupState.teams.isEmpty) {
       return const Center(child: CircularProgressIndicator());
@@ -446,7 +421,12 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
                 // Prompt
                 PromptCard(
-                  prompt: gameState.currentCard!.getPrompt(locale),
+                  prompt: gameState.currentCard!.getPrimaryPrompt(
+                    setupState.config.cardLanguageMode,
+                  ),
+                  secondaryPrompt: gameState.currentCard!.getSecondaryPrompt(
+                    setupState.config.cardLanguageMode,
+                  ),
                   difficulty: gameState.currentCard!.difficulty,
                 ),
                 const SizedBox(height: 32),
@@ -456,8 +436,18 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   answers: gameState.selectedAnswers,
                   foundAnswers: gameState.foundAnswers.toSet(),
                   onAnswerTap: _onAnswerTap,
-                  pointsForAnswer:
-                      (answer) => gameState.currentCard!.pointsForAnswer(answer),
+                  pointsForAnswer: (answer) =>
+                      gameState.currentCard!.pointsForAnswer(answer),
+                  primaryAnswerFor: (answer) =>
+                      gameState.currentCard!.getPrimaryAnswer(
+                        answer,
+                        setupState.config.cardLanguageMode,
+                      ),
+                  secondaryAnswerFor: (answer) =>
+                      gameState.currentCard!.getSecondaryAnswer(
+                        answer,
+                        setupState.config.cardLanguageMode,
+                      ),
                 ),
                 const SizedBox(height: 24),
 

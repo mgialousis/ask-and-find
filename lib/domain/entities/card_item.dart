@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 
 /// Represents a card/question in the game
@@ -33,15 +34,14 @@ class CardItem extends Equatable {
     final answersEs = (json['answersEs'] as List<dynamic>?)
         ?.map((value) => value as String)
         .toList();
-    final languageScope = (json['languageScope'] as List<dynamic>?)
+    final languageScope =
+        (json['languageScope'] as List<dynamic>?)
             ?.map((value) => value as String)
             .toList() ??
         const ['en', 'es'];
     final rawPoints = json['answerPoints'] ?? json['answerDifficulties'];
     final answerPoints = rawPoints is Map<String, dynamic>
-        ? rawPoints.map(
-            (key, value) => MapEntry(key, _parsePoints(value)),
-          )
+        ? rawPoints.map((key, value) => MapEntry(key, _parsePoints(value)))
         : null;
 
     return CardItem(
@@ -96,6 +96,55 @@ class CardItem extends Equatable {
     return languageScope.contains(locale.languageCode);
   }
 
+  bool supportsLanguageMode(CardLanguageMode mode) {
+    if (!mode.requiredLanguageCodes.every(languageScope.contains)) {
+      return false;
+    }
+    if (mode == CardLanguageMode.english) {
+      return true;
+    }
+    return promptEs != null &&
+        answersEs != null &&
+        answersEs!.length == answersEn.length;
+  }
+
+  String getPrimaryPrompt(CardLanguageMode mode) {
+    return switch (mode) {
+      CardLanguageMode.english || CardLanguageMode.bilingual => promptEn,
+      CardLanguageMode.spanish => promptEs ?? promptEn,
+    };
+  }
+
+  String? getSecondaryPrompt(CardLanguageMode mode) {
+    if (mode != CardLanguageMode.bilingual || promptEs == null) {
+      return null;
+    }
+    return promptEs == promptEn ? null : promptEs;
+  }
+
+  String getPrimaryAnswer(String canonicalAnswer, CardLanguageMode mode) {
+    if (mode == CardLanguageMode.spanish) {
+      return _spanishAnswerFor(canonicalAnswer);
+    }
+    return canonicalAnswer;
+  }
+
+  String? getSecondaryAnswer(String canonicalAnswer, CardLanguageMode mode) {
+    if (mode != CardLanguageMode.bilingual) {
+      return null;
+    }
+    final spanishAnswer = _spanishAnswerFor(canonicalAnswer);
+    return spanishAnswer == canonicalAnswer ? null : spanishAnswer;
+  }
+
+  String _spanishAnswerFor(String canonicalAnswer) {
+    final index = answersEn.indexOf(canonicalAnswer);
+    if (index < 0 || answersEs == null || index >= answersEs!.length) {
+      return canonicalAnswer;
+    }
+    return answersEs![index];
+  }
+
   /// Get a random subset of answers for a round (exactly 10 answers)
   List<String> getRandomAnswers() {
     if (answersEn.length < 10) {
@@ -122,24 +171,21 @@ class CardItem extends Equatable {
   }
 
   int pointsForAnswers(Iterable<String> answers) {
-    return answers.fold(
-      0,
-      (total, answer) => total + pointsForAnswer(answer),
-    );
+    return answers.fold(0, (total, answer) => total + pointsForAnswer(answer));
   }
 
   @override
   List<Object?> get props => [
-        id,
-        promptEn,
-        promptEs,
-        answersEn,
-        answersEs,
-        difficulty,
-        answerPoints,
-        source,
-        languageScope,
-      ];
+    id,
+    promptEn,
+    promptEs,
+    answersEn,
+    answersEs,
+    difficulty,
+    answerPoints,
+    source,
+    languageScope,
+  ];
 
   @override
   String toString() =>

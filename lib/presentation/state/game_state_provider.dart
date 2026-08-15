@@ -45,20 +45,19 @@ class RoundResult extends Equatable {
   final int pointsEarned;
 
   /// Get missed answers
-  List<String> get missedAnswers => selectedAnswers
-      .where((answer) => !foundAnswers.contains(answer))
-      .toList()
-    ..sort();
+  List<String> get missedAnswers =>
+      selectedAnswers.where((answer) => !foundAnswers.contains(answer)).toList()
+        ..sort();
 
   @override
   List<Object?> get props => [
-        roundNumber,
-        teamIndex,
-        teamName,
-        selectedAnswers,
-        foundAnswers,
-        pointsEarned,
-      ];
+    roundNumber,
+    teamIndex,
+    teamName,
+    selectedAnswers,
+    foundAnswers,
+    pointsEarned,
+  ];
 }
 
 /// Active game state
@@ -89,10 +88,10 @@ class GameState extends Equatable {
 
   /// Initial game state (not started)
   factory GameState.initial() => const GameState(
-        currentRound: 1,
-        currentTeamIndex: 0,
-        gamePhase: GamePhase.ready,
-      );
+    currentRound: 1,
+    currentTeamIndex: 0,
+    gamePhase: GamePhase.ready,
+  );
 
   /// Create a copy with optional field updates
   GameState copyWith({
@@ -121,16 +120,16 @@ class GameState extends Equatable {
 
   @override
   List<Object?> get props => [
-        currentRound,
-        currentTeamIndex,
-        gamePhase,
-        currentCard,
-        selectedAnswers,
-        foundAnswers,
-        usedCardIdsInRound,
-        usedCardIdsInGame,
-        lastRoundResult,
-      ];
+    currentRound,
+    currentTeamIndex,
+    gamePhase,
+    currentCard,
+    selectedAnswers,
+    foundAnswers,
+    usedCardIdsInRound,
+    usedCardIdsInGame,
+    lastRoundResult,
+  ];
 }
 
 /// Game state notifier - manages active gameplay
@@ -152,16 +151,17 @@ class GameStateNotifier extends StateNotifier<GameState> {
     final setupState = _ref.read(gameSetupProvider);
     final cards = await _ref.read(cardsProvider.future);
     final locale = _ref.read(localeProvider);
-    final card = getRandomCardExcluding(
-      cards,
-      {...state.usedCardIdsInRound, ...state.usedCardIdsInGame},
-      setupState.config.difficulties,
-      locale.languageCode,
-    );
+    final cardLanguageMode = setupState.config.cardLanguageMode;
+    final eligibleCards = cards
+        .where((card) => card.supportsLanguageMode(cardLanguageMode))
+        .toList();
+    final card = getRandomCardExcluding(eligibleCards, {
+      ...state.usedCardIdsInRound,
+      ...state.usedCardIdsInGame,
+    }, setupState.config.difficulties);
 
-    // Select 10 random answers from card
-    final shuffledAnswers = List<String>.from(card.getAnswers(locale))
-      ..shuffle(_random);
+    // English answers are stable identifiers; the UI translates them by index.
+    final shuffledAnswers = List<String>.from(card.answersEn)..shuffle(_random);
     final selectedAnswers = shuffledAnswers.take(10).toList()..shuffle(_random);
 
     state = state.copyWith(
@@ -181,6 +181,7 @@ class GameStateNotifier extends StateNotifier<GameState> {
         'difficulty': card.difficulty.name,
         'card_id': card.id,
         'locale': locale.languageCode,
+        'card_language_mode': cardLanguageMode.name,
       },
     );
   }
@@ -216,21 +217,21 @@ class GameStateNotifier extends StateNotifier<GameState> {
     final setupState = _ref.read(gameSetupProvider);
     final cards = await _ref.read(cardsProvider.future);
     final locale = _ref.read(localeProvider);
+    final cardLanguageMode = setupState.config.cardLanguageMode;
     final currentDifficulty = state.currentCard!.difficulty;
     final excludedIds = {
       ...state.usedCardIdsInRound,
       ...state.usedCardIdsInGame,
     };
 
-    final card = getRandomCardExcluding(
-      cards,
-      excludedIds,
-      {currentDifficulty},
-      locale.languageCode,
-    );
+    final eligibleCards = cards
+        .where((card) => card.supportsLanguageMode(cardLanguageMode))
+        .toList();
+    final card = getRandomCardExcluding(eligibleCards, excludedIds, {
+      currentDifficulty,
+    });
 
-    final shuffledAnswers = List<String>.from(card.getAnswers(locale))
-      ..shuffle(_random);
+    final shuffledAnswers = List<String>.from(card.answersEn)..shuffle(_random);
     final selectedAnswers = shuffledAnswers.take(10).toList()..shuffle(_random);
 
     state = state.copyWith(
@@ -248,13 +249,15 @@ class GameStateNotifier extends StateNotifier<GameState> {
         'difficulty': card.difficulty.name,
         'card_id': card.id,
         'locale': locale.languageCode,
+        'card_language_mode': cardLanguageMode.name,
       },
     );
   }
 
   /// Toggle answer selection (add if not selected, remove if already selected)
   void toggleAnswer(String answer) {
-    if (state.gamePhase != GamePhase.playing && state.gamePhase != GamePhase.roundEnd) {
+    if (state.gamePhase != GamePhase.playing &&
+        state.gamePhase != GamePhase.roundEnd) {
       return;
     }
 
@@ -301,10 +304,9 @@ class GameStateNotifier extends StateNotifier<GameState> {
     final currentTeam = setupState.teams[state.currentTeamIndex];
 
     // Update team score in setup provider
-    _ref.read(gameSetupProvider.notifier).updateTeamScore(
-          state.currentTeamIndex,
-          pointsEarned,
-        );
+    _ref
+        .read(gameSetupProvider.notifier)
+        .updateTeamScore(state.currentTeamIndex, pointsEarned);
 
     // Create round result
     final result = RoundResult(
@@ -337,6 +339,7 @@ class GameStateNotifier extends StateNotifier<GameState> {
           'difficulty': card.difficulty.name,
           'card_id': card.id,
           'locale': locale.languageCode,
+          'card_language_mode': setupState.config.cardLanguageMode.name,
         },
       ),
     );
@@ -355,10 +358,10 @@ class GameStateNotifier extends StateNotifier<GameState> {
     }
 
     final isLastTeamInRound = state.currentTeamIndex >= numberOfTeams - 1;
-    final nextTeamIndex =
-        isLastTeamInRound ? 0 : state.currentTeamIndex + 1;
-    final nextRound =
-        isLastTeamInRound ? state.currentRound + 1 : state.currentRound;
+    final nextTeamIndex = isLastTeamInRound ? 0 : state.currentTeamIndex + 1;
+    final nextRound = isLastTeamInRound
+        ? state.currentRound + 1
+        : state.currentRound;
 
     if (isLastTeamInRound && nextRound > totalRounds) {
       // Game complete
@@ -418,7 +421,6 @@ class GameStateNotifier extends StateNotifier<GameState> {
 ///   // Game ended, navigate to results
 /// }
 /// ```
-final gameStateProvider =
-    StateNotifierProvider<GameStateNotifier, GameState>(
+final gameStateProvider = StateNotifierProvider<GameStateNotifier, GameState>(
   (ref) => GameStateNotifier(ref),
 );

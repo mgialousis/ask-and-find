@@ -54,6 +54,31 @@ void main() {
       expect(find.byIcon(Icons.check_circle), findsOneWidget);
     });
 
+    testWidgets('displays a secondary bilingual answer', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: AnswerChip(
+              answer: 'Athens',
+              secondaryAnswer: 'Atenas',
+              state: AnswerChipState.unselected,
+              onTap: _noop,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Athens'), findsOneWidget);
+      expect(find.text('Atenas'), findsOneWidget);
+    });
+
     testWidgets('calls onTap after animation', (tester) async {
       var tapped = false;
 

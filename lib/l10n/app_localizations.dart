@@ -254,6 +254,18 @@ abstract class AppLocalizations {
   /// **'Difficulty'**
   String get difficulty;
 
+  /// No description provided for @cardLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Language'**
+  String get cardLanguage;
+
+  /// No description provided for @englishAndSpanish.
+  ///
+  /// In en, this message translates to:
+  /// **'English + Spanish'**
+  String get englishAndSpanish;
+
   /// No description provided for @teamName.
   ///
   /// In en, this message translates to:

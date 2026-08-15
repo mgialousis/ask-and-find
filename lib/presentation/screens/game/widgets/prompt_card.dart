@@ -12,10 +12,12 @@ class PromptCard extends StatelessWidget {
   const PromptCard({
     super.key,
     required this.prompt,
+    this.secondaryPrompt,
     this.difficulty,
   });
 
   final String prompt;
+  final String? secondaryPrompt;
   final Difficulty? difficulty;
 
   @override
@@ -43,18 +45,67 @@ class PromptCard extends StatelessWidget {
               const SizedBox(height: 16),
             ],
 
-            // Prompt Text
-            Text(
-              prompt,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: context.palette.textPrimary,
-                height: 1.3,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            if (secondaryPrompt == null)
+              _PromptText(prompt: prompt, fontSize: 24)
+            else ...[
+              const _LanguageBadge(label: 'EN'),
+              const SizedBox(height: 8),
+              _PromptText(prompt: prompt, fontSize: 22),
+              const SizedBox(height: 14),
+              Divider(color: context.palette.surfaceVariant),
+              const SizedBox(height: 14),
+              const _LanguageBadge(label: 'ES'),
+              const SizedBox(height: 8),
+              _PromptText(prompt: secondaryPrompt!, fontSize: 20),
+            ],
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PromptText extends StatelessWidget {
+  const _PromptText({required this.prompt, required this.fontSize});
+
+  final String prompt;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      prompt,
+      style: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.w700,
+        color: context.palette.textPrimary,
+        height: 1.3,
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
+}
+
+class _LanguageBadge extends StatelessWidget {
+  const _LanguageBadge({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: AppColors.primary.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: AppColors.primary,
+          fontSize: 11,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 0.8,
         ),
       ),
     );
@@ -103,26 +154,16 @@ class _DifficultyBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 6,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: _color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: _color,
-          width: 1.5,
-        ),
+        border: Border.all(color: _color, width: 1.5),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            _icon,
-            color: _color,
-            size: 16,
-          ),
+          Icon(_icon, color: _color, size: 16),
           const SizedBox(width: 6),
           Text(
             _label(context),

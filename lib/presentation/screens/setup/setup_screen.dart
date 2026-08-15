@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pes_vres/core/analytics/analytics_service.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/domain/entities/game_config.dart';
 import 'package:pes_vres/domain/entities/team.dart';
@@ -38,6 +39,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
   final _uuid = const Uuid();
   bool _didScheduleProviderInit = false;
   bool _didSyncDefaultTeams = false;
+  bool _didInitializeCardLanguage = false;
 
   // Team configuration
   int _numberOfTeams = 2;
@@ -48,6 +50,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
   int _numberOfRounds = 5;
   int _roundDuration = 60;
   Set<Difficulty> _difficulties = {Difficulty.medium};
+  CardLanguageMode _cardLanguageMode = CardLanguageMode.english;
 
   @override
   void initState() {
@@ -57,19 +60,28 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
       ref.read(gameStateProvider.notifier).reset();
       ref.read(timerProvider.notifier).reset();
       ref.read(gameSetupProvider.notifier).initializeTeams(_numberOfTeams);
-      ref.read(gameSetupProvider.notifier).updateConfig(
-        GameConfig(
-          numberOfRounds: _numberOfRounds,
-          roundDurationSeconds: _roundDuration,
-          difficulties: _difficulties,
-        ),
-      );
+      ref
+          .read(gameSetupProvider.notifier)
+          .updateConfig(
+            GameConfig(
+              numberOfRounds: _numberOfRounds,
+              roundDurationSeconds: _roundDuration,
+              difficulties: _difficulties,
+              cardLanguageMode: _cardLanguageMode,
+            ),
+          );
     });
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (!_didInitializeCardLanguage) {
+      _cardLanguageMode = Localizations.localeOf(context).languageCode == 'es'
+          ? CardLanguageMode.spanish
+          : CardLanguageMode.english;
+      _didInitializeCardLanguage = true;
+    }
     if (_teams.isEmpty) {
       _initializeTeams();
     }
@@ -230,6 +242,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
           'difficulties': setupState.config.difficulties
               .map((difficulty) => difficulty.name)
               .toList(),
+          'card_language_mode': setupState.config.cardLanguageMode.name,
         },
       ),
     );
@@ -253,13 +266,16 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
       Future(() {
         if (!mounted) return;
         ref.read(gameSetupProvider.notifier).initializeTeams(_numberOfTeams);
-        ref.read(gameSetupProvider.notifier).updateConfig(
-          GameConfig(
-            numberOfRounds: _numberOfRounds,
-            roundDurationSeconds: _roundDuration,
-            difficulties: _difficulties,
-          ),
-        );
+        ref
+            .read(gameSetupProvider.notifier)
+            .updateConfig(
+              GameConfig(
+                numberOfRounds: _numberOfRounds,
+                roundDurationSeconds: _roundDuration,
+                difficulties: _difficulties,
+                cardLanguageMode: _cardLanguageMode,
+              ),
+            );
       });
     } else if (setupState.teams.isNotEmpty &&
         !_didSyncDefaultTeams &&
@@ -278,9 +294,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.gameSetup),
-      ),
+      appBar: AppBar(title: Text(l10n.gameSetup)),
       body: SafeArea(
         child: Column(
           children: [
@@ -320,19 +334,24 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                       numberOfRounds: _numberOfRounds,
                       roundDuration: _roundDuration,
                       difficulties: _difficulties,
+                      cardLanguageMode: _cardLanguageMode,
                       onRoundsChanged: (rounds) {
                         setState(() {
                           _numberOfRounds = rounds;
                         });
                         // Sync to provider
-                        ref.read(gameSetupProvider.notifier).updateNumberOfRounds(rounds);
+                        ref
+                            .read(gameSetupProvider.notifier)
+                            .updateNumberOfRounds(rounds);
                       },
                       onDurationChanged: (duration) {
                         setState(() {
                           _roundDuration = duration;
                         });
                         // Sync to provider
-                        ref.read(gameSetupProvider.notifier).updateRoundDuration(duration);
+                        ref
+                            .read(gameSetupProvider.notifier)
+                            .updateRoundDuration(duration);
                       },
                       onDifficultiesChanged: (difficulties) {
                         setState(() {
@@ -342,6 +361,14 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                         ref
                             .read(gameSetupProvider.notifier)
                             .updateDifficulties(difficulties);
+                      },
+                      onCardLanguageModeChanged: (mode) {
+                        setState(() {
+                          _cardLanguageMode = mode;
+                        });
+                        ref
+                            .read(gameSetupProvider.notifier)
+                            .updateCardLanguageMode(mode);
                       },
                     ),
                     const SizedBox(height: 24),
@@ -462,7 +489,9 @@ class _NumberButton extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
-                  color: isSelected ? Colors.white : context.palette.textPrimary,
+                  color: isSelected
+                      ? Colors.white
+                      : context.palette.textPrimary,
                 ),
               ),
               const SizedBox(height: 4),

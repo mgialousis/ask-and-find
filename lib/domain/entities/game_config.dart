@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 
 /// Configuration for a game session
@@ -6,11 +7,13 @@ class GameConfig extends Equatable {
   final int numberOfRounds;
   final int roundDurationSeconds;
   final Set<Difficulty> difficulties;
+  final CardLanguageMode cardLanguageMode;
 
   const GameConfig({
     required this.numberOfRounds,
     required this.roundDurationSeconds,
     required this.difficulties,
+    this.cardLanguageMode = CardLanguageMode.english,
   });
 
   /// Create a default game configuration
@@ -19,6 +22,7 @@ class GameConfig extends Equatable {
       numberOfRounds: 5,
       roundDurationSeconds: 60,
       difficulties: {Difficulty.medium},
+      cardLanguageMode: CardLanguageMode.english,
     );
   }
 
@@ -48,18 +52,25 @@ class GameConfig extends Equatable {
     int? numberOfRounds,
     int? roundDurationSeconds,
     Set<Difficulty>? difficulties,
+    CardLanguageMode? cardLanguageMode,
   }) {
     return GameConfig(
       numberOfRounds: numberOfRounds ?? this.numberOfRounds,
       roundDurationSeconds: roundDurationSeconds ?? this.roundDurationSeconds,
       difficulties: difficulties ?? this.difficulties,
+      cardLanguageMode: cardLanguageMode ?? this.cardLanguageMode,
     );
   }
 
   @override
-  List<Object?> get props => [numberOfRounds, roundDurationSeconds, difficulties];
+  List<Object?> get props => [
+    numberOfRounds,
+    roundDurationSeconds,
+    difficulties,
+    cardLanguageMode,
+  ];
 
   @override
   String toString() =>
-      'GameConfig(rounds: $numberOfRounds, duration: ${roundDurationSeconds}s, difficulties: $difficulties)';
+      'GameConfig(rounds: $numberOfRounds, duration: ${roundDurationSeconds}s, difficulties: $difficulties, cardLanguage: ${cardLanguageMode.name})';
 }

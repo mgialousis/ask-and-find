@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/screens/setup/game_config_section.dart';
@@ -134,7 +135,74 @@ void main() {
       expect(find.text('Hard'), findsOneWidget);
     });
 
-    testWidgets('calls onRoundsChanged when round button tapped', (tester) async {
+    testWidgets('displays all card language choices', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: GameConfigSection(
+                numberOfRounds: 5,
+                roundDuration: 60,
+                difficulties: {Difficulty.medium},
+                onRoundsChanged: (_) {},
+                onDurationChanged: (_) {},
+                onDifficultiesChanged: (_) {},
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Card Language'), findsOneWidget);
+      expect(find.text('English'), findsOneWidget);
+      expect(find.text('Spanish'), findsOneWidget);
+      expect(find.text('English + Spanish'), findsOneWidget);
+    });
+
+    testWidgets('selects bilingual card language', (tester) async {
+      CardLanguageMode? selectedMode;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: GameConfigSection(
+                numberOfRounds: 5,
+                roundDuration: 60,
+                difficulties: {Difficulty.medium},
+                onRoundsChanged: (_) {},
+                onDurationChanged: (_) {},
+                onDifficultiesChanged: (_) {},
+                onCardLanguageModeChanged: (mode) => selectedMode = mode,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('English + Spanish'));
+      await tester.pumpAndSettle();
+
+      expect(selectedMode, CardLanguageMode.bilingual);
+    });
+
+    testWidgets('calls onRoundsChanged when round button tapped', (
+      tester,
+    ) async {
       int? selectedRounds;
 
       await tester.pumpWidget(
@@ -167,7 +235,9 @@ void main() {
       expect(selectedRounds, 7);
     });
 
-    testWidgets('calls onDurationChanged when duration button tapped', (tester) async {
+    testWidgets('calls onDurationChanged when duration button tapped', (
+      tester,
+    ) async {
       int? selectedDuration;
 
       await tester.pumpWidget(
@@ -200,7 +270,9 @@ void main() {
       expect(selectedDuration, 45);
     });
 
-    testWidgets('calls onDifficultiesChanged when difficulty button tapped', (tester) async {
+    testWidgets('calls onDifficultiesChanged when difficulty button tapped', (
+      tester,
+    ) async {
       Set<Difficulty>? selectedDifficulties;
 
       await tester.pumpWidget(
@@ -425,7 +497,9 @@ void main() {
       expect(find.text('Team Color'), findsNWidgets(2));
     });
 
-    testWidgets('calls onTeamNameChanged when name input changes', (tester) async {
+    testWidgets('calls onTeamNameChanged when name input changes', (
+      tester,
+    ) async {
       int? changedIndex;
       String? changedName;
 
@@ -516,9 +590,24 @@ void main() {
 
     testWidgets('displays three teams when provided', (tester) async {
       final threeTeams = [
-        Team(id: 'team-1', name: 'Team 1', color: AppColors.teamColors[0], score: 0),
-        Team(id: 'team-2', name: 'Team 2', color: AppColors.teamColors[1], score: 0),
-        Team(id: 'team-3', name: 'Team 3', color: AppColors.teamColors[2], score: 0),
+        Team(
+          id: 'team-1',
+          name: 'Team 1',
+          color: AppColors.teamColors[0],
+          score: 0,
+        ),
+        Team(
+          id: 'team-2',
+          name: 'Team 2',
+          color: AppColors.teamColors[1],
+          score: 0,
+        ),
+        Team(
+          id: 'team-3',
+          name: 'Team 3',
+          color: AppColors.teamColors[2],
+          score: 0,
+        ),
       ];
 
       await tester.pumpWidget(
@@ -548,10 +637,30 @@ void main() {
 
     testWidgets('displays four teams when provided', (tester) async {
       final fourTeams = [
-        Team(id: 'team-1', name: 'Team 1', color: AppColors.teamColors[0], score: 0),
-        Team(id: 'team-2', name: 'Team 2', color: AppColors.teamColors[1], score: 0),
-        Team(id: 'team-3', name: 'Team 3', color: AppColors.teamColors[2], score: 0),
-        Team(id: 'team-4', name: 'Team 4', color: AppColors.teamColors[3], score: 0),
+        Team(
+          id: 'team-1',
+          name: 'Team 1',
+          color: AppColors.teamColors[0],
+          score: 0,
+        ),
+        Team(
+          id: 'team-2',
+          name: 'Team 2',
+          color: AppColors.teamColors[1],
+          score: 0,
+        ),
+        Team(
+          id: 'team-3',
+          name: 'Team 3',
+          color: AppColors.teamColors[2],
+          score: 0,
+        ),
+        Team(
+          id: 'team-4',
+          name: 'Team 4',
+          color: AppColors.teamColors[3],
+          score: 0,
+        ),
       ];
 
       await tester.pumpWidget(

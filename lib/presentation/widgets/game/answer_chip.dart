@@ -21,12 +21,14 @@ class AnswerChip extends StatefulWidget {
   const AnswerChip({
     super.key,
     required this.answer,
+    this.secondaryAnswer,
     required this.state,
     required this.onTap,
     this.pointValue = 1,
   });
 
   final String answer;
+  final String? secondaryAnswer;
   final AnswerChipState state;
   final VoidCallback onTap;
   final int pointValue;
@@ -49,10 +51,7 @@ class _AnswerChipState extends State<AnswerChip>
     );
 
     _scaleAnimation = Tween<double>(begin: 1.0, end: 0.92).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
   }
 
@@ -97,10 +96,7 @@ class _AnswerChipState extends State<AnswerChip>
     return AnimatedBuilder(
       animation: _scaleAnimation,
       builder: (context, child) {
-        return Transform.scale(
-          scale: _scaleAnimation.value,
-          child: child,
-        );
+        return Transform.scale(scale: _scaleAnimation.value, child: child);
       },
       child: Material(
         color: _backgroundColor,
@@ -110,48 +106,80 @@ class _AnswerChipState extends State<AnswerChip>
           onTap: _handleTap,
           borderRadius: BorderRadius.circular(12),
           child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (_isSelected) ...[
-                  const Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                    size: 20,
-                  ),
+                  const Icon(Icons.check_circle, color: Colors.white, size: 20),
                   const SizedBox(width: 8),
                 ],
                 Flexible(
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: widget.answer,
-                          style: TextStyle(
-                            color: _textColor,
-                            fontSize: 16,
-                            fontWeight:
-                                _isSelected ? FontWeight.w600 : FontWeight.w500,
+                  child: widget.secondaryAnswer == null
+                      ? Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: widget.answer,
+                                style: TextStyle(
+                                  color: _textColor,
+                                  fontSize: 16,
+                                  fontWeight: _isSelected
+                                      ? FontWeight.w600
+                                      : FontWeight.w500,
+                                ),
+                              ),
+                              TextSpan(
+                                text: ' (${l10n.nPts(widget.pointValue)})',
+                                style: TextStyle(
+                                  color: _textColor.withValues(alpha: 0.7),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
+                          textAlign: TextAlign.center,
+                          softWrap: true,
+                        )
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              widget.answer,
+                              style: TextStyle(
+                                color: _textColor,
+                                fontSize: 16,
+                                fontWeight: _isSelected
+                                    ? FontWeight.w600
+                                    : FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                              softWrap: true,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              widget.secondaryAnswer!,
+                              style: TextStyle(
+                                color: _textColor.withValues(alpha: 0.82),
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                              softWrap: true,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              l10n.nPts(widget.pointValue),
+                              style: TextStyle(
+                                color: _textColor.withValues(alpha: 0.7),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
-                        TextSpan(
-                          text:
-                              ' (${l10n.nPts(widget.pointValue)})',
-                          style: TextStyle(
-                            color: _textColor.withValues(alpha: 0.7),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                  ),
                 ),
               ],
             ),

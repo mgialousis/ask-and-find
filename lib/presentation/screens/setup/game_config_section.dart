@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
 
@@ -15,17 +16,21 @@ class GameConfigSection extends StatelessWidget {
     required this.numberOfRounds,
     required this.roundDuration,
     required this.difficulties,
+    this.cardLanguageMode = CardLanguageMode.english,
     required this.onRoundsChanged,
     required this.onDurationChanged,
     required this.onDifficultiesChanged,
+    this.onCardLanguageModeChanged,
   });
 
   final int numberOfRounds;
   final int roundDuration;
   final Set<Difficulty> difficulties;
+  final CardLanguageMode cardLanguageMode;
   final ValueChanged<int> onRoundsChanged;
   final ValueChanged<int> onDurationChanged;
   final ValueChanged<Set<Difficulty>> onDifficultiesChanged;
+  final ValueChanged<CardLanguageMode>? onCardLanguageModeChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +114,50 @@ class GameConfigSection extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
+        // Card Language
+        _SettingGroup(
+          label: l10n.cardLanguage,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: _ChoiceButton(
+                      label: l10n.english,
+                      isSelected: cardLanguageMode == CardLanguageMode.english,
+                      onTap: () => onCardLanguageModeChanged?.call(
+                        CardLanguageMode.english,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _ChoiceButton(
+                      label: l10n.spanish,
+                      isSelected: cardLanguageMode == CardLanguageMode.spanish,
+                      onTap: () => onCardLanguageModeChanged?.call(
+                        CardLanguageMode.spanish,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: _ChoiceButton(
+                  label: l10n.englishAndSpanish,
+                  isSelected: cardLanguageMode == CardLanguageMode.bilingual,
+                  onTap: () => onCardLanguageModeChanged?.call(
+                    CardLanguageMode.bilingual,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+
         // Difficulty
         _SettingGroup(
           label: l10n.difficulty,
@@ -174,10 +223,7 @@ class _SectionTitle extends StatelessWidget {
 }
 
 class _SettingGroup extends StatelessWidget {
-  const _SettingGroup({
-    required this.label,
-    required this.child,
-  });
+  const _SettingGroup({required this.label, required this.child});
 
   final String label;
   final Widget child;
@@ -223,10 +269,7 @@ class _ChoiceButton extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 12,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(

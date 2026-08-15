@@ -29,6 +29,8 @@
   "numberOfRounds": "Número de Rondas",
   "roundDuration": "Duración",
   "difficulty": "Dificultad",
+  "cardLanguage": "Idioma de las Tarjetas",
+  "englishAndSpanish": "Inglés + Español",
   "teamName": "Nombre",
   "teamColor": "Color del Equipo",
   "enterTeamName": "Ingrese nombre",

@@ -87,6 +87,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get difficulty => 'Difficulty';
 
   @override
+  String get cardLanguage => 'Card Language';
+
+  @override
+  String get englishAndSpanish => 'English + Spanish';
+
+  @override
   String get teamName => 'Team Name';
 
   @override

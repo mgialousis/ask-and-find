@@ -1295,10 +1295,10 @@
       "San Antonio",
       "San Diego",
       "Dallas",
-      "Jacksonville"
+      "Fort Worth"
     ],
     "difficulty": "medium",
-    "source": "Source: U.S. Census Bureau population estimates 2024",
+    "source": "Source: U.S. Census Bureau Vintage 2025 population estimates",
     "answerPoints": {
       "New York City": 1,
       "Los Angeles": 1,
@@ -1309,7 +1309,7 @@
       "San Antonio": 3,
       "San Diego": 3,
       "Dallas": 3,
-      "Jacksonville": 4,
+      "Fort Worth": 4,
       "Nueva York": 1,
       "Los Ángeles": 1,
       "Filadelfia": 2
@@ -1329,7 +1329,7 @@
       "San Antonio",
       "San Diego",
       "Dallas",
-      "Jacksonville"
+      "Fort Worth"
     ]
   },
   {
@@ -1397,9 +1397,9 @@
       "Pride and Prejudice",
       "Don Quixote",
       "Moby Dick",
-      "The Odyssey",
+      "Anna Karenina",
       "Crime and Punishment",
-      "The Iliad",
+      "Wuthering Heights",
       "Jane Eyre",
       "Great Expectations",
       "The Brothers Karamazov"
@@ -1411,18 +1411,18 @@
       "Pride and Prejudice": 1,
       "Don Quixote": 2,
       "Moby Dick": 3,
-      "The Odyssey": 1,
+      "Anna Karenina": 1,
       "Crime and Punishment": 3,
-      "The Iliad": 1,
+      "Wuthering Heights": 1,
       "Jane Eyre": 3,
       "Great Expectations": 2,
       "The Brothers Karamazov": 4,
       "Guerra y paz": 2,
       "Orgullo y prejuicio": 1,
       "Don Quijote": 2,
-      "La Odisea": 1,
+      "Anna Karénina": 1,
       "Crimen y castigo": 3,
-      "La Ilíada": 1,
+      "Cumbres borrascosas": 1,
       "Grandes esperanzas": 2,
       "Los hermanos Karamázov": 4
     },
@@ -1436,9 +1436,9 @@
       "Orgullo y prejuicio",
       "Don Quijote",
       "Moby Dick",
-      "La Odisea",
+      "Anna Karénina",
       "Crimen y castigo",
-      "La Ilíada",
+      "Cumbres borrascosas",
       "Jane Eyre",
       "Grandes esperanzas",
       "Los hermanos Karamázov"
@@ -1934,7 +1934,7 @@
   },
   {
     "id": "40",
-    "promptEn": "Name 10 types of renewable energy sources",
+    "promptEn": "Name 10 renewable energy sources or generation technologies; broad categories and specific technologies both count",
     "answersEn": [
       "Solar",
       "Wind",
@@ -1943,12 +1943,12 @@
       "Biomass",
       "Tidal",
       "Wave",
-      "Ocean Thermal",
+      "Ocean thermal energy conversion (OTEC)",
       "Salinity gradient energy",
       "Enhanced geothermal systems"
     ],
     "difficulty": "medium",
-    "source": "Source: Renewable energy categories",
+    "source": "Source: International Renewable Energy Agency (IRENA)",
     "answerPoints": {
       "Solar": 1,
       "Wind": 1,
@@ -1957,7 +1957,7 @@
       "Biomass": 2,
       "Tidal": 3,
       "Wave": 4,
-      "Ocean Thermal": 5,
+      "Ocean thermal energy conversion (OTEC)": 5,
       "Salinity gradient energy": 5,
       "Enhanced geothermal systems": 5,
       "Eólica": 1,
@@ -1966,7 +1966,7 @@
       "Biomasa": 2,
       "Mareomotriz": 3,
       "Undimotriz": 4,
-      "Térmica oceánica": 5,
+      "Conversión de energía térmica oceánica (OTEC)": 5,
       "Energía por gradiente salino": 5,
       "Sistemas geotérmicos mejorados": 5
     },
@@ -1974,7 +1974,7 @@
       "en",
       "es"
     ],
-    "promptEs": "Nombra 10 tipos de fuentes de energía renovable",
+    "promptEs": "Nombra 10 fuentes o tecnologías de generación de energía renovable; cuentan tanto las categorías generales como las tecnologías específicas",
     "answersEs": [
       "Solar",
       "Eólica",
@@ -1983,7 +1983,7 @@
       "Biomasa",
       "Mareomotriz",
       "Undimotriz",
-      "Térmica oceánica",
+      "Conversión de energía térmica oceánica (OTEC)",
       "Energía por gradiente salino",
       "Sistemas geotérmicos mejorados"
     ]
@@ -2040,7 +2040,7 @@
   },
   {
     "id": "42",
-    "promptEn": "Name 10 highly spoken European languages",
+    "promptEn": "Name 10 official languages of the European Union",
     "answersEn": [
       "English",
       "German",
@@ -2054,7 +2054,7 @@
       "Romanian"
     ],
     "difficulty": "medium",
-    "source": "Source: European language speakers",
+    "source": "Source: European Union official languages",
     "answerPoints": {
       "English": 1,
       "German": 1,
@@ -2081,7 +2081,7 @@
       "en",
       "es"
     ],
-    "promptEs": "Nombra 10 idiomas europeos con más hablantes",
+    "promptEs": "Nombra 10 idiomas oficiales de la Unión Europea",
     "answersEs": [
       "Inglés",
       "Alemán",
@@ -2206,56 +2206,56 @@
   },
   {
     "id": "45",
-    "promptEn": "Name 10 of the most populous cities in Asia",
+    "promptEn": "Name the 10 most populous cities in Asia under the UN's 2025 harmonized city definition",
     "answersEn": [
-      "Tokyo",
-      "Delhi",
-      "Shanghai",
-      "Beijing",
-      "Dhaka",
       "Jakarta",
+      "Dhaka",
+      "Tokyo",
+      "New Delhi",
+      "Shanghai",
+      "Guangzhou",
       "Manila",
+      "Kolkata",
       "Seoul",
-      "Bangkok",
-      "Tehran"
+      "Karachi"
     ],
     "difficulty": "medium",
-    "source": "Source: Asian city population estimates 2025",
+    "source": "Source: UN World Urbanization Prospects 2025",
     "answerPoints": {
-      "Tokyo": 1,
-      "Delhi": 1,
-      "Shanghai": 2,
-      "Beijing": 2,
-      "Dhaka": 3,
       "Jakarta": 2,
+      "Dhaka": 3,
+      "Tokyo": 1,
+      "New Delhi": 1,
+      "Shanghai": 2,
+      "Guangzhou": 4,
       "Manila": 3,
+      "Kolkata": 4,
       "Seoul": 2,
-      "Bangkok": 2,
-      "Tehran": 4,
-      "Tokio": 1,
-      "Shanghái": 2,
-      "Pekín": 2,
-      "Daca": 3,
+      "Karachi": 3,
       "Yakarta": 2,
+      "Daca": 3,
+      "Tokio": 1,
+      "Nueva Delhi": 1,
+      "Shanghái": 2,
       "Seúl": 2,
-      "Teherán": 4
+      "Calcuta": 4
     },
     "languageScope": [
       "en",
       "es"
     ],
-    "promptEs": "Nombra 10 de las ciudades más pobladas de Asia",
+    "promptEs": "Nombra las 10 ciudades más pobladas de Asia según la definición armonizada de la ONU de 2025",
     "answersEs": [
-      "Tokio",
-      "Delhi",
-      "Shanghái",
-      "Pekín",
-      "Daca",
       "Yakarta",
+      "Daca",
+      "Tokio",
+      "Nueva Delhi",
+      "Shanghái",
+      "Guangzhou",
       "Manila",
+      "Calcuta",
       "Seúl",
-      "Bangkok",
-      "Teherán"
+      "Karachi"
     ]
   },
   {
@@ -3138,7 +3138,7 @@
   },
   {
     "id": "81",
-    "promptEn": "Name 10 large online platforms by active user count",
+    "promptEn": "Name 10 widely used social media or messaging platforms",
     "answersEn": [
       "Facebook",
       "YouTube",
@@ -3146,13 +3146,13 @@
       "TikTok",
       "WeChat",
       "WhatsApp",
-      "Twitter (X)",
+      "X (formerly Twitter)",
       "Snapchat",
       "LinkedIn",
       "Pinterest"
     ],
     "difficulty": "medium",
-    "source": "Source: Online platform user statistics",
+    "source": "Source: Widely used social media and messaging platforms",
     "answerPoints": {
       "Facebook": 2,
       "YouTube": 1,
@@ -3160,7 +3160,8 @@
       "TikTok": 1,
       "WeChat": 2,
       "WhatsApp": 2,
-      "Twitter (X)": 3,
+      "X (formerly Twitter)": 3,
+      "X (antes Twitter)": 3,
       "Snapchat": 4,
       "LinkedIn": 4,
       "Pinterest": 5
@@ -3169,7 +3170,7 @@
       "en",
       "es"
     ],
-    "promptEs": "Nombra 10 grandes plataformas en línea por usuarios activos",
+    "promptEs": "Nombra 10 plataformas de redes sociales o mensajería ampliamente utilizadas",
     "answersEs": [
       "Facebook",
       "YouTube",
@@ -3177,7 +3178,7 @@
       "TikTok",
       "WeChat",
       "WhatsApp",
-      "Twitter (X)",
+      "X (antes Twitter)",
       "Snapchat",
       "LinkedIn",
       "Pinterest"
@@ -4089,169 +4090,6 @@
     ]
   },
   {
-    "id": "103",
-    "promptEn": "Name 10 famous explorers and adventurers",
-    "answersEn": [
-      "Christopher Columbus",
-      "Marco Polo",
-      "Ferdinand Magellan",
-      "Neil Armstrong",
-      "Amelia Earhart",
-      "Roald Amundsen",
-      "Jacques Cousteau",
-      "Edmund Hillary",
-      "Vasco da Gama",
-      "Lewis and Clark"
-    ],
-    "difficulty": "medium",
-    "source": "Source: History of exploration",
-    "answerPoints": {
-      "Christopher Columbus": 1,
-      "Marco Polo": 1,
-      "Ferdinand Magellan": 2,
-      "Neil Armstrong": 1,
-      "Amelia Earhart": 2,
-      "Roald Amundsen": 3,
-      "Jacques Cousteau": 3,
-      "Edmund Hillary": 3,
-      "Vasco da Gama": 4,
-      "Lewis and Clark": 4,
-      "Cristóbal Colón": 1,
-      "Fernando de Magallanes": 2,
-      "Lewis y Clark": 4
-    },
-    "promptEs": "Nombra 10 exploradores y aventureros famosos",
-    "answersEs": [
-      "Cristóbal Colón",
-      "Marco Polo",
-      "Fernando de Magallanes",
-      "Neil Armstrong",
-      "Amelia Earhart",
-      "Roald Amundsen",
-      "Jacques Cousteau",
-      "Edmund Hillary",
-      "Vasco da Gama",
-      "Lewis y Clark"
-    ],
-    "languageScope": [
-      "en",
-      "es"
-    ]
-  },
-  {
-    "id": "104",
-    "promptEn": "Name 10 ancient civilizations",
-    "answersEn": [
-      "Ancient Egypt",
-      "Roman Empire",
-      "Ancient Greece",
-      "Mayan Civilization",
-      "Inca Empire",
-      "Aztec Empire",
-      "Persian Empire",
-      "Ancient China",
-      "Mesopotamia",
-      "Phoenicia"
-    ],
-    "difficulty": "medium",
-    "source": "Source: World history",
-    "answerPoints": {
-      "Ancient Egypt": 1,
-      "Roman Empire": 1,
-      "Ancient Greece": 1,
-      "Mayan Civilization": 2,
-      "Inca Empire": 2,
-      "Aztec Empire": 2,
-      "Persian Empire": 3,
-      "Ancient China": 2,
-      "Mesopotamia": 4,
-      "Phoenicia": 4,
-      "Antiguo Egipto": 1,
-      "Imperio Romano": 1,
-      "Antigua Grecia": 1,
-      "Civilización Maya": 2,
-      "Imperio Inca": 2,
-      "Imperio Azteca": 2,
-      "Imperio Persa": 3,
-      "China Antigua": 2,
-      "Fenicia": 4
-    },
-    "promptEs": "Nombra 10 civilizaciones antiguas",
-    "answersEs": [
-      "Antiguo Egipto",
-      "Imperio Romano",
-      "Antigua Grecia",
-      "Civilización Maya",
-      "Imperio Inca",
-      "Imperio Azteca",
-      "Imperio Persa",
-      "China Antigua",
-      "Mesopotamia",
-      "Fenicia"
-    ],
-    "languageScope": [
-      "en",
-      "es"
-    ]
-  },
-  {
-    "id": "105",
-    "promptEn": "Name 10 important historical documents or treaties",
-    "answersEn": [
-      "Magna Carta",
-      "Declaration of Independence",
-      "US Constitution",
-      "Treaty of Versailles",
-      "Emancipation Proclamation",
-      "Bill of Rights",
-      "Geneva Convention",
-      "UN Charter",
-      "Communist Manifesto",
-      "Gettysburg Address"
-    ],
-    "difficulty": "hard",
-    "source": "Source: Political history",
-    "answerPoints": {
-      "Magna Carta": 2,
-      "Declaration of Independence": 1,
-      "US Constitution": 1,
-      "Treaty of Versailles": 2,
-      "Emancipation Proclamation": 3,
-      "Bill of Rights": 2,
-      "Geneva Convention": 3,
-      "UN Charter": 4,
-      "Communist Manifesto": 3,
-      "Gettysburg Address": 4,
-      "Carta Magna": 2,
-      "Declaración de Independencia": 1,
-      "Constitución de EE.UU.": 1,
-      "Tratado de Versalles": 2,
-      "Proclamación de Emancipación": 3,
-      "Carta de Derechos": 2,
-      "Convención de Ginebra": 3,
-      "Carta de la ONU": 4,
-      "Manifiesto Comunista": 3,
-      "Discurso de Gettysburg": 4
-    },
-    "promptEs": "Nombra 10 documentos históricos o tratados importantes",
-    "answersEs": [
-      "Carta Magna",
-      "Declaración de Independencia",
-      "Constitución de EE.UU.",
-      "Tratado de Versalles",
-      "Proclamación de Emancipación",
-      "Carta de Derechos",
-      "Convención de Ginebra",
-      "Carta de la ONU",
-      "Manifiesto Comunista",
-      "Discurso de Gettysburg"
-    ],
-    "languageScope": [
-      "en",
-      "es"
-    ]
-  },
-  {
     "id": "106",
     "promptEn": "Name 10 famous revolutions in history",
     "answersEn": [
@@ -5060,7 +4898,7 @@
   },
   {
     "id": "121",
-    "promptEn": "Name 10 countries with the most Nobel Prize laureates (all time)",
+    "promptEn": "Name 10 countries associated with multiple Nobel Prize laureates through nationality or institutional affiliation",
     "answersEn": [
       "United States",
       "United Kingdom",
@@ -5074,7 +4912,7 @@
       "Austria"
     ],
     "difficulty": "hard",
-    "source": "Source: Nobel Prize official statistics (nobelprize.org)",
+    "source": "Source: Nobel Prize laureate biographies (nobelprize.org)",
     "answerPoints": {
       "United States": 1,
       "United Kingdom": 1,
@@ -5096,7 +4934,7 @@
       "Canadá": 3,
       "Suiza": 4
     },
-    "promptEs": "Nombra 10 países con más premios Nobel (todos los tiempos)",
+    "promptEs": "Nombra 10 países vinculados con varios ganadores del Premio Nobel por nacionalidad o afiliación institucional",
     "answersEs": [
       "Estados Unidos",
       "Reino Unido",
@@ -5763,7 +5601,7 @@
   },
   {
     "id": "134",
-    "promptEn": "Name 10 largest dog breeds by weight",
+    "promptEn": "Name 10 dog breeds known for their high adult body weight",
     "answersEn": [
       "English Mastiff",
       "Saint Bernard",
@@ -5797,7 +5635,7 @@
       "Mastín Tibetano": 3,
       "Boyero de Berna": 2
     },
-    "promptEs": "Nombra 10 razas de perros más grandes por peso",
+    "promptEs": "Nombra 10 razas de perros conocidas por su gran peso en la edad adulta",
     "answersEs": [
       "Mastín Inglés",
       "San Bernardo",
@@ -6455,7 +6293,7 @@
   },
   {
     "id": "146",
-    "promptEn": "Name 10 types of weather",
+    "promptEn": "Name 10 weather conditions",
     "answersEn": [
       "Sunny",
       "Rainy",
@@ -6498,7 +6336,7 @@
       "Frost": 3,
       "Escarcha": 3
     },
-    "promptEs": "Nombra 10 tipos de clima",
+    "promptEs": "Nombra 10 condiciones meteorológicas",
     "answersEs": [
       "Soleado",
       "Lluvioso",
@@ -7034,7 +6872,7 @@
   },
   {
     "id": "155",
-    "promptEn": "Name 10 things that can fly",
+    "promptEn": "Name 10 animals or human-made objects that can travel through the air",
     "answersEn": [
       "Airplane",
       "Bird",
@@ -7044,7 +6882,7 @@
       "Kite",
       "Drone",
       "Bat",
-      "Balloon",
+      "Glider",
       "Rocket",
       "Mosquito",
       "Hot air balloon"
@@ -7068,15 +6906,15 @@
       "Dron": 2,
       "Bat": 2,
       "Murciélago": 2,
-      "Balloon": 2,
-      "Globo": 2,
+      "Glider": 2,
+      "Planeador": 2,
       "Rocket": 2,
       "Cohete": 2,
       "Mosquito": 3,
       "Hot air balloon": 3,
       "Globo aerostático": 3
     },
-    "promptEs": "Nombra 10 cosas que pueden volar",
+    "promptEs": "Nombra 10 animales u objetos fabricados por el ser humano que pueden desplazarse por el aire",
     "answersEs": [
       "Avión",
       "Pájaro",
@@ -7086,7 +6924,7 @@
       "Cometa",
       "Dron",
       "Murciélago",
-      "Globo",
+      "Planeador",
       "Cohete",
       "Mosquito",
       "Globo aerostático"
@@ -7163,7 +7001,7 @@
   },
   {
     "id": "157",
-    "promptEn": "Name 10 tools you would find in a toolbox",
+    "promptEn": "Name 10 tools or pieces of hardware you would find in a toolbox",
     "answersEn": [
       "Hammer",
       "Screwdriver",
@@ -7179,7 +7017,7 @@
       "Utility knife"
     ],
     "difficulty": "easy",
-    "source": "Source: Common hand tools",
+    "source": "Source: Common tools and hardware",
     "answerPoints": {
       "Hammer": 1,
       "Martillo": 1,
@@ -7206,7 +7044,7 @@
       "Utility knife": 3,
       "Cúter": 3
     },
-    "promptEs": "Nombra 10 herramientas de una caja de herramientas",
+    "promptEs": "Nombra 10 herramientas o piezas de ferretería que encontrarías en una caja de herramientas",
     "answersEs": [
       "Martillo",
       "Destornillador",
@@ -9542,51 +9380,51 @@
   },
   {
     "id": "196",
-    "promptEn": "Name 10 Premier League football clubs",
+    "promptEn": "Name 10 football clubs that have competed in the English Premier League since its 1992 founding",
     "answersEn": [
       "Manchester United",
       "Liverpool",
       "Arsenal",
       "Chelsea",
       "Manchester City",
-      "Tottenham",
+      "Tottenham Hotspur",
       "Everton",
       "Newcastle United",
       "Aston Villa",
-      "West Ham",
+      "West Ham United",
       "Leeds United",
-      "Wolverhampton"
+      "Wolverhampton Wanderers"
     ],
     "difficulty": "medium",
-    "source": "Source: English Premier League clubs",
+    "source": "Source: English Premier League club history",
     "answerPoints": {
       "Manchester United": 1,
       "Liverpool": 1,
       "Arsenal": 1,
       "Chelsea": 1,
       "Manchester City": 1,
-      "Tottenham": 2,
+      "Tottenham Hotspur": 2,
       "Everton": 3,
       "Newcastle United": 3,
       "Aston Villa": 3,
-      "West Ham": 3,
+      "West Ham United": 3,
       "Leeds United": 4,
-      "Wolverhampton": 4
+      "Wolverhampton Wanderers": 4
     },
-    "promptEs": "Nombra 10 clubes de la Premier League",
+    "promptEs": "Nombra 10 clubes de fútbol que hayan competido en la Premier League inglesa desde su fundación en 1992",
     "answersEs": [
       "Manchester United",
       "Liverpool",
       "Arsenal",
       "Chelsea",
       "Manchester City",
-      "Tottenham",
+      "Tottenham Hotspur",
       "Everton",
       "Newcastle United",
       "Aston Villa",
-      "West Ham",
+      "West Ham United",
       "Leeds United",
-      "Wolverhampton"
+      "Wolverhampton Wanderers"
     ],
     "languageScope": [
       "en",
@@ -9931,7 +9769,7 @@
   },
   {
     "id": "203",
-    "promptEn": "Name 10 world-famous museums",
+    "promptEn": "Name 10 widely visited museums with major art collections",
     "answersEn": [
       "The Louvre",
       "British Museum",
@@ -9940,14 +9778,14 @@
       "Vatican Museums",
       "Uffizi Gallery",
       "Hermitage Museum",
-      "Museum of Modern Art",
+      "Museum of Modern Art (MoMA)",
       "Rijksmuseum",
       "Reina Sofía Museum",
-      "Guggenheim Museum",
+      "Solomon R. Guggenheim Museum",
       "Musée d'Orsay"
     ],
     "difficulty": "medium",
-    "source": "Source: Most-visited art museums",
+    "source": "Source: International museum attendance reports",
     "answerPoints": {
       "The Louvre": 1,
       "El Louvre": 1,
@@ -9963,17 +9801,17 @@
       "Galería Uffizi": 3,
       "Hermitage Museum": 3,
       "Museo del Hermitage": 3,
-      "Museum of Modern Art": 3,
-      "Museo de Arte Moderno": 3,
+      "Museum of Modern Art (MoMA)": 3,
+      "Museo de Arte Moderno de Nueva York (MoMA)": 3,
       "Rijksmuseum": 4,
       "Reina Sofía Museum": 3,
       "Museo Reina Sofía": 3,
-      "Guggenheim Museum": 3,
-      "Museo Guggenheim": 3,
+      "Solomon R. Guggenheim Museum": 3,
+      "Museo Solomon R. Guggenheim": 3,
       "Musée d'Orsay": 3,
       "Museo de Orsay": 3
     },
-    "promptEs": "Nombra 10 museos famosos del mundo",
+    "promptEs": "Nombra 10 museos muy visitados con importantes colecciones de arte",
     "answersEs": [
       "El Louvre",
       "Museo Británico",
@@ -9982,10 +9820,10 @@
       "Museos Vaticanos",
       "Galería Uffizi",
       "Museo del Hermitage",
-      "Museo de Arte Moderno",
+      "Museo de Arte Moderno de Nueva York (MoMA)",
       "Rijksmuseum",
       "Museo Reina Sofía",
-      "Museo Guggenheim",
+      "Museo Solomon R. Guggenheim",
       "Museo de Orsay"
     ],
     "languageScope": [
@@ -12162,18 +12000,18 @@
   },
   {
     "id": "241",
-    "promptEn": "Name 10 capital cities of Asia",
+    "promptEn": "Name 10 national capital cities located in Asia",
     "answersEn": [
       "Bangkok",
       "Seoul",
-      "Jakarta",
+      "Tokyo",
       "Hanoi",
       "Kuala Lumpur",
       "Islamabad",
       "Tashkent",
       "Astana",
       "Ulaanbaatar",
-      "Baku",
+      "Manila",
       "Kathmandu",
       "Riyadh"
     ],
@@ -12183,8 +12021,8 @@
       "Bangkok": 1,
       "Seoul": 1,
       "Seúl": 1,
-      "Jakarta": 2,
-      "Yakarta": 2,
+      "Tokyo": 2,
+      "Tokio": 2,
       "Hanoi": 2,
       "Hanói": 2,
       "Kuala Lumpur": 2,
@@ -12195,25 +12033,24 @@
       "Astaná": 4,
       "Ulaanbaatar": 4,
       "Ulán Bator": 4,
-      "Baku": 4,
-      "Bakú": 4,
+      "Manila": 4,
       "Kathmandu": 3,
       "Katmandú": 3,
       "Riyadh": 3,
       "Riad": 3
     },
-    "promptEs": "Nombra 10 capitales de Asia",
+    "promptEs": "Nombra 10 capitales nacionales situadas en Asia",
     "answersEs": [
       "Bangkok",
       "Seúl",
-      "Yakarta",
+      "Tokio",
       "Hanói",
       "Kuala Lumpur",
       "Islamabad",
       "Taskent",
       "Astaná",
       "Ulán Bator",
-      "Bakú",
+      "Manila",
       "Katmandú",
       "Riad"
     ],
@@ -12544,7 +12381,7 @@
       "James Webb Space Telescope",
       "Perseverance",
       "Juno",
-      "Artemis"
+      "Artemis I"
     ],
     "difficulty": "hard",
     "source": "Source: Notable space missions",
@@ -12565,8 +12402,8 @@
       "Telescopio Espacial James Webb": 3,
       "Perseverance": 3,
       "Juno": 5,
-      "Artemis": 4,
-      "Artemisa": 4
+      "Artemis I": 4,
+      "Artemisa I": 4
     },
     "promptEs": "Nombra 10 misiones espaciales o naves",
     "answersEs": [
@@ -12581,7 +12418,7 @@
       "Telescopio Espacial James Webb",
       "Perseverance",
       "Juno",
-      "Artemisa"
+      "Artemisa I"
     ],
     "languageScope": [
       "en",
@@ -13389,7 +13226,7 @@
   },
   {
     "id": "261",
-    "promptEn": "Name 10 events or institutions from Catalan history",
+    "promptEn": "Name 10 people, events, or institutions from Catalan history",
     "answersEn": [
       "Crown of Aragon",
       "Generalitat de Catalunya",
@@ -13428,7 +13265,7 @@
       "Ramón Berenguer IV": 5,
       "Jocs Florals": 5
     },
-    "promptEs": "Nombra 10 hechos o instituciones de la historia de Cataluña",
+    "promptEs": "Nombra 10 personas, hechos o instituciones de la historia de Cataluña",
     "answersEs": [
       "Corona de Aragón",
       "Generalitat de Cataluña",
@@ -13503,7 +13340,7 @@
   },
   {
     "id": "263",
-    "promptEn": "Name 10 Catalan traditions or festivals",
+    "promptEn": "Name 10 Catalan traditions, festivals, or cultural symbols",
     "answersEn": [
       "Castells",
       "Sardana",
@@ -13535,7 +13372,7 @@
       "Els Segadors": 4,
       "Caganer": 5
     },
-    "promptEs": "Nombra 10 tradiciones o fiestas catalanas",
+    "promptEs": "Nombra 10 tradiciones, fiestas o símbolos culturales catalanes",
     "answersEs": [
       "Castells",
       "Sardana",
@@ -13611,7 +13448,7 @@
   },
   {
     "id": "265",
-    "promptEn": "Name 10 battles from British history",
+    "promptEn": "Name 10 battles or military campaigns from British history",
     "answersEn": [
       "Battle of Britain",
       "Spanish Armada",
@@ -13627,7 +13464,7 @@
       "Rorke's Drift"
     ],
     "difficulty": "hard",
-    "source": "Source: Battles in British military history",
+    "source": "Source: British military history",
     "answerPoints": {
       "Battle of Britain": 1,
       "Batalla de Inglaterra": 1,
@@ -13653,7 +13490,7 @@
       "Batalla de Blenheim": 5,
       "Rorke's Drift": 5
     },
-    "promptEs": "Nombra 10 batallas de la historia británica",
+    "promptEs": "Nombra 10 batallas o campañas militares de la historia británica",
     "answersEs": [
       "Batalla de Inglaterra",
       "Armada Invencible",
@@ -13922,6 +13759,548 @@
       "Locomotora de vapor",
       "Aerodeslizador",
       "Ordenador programable"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "270",
+    "promptEn": "Name 10 Greek dishes",
+    "answersEn": [
+      "Moussaka",
+      "Souvlaki",
+      "Gyros",
+      "Horiatiki (Greek salad)",
+      "Tzatziki",
+      "Spanakopita",
+      "Dolmades",
+      "Pastitsio",
+      "Fasolada",
+      "Kleftiko",
+      "Loukoumades",
+      "Baklava"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Traditional Greek cuisine",
+    "answerPoints": {
+      "Moussaka": 1,
+      "Musaka": 1,
+      "Souvlaki": 1,
+      "Gyros": 1,
+      "Horiatiki (Greek salad)": 2,
+      "Horiatiki (ensalada griega)": 2,
+      "Tzatziki": 1,
+      "Spanakopita": 2,
+      "Dolmades": 2,
+      "Pastitsio": 3,
+      "Fasolada": 3,
+      "Kleftiko": 3,
+      "Loukoumades": 3,
+      "Baklava": 1
+    },
+    "promptEs": "Nombra 10 platos griegos",
+    "answersEs": [
+      "Musaka",
+      "Souvlaki",
+      "Gyros",
+      "Horiatiki (ensalada griega)",
+      "Tzatziki",
+      "Spanakopita",
+      "Dolmades",
+      "Pastitsio",
+      "Fasolada",
+      "Kleftiko",
+      "Loukoumades",
+      "Baklava"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "271",
+    "promptEn": "Name 10 Catalan dishes",
+    "answersEn": [
+      "Pa amb tomàquet",
+      "Escalivada",
+      "Calçots with romesco sauce",
+      "Crema catalana",
+      "Escudella i carn d'olla",
+      "Botifarra amb mongetes",
+      "Suquet de peix",
+      "Fricandó",
+      "Canelons",
+      "Bacallà a la llauna",
+      "Coca de recapte",
+      "Mel i mató"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Traditional Catalan cuisine",
+    "answerPoints": {
+      "Pa amb tomàquet": 1,
+      "Pan con tomate": 1,
+      "Escalivada": 2,
+      "Calçots with romesco sauce": 2,
+      "Calçots con salsa romesco": 2,
+      "Crema catalana": 1,
+      "Escudella i carn d'olla": 3,
+      "Botifarra amb mongetes": 2,
+      "Butifarra con alubias": 2,
+      "Suquet de peix": 3,
+      "Fricandó": 3,
+      "Canelons": 2,
+      "Canelones": 2,
+      "Bacallà a la llauna": 4,
+      "Bacalao a la llauna": 4,
+      "Coca de recapte": 4,
+      "Mel i mató": 4
+    },
+    "promptEs": "Nombra 10 platos catalanes",
+    "answersEs": [
+      "Pan con tomate",
+      "Escalivada",
+      "Calçots con salsa romesco",
+      "Crema catalana",
+      "Escudella i carn d'olla",
+      "Butifarra con alubias",
+      "Suquet de peix",
+      "Fricandó",
+      "Canelones",
+      "Bacalao a la llauna",
+      "Coca de recapte",
+      "Mel i mató"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "272",
+    "promptEn": "Name 10 traditional dishes from the United Kingdom",
+    "answersEn": [
+      "Fish and chips",
+      "Sunday roast",
+      "Full English breakfast",
+      "Shepherd's pie",
+      "Bangers and mash",
+      "Cornish pasty",
+      "Haggis",
+      "Welsh rarebit",
+      "Scotch egg",
+      "Toad in the hole",
+      "Steak and kidney pie",
+      "Ulster fry"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Traditional cuisines of the United Kingdom",
+    "answerPoints": {
+      "Fish and chips": 1,
+      "Pescado con patatas fritas": 1,
+      "Sunday roast": 1,
+      "Asado del domingo": 1,
+      "Full English breakfast": 1,
+      "Desayuno inglés completo": 1,
+      "Shepherd's pie": 2,
+      "Pastel de pastor": 2,
+      "Bangers and mash": 2,
+      "Salchichas con puré": 2,
+      "Cornish pasty": 3,
+      "Empanada de Cornualles": 3,
+      "Haggis": 2,
+      "Welsh rarebit": 4,
+      "Welsh rarebit (tostada galesa de queso)": 4,
+      "Scotch egg": 3,
+      "Huevo escocés": 3,
+      "Toad in the hole": 3,
+      "Toad in the hole (salchichas en masa)": 3,
+      "Steak and kidney pie": 4,
+      "Pastel de carne y riñones": 4,
+      "Ulster fry": 4,
+      "Desayuno del Úlster": 4
+    },
+    "promptEs": "Nombra 10 platos tradicionales del Reino Unido",
+    "answersEs": [
+      "Pescado con patatas fritas",
+      "Asado del domingo",
+      "Desayuno inglés completo",
+      "Pastel de pastor",
+      "Salchichas con puré",
+      "Empanada de Cornualles",
+      "Haggis",
+      "Welsh rarebit (tostada galesa de queso)",
+      "Huevo escocés",
+      "Toad in the hole (salchichas en masa)",
+      "Pastel de carne y riñones",
+      "Desayuno del Úlster"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "273",
+    "promptEn": "Say \"hello\" in 10 European languages",
+    "answersEn": [
+      "Hello (English)",
+      "Hola (Spanish)",
+      "Hola (Catalan)",
+      "Bonjour (French)",
+      "Ciao (Italian)",
+      "Hallo (German)",
+      "Olá (Portuguese)",
+      "Γεια σου (Greek)",
+      "Hallo (Dutch)",
+      "Cześć (Polish)",
+      "Hej (Swedish)",
+      "Bună (Romanian)"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Common greetings in European languages",
+    "answerPoints": {
+      "Hello (English)": 1,
+      "Hello (inglés)": 1,
+      "Hola (Spanish)": 1,
+      "Hola (español)": 1,
+      "Hola (Catalan)": 2,
+      "Hola (catalán)": 2,
+      "Bonjour (French)": 1,
+      "Bonjour (francés)": 1,
+      "Ciao (Italian)": 1,
+      "Ciao (italiano)": 1,
+      "Hallo (German)": 1,
+      "Hallo (alemán)": 1,
+      "Olá (Portuguese)": 2,
+      "Olá (portugués)": 2,
+      "Γεια σου (Greek)": 2,
+      "Γεια σου (griego)": 2,
+      "Hallo (Dutch)": 2,
+      "Hallo (neerlandés)": 2,
+      "Cześć (Polish)": 3,
+      "Cześć (polaco)": 3,
+      "Hej (Swedish)": 3,
+      "Hej (sueco)": 3,
+      "Bună (Romanian)": 3,
+      "Bună (rumano)": 3
+    },
+    "promptEs": "Di \"hola\" en 10 idiomas europeos",
+    "answersEs": [
+      "Hello (inglés)",
+      "Hola (español)",
+      "Hola (catalán)",
+      "Bonjour (francés)",
+      "Ciao (italiano)",
+      "Hallo (alemán)",
+      "Olá (portugués)",
+      "Γεια σου (griego)",
+      "Hallo (neerlandés)",
+      "Cześć (polaco)",
+      "Hej (sueco)",
+      "Bună (rumano)"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "274",
+    "promptEn": "Name 10 clubs that have won the men's European Cup or UEFA Champions League",
+    "answersEn": [
+      "Real Madrid",
+      "AC Milan",
+      "Bayern Munich",
+      "Liverpool",
+      "Barcelona",
+      "Ajax",
+      "Inter Milan",
+      "Manchester United",
+      "Juventus",
+      "Benfica",
+      "Porto",
+      "Chelsea"
+    ],
+    "difficulty": "medium",
+    "source": "Source: UEFA European Cup and Champions League records",
+    "answerPoints": {
+      "Real Madrid": 1,
+      "AC Milan": 2,
+      "Bayern Munich": 1,
+      "Bayern de Múnich": 1,
+      "Liverpool": 1,
+      "Barcelona": 1,
+      "Ajax": 2,
+      "Inter Milan": 2,
+      "Inter de Milán": 2,
+      "Manchester United": 1,
+      "Juventus": 2,
+      "Benfica": 3,
+      "Porto": 2,
+      "Chelsea": 2
+    },
+    "promptEs": "Nombra 10 clubes que hayan ganado la Copa de Europa masculina o la UEFA Champions League",
+    "answersEs": [
+      "Real Madrid",
+      "AC Milan",
+      "Bayern de Múnich",
+      "Liverpool",
+      "Barcelona",
+      "Ajax",
+      "Inter de Milán",
+      "Manchester United",
+      "Juventus",
+      "Benfica",
+      "Porto",
+      "Chelsea"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "275",
+    "promptEn": "Name 10 famous annual festivals held in Europe",
+    "answersEn": [
+      "Oktoberfest (Munich)",
+      "Carnival of Venice",
+      "San Fermín (Pamplona)",
+      "La Tomatina (Buñol)",
+      "Edinburgh Festival Fringe",
+      "Cannes Film Festival",
+      "Glastonbury Festival",
+      "Tomorrowland (Belgium)",
+      "Fallas of Valencia",
+      "Sziget Festival (Budapest)",
+      "Roskilde Festival (Denmark)",
+      "Up Helly Aa (Shetland)"
+    ],
+    "difficulty": "medium",
+    "source": "Source: Official European festival and tourism information",
+    "answerPoints": {
+      "Oktoberfest (Munich)": 1,
+      "Oktoberfest (Múnich)": 1,
+      "Carnival of Venice": 1,
+      "Carnaval de Venecia": 1,
+      "San Fermín (Pamplona)": 1,
+      "La Tomatina (Buñol)": 1,
+      "Edinburgh Festival Fringe": 2,
+      "Festival Fringe de Edimburgo": 2,
+      "Cannes Film Festival": 1,
+      "Festival de Cannes": 1,
+      "Glastonbury Festival": 2,
+      "Festival de Glastonbury": 2,
+      "Tomorrowland (Belgium)": 2,
+      "Tomorrowland (Bélgica)": 2,
+      "Fallas of Valencia": 2,
+      "Fallas de Valencia": 2,
+      "Sziget Festival (Budapest)": 3,
+      "Festival Sziget (Budapest)": 3,
+      "Roskilde Festival (Denmark)": 4,
+      "Festival de Roskilde (Dinamarca)": 4,
+      "Up Helly Aa (Shetland)": 4
+    },
+    "promptEs": "Nombra 10 festivales anuales famosos que se celebran en Europa",
+    "answersEs": [
+      "Oktoberfest (Múnich)",
+      "Carnaval de Venecia",
+      "San Fermín (Pamplona)",
+      "La Tomatina (Buñol)",
+      "Festival Fringe de Edimburgo",
+      "Festival de Cannes",
+      "Festival de Glastonbury",
+      "Tomorrowland (Bélgica)",
+      "Fallas de Valencia",
+      "Festival Sziget (Budapest)",
+      "Festival de Roskilde (Dinamarca)",
+      "Up Helly Aa (Shetland)"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "276",
+    "promptEn": "Name 10 dishes from across Mediterranean cuisines",
+    "answersEn": [
+      "Paella",
+      "Hummus",
+      "Falafel",
+      "Couscous",
+      "Ratatouille",
+      "Bouillabaisse",
+      "Tabbouleh",
+      "Shakshuka",
+      "Pasta alla Norma",
+      "Arancini",
+      "Brik",
+      "Caprese salad"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Mediterranean culinary traditions",
+    "answerPoints": {
+      "Paella": 1,
+      "Hummus": 1,
+      "Falafel": 1,
+      "Couscous": 1,
+      "Cuscús": 1,
+      "Ratatouille": 2,
+      "Bouillabaisse": 3,
+      "Bullabesa": 3,
+      "Tabbouleh": 2,
+      "Tabulé": 2,
+      "Shakshuka": 2,
+      "Pasta alla Norma": 3,
+      "Arancini": 3,
+      "Brik": 4,
+      "Caprese salad": 2,
+      "Ensalada caprese": 2
+    },
+    "promptEs": "Nombra 10 platos de distintas cocinas mediterráneas",
+    "answersEs": [
+      "Paella",
+      "Hummus",
+      "Falafel",
+      "Cuscús",
+      "Ratatouille",
+      "Bullabesa",
+      "Tabulé",
+      "Shakshuka",
+      "Pasta alla Norma",
+      "Arancini",
+      "Brik",
+      "Ensalada caprese"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "277",
+    "promptEn": "Name 10 countries where vehicles drive on the left",
+    "answersEn": [
+      "United Kingdom",
+      "Ireland",
+      "Australia",
+      "New Zealand",
+      "Japan",
+      "India",
+      "South Africa",
+      "Thailand",
+      "Indonesia",
+      "Kenya",
+      "Cyprus",
+      "Malta"
+    ],
+    "difficulty": "medium",
+    "source": "Source: National road traffic rules",
+    "answerPoints": {
+      "United Kingdom": 1,
+      "Reino Unido": 1,
+      "Ireland": 2,
+      "Irlanda": 2,
+      "Australia": 1,
+      "New Zealand": 1,
+      "Nueva Zelanda": 1,
+      "Japan": 1,
+      "Japón": 1,
+      "India": 1,
+      "South Africa": 2,
+      "Sudáfrica": 2,
+      "Thailand": 2,
+      "Tailandia": 2,
+      "Indonesia": 2,
+      "Kenya": 3,
+      "Kenia": 3,
+      "Cyprus": 3,
+      "Chipre": 3,
+      "Malta": 3
+    },
+    "promptEs": "Nombra 10 países donde los vehículos circulan por la izquierda",
+    "answersEs": [
+      "Reino Unido",
+      "Irlanda",
+      "Australia",
+      "Nueva Zelanda",
+      "Japón",
+      "India",
+      "Sudáfrica",
+      "Tailandia",
+      "Indonesia",
+      "Kenia",
+      "Chipre",
+      "Malta"
+    ],
+    "languageScope": [
+      "en",
+      "es"
+    ]
+  },
+  {
+    "id": "278",
+    "promptEn": "Name 10 useful items or supplies to keep in a car for roadside emergencies",
+    "answersEn": [
+      "Warning triangle",
+      "Reflective vest",
+      "First-aid kit",
+      "Flashlight",
+      "Jumper cables",
+      "Spare tire",
+      "Car jack",
+      "Wheel wrench",
+      "Tire repair kit",
+      "Fire extinguisher",
+      "Blanket",
+      "Bottled water"
+    ],
+    "difficulty": "easy",
+    "source": "Source: Road safety and automobile association guidance",
+    "answerPoints": {
+      "Warning triangle": 1,
+      "Triángulo de emergencia": 1,
+      "Reflective vest": 1,
+      "Chaleco reflectante": 1,
+      "First-aid kit": 1,
+      "Botiquín de primeros auxilios": 1,
+      "Flashlight": 1,
+      "Linterna": 1,
+      "Jumper cables": 2,
+      "Cables de arranque": 2,
+      "Spare tire": 1,
+      "Rueda de repuesto": 1,
+      "Car jack": 2,
+      "Gato para coche": 2,
+      "Wheel wrench": 2,
+      "Llave de rueda": 2,
+      "Tire repair kit": 2,
+      "Kit de reparación de neumáticos": 2,
+      "Fire extinguisher": 3,
+      "Extintor": 3,
+      "Blanket": 2,
+      "Manta": 2,
+      "Bottled water": 2,
+      "Agua embotellada": 2
+    },
+    "promptEs": "Nombra 10 objetos o suministros útiles para llevar en el coche ante emergencias en carretera",
+    "answersEs": [
+      "Triángulo de emergencia",
+      "Chaleco reflectante",
+      "Botiquín de primeros auxilios",
+      "Linterna",
+      "Cables de arranque",
+      "Rueda de repuesto",
+      "Gato para coche",
+      "Llave de rueda",
+      "Kit de reparación de neumáticos",
+      "Extintor",
+      "Manta",
+      "Agua embotellada"
     ],
     "languageScope": [
       "en",

@@ -15,12 +15,16 @@ class AnswerGrid extends StatelessWidget {
     required this.foundAnswers,
     required this.onAnswerTap,
     required this.pointsForAnswer,
+    this.primaryAnswerFor,
+    this.secondaryAnswerFor,
   });
 
   final List<String> answers;
   final Set<String> foundAnswers;
   final ValueChanged<String> onAnswerTap;
   final int Function(String answer) pointsForAnswer;
+  final String Function(String answer)? primaryAnswerFor;
+  final String? Function(String answer)? secondaryAnswerFor;
 
   AnswerChipState _getChipState(String answer) {
     return foundAnswers.contains(answer)
@@ -40,7 +44,8 @@ class AnswerGrid extends StatelessWidget {
         const spacing = 12.0;
         final availableWidth = constraints.maxWidth;
         final itemWidth =
-            (availableWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
+            (availableWidth - (spacing * (crossAxisCount - 1))) /
+            crossAxisCount;
 
         return Wrap(
           spacing: spacing,
@@ -50,7 +55,8 @@ class AnswerGrid extends StatelessWidget {
               SizedBox(
                 width: itemWidth,
                 child: AnswerChip(
-                  answer: answer,
+                  answer: primaryAnswerFor?.call(answer) ?? answer,
+                  secondaryAnswer: secondaryAnswerFor?.call(answer),
                   state: _getChipState(answer),
                   onTap: () => onAnswerTap(answer),
                   pointValue: pointsForAnswer(answer),

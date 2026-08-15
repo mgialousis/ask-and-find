@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pes_vres/domain/entities/card_item.dart';
+import 'package:pes_vres/domain/entities/card_language_mode.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/domain/entities/game_config.dart';
-import 'package:pes_vres/domain/entities/team.dart';
 import 'package:pes_vres/presentation/state/cards_provider.dart';
 import 'package:pes_vres/presentation/state/game_setup_provider.dart';
 import 'package:pes_vres/presentation/state/game_state_provider.dart';
@@ -15,6 +15,7 @@ final _mockCards = [
   CardItem(
     id: 'test-card-1',
     promptEn: 'Test Question 1',
+    promptEs: 'Pregunta de Prueba 1',
     answersEn: [
       'Answer 1',
       'Answer 2',
@@ -27,24 +28,27 @@ final _mockCards = [
       'Answer 9',
       'Answer 10',
     ],
+    answersEs: [
+      'Respuesta 1',
+      'Respuesta 2',
+      'Respuesta 3',
+      'Respuesta 4',
+      'Respuesta 5',
+      'Respuesta 6',
+      'Respuesta 7',
+      'Respuesta 8',
+      'Respuesta 9',
+      'Respuesta 10',
+    ],
     difficulty: Difficulty.easy,
     source: 'Test',
   ),
   CardItem(
     id: 'test-card-2',
     promptEn: 'Test Question 2',
-    answersEn: [
-      'A1',
-      'A2',
-      'A3',
-      'A4',
-      'A5',
-      'A6',
-      'A7',
-      'A8',
-      'A9',
-      'A10',
-    ],
+    promptEs: 'Pregunta de Prueba 2',
+    answersEn: ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'],
+    answersEs: ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9', 'E10'],
     difficulty: Difficulty.easy,
     source: 'Test',
   ),
@@ -93,6 +97,55 @@ void main() {
 
       expect(state1, equals(state2));
       expect(state1, isNot(equals(state3)));
+    });
+  });
+
+  group('Card language display', () {
+    final card = _mockCards.first;
+
+    test('returns English content in English mode', () {
+      expect(
+        card.getPrimaryPrompt(CardLanguageMode.english),
+        'Test Question 1',
+      );
+      expect(
+        card.getPrimaryAnswer('Answer 1', CardLanguageMode.english),
+        'Answer 1',
+      );
+      expect(
+        card.getSecondaryAnswer('Answer 1', CardLanguageMode.english),
+        isNull,
+      );
+    });
+
+    test('returns Spanish content in Spanish mode', () {
+      expect(
+        card.getPrimaryPrompt(CardLanguageMode.spanish),
+        'Pregunta de Prueba 1',
+      );
+      expect(
+        card.getPrimaryAnswer('Answer 1', CardLanguageMode.spanish),
+        'Respuesta 1',
+      );
+    });
+
+    test('returns paired content in bilingual mode', () {
+      expect(
+        card.getPrimaryPrompt(CardLanguageMode.bilingual),
+        'Test Question 1',
+      );
+      expect(
+        card.getSecondaryPrompt(CardLanguageMode.bilingual),
+        'Pregunta de Prueba 1',
+      );
+      expect(
+        card.getPrimaryAnswer('Answer 1', CardLanguageMode.bilingual),
+        'Answer 1',
+      );
+      expect(
+        card.getSecondaryAnswer('Answer 1', CardLanguageMode.bilingual),
+        'Respuesta 1',
+      );
     });
   });
 
@@ -161,13 +214,13 @@ void main() {
     setUp(() {
       // Create container with mocked cards provider
       container = ProviderContainer(
-        overrides: [
-          cardsProvider.overrideWith((ref) async => _mockCards),
-        ],
+        overrides: [cardsProvider.overrideWith((ref) async => _mockCards)],
       );
       // Initialize teams for testing
       container.read(gameSetupProvider.notifier).initializeTeams(2);
-      container.read(gameSetupProvider.notifier).updateConfig(
+      container
+          .read(gameSetupProvider.notifier)
+          .updateConfig(
             GameConfig(
               numberOfRounds: 5,
               roundDurationSeconds: 60,
@@ -243,6 +296,25 @@ void main() {
       expect(state.selectedAnswers.length, 10);
     });
 
+    test('bilingual mode keeps canonical answers for scoring', () async {
+      container
+          .read(gameSetupProvider.notifier)
+          .updateCardLanguageMode(CardLanguageMode.bilingual);
+      final notifier = container.read(gameStateProvider.notifier);
+
+      await notifier.startRound();
+
+      final state = container.read(gameStateProvider);
+      final card = state.currentCard!;
+      expect(state.selectedAnswers, everyElement(isIn(card.answersEn)));
+      for (final answer in state.selectedAnswers) {
+        expect(
+          card.getSecondaryAnswer(answer, CardLanguageMode.bilingual),
+          isNotNull,
+        );
+      }
+    });
+
     test('beginTurn transitions from preview to playing', () async {
       final notifier = container.read(gameStateProvider.notifier);
 
@@ -280,12 +352,16 @@ void main() {
       // Toggle on
       notifier.toggleAnswer(testAnswer);
       expect(
-          container.read(gameStateProvider).foundAnswers, contains(testAnswer));
+        container.read(gameStateProvider).foundAnswers,
+        contains(testAnswer),
+      );
 
       // Toggle off
       notifier.toggleAnswer(testAnswer);
-      expect(container.read(gameStateProvider).foundAnswers,
-          isNot(contains(testAnswer)));
+      expect(
+        container.read(gameStateProvider).foundAnswers,
+        isNot(contains(testAnswer)),
+      );
     });
 
     test('endRound transitions to roundEnd phase', () async {
@@ -322,8 +398,7 @@ void main() {
       expect(result.pointsEarned, greaterThan(0));
     });
 
-    test('continueToNextRound advances team index within same round',
-        () async {
+    test('continueToNextRound advances team index within same round', () async {
       final notifier = container.read(gameStateProvider.notifier);
 
       // Complete first team's turn
@@ -363,7 +438,9 @@ void main() {
 
     test('continueToNextRound returns false when game ends', () async {
       // Set up for 1 round game
-      container.read(gameSetupProvider.notifier).updateConfig(
+      container
+          .read(gameSetupProvider.notifier)
+          .updateConfig(
             GameConfig(
               numberOfRounds: 1,
               roundDurationSeconds: 60,
@@ -538,12 +615,21 @@ void main() {
     });
 
     test('updateDifficulties changes config', () {
-      container.read(gameSetupProvider.notifier).updateDifficulties(
-        {Difficulty.hard},
-      );
+      container.read(gameSetupProvider.notifier).updateDifficulties({
+        Difficulty.hard,
+      });
 
       final state = container.read(gameSetupProvider);
       expect(state.config.difficulties, {Difficulty.hard});
+    });
+
+    test('updateCardLanguageMode changes config', () {
+      container
+          .read(gameSetupProvider.notifier)
+          .updateCardLanguageMode(CardLanguageMode.bilingual);
+
+      final state = container.read(gameSetupProvider);
+      expect(state.config.cardLanguageMode, CardLanguageMode.bilingual);
     });
   });
 }
