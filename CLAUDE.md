@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-"Ask & Find" (package name `pes_vres`) is a local, pass-and-play party trivia game in Flutter. 2–4 teams take turns: a team sees 10 answers drawn from a card and taps the ones it can name before the timer expires. Single device, offline-first; the only network calls are optional analytics (PostHog) and community card submissions (Google Sheets).
+"Ask & Find" (package name `pes_vres`) is a local, pass-and-play party trivia game in Flutter. 2–4 teams take turns: a team sees 10 answers drawn from a card and taps the ones it can name before the timer expires. Single device, offline-first; the only network calls are optional analytics (PostHog) and community card submissions through a separately deployed HTTPS API.
 
 Bilingual EN/ES throughout — UI strings *and* card content.
 
@@ -13,32 +13,37 @@ Bilingual EN/ES throughout — UI strings *and* card content.
 ```bash
 flutter pub get
 flutter run                       # flutter run -d <device-id> for a specific device
-flutter test                      # 108 tests, all passing
+flutter test                      # 120 tests, all passing
 flutter test test/providers/game_state_provider_test.dart          # single file
 flutter test --plain-name "toggleAnswer adds answer"               # single test
 flutter test --coverage
-flutter analyze                   # see "Analyzer baseline" below — not clean
+flutter analyze                   # clean
 dart format lib/ test/
 flutter gen-l10n                  # regenerate localizations after editing .arb files
 ```
 
-Builds — prefer the scripts, which source `.env` and forward PostHog values as `--dart-define`:
+Builds — prefer the scripts, which forward explicitly supplied public configuration as `--dart-define`:
 
 ```bash
-scripts/android_build.sh --release [--icons] [--no-tree-shake-icons]   # → build/app/outputs/flutter-apk/
-scripts/ios_deploy.sh --release <device-id>                            # pod install + flutter run
+scripts/android_build.sh --release [--icons] [--submissions-endpoint <https-url>]
+scripts/ios_deploy.sh --release [--submissions-endpoint <https-url>] <device-id>
 flutter build appbundle --release                                      # Play Store (no script)
 ```
 
 Both scripts run `flutter clean` first, so they are slow; use plain `flutter run` for iteration.
 
-## Configuration: `.env`
+## Configuration and credential boundary
 
-`.env` is **gitignored but declared as a Flutter asset in `pubspec.yaml`** — builds fail if the file is absent. A fresh clone must `cp .env.example .env` even if all values stay empty.
+Client configuration uses `String.fromEnvironment` (`--dart-define`):
+`SUBMISSIONS_ENDPOINT_URL`, `POSTHOG_API_KEY`, `POSTHOG_HOST`, and
+`POSTHOG_ALLOW_DEBUG`. The endpoint must be HTTPS. These are public client
+values; no service-account, database, or signing credential belongs in a
+Flutter build.
 
-`main.dart` loads it with `dotenv.load(isOptional: true)`; every config value is read through `AnalyticsConfig` / `SheetsConfig`, which check `.env` first and fall back to `String.fromEnvironment` (`--dart-define`). Keys: `SHEETS_SPREADSHEET_ID`, `SHEETS_CREDENTIALS_JSON` (service-account JSON on one line), `POSTHOG_API_KEY`, `POSTHOG_HOST`, `POSTHOG_ALLOW_DEBUG`.
-
-Since `.env` ships inside the app bundle, anything put there is distributed with the binary.
+The gitignored `.env` file is used only by maintainer-side Dart scripts that
+administer or verify Google Sheets. It is not a Flutter asset, `main.dart` does
+not load it, and the Android/iOS build scripts do not source it. See
+`docs/SUBMISSION_API.md` for the backend contract and security requirements.
 
 ## Architecture
 
@@ -68,7 +73,7 @@ Round mechanics worth knowing before touching `game_state_provider.dart`:
 
 ### Cards and scoring
 
-`assets/cards.json` holds 243 cards (49 easy / 123 medium / 71 hard). Each entry carries `promptEn`/`promptEs`, `answersEn`/`answersEs`, `difficulty`, `languageScope` (locales the card is playable in — locale-specific trivia is scoped out of the other language), `source`, and `answerPoints`.
+`assets/cards.json` holds 317 cards (81 easy / 153 medium / 83 hard). Each entry carries `promptEn`/`promptEs`, `answersEn`/`answersEs`, `difficulty`, `languageScope` (locales the card is playable in — locale-specific trivia is scoped out of the other language), `source`, and `answerPoints`.
 
 **Scoring is per answer, not per card.** `CardItem.pointsForAnswer` returns the `answerPoints[answer]` value (clamped 1–5) when present and only falls back to `Difficulty.pointsPerAnswer` (easy 1 / medium 2 / hard 3) when it isn't. Every card currently in `cards.json` has explicit `answerPoints`, so the difficulty-based values are effectively a fallback for user-submitted cards. `answerDifficulties` is accepted as a legacy alias for `answerPoints` when parsing.
 
@@ -76,7 +81,7 @@ Round mechanics worth knowing before touching `game_state_provider.dart`:
 
 ### Submissions pipeline
 
-`SubmissionsRepository` → tries `GoogleSheetsService` when online *and* configured; on failure or offline, queues into `OfflineSubmissionsStorage` (SharedPreferences) and returns `savedLocally`. `SubmissionNotifier` subscribes to the connectivity stream and drains the queue automatically when the device reconnects. Two worksheets — "New Card Submissions" and "Card Corrections" — with column orders fixed by `SheetsConfig.newCardHeaders` / `correctionHeaders`; changing the sheet layout means changing those lists.
+`SubmissionsRepository` tries `SubmissionApiService` when online and configured; on failure or offline, it queues into `OfflineSubmissionsStorage` (SharedPreferences) and returns `savedLocally`. `SubmissionNotifier` subscribes to connectivity changes and drains the queue automatically. The client sends a versioned JSON envelope to an HTTPS endpoint; backend validation, rate limiting, idempotency, and persistence are specified in `docs/SUBMISSION_API.md`.
 
 New-card validation (`CardSubmission.isValidNewCard`): prompt 10–200 chars, **exactly 10** answers. Corrections need a 20–1000 char description.
 
@@ -106,10 +111,9 @@ Android and iOS use branded launch images. Android's density-specific `drawable-
 
 ## Current state / known gaps
 
-- **Analyzer baseline is not clean:** 31 infos and warnings as of 2026-08-14. In addition to the existing deprecated `Radio` API, unused imports/local, and 19 `unnecessary_underscores` infos, the latest changes add an unnecessary null check in `results_screen.dart` and an unused Riverpod import in `dark_mode_test.dart`. `flutter analyze` exits non-zero.
-- **iOS asset-symbol setting needs correction:** the Debug and Release project configurations set the boolean `ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS` to `AppIcon` instead of `YES`; Profile still uses `YES`. The separate Runner target setting `ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon` is already correct.
+- `flutter analyze` is clean and the unit/widget suite contains 120 tests.
 - **Android targets Java/Kotlin 1.8**, set in `android/build.gradle.kts` under `gradle.projectsEvaluated` for all subprojects (this overrides plugin defaults; it is what keeps `audioplayers_android` and `posthog_flutter` compiling consistently). The root build dir is redirected to `<repo>/build`.
 - Release APKs are still signed with the debug keystore (`android/app/build.gradle.kts`).
 - No tie-breaker/overtime rounds, though `initial-requrements.md` §2.4 specifies them; ties are simply announced on the results screen.
 
-Further docs: `docs/RELEASE_GUIDE.md` (build/publish), `docs/MOBILE_TESTING_GUIDE.md` (device setup), `docs/INTERNATIONALIZATION_PLAN.md`, `initial-requrements.md` (original spec — predates several decisions above).
+Further docs: `docs/RELEASE_GUIDE.md` (build/publish), `docs/MOBILE_TESTING_GUIDE.md` (device setup), `docs/SUBMISSION_API.md` (secure backend boundary), `docs/INTERNATIONALIZATION_PLAN.md`, and `initial-requrements.md` (original spec — predates several decisions above).

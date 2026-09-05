@@ -7,7 +7,8 @@ import 'package:pes_vres/domain/entities/card_submission.dart';
 /// Local storage for pending submissions when offline
 ///
 /// Stores submissions in SharedPreferences as a JSON list.
-/// These can be synced to Google Sheets when the device comes back online.
+/// These can be synced to the configured submission API when connectivity
+/// returns.
 class OfflineSubmissionsStorage {
   static const String _pendingSubmissionsKey = 'pending_submissions';
 

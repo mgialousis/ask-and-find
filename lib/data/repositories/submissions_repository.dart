@@ -1,13 +1,13 @@
 import 'dart:developer' show log;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:pes_vres/data/sources/google_sheets_service.dart';
 import 'package:pes_vres/data/sources/offline_submissions_storage.dart';
+import 'package:pes_vres/data/sources/submission_api_service.dart';
 import 'package:pes_vres/domain/entities/card_submission.dart';
 
 /// Result of a submission attempt
 enum SubmissionResult {
-  /// Successfully submitted to Google Sheets
+  /// Successfully accepted by the submission API
   success,
 
   /// Saved locally for later submission (offline)
@@ -19,20 +19,20 @@ enum SubmissionResult {
 
 /// Repository for managing card submissions
 ///
-/// Handles online submission to Google Sheets and offline storage
+/// Handles online submission to the configured API and offline storage
 /// with automatic sync when connectivity is restored.
 class SubmissionsRepository {
-  final GoogleSheetsService _sheetsService;
+  final SubmissionTransport _submissionTransport;
   final OfflineSubmissionsStorage _offlineStorage;
   final Connectivity _connectivity;
 
   SubmissionsRepository({
-    GoogleSheetsService? sheetsService,
+    SubmissionTransport? submissionTransport,
     OfflineSubmissionsStorage? offlineStorage,
     Connectivity? connectivity,
-  })  : _sheetsService = sheetsService ?? GoogleSheetsService(),
-        _offlineStorage = offlineStorage ?? OfflineSubmissionsStorage(),
-        _connectivity = connectivity ?? Connectivity();
+  }) : _submissionTransport = submissionTransport ?? SubmissionApiService(),
+       _offlineStorage = offlineStorage ?? OfflineSubmissionsStorage(),
+       _connectivity = connectivity ?? Connectivity();
 
   /// Check if the device is connected to the internet
   Future<bool> isOnline() async {
@@ -42,14 +42,14 @@ class SubmissionsRepository {
 
   /// Submit a card submission
   ///
-  /// If online, submits directly to Google Sheets.
+  /// If online, submits to the configured HTTPS backend.
   /// If offline, saves locally for later submission.
   Future<SubmissionResult> submit(CardSubmission submission) async {
     final online = await isOnline();
 
-    if (online && _sheetsService.isConfigured) {
+    if (online && _submissionTransport.isConfigured) {
       try {
-        final success = await _sheetsService.submit(submission);
+        final success = await _submissionTransport.submit(submission);
         if (success) {
           log(
             'Submission successful: ${submission.id}',
@@ -84,7 +84,7 @@ class SubmissionsRepository {
     return SubmissionResult.failed;
   }
 
-  /// Sync all pending submissions to Google Sheets
+  /// Sync all pending submissions to the configured backend
   ///
   /// Call this when the device comes back online.
   /// Returns the number of successfully synced submissions.
@@ -94,9 +94,9 @@ class SubmissionsRepository {
       return 0;
     }
 
-    if (!_sheetsService.isConfigured) {
+    if (!_submissionTransport.isConfigured) {
       log(
-        'Cannot sync: Google Sheets not configured',
+        'Cannot sync: submission API not configured',
         name: 'SubmissionsRepository',
       );
       return 0;
@@ -112,7 +112,7 @@ class SubmissionsRepository {
 
     for (final submission in pending) {
       try {
-        final success = await _sheetsService.submit(submission);
+        final success = await _submissionTransport.submit(submission);
         if (success) {
           await _offlineStorage.removePendingSubmission(submission.id);
           syncedCount++;

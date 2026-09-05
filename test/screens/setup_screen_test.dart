@@ -409,8 +409,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: mockTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),
@@ -434,8 +434,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: mockTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),
@@ -461,8 +461,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: mockTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),
@@ -486,8 +486,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: mockTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),
@@ -520,7 +520,7 @@ void main() {
                   changedIndex = index;
                   changedName = name;
                 },
-                onTeamColorChanged: (_, __) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),
@@ -550,8 +550,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: mockTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
                 nameErrors: {0: 'Team name cannot be empty'},
               ),
             ),
@@ -576,8 +576,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: mockTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
                 nameErrors: {1: 'Team name must be unique'},
               ),
             ),
@@ -623,8 +623,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: threeTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),
@@ -676,8 +676,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: fourTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),
@@ -702,8 +702,8 @@ void main() {
             body: SingleChildScrollView(
               child: TeamSetupSection(
                 teams: mockTeams,
-                onTeamNameChanged: (_, __) {},
-                onTeamColorChanged: (_, __) {},
+                onTeamNameChanged: (_, _) {},
+                onTeamColorChanged: (_, _) {},
               ),
             ),
           ),

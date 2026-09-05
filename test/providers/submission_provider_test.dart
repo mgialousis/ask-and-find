@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pes_vres/data/repositories/submissions_repository.dart';
 import 'package:pes_vres/domain/entities/card_submission.dart';
-import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/presentation/state/submission_provider.dart';
 
 class FakeSubmissionsRepository extends SubmissionsRepository {
@@ -36,9 +35,7 @@ void main() {
       submitResult: SubmissionResult.success,
     );
     final container = ProviderContainer(
-      overrides: [
-        submissionsRepositoryProvider.overrideWithValue(repo),
-      ],
+      overrides: [submissionsRepositoryProvider.overrideWithValue(repo)],
     );
     addTearDown(container.dispose);
 
@@ -63,9 +60,7 @@ void main() {
       submitResult: SubmissionResult.savedLocally,
     );
     final container = ProviderContainer(
-      overrides: [
-        submissionsRepositoryProvider.overrideWithValue(repo),
-      ],
+      overrides: [submissionsRepositoryProvider.overrideWithValue(repo)],
     );
     addTearDown(container.dispose);
 

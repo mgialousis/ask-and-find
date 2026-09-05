@@ -13,15 +13,15 @@ Players split into **2–4 teams**. Each round, one team tries to guess as many 
 
 This is effectively an **English clone of “Πες Βρες!”** in terms of functionality:
 
-- Single-device, pass-and-play format  [oai_citation:0‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
+- Single-device, pass-and-play format ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
 - 2–4 teams
 - Each round uses a **card** with:
     - A prompt/question
     - A list of **10–15 possible answers**
-    - The app **randomly selects 10 answers** to count as scoring answers for that round  [oai_citation:1‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
+    - The app **randomly selects 10 answers** to count as scoring answers for that round ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
 - Adjustable **difficulty** and **timer**
-- **Overtime / tie-breaker** round in case of overall draw  [oai_citation:2‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
-- Option to show the **source(s)** of the card’s content (e.g., Wikipedia)  [oai_citation:3‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
+- **Overtime / tie-breaker** round in case of overall draw ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
+- Option to show the **source(s)** of the card’s content (e.g., Wikipedia) ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
 
 All UI copy and game content for this new app should be **in English**.
 
@@ -87,7 +87,7 @@ All UI copy and game content for this new app should be **in English**.
     - App filters available cards by selected difficulty.
     - Chooses a card pseudo-randomly (avoid repeats within a session if possible).
     - From `answers_en` (10–15), **randomly select 10** answers to be scoring answers.
-    - These 10 are the only valid answers that will award points **for this round**, even if the card has more potential answers.  [oai_citation:4‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
+    - These 10 are the only valid answers that will award points **for this round**, even if the card has more potential answers. ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
 
 > Note: Actual English prompts and answers will be **original** (not copied from Πες Βρες). This document only defines structure and behavior, not the exact content.
 
@@ -95,7 +95,7 @@ All UI copy and game content for this new app should be **in English**.
 
 - Number of teams:
     - Minimum: 2
-    - Maximum: 4  [oai_citation:5‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
+    - Maximum: 4 ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
 - Each team has:
     - `name` (string)
     - `color` (for UI highlights)
@@ -126,7 +126,7 @@ If multiple teams are tied for **highest score**:
     - If still tied, repeat extra rounds until tie is broken.
 - App should **label** these rounds as “Overtime” in UI.
 
-This mirrors the “overtime in case of tie” feature in the original app.  [oai_citation:6‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
+This mirrors the “overtime in case of tie” feature in the original app. ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
 
 ---
 
@@ -225,7 +225,7 @@ Elements:
         - Use OS sharing sheet with text like:
             - “We just played ‘Ask & Find’ – Winner: Team Green with 27 points!”
 
-The original app allows sharing wins on social platforms; here we use generic share to respect platform-neutral design.  [oai_citation:7‡Πες Βρες App](https://www.pesvres.com/?utm_source=chatgpt.com)
+The original app allows sharing wins on social platforms; here we use generic share to respect platform-neutral design. ([Πες Βρες website](https://www.pesvres.com/))
 
 ### 3.7 Settings Screen
 
@@ -245,7 +245,7 @@ Explain briefly, in English:
 - How to create teams.
 - How rounds work (prompt + 10 answers, countdown).
 - How scoring works.
-- That **one device is enough** for all players.  [oai_citation:8‡Google Play](https://play.google.com/store/apps/details?hl=el&id=pes.vres&utm_source=chatgpt.com)
+- That **one device is enough** for all players. ([Google Play listing](https://play.google.com/store/apps/details?hl=el&id=pes.vres))
 - How tie-breaker/overtime works.
 
 ---

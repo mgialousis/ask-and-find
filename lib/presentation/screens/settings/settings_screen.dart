@@ -42,28 +42,26 @@ class SettingsScreen extends ConsumerWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.language),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            RadioListTile<Locale>(
-              title: Text(l10n.english),
-              value: const Locale('en'),
-              groupValue: currentLocale,
-              onChanged: (locale) {
-                ref.read(localeProvider.notifier).setLocale(locale!);
-                Navigator.pop(context);
-              },
-            ),
-            RadioListTile<Locale>(
-              title: Text(l10n.spanish),
-              value: const Locale('es'),
-              groupValue: currentLocale,
-              onChanged: (locale) {
-                ref.read(localeProvider.notifier).setLocale(locale!);
-                Navigator.pop(context);
-              },
-            ),
-          ],
+        content: RadioGroup<Locale>(
+          groupValue: currentLocale,
+          onChanged: (locale) {
+            if (locale == null) return;
+            ref.read(localeProvider.notifier).setLocale(locale);
+            Navigator.pop(context);
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RadioListTile<Locale>(
+                title: Text(l10n.english),
+                value: const Locale('en'),
+              ),
+              RadioListTile<Locale>(
+                title: Text(l10n.spanish),
+                value: const Locale('es'),
+              ),
+            ],
+          ),
         ),
         actions: [
           TextButton(
@@ -93,9 +91,7 @@ class SettingsScreen extends ConsumerWidget {
     final currentLocale = ref.watch(localeProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.settingsTitle),
-      ),
+      appBar: AppBar(title: Text(l10n.settingsTitle)),
       body: ListView(
         children: [
           const SizedBox(height: 8),

@@ -29,7 +29,7 @@ flutter --version
 **Project Dependencies:**
 ```bash
 # Navigate to project directory
-cd /Users/miltos/IdeaProjects/pes_vres
+cd /path/to/ask-and-find
 
 # Install dependencies
 flutter pub get

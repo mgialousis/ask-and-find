@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 import 'package:pes_vres/domain/entities/difficulty.dart';
 
@@ -195,39 +193,6 @@ class CardSubmission extends Equatable {
     );
   }
 
-  /// Convert to row data for Google Sheets (new card)
-  List<String> toNewCardSheetRow() {
-    return [
-      id,
-      submittedAt.toIso8601String(),
-      'pending', // status
-      promptEn ?? '',
-      jsonEncode(answersEn ?? []),
-      difficulty?.name ?? '',
-      source ?? '',
-      submitterName ?? '',
-      submitterEmail ?? '',
-      appVersion ?? '',
-      locale ?? '',
-    ];
-  }
-
-  /// Convert to row data for Google Sheets (correction)
-  List<String> toCorrectionSheetRow() {
-    return [
-      id,
-      submittedAt.toIso8601String(),
-      'pending', // status
-      existingCardId ?? '',
-      existingCardPrompt ?? '',
-      issueType?.name ?? '',
-      issueDescription ?? '',
-      submitterEmail ?? '',
-      appVersion ?? '',
-      locale ?? '',
-    ];
-  }
-
   /// Validate new card submission
   bool get isValidNewCard {
     if (type != SubmissionType.newCard) return false;
@@ -256,22 +221,22 @@ class CardSubmission extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        type,
-        submittedAt,
-        promptEn,
-        answersEn,
-        difficulty,
-        source,
-        existingCardId,
-        existingCardPrompt,
-        issueType,
-        issueDescription,
-        submitterName,
-        submitterEmail,
-        appVersion,
-        locale,
-      ];
+    id,
+    type,
+    submittedAt,
+    promptEn,
+    answersEn,
+    difficulty,
+    source,
+    existingCardId,
+    existingCardPrompt,
+    issueType,
+    issueDescription,
+    submitterName,
+    submitterEmail,
+    appVersion,
+    locale,
+  ];
 
   @override
   String toString() =>

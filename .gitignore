@@ -64,6 +64,7 @@ app.*.map.json
 /ios/Flutter/Flutter.podspec
 /ios/Flutter/Generated.xcconfig
 /ios/Flutter/ephemeral/
+/ios/build/
 **/*.xcuserstate
 **/xcuserdata/
 **/DerivedData/
@@ -73,6 +74,9 @@ app.*.map.json
 
 # Credentials
 lib/core/config/sheets_credentials.json
+assets/cards_temp.json
+assets/icons/bbox.txt
+assets/icons/crop.txt
 
 # Gradle build output under android/ (the root /build/ rule does not cover it)
 /android/build/

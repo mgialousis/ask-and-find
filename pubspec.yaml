@@ -1,5 +1,5 @@
 name: pes_vres
-description: "Pes Vres flutter project"
+description: "Ask & Find — a bilingual, local-multiplayer party trivia game."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -62,12 +62,10 @@ dependencies:
   confetti: ^0.7.0
 
   # User submissions
-  gsheets: ^0.5.0
   connectivity_plus: ^6.0.0
   package_info_plus: ^8.1.0
   http: ^1.2.0
   posthog_flutter: ^4.10.0
-  flutter_dotenv: ^5.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -82,6 +80,9 @@ dev_dependencies:
   # Testing utilities
   mocktail: ^1.0.0
   flutter_launcher_icons: ^0.13.1
+  # Maintainer-only scripts can administer the submissions spreadsheet without
+  # shipping its service-account credential in the mobile application.
+  gsheets: ^0.5.0
 
 flutter_launcher_icons:
   android: true
@@ -109,7 +110,6 @@ flutter:
   assets:
     - assets/sounds/
     - assets/cards.json
-    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

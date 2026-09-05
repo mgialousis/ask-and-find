@@ -8,8 +8,6 @@ import 'package:pes_vres/core/analytics/analytics_service.dart';
 import 'package:pes_vres/core/routing/app_router.dart';
 import 'package:pes_vres/core/theme/app_colors.dart';
 import 'package:pes_vres/domain/entities/card_item.dart';
-import 'package:pes_vres/domain/entities/card_submission.dart';
-import 'package:pes_vres/domain/entities/difficulty.dart';
 import 'package:pes_vres/l10n/app_localizations.dart';
 import 'package:pes_vres/presentation/screens/submission/widgets/answer_list_editor.dart';
 import 'package:pes_vres/presentation/screens/submission/widgets/card_preview_widget.dart';
@@ -20,10 +18,7 @@ import 'package:pes_vres/presentation/state/submission_provider.dart';
 import 'package:pes_vres/presentation/widgets/common/primary_button.dart';
 
 /// Screen mode for card submission
-enum SubmissionMode {
-  newCard,
-  correction,
-}
+enum SubmissionMode { newCard, correction }
 
 /// Screen for submitting new cards or reporting issues with existing cards
 class CardSubmissionScreen extends ConsumerStatefulWidget {
@@ -68,9 +63,7 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
     unawaited(
       AnalyticsService.instance.capture(
         'submission_opened',
-        properties: {
-          'mode': _mode.name,
-        },
+        properties: {'mode': _mode.name},
       ),
     );
 
@@ -94,8 +87,9 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
     try {
       final info = await PackageInfo.fromPlatform();
       if (!mounted) return;
-      final buildSuffix =
-          info.buildNumber.isNotEmpty ? '+${info.buildNumber}' : '';
+      final buildSuffix = info.buildNumber.isNotEmpty
+          ? '+${info.buildNumber}'
+          : '';
       setState(() {
         _appVersion = '${info.version}$buildSuffix';
       });
@@ -127,14 +121,19 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
 
     if (_mode == SubmissionMode.newCard) {
       final form = ref.read(newCardFormProvider);
-      final result = await ref.read(submissionProvider.notifier).submitNewCard(
+      final result = await ref
+          .read(submissionProvider.notifier)
+          .submitNewCard(
             promptEn: form.promptEn,
             answersEn: form.answersEn.where((a) => a.isNotEmpty).toList(),
             difficulty: form.difficulty!,
             source: form.source.isNotEmpty ? form.source : null,
-            submitterName: form.submitterName.isNotEmpty ? form.submitterName : null,
-            submitterEmail:
-                form.submitterEmail.isNotEmpty ? form.submitterEmail : null,
+            submitterName: form.submitterName.isNotEmpty
+                ? form.submitterName
+                : null,
+            submitterEmail: form.submitterEmail.isNotEmpty
+                ? form.submitterEmail
+                : null,
             appVersion: _appVersion,
             locale: locale,
           );
@@ -142,17 +141,19 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
       _handleResult(result, l10n);
     } else {
       final form = ref.read(correctionFormProvider);
-      final result =
-          await ref.read(submissionProvider.notifier).submitCorrection(
-                existingCardId: form.selectedCard!.id,
-                existingCardPrompt: form.selectedCard!.promptEn,
-                issueType: form.issueType!,
-                issueDescription: form.issueDescription,
-                submitterEmail:
-                    form.submitterEmail.isNotEmpty ? form.submitterEmail : null,
-                appVersion: _appVersion,
-                locale: locale,
-              );
+      final result = await ref
+          .read(submissionProvider.notifier)
+          .submitCorrection(
+            existingCardId: form.selectedCard!.id,
+            existingCardPrompt: form.selectedCard!.promptEn,
+            issueType: form.issueType!,
+            issueDescription: form.issueDescription,
+            submitterEmail: form.submitterEmail.isNotEmpty
+                ? form.submitterEmail
+                : null,
+            appVersion: _appVersion,
+            locale: locale,
+          );
 
       _handleResult(result, l10n);
     }
@@ -265,7 +266,9 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
                         height: 20,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white,
+                          ),
                         ),
                       )
                     : Text(
@@ -284,10 +287,7 @@ class _CardSubmissionScreenState extends ConsumerState<CardSubmissionScreen> {
 
 /// Toggle between new card and correction modes
 class _ModeToggle extends StatelessWidget {
-  const _ModeToggle({
-    required this.mode,
-    required this.onModeChanged,
-  });
+  const _ModeToggle({required this.mode, required this.onModeChanged});
 
   final SubmissionMode mode;
   final ValueChanged<SubmissionMode> onModeChanged;
@@ -336,8 +336,9 @@ class _NewCardForm extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final form = ref.watch(newCardFormProvider);
     final notifier = ref.read(newCardFormProvider.notifier);
-    final previewPrompt =
-        form.promptEn.trim().isNotEmpty ? form.promptEn.trim() : l10n.questionHint;
+    final previewPrompt = form.promptEn.trim().isNotEmpty
+        ? form.promptEn.trim()
+        : l10n.questionHint;
     final previewAnswers = form.answersEn;
 
     return Column(
@@ -378,10 +379,7 @@ class _NewCardForm extends ConsumerWidget {
         _SectionHeader(title: l10n.answersLabel),
         Text(
           l10n.answersHint,
-          style: TextStyle(
-            fontSize: 12,
-            color: context.palette.textSecondary,
-          ),
+          style: TextStyle(fontSize: 12, color: context.palette.textSecondary),
         ),
         const SizedBox(height: 8),
         AnswerListEditor(
@@ -486,10 +484,12 @@ class _CorrectionForm extends ConsumerWidget {
           const SizedBox(height: 12),
           _SectionHeader(title: l10n.previewCard),
           CardPreviewWidget(
-            prompt: form.selectedCard!
-                .getPrompt(Localizations.localeOf(context)),
-            answers: form.selectedCard!
-                .getAnswers(Localizations.localeOf(context)),
+            prompt: form.selectedCard!.getPrompt(
+              Localizations.localeOf(context),
+            ),
+            answers: form.selectedCard!.getAnswers(
+              Localizations.localeOf(context),
+            ),
             difficulty: form.selectedCard!.difficulty,
             maxAnswers: 10,
           ),
@@ -559,7 +559,10 @@ class _CorrectionForm extends ConsumerWidget {
     );
   }
 
-  void _showCardSelector(BuildContext context, CorrectionFormNotifier notifier) {
+  void _showCardSelector(
+    BuildContext context,
+    CorrectionFormNotifier notifier,
+  ) {
     showDialog(
       context: context,
       builder: (context) => CardSelectorDialog(
@@ -615,10 +618,7 @@ class _SelectedCardDisplay extends StatelessWidget {
 
 /// Section header widget
 class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({
-    required this.title,
-    this.isOptional = false,
-  });
+  const _SectionHeader({required this.title, this.isOptional = false});
 
   final String title;
   final bool isOptional;
@@ -632,10 +632,7 @@ class _SectionHeader extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
           ),
           if (isOptional) ...[
             const SizedBox(width: 4),
@@ -655,10 +652,7 @@ class _SectionHeader extends StatelessWidget {
 
 /// Difficulty selector
 class _DifficultySelector extends StatelessWidget {
-  const _DifficultySelector({
-    required this.value,
-    required this.onChanged,
-  });
+  const _DifficultySelector({required this.value, required this.onChanged});
 
   final Difficulty? value;
   final ValueChanged<Difficulty?> onChanged;
@@ -669,18 +663,9 @@ class _DifficultySelector extends StatelessWidget {
 
     return SegmentedButton<Difficulty>(
       segments: [
-        ButtonSegment(
-          value: Difficulty.easy,
-          label: Text(l10n.easy),
-        ),
-        ButtonSegment(
-          value: Difficulty.medium,
-          label: Text(l10n.medium),
-        ),
-        ButtonSegment(
-          value: Difficulty.hard,
-          label: Text(l10n.hard),
-        ),
+        ButtonSegment(value: Difficulty.easy, label: Text(l10n.easy)),
+        ButtonSegment(value: Difficulty.medium, label: Text(l10n.medium)),
+        ButtonSegment(value: Difficulty.hard, label: Text(l10n.hard)),
       ],
       selected: value != null ? {value!} : {},
       onSelectionChanged: (selection) {

@@ -83,9 +83,6 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     );
 
     final overlay = Overlay.of(context, rootOverlay: true);
-    if (overlay == null) {
-      return;
-    }
     overlay.insert(_confettiOverlay!);
 
     _confettiCleanupTimer?.cancel();
@@ -110,8 +107,10 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
     _didCaptureCompletion = true;
 
     final setupState = ref.read(gameSetupProvider);
-    final totalPoints =
-        setupState.teams.fold<int>(0, (total, team) => total + team.score);
+    final totalPoints = setupState.teams.fold<int>(
+      0,
+      (total, team) => total + team.score,
+    );
     final winners = _winners(ref);
     final isTie = _isTie(ref);
     final winnerIndices = winners
@@ -307,18 +306,11 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                   decoration: BoxDecoration(
                     color: winnerColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: winnerColor,
-                      width: 2,
-                    ),
+                    border: Border.all(color: winnerColor, width: 2),
                   ),
                   child: Column(
                     children: [
-                      Icon(
-                        winnerIcon,
-                        size: 64,
-                        color: winnerColor,
-                      ),
+                      Icon(winnerIcon, size: 64, color: winnerColor),
                       const SizedBox(height: 16),
                       Text(
                         winnerText,

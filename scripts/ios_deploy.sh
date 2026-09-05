@@ -6,15 +6,8 @@ DEVICE_ID=""
 DART_DEFINES=()
 POSTHOG_KEY_ARG=""
 POSTHOG_HOST_ARG=""
-POSTHOG_DEBUG_ARG="true"
-ENV_FILE="${ENV_FILE:-.env}"
-
-if [[ -f "${ENV_FILE}" ]]; then
-  set -a
-  # shellcheck disable=SC1090
-  source "${ENV_FILE}"
-  set +a
-fi
+POSTHOG_DEBUG_ARG=""
+SUBMISSIONS_ENDPOINT_ARG=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -38,6 +31,10 @@ while [[ $# -gt 0 ]]; do
       POSTHOG_DEBUG_ARG="true"
       shift
       ;;
+    --submissions-endpoint)
+      SUBMISSIONS_ENDPOINT_ARG="$2"
+      shift 2
+      ;;
     *)
       DEVICE_ID="$1"
       shift
@@ -46,11 +43,16 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "${DEVICE_ID}" ]]; then
-  echo "Usage: $(basename "$0") [--debug|--release] [--posthog-key <key>] [--posthog-host <host>] [--posthog-debug] <device-id>"
+  echo "Usage: $(basename "$0") [--debug|--release] [--submissions-endpoint <url>] [--posthog-key <key>] [--posthog-host <host>] [--posthog-debug] <device-id>"
   echo "Tip: flutter devices"
   exit 1
 fi
 
+if [[ -n "${SUBMISSIONS_ENDPOINT_ARG}" ]]; then
+  DART_DEFINES+=("--dart-define=SUBMISSIONS_ENDPOINT_URL=${SUBMISSIONS_ENDPOINT_ARG}")
+elif [[ -n "${SUBMISSIONS_ENDPOINT_URL:-}" ]]; then
+  DART_DEFINES+=("--dart-define=SUBMISSIONS_ENDPOINT_URL=${SUBMISSIONS_ENDPOINT_URL}")
+fi
 if [[ -n "${POSTHOG_KEY_ARG}" ]]; then
   DART_DEFINES+=("--dart-define=POSTHOG_API_KEY=${POSTHOG_KEY_ARG}")
 elif [[ -n "${POSTHOG_API_KEY:-}" ]]; then

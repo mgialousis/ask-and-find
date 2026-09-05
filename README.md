@@ -1,6 +1,14 @@
 # Ask & Find
 
-A local multiplayer party trivia game built with Flutter. Teams compete to guess items from hidden lists before time runs out!
+[![Flutter CI](https://github.com/mgialousis/ask-and-find/actions/workflows/flutter-ci.yml/badge.svg)](https://github.com/mgialousis/ask-and-find/actions/workflows/flutter-ci.yml)
+
+A bilingual, local-multiplayer party game for Android and iOS. Two to four
+teams race the clock to uncover items from hidden trivia lists, with each
+answer weighted by difficulty.
+
+This project demonstrates production-oriented Flutter work: Riverpod state
+management, deterministic game flows, responsive layouts, localization,
+offline-first community submissions, opt-in analytics, and automated tests.
 
 ## 🎮 What is Ask & Find?
 
@@ -19,7 +27,7 @@ The core game is playable end to end on Android and iOS:
 - Complete setup → game → results → play-again flow
 - Configurable teams, rounds, timer, and difficulty
 - Riverpod-managed game, setup, timer, settings, and submission state
-- 243 bilingual English/Spanish trivia cards with per-answer scoring
+- 317 bilingual English/Spanish trivia cards with per-answer scoring
 - Sound effects, haptic feedback, sharing, and persistent settings
 - New-card and correction submissions with offline retry support
 - PostHog analytics with a user-facing privacy toggle
@@ -37,7 +45,7 @@ Run it locally with `flutter run`.
 - Round-complete dialog that requires Continue or End Game
 - English and Spanish localization
 - Card submission and issue-reporting flows
-- Offline submission queue and Google Sheets integration
+- Offline submission queue backed by a credential-free HTTPS API client
 - Responsive phone and tablet layouts
 
 ## 🏗️ Architecture
@@ -83,11 +91,8 @@ Trivia content is loaded from `assets/cards.json`; app and round state are manag
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd pes_vres
-
-# Optional: configure .env for submissions/analytics
-cp .env.example .env
+git clone https://github.com/mgialousis/ask-and-find.git
+cd ask-and-find
 
 # Install dependencies
 flutter pub get
@@ -102,6 +107,20 @@ flutter test
 flutter analyze
 ```
 
+Optional services are supplied as public compile-time configuration—never as
+privileged credentials inside the app:
+
+```bash
+flutter run \
+  --dart-define=SUBMISSIONS_ENDPOINT_URL=https://example.com/api/submissions \
+  --dart-define=POSTHOG_API_KEY=your_public_project_key \
+  --dart-define=POSTHOG_HOST=https://eu.i.posthog.com
+```
+
+Without a submission endpoint, contributions remain in the local retry queue.
+See [the submission API contract](docs/SUBMISSION_API.md) for the backend
+boundary and deployment security requirements.
+
 ### Quick Test Flow
 
 ```bash
@@ -115,7 +134,7 @@ flutter run
 
 ## 📁 Project Structure
 
-See `CLAUDE.md` for development guidelines and project overview.
+See the directory overview above for the application architecture.
 
 See `docs/RELEASE_GUIDE.md` for publishing/build steps.
 
@@ -142,17 +161,29 @@ flutter test test/widget_test.dart
 flutter test --coverage
 ```
 
-**Current Status:** 102 declared test cases across 8 test files, covering localization, providers, setup, shared widgets, submissions, and app launch.
+**Current status:** 120 declared test cases across 11 test files, covering
+localization, providers, setup, shared widgets, submissions, HTTP transport,
+analytics settings, and app launch.
 
 ## 📊 Analytics (PostHog)
 
 - Analytics are optional and can be disabled in Settings → Privacy → Analytics.
 - No PII is sent. Custom card content and team names are not captured.
-- Configure keys via `.env` (recommended) or `--dart-define`:
-  - `.env` keys: `POSTHOG_API_KEY`, `POSTHOG_HOST`, `POSTHOG_ALLOW_DEBUG`
-  - `--dart-define=POSTHOG_API_KEY=...`
-  - `--dart-define=POSTHOG_HOST=https://app.posthog.com`
-  - Optional: `--dart-define=POSTHOG_ALLOW_DEBUG=true` for non-release builds.
+- Configure the public PostHog project key with
+  `--dart-define=POSTHOG_API_KEY=...`.
+- Override the EU host with `--dart-define=POSTHOG_HOST=...` if needed.
+- `POSTHOG_ALLOW_DEBUG=true` is intended only for non-release builds.
+
+## Security and privacy
+
+- Google or database administrator credentials are never embedded in the
+  mobile application. Community submissions cross an HTTPS API boundary.
+- The submission backend must validate payloads, rate-limit clients, restrict
+  request sizes, and keep its storage credentials server-side.
+- Analytics are disabled without configuration and can always be turned off by
+  the user.
+- Team names and custom card text are not included in analytics events.
+- Pending submissions are stored locally until the configured API accepts them.
 
 ## 📝 Recent Changes
 
@@ -166,16 +197,8 @@ flutter test --coverage
 
 This is a personal project. Feedback and suggestions are welcome!
 
-## 📄 License
-
-[License to be determined]
-
 ## 🙏 Acknowledgments
 
 - Inspired by the Greek game "Πες Βρες!"
 - Built with Flutter and Material Design
 - Developed with assistance from Claude Code
-
-## 📧 Contact
-
-[Contact information to be added]
