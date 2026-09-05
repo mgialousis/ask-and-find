@@ -8,7 +8,19 @@ answer weighted by difficulty.
 
 This project demonstrates production-oriented Flutter work: Riverpod state
 management, deterministic game flows, responsive layouts, localization,
-offline-first community submissions, opt-in analytics, and automated tests.
+offline-first community submissions, configurable analytics, and automated tests.
+
+## Preview
+
+Real Android app captures with demonstration teams and bundled trivia.
+
+<p>
+  <img src="docs/screenshots/01-home.png" width="240" alt="Ask and Find home screen" />
+  <img src="docs/screenshots/02-setup.png" width="240" alt="Team count, names, and color setup" />
+  <img src="docs/screenshots/03-playing.png" width="240" alt="Timed programming-language question with weighted answers" />
+</p>
+
+[Two-minute product walkthrough](docs/WALKTHROUGH.md)
 
 ## 🎮 What is Ask & Find?
 
@@ -56,7 +68,7 @@ lib/
 ├── domain/entities/   # Game and submission entities
 ├── data/
 │   ├── repositories/  # Cards and submission repositories
-│   └── sources/       # Asset loading, Sheets API, and offline storage
+│   └── sources/       # Asset loading, HTTPS submission client, and offline storage
 └── presentation/
     ├── state/         # Riverpod providers and notifiers
     ├── screens/       # Home, setup, game, results, settings, submissions
@@ -64,6 +76,10 @@ lib/
 ```
 
 Trivia content is loaded from `assets/cards.json`; app and round state are managed with Riverpod.
+
+Community submissions go to a separately deployed HTTPS service. This repository
+contains the mobile client and [API contract](docs/SUBMISSION_API.md), not a
+Google Sheets backend or privileged storage credentials.
 
 ## 🎲 How to Play
 
@@ -77,15 +93,15 @@ Trivia content is loaded from `assets/cards.json`; app and round state are manag
 
 - **Framework:** Flutter
 - **Language:** Dart ^3.10.4
-- **State Management:** Riverpod (Phase 2)
+- **State Management:** Riverpod
 - **Navigation:** go_router ^12.0.0
 - **Platforms:** Android, iOS
 
 ## 📦 Getting Started
 
 ### Prerequisites
-- Flutter SDK 3.10.4 or higher
-- Dart SDK (comes with Flutter)
+- Flutter 3.38.8 (the version used by CI)
+- Dart 3.10.4 or newer, provided by a compatible Flutter SDK
 
 ### Installation
 
@@ -167,8 +183,13 @@ analytics settings, and app launch.
 
 ## 📊 Analytics (PostHog)
 
-- Analytics are optional and can be disabled in Settings → Privacy → Analytics.
-- No PII is sent. Custom card content and team names are not captured.
+- Without a PostHog key, analytics are disabled. With a key configured,
+  analytics are **enabled by default** unless the user has previously opted out.
+  Users can disable them in Settings → Privacy → Analytics.
+- Events use a persistent anonymous installation identifier and include app,
+  device/platform, locale, and timezone metadata. This is telemetry, not a
+  guarantee that no personal data is processed.
+- Custom card content and team names are not captured.
 - Configure the public PostHog project key with
   `--dart-define=POSTHOG_API_KEY=...`.
 - Override the EU host with `--dart-define=POSTHOG_HOST=...` if needed.
