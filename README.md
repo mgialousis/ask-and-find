@@ -183,8 +183,8 @@ analytics settings, and app launch.
 
 ## 📊 Analytics (PostHog)
 
-- Without a PostHog key, analytics are disabled. With a key configured,
-  analytics are **enabled by default** unless the user has previously opted out.
+- Without a PostHog key, analytics are disabled. In release builds with a key
+  configured, analytics are **enabled by default** unless the user has previously opted out.
   Users can disable them in Settings → Privacy → Analytics.
 - Events use a persistent anonymous installation identifier and include app,
   device/platform, locale, and timezone metadata. This is telemetry, not a
@@ -193,7 +193,7 @@ analytics settings, and app launch.
 - Configure the public PostHog project key with
   `--dart-define=POSTHOG_API_KEY=...`.
 - Override the EU host with `--dart-define=POSTHOG_HOST=...` if needed.
-- `POSTHOG_ALLOW_DEBUG=true` is intended only for non-release builds.
+- Non-release builds suppress events unless `POSTHOG_ALLOW_DEBUG=true` is set.
 
 ## Security and privacy
 
